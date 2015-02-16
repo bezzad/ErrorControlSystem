@@ -1,0 +1,97 @@
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngineAdapter.tlb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.tlb
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+C:\Users\Behzad\Documents\errorcontrolsystem\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Error Control System\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Error Control System\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Error Control System\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Error Control System\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Error Control System\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Control System\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Error Control System\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Error Control System\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\SourceTree\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb

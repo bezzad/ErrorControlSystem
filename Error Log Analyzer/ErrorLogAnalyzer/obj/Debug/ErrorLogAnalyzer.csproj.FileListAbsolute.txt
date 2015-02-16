@@ -1,0 +1,80 @@
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\SourceTree\ErrorControlSystem\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Error Control System\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Error Control System\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Error Control System\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Error Control System\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Control System\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Error Control System\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Error Control System\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\SourceTree\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Error Control System\Error Handler Engine\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\Error Control System\Error Handler Engine\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Programming\Shoniz\Error Control System\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb

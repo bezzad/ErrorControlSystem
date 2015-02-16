@@ -1,0 +1,27 @@
+D:\Programming\FileExtensionUserControl\DVTextBox\bin\Debug\DVTextBox.dll
+D:\Programming\FileExtensionUserControl\DVTextBox\bin\Debug\DVTextBox.pdb
+D:\Programming\FileExtensionUserControl\DVTextBox\obj\Debug\DVTextBox.dll
+D:\Programming\FileExtensionUserControl\DVTextBox\obj\Debug\DVTextBox.pdb
+D:\Programming\My App\FileExtensionUserControl\DVTextBox\bin\Debug\DVTextBox.dll
+D:\Programming\My App\FileExtensionUserControl\DVTextBox\bin\Debug\DVTextBox.pdb
+D:\Programming\My App\FileExtensionUserControl\DVTextBox\obj\Debug\DVTextBox.dll
+D:\Programming\My App\FileExtensionUserControl\DVTextBox\obj\Debug\DVTextBox.pdb
+D:\Black ANT\Component\DVTextBox\bin\Debug\DVTextBox.dll
+D:\Black ANT\Component\DVTextBox\bin\Debug\DVTextBox.pdb
+D:\Black ANT\Component\DVTextBox\obj\Debug\DVTextBox.dll
+D:\Black ANT\Component\DVTextBox\obj\Debug\DVTextBox.pdb
+D:\Black ANT\Component\DVTextBox\obj\Debug\DVTextBox.csprojResolveAssemblyReference.cache
+D:\Error Control System\Database Connection Manager\DVTextBox\bin\Debug\DVTextBox.dll
+D:\Error Control System\Database Connection Manager\DVTextBox\bin\Debug\DVTextBox.pdb
+D:\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.dll
+D:\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.pdb
+D:\Shoniz\Error Control System\Database Connection Manager\DVTextBox\bin\Debug\DVTextBox.dll
+D:\Shoniz\Error Control System\Database Connection Manager\DVTextBox\bin\Debug\DVTextBox.pdb
+D:\Shoniz\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.dll
+D:\Shoniz\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.pdb
+D:\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\Database Connection Manager\DVTextBox\bin\Debug\DVTextBox.dll
+D:\Programming\Shoniz\Error Control System\Database Connection Manager\DVTextBox\bin\Debug\DVTextBox.pdb
+D:\Programming\Shoniz\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.dll
+D:\Programming\Shoniz\Error Control System\Database Connection Manager\DVTextBox\obj\Debug\DVTextBox.pdb

@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="b648478b-706b-4dbb-b220-071014059aa9" name="ActivityDiagram" linkedPackageId="b41c2905-5213-415a-b875-1d813cf96e79" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="023be886-00b0-463c-b9ef-ab8860c53f87">
+      <elementDefinition Id="c0531069-ace9-40b3-bcb5-8c96063aa9bd" />
+      <body>If exception throwed       ?</body>
+    </comment>
+    <comment Id="18b23454-ad8c-44a2-8f19-124a6297e5b7">
+      <elementDefinition Id="22acc743-46be-4c69-b2ec-641a540af908" />
+      <body>NO</body>
+    </comment>
+    <comment Id="24f876cf-9b48-4cf2-a7a3-8e194cd51b73">
+      <elementDefinition Id="e6639946-1e6c-427e-9698-9634deabc514" />
+      <body>Is data less than limit size
+      ?</body>
+    </comment>
+    <comment Id="85a094b1-46f3-41b6-931b-b22b020e6fc8">
+      <elementDefinition Id="a26f207a-2576-463c-9b3e-60b95b1f0bd8" />
+      <body>NO</body>
+    </comment>
+    <comment Id="2a59fd1d-338f-4287-92dd-91ac98570e99">
+      <elementDefinition Id="03c94d80-e623-4a63-a31a-10e27f46c7e9" />
+      <body>YES</body>
+    </comment>
+    <comment Id="f4e1efda-b2c2-4176-8beb-0541726615f5">
+      <elementDefinition Id="9145dc26-e6c3-4336-8e89-d51f158babeb" />
+      <body>Check the accuracy of the data?</body>
+    </comment>
+    <comment Id="fe6d4dad-70e6-4ae1-a18b-cec622ec2c84">
+      <elementDefinition Id="1dd77678-b90f-4c97-87f4-258bc90378aa" />
+      <body>YES</body>
+    </comment>
+    <comment Id="6712c67f-9ead-4578-83ec-9ce8b4510d15">
+      <elementDefinition Id="59855668-aac5-4db1-b4b8-05a3a03feee0" />
+      <body>NO</body>
+    </comment>
+    <comment Id="4018f0c9-1bab-480d-bcd8-b724ee19e700">
+      <elementDefinition Id="d021ebbe-5fab-4312-83c0-90ba5df5b6b9" />
+      <body>Data Sent Response Received ?</body>
+    </comment>
+    <comment Id="fa29a5f8-bcd8-40a3-ac4d-1d02a8414d01">
+      <elementDefinition Id="3dae627e-e24b-492c-bbbc-6d4e2224dc12" />
+      <body>YES</body>
+    </comment>
+    <comment Id="cc9f2be8-9bf1-4fac-a755-530bac159bac">
+      <elementDefinition Id="501abf99-9802-4237-a25c-c665187088dd" />
+      <body>NO</body>
+    </comment>
+    <comment Id="ced544fb-a562-4725-9695-a0b7419e9027">
+      <elementDefinition Id="4c7da2ad-2f1c-41b6-8a40-65f417b2b4fc" />
+      <body>YES</body>
+    </comment>
+    <comment Id="4430cc8f-20a7-4286-b95b-d5471144f4cd">
+      <elementDefinition Id="003c20b4-64a2-4c8a-8636-9d25fea76bfa" />
+      <body>TransformBlock ErrorSnapshotSaver &lt;Error, Error&gt;</body>
+    </comment>
+    <comment Id="1862fa4e-f474-49cb-9249-d2dffded80f6">
+      <elementDefinition Id="4f7e8b7e-59d1-4923-a336-6fbce704f1d6" />
+      <body>E</body>
+    </comment>
+    <comment Id="41a5cdb5-48d9-4a64-acda-e147a2f6df11">
+      <elementDefinition Id="85cf61b6-e163-4c5c-ab4a-c1ed7183b4dd" />
+      <body>E</body>
+    </comment>
+    <comment Id="3c7859c7-1681-4731-8ff2-9b20550d273d">
+      <elementDefinition Id="920c26d1-440a-4a3d-9329-3ab8f3ab345e" />
+      <body>E</body>
+    </comment>
+    <comment Id="0b21302e-111c-4f86-b16c-c4372aa038a5">
+      <elementDefinition Id="d01cbe37-4081-45c4-885c-ba8542a45e89" />
+      <body>E</body>
+    </comment>
+    <comment Id="d4375e04-5423-468d-bd25-8b4829325a83">
+      <elementDefinition Id="8e9823be-632b-4d60-a2cf-cb5f0856fabe" />
+      <body>Snapshot Image Address on Disk</body>
+    </comment>
+    <comment Id="9853414a-1443-46fb-8bfb-4d4321ac1988">
+      <elementDefinition Id="d62f147b-124a-47c8-a4bf-b65fb7bef2ca" />
+      <body>TransformBlock ErrorDataToJSON &lt;Error, String&gt;</body>
+    </comment>
+    <comment Id="ba4a29dc-2607-442d-8785-e0240bb19220">
+      <elementDefinition Id="5dae64ed-cbdb-446b-93eb-73aa1df80cae" />
+      <body>E</body>
+    </comment>
+    <comment Id="63f41593-375f-4be8-aa30-e2dd864d2554">
+      <elementDefinition Id="fe8a5085-e58f-4b44-a0b1-e260fccef41e" />
+      <body>E</body>
+    </comment>
+    <comment Id="2d4c27a0-9fd0-4947-b448-be44ba6e4cfa">
+      <elementDefinition Id="d3429ee4-30ab-4219-8250-36edad40fb57" />
+      <body>E</body>
+    </comment>
+    <comment Id="13e6efab-4bea-4c49-bfb3-6b3b43d589a3">
+      <elementDefinition Id="d2c2614a-6d48-4e72-8789-b174e222b9fd" />
+      <body>ActionBlock ErrorDataToJSON &lt;Error, String&gt;</body>
+    </comment>
+    <comment Id="62c7247f-8197-4671-bb18-21180869853d">
+      <elementDefinition Id="156a45b6-44e1-4460-bd55-d9eed73ed459" />
+      <body> J</body>
+    </comment>
+    <comment Id="99623093-30ed-42b2-ab3f-69ee827601e6">
+      <elementDefinition Id="b739fc5b-8d10-4763-9754-fb35aba60779" />
+      <body> J</body>
+    </comment>
+    <comment Id="7ca5f085-f94c-43cd-85a4-e8c7befc9cd1">
+      <elementDefinition Id="03f3522e-dd02-44f5-8614-ecd2a7519570" />
+      <body> J</body>
+    </comment>
+    <comment Id="98dbdf4f-98a9-4f9b-a22d-c91726020a6c">
+      <elementDefinition Id="562bf1bb-4bc0-4a08-beb5-efbcaa60cbd2" />
+      <body>E</body>
+    </comment>
+    <comment Id="5d79453e-95bb-4aee-b587-e213de8151bb">
+      <elementDefinition Id="662e99e7-efa7-4c95-8635-592726b7579d" />
+      <body> J</body>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="e5fdba60-d019-4bd2-aecc-f514a1f06164" name="ActivityDiagram" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="ccd83f0d-94f7-4820-a7ea-645df596b925" />
+        <nodes>
+          <initialNode Id="14d952ad-d17c-4b5d-8440-f8dc890bf0cb" name="Initial1" isLeaf="false">
+            <elementDefinition Id="d4201d7f-fcbd-4ce9-8e63-96765822b170" />
+            <flowNodeTargets>
+              <controlFlow Id="d2f6922b-396e-4e18-ad38-72a64803c95e" isLeaf="false">
+                <opaqueActionMoniker Id="9520ce2d-4057-448a-947d-2b5dcf0edf9c" LastKnownName="Application.exe" />
+                <elementDefinition Id="a61d2ee2-5f12-4010-b6e2-ed4c46540e79" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="9520ce2d-4057-448a-947d-2b5dcf0edf9c" name="Application.exe" isLeaf="false">
+            <elementDefinition Id="5908678b-8bbb-4f6d-9633-cf3a0598e2e5" />
+            <flowNodeTargets>
+              <controlFlow Id="17507992-aeea-41db-8027-47b0a324e8ae" isLeaf="false">
+                <callBehaviorActionMoniker Id="2452c908-c441-4ff3-83b2-0c5407e943ed" LastKnownName="Try { Some Codes ... }" />
+                <elementDefinition Id="05ca95e0-8c89-423e-8697-6567e6edcb3e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="81936012-8498-4f87-81f2-39787f16fad5" name="Exception Manager" isLeaf="false">
+            <elementDefinition Id="e4e2ba0c-1f7e-43f2-aea2-2178eee47dc6" />
+            <flowNodeTargets>
+              <controlFlow Id="c54640a5-d74d-4a94-91dd-9173c0df213b" isLeaf="false">
+                <opaqueActionMoniker Id="a76a51a3-02c5-4cd0-92c1-502e0e993c2c" LastKnownName="+ Addational Data" />
+                <elementDefinition Id="6db4ca2a-7a4f-4531-bcdc-f218d6b2b428" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <callBehaviorAction Id="2452c908-c441-4ff3-83b2-0c5407e943ed" name="Try { Some Codes ... }" isLeaf="false">
+            <elementDefinition Id="c9d08085-5426-4843-b988-4515a3a2553f" />
+            <flowNodeTargets>
+              <controlFlow Id="3a1c728f-a801-4ce8-b62a-6f3302f08953" isLeaf="false">
+                <decisionNodeMoniker Id="92e297be-05e3-4474-8657-83f3fb35086d" LastKnownName="If exception throwed" />
+                <elementDefinition Id="e83c6c83-027b-4cc9-82f3-cfab7d3653a8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </callBehaviorAction>
+          <decisionNode Id="92e297be-05e3-4474-8657-83f3fb35086d" name="If exception throwed" isLeaf="false">
+            <elementDefinition Id="aa47b94a-cc74-46c1-a8cb-4bd4e015f9ab" />
+            <flowNodeTargets>
+              <controlFlow Id="a4a7a6cc-130d-4ce5-8c78-5d42024a0bcf" isLeaf="false">
+                <callBehaviorActionMoniker Id="2452c908-c441-4ff3-83b2-0c5407e943ed" LastKnownName="Try { Some Codes ... }" />
+                <elementDefinition Id="3fc89db5-160b-4cbd-8b95-f81453025a84" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="75a97e02-542c-43f0-9746-e63ca8ac6f3d" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="01c3b988-b37c-4cc7-a584-de120583b17f" LastKnownName="Exception (Object)" />
+                <elementDefinition Id="172d3ce2-eff6-42a0-94bb-134100597e9e" />
+              </objectFlow>
+            </objectFlowTargets>
+          </decisionNode>
+          <objectNode Id="01c3b988-b37c-4cc7-a584-de120583b17f" name="Exception (Object)" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="b814d92b-8428-42f1-ada9-0f0ce6235766" />
+            <objectFlowTargets>
+              <objectFlow Id="8c713cdf-5d90-4f09-a165-19902a0913e7" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="81936012-8498-4f87-81f2-39787f16fad5" LastKnownName="Exception Manager" />
+                <elementDefinition Id="e31130ec-d7bb-4ea9-bf14-86efbf3062c5" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="89b1fd8f-e1ed-40f9-a2b0-b4ea600db446" name="2147483647" value="2147483647">
+                <elementDefinition Id="67c50088-b3d9-4734-bcee-fddd3aa0e9bc" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="a76a51a3-02c5-4cd0-92c1-502e0e993c2c" name="+ Addational Data" isLeaf="false">
+            <elementDefinition Id="4eaefcba-d23d-4527-9512-8ab93f7b7ce7" />
+            <flowNodeTargets>
+              <controlFlow Id="f047269f-5326-4010-a2f4-b6746ee51ff9" isLeaf="false">
+                <opaqueActionMoniker Id="d892f59b-d5cb-48c2-bf7d-1e215be7fee0" LastKnownName="Server Time Fetcher" />
+                <elementDefinition Id="37c237c4-fcdb-42e6-889e-ac84030316ec" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="baa4d134-668a-401e-912b-b17d3a25bf7b" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="582394bd-60c5-48c5-b7c6-a7234a1f114d" LastKnownName="Error (Object)" />
+                <elementDefinition Id="a555c55a-ff3e-47c2-b1ea-31563d056d02" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="582394bd-60c5-48c5-b7c6-a7234a1f114d" name="Error (Object)" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="58f9a8c4-9b25-4912-bd44-95b4bfbc9df0" />
+            <objectFlowTargets>
+              <objectFlow Id="9922a689-dc6f-4525-a564-26cf984ef188" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <sendSignalActionMoniker Id="1b2bab0c-181d-4307-a58c-6e4859e63031" LastKnownName="Send to Cache" />
+                <elementDefinition Id="9413b10a-d45c-444f-8fd9-5c799d0590e6" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="bd3337fd-3d9e-48c3-bd2a-385222e0f210" name="2147483647" value="2147483647">
+                <elementDefinition Id="16fe0479-33b2-42b6-aba6-bf314063efe0" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <sendSignalAction Id="1b2bab0c-181d-4307-a58c-6e4859e63031" name="Send to Cache" isLeaf="false">
+            <elementDefinition Id="386770d8-7e47-4294-a2e6-eb5d528d33d3" />
+            <flowNodeTargets>
+              <controlFlow Id="cfcb3001-814f-4920-9270-3a5ef5aa7149" isLeaf="false">
+                <opaqueActionMoniker Id="3cbba6bc-64d7-4579-b2c5-5f70b2087de3" LastKnownName="Cache Error Fetcher to DataFlow Sys" />
+                <elementDefinition Id="e3118fcb-a7a8-4e58-9c4a-5c436a79380d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <opaqueAction Id="7ce22f9b-9d21-46a2-9af7-3eee81bc6bb6" name="Cache Handled Errors" isLeaf="false">
+            <elementDefinition Id="81fb2a9d-c787-4bd8-885f-f8a0acff8f68" />
+            <flowNodeTargets>
+              <controlFlow Id="8066da66-61f5-4609-bf47-e12412123b8b" isLeaf="false">
+                <decisionNodeMoniker Id="19ab1d9f-e391-4cf9-8063-aebbe2ccea3e" LastKnownName="Decision1" />
+                <elementDefinition Id="f7bccc2c-823c-4309-bf6c-80fb0059c687" />
+              </controlFlow>
+              <controlFlow Id="dc4a2e73-7cc2-44e7-b64f-561fcfb59676" isLeaf="false">
+                <opaqueActionMoniker Id="3cbba6bc-64d7-4579-b2c5-5f70b2087de3" LastKnownName="Cache Error Fetcher to DataFlow Sys" />
+                <elementDefinition Id="27b0aaec-def7-4ca0-a830-479b1226afdc" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="19ab1d9f-e391-4cf9-8063-aebbe2ccea3e" name="Decision1" isLeaf="false">
+            <elementDefinition Id="969d5a30-e6a3-47a0-8397-7c7f8d3da745" />
+            <flowNodeTargets>
+              <controlFlow Id="9696294c-0443-4d2a-a73f-45a07ce8ace6" isLeaf="false">
+                <opaqueActionMoniker Id="7ce22f9b-9d21-46a2-9af7-3eee81bc6bb6" LastKnownName="Cache Handled Errors" />
+                <elementDefinition Id="ff42765e-593d-4156-b740-b6143d241468" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="608e600e-264b-4da7-8d2a-ee9e2d84138b" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="1389a5a3-05af-40e9-a478-1950e38f7f54" LastKnownName="Erro Handler Array Objects" />
+                <elementDefinition Id="4547f771-edde-4af4-a2f8-3ba7038c427a" />
+              </objectFlow>
+            </objectFlowTargets>
+          </decisionNode>
+          <activityFinalNode Id="f3d1d35e-1765-470a-ab90-1ff2a764ff11" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="c99c9166-d15c-49ed-88b3-728902f0e83e" />
+          </activityFinalNode>
+          <opaqueAction Id="381af8d8-4c47-4650-8eac-22ba9b4a860f" name="Cache Reader" isLeaf="false">
+            <elementDefinition Id="84c1c06f-4690-47b4-b049-ec7717ae4e20" />
+            <objectFlowTargets>
+              <objectFlow Id="85096b5c-721f-41b0-ac9e-edb350ecb221" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="f28f65b5-74bc-4d5c-a81c-d8a8d8143860" LastKnownName="Error Data Package" />
+                <elementDefinition Id="8747b6cf-d0ef-480e-9969-a42bcea64d38" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="1389a5a3-05af-40e9-a478-1950e38f7f54" name="Erro Handler Array Objects" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="4eba0369-fbd7-43c4-bcca-e65ff2e904cf" />
+            <objectFlowTargets>
+              <objectFlow Id="a7ab8007-ab1e-4805-ae65-ccf0ab21d8b7" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="381af8d8-4c47-4650-8eac-22ba9b4a860f" LastKnownName="Cache Reader" />
+                <elementDefinition Id="a70170ac-16a1-460f-b7cb-05772484bf29" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="59b96a28-9e42-4881-be36-25d910a3e3c0" name="2147483647" value="2147483647">
+                <elementDefinition Id="092a8be1-b3b9-4b3d-a81e-b42216d21379" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="0af648ed-9930-477c-880a-2cf9f2f4966f" name="Server Connector" isLeaf="false">
+            <elementDefinition Id="5dccec5e-803b-4433-9bc2-0313f1fdfd32" />
+            <objectFlowTargets>
+              <objectFlow Id="6193e4e7-b96e-45ea-801d-b32c7802f16b" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="020db0fe-ec18-446d-9a7e-5a8ecffaa2a3" LastKnownName="Connection Data" />
+                <elementDefinition Id="3618fb97-a2a6-49bb-94b1-4f4fda7f7c8d" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <objectNode Id="020db0fe-ec18-446d-9a7e-5a8ecffaa2a3" name="Connection Data" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0b0424de-06ba-4b5e-995f-40d57b256c17" />
+            <objectFlowTargets>
+              <objectFlow Id="02af93cb-b33b-49a3-aff8-c09e326de7c2" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <joinNodeMoniker Id="c96e50ef-6af4-4268-966c-3825a4fc9838" LastKnownName="Join1" />
+                <elementDefinition Id="843979b1-b5f0-436b-ac27-ef7037de80ea" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="b59d6342-b9c0-4611-bcea-8064d70ded4d" name="2147483647" value="2147483647">
+                <elementDefinition Id="f1464edc-1dca-4d09-9042-12751b3f7448" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <objectNode Id="f28f65b5-74bc-4d5c-a81c-d8a8d8143860" name="Error Data Package" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="88cd9c6d-d0d4-45d5-b60d-e64bbc1514f1" />
+            <objectFlowTargets>
+              <objectFlow Id="3192f44b-43c0-4bf2-944a-86aa84bbe70f" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <joinNodeMoniker Id="c96e50ef-6af4-4268-966c-3825a4fc9838" LastKnownName="Join1" />
+                <elementDefinition Id="d96e85bd-0369-4ad3-9aba-0b96e9039f97" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="c8c4cf4c-a0ea-4ef6-8d22-f8c7a9a70c50" name="2147483647" value="2147483647">
+                <elementDefinition Id="c6d31ff9-abaf-4a79-8adb-16d7198ee011" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="8fbdc76b-9011-4f46-850c-2e89a76ce7d1" name="State Checker" isLeaf="false">
+            <elementDefinition Id="0aa4d45f-a8ce-44f3-977c-c3baa9937f92" />
+            <flowNodeTargets>
+              <controlFlow Id="758c49b3-d48f-44c6-a39a-a44cbdfaa634" isLeaf="false">
+                <decisionNodeMoniker Id="b5451410-1661-4a30-a50e-e9d81622a786" LastKnownName="Decision2" />
+                <elementDefinition Id="0dd306ef-afa8-4d3e-b03e-b3d74201e86c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode Id="c96e50ef-6af4-4268-966c-3825a4fc9838" name="Join1" isLeaf="false">
+            <elementDefinition Id="76cee982-086d-4921-a8a4-bbf5981f99cc" />
+            <flowNodeTargets>
+              <controlFlow Id="927dad09-b931-43c1-85a5-f2cf5fa6365d" isLeaf="false">
+                <opaqueActionMoniker Id="8fbdc76b-9011-4f46-850c-2e89a76ce7d1" LastKnownName="State Checker" />
+                <elementDefinition Id="d99bb2d2-f4a4-43f1-afb8-d703dab8d75c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <decisionNode Id="b5451410-1661-4a30-a50e-e9d81622a786" name="Decision2" isLeaf="false">
+            <elementDefinition Id="22505d35-491c-4362-bb19-1c7ece1c26f7" />
+            <flowNodeTargets>
+              <controlFlow Id="5caca07d-7745-4012-9efd-472d8656c2de" isLeaf="false">
+                <opaqueActionMoniker Id="c526dfa6-bdfb-46c1-8480-21db9f5657bc" LastKnownName="Uploader" />
+                <elementDefinition Id="423ad9dd-6c4d-46ff-9bde-cda6312a1491" />
+              </controlFlow>
+              <controlFlow Id="19815988-00e2-4afe-819c-ec24b23f1bc1" isLeaf="false">
+                <opaqueActionMoniker Id="8fbdc76b-9011-4f46-850c-2e89a76ce7d1" LastKnownName="State Checker" />
+                <elementDefinition Id="16cfac9d-800a-4beb-96b2-243033fc69ec" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="c526dfa6-bdfb-46c1-8480-21db9f5657bc" name="Uploader" isLeaf="false">
+            <elementDefinition Id="b485c8b9-db4e-4328-a303-9824a7b8772e" />
+            <flowNodeTargets>
+              <controlFlow Id="f694b9c3-8c29-4ccc-9c23-ca417c913516" isLeaf="false">
+                <decisionNodeMoniker Id="0cdff3cb-b496-4b35-ab8c-5eeabc6a0b24" LastKnownName="Decision3" />
+                <elementDefinition Id="da215e0c-1f84-4733-918f-8bab97b26ac8" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="c43b5389-49bd-4e21-b6bc-b648bb2d74de" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityParameterNodeMoniker Id="33b21f72-1f23-4e69-9f03-bd9263918cc0" LastKnownName="UsersManagements DB" />
+                <elementDefinition Id="6831edf5-f23c-4985-8dc0-85b49251f756" />
+              </objectFlow>
+              <objectFlow Id="5561f359-d774-4f47-97f6-886e9a6f3719" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityParameterNodeMoniker Id="89a28e0b-cb38-4962-8356-ea3b28c18e57" LastKnownName="Hard Disk Drive (Local)" />
+                <elementDefinition Id="94c762d8-68ca-438b-ab66-5234d0575ac3" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <sendSignalAction Id="aaec133f-2c9d-4382-a662-0e7413d30534" name="Upload Successful" isLeaf="false">
+            <elementDefinition Id="d43b9870-7227-4e4a-8f3f-d8fa8bfb56ac" />
+            <flowNodeTargets>
+              <controlFlow Id="7256ab73-5352-42a5-951e-6837a8e2655b" isLeaf="false">
+                <acceptEventActionMoniker Id="528366a8-1f01-4095-be9d-e10ce2f576a5" LastKnownName="Data Uploaded Event" />
+                <elementDefinition Id="dcbc27a6-488c-43d3-80da-e3f6e64f57f0" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="528366a8-1f01-4095-be9d-e10ce2f576a5" name="Data Uploaded Event" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="c1092fc0-69b4-41aa-af75-e8b7f738ea91" />
+            <flowNodeTargets>
+              <controlFlow Id="ccb1a6fc-f194-4233-bd39-92557253d7ad" isLeaf="false">
+                <callOperationActionMoniker Id="bb1f3a73-4aca-454a-862a-35e3aee48807" LastKnownName="Clear Cache Operation" />
+                <elementDefinition Id="fa9ab72b-fbf0-4bb8-8035-df9a401873d8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <decisionNode Id="0cdff3cb-b496-4b35-ab8c-5eeabc6a0b24" name="Decision3" isLeaf="false">
+            <elementDefinition Id="94a2b46c-f70b-45ed-b976-bd055dc7c9db" />
+            <flowNodeTargets>
+              <controlFlow Id="12b9dcdc-d0a7-4f48-b779-d221345b3550" isLeaf="false">
+                <sendSignalActionMoniker Id="aaec133f-2c9d-4382-a662-0e7413d30534" LastKnownName="Upload Successful" />
+                <elementDefinition Id="fcd078e9-495b-41c7-adfc-b9f1d0d2b8ea" />
+              </controlFlow>
+              <controlFlow Id="3377e5c0-b418-4739-a4e8-52ddfd67a3b1" isLeaf="false">
+                <opaqueActionMoniker Id="c526dfa6-bdfb-46c1-8480-21db9f5657bc" LastKnownName="Uploader" />
+                <elementDefinition Id="a9fe5f58-59da-48b1-a2b1-63cf672e5058" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <callOperationAction Id="bb1f3a73-4aca-454a-862a-35e3aee48807" name="Clear Cache Operation" isLeaf="false">
+            <elementDefinition Id="ffeb8ff7-fab5-45fd-86d7-b8ccf1b09849" />
+            <flowNodeTargets>
+              <controlFlow Id="c75ece64-8d7c-4c9e-8a26-f3d04d31a14e" isLeaf="false">
+                <activityFinalNodeMoniker Id="f3d1d35e-1765-470a-ab90-1ff2a764ff11" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="350a9262-0ab9-486c-b3e8-438083fabb77" />
+              </controlFlow>
+            </flowNodeTargets>
+          </callOperationAction>
+          <opaqueAction Id="38a5f3ff-f9b9-4a56-95cd-f76f5dfaef22" name="Server Manager" isLeaf="false">
+            <elementDefinition Id="d4e19884-b68e-4a26-8872-4449074ddac8" />
+            <flowNodeTargets>
+              <controlFlow Id="1ad83a65-e5f1-4045-ae0d-3679f8e23af1" isLeaf="false">
+                <opaqueActionMoniker Id="0af648ed-9930-477c-880a-2cf9f2f4966f" LastKnownName="Server Connector" />
+                <elementDefinition Id="a8fc0f0d-0709-43fc-9bbd-8d7bcc5d4703" />
+              </controlFlow>
+              <controlFlow Id="3c56d167-e85f-451c-9195-72310c4135fb" isLeaf="false">
+                <opaqueActionMoniker Id="d892f59b-d5cb-48c2-bf7d-1e215be7fee0" LastKnownName="Server Time Fetcher" />
+                <elementDefinition Id="28f23f82-fe29-4e61-8f9c-da672e7444cc" />
+              </controlFlow>
+              <controlFlow Id="d7b1d559-bed0-4016-82d1-fce7272fb91b" isLeaf="false">
+                <opaqueActionMoniker Id="381af8d8-4c47-4650-8eac-22ba9b4a860f" LastKnownName="Cache Reader" />
+                <elementDefinition Id="cd11741b-a7be-4be2-9382-aaf57caaad69" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="d892f59b-d5cb-48c2-bf7d-1e215be7fee0" name="Server Time Fetcher" isLeaf="false">
+            <elementDefinition Id="93661870-abb6-4959-943a-5d9f4a88ff77" />
+            <flowNodeTargets>
+              <controlFlow Id="a5720755-9b44-4ace-b520-1a165e295e86" isLeaf="false">
+                <opaqueActionMoniker Id="a76a51a3-02c5-4cd0-92c1-502e0e993c2c" LastKnownName="+ Addational Data" />
+                <elementDefinition Id="db04449f-9eb2-46f9-bec9-5ae749ec7cc1" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityParameterNode Id="33b21f72-1f23-4e69-9f03-bd9263918cc0" name="UsersManagements DB" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="ae330b3c-3d07-4002-ad17-7e709de36ee0" />
+            <objectFlowTargets>
+              <objectFlow Id="fffe4edc-f9af-48a3-ac05-c81c00d76933" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="c526dfa6-bdfb-46c1-8480-21db9f5657bc" LastKnownName="Uploader" />
+                <elementDefinition Id="3fb90c32-2ab0-40c2-8638-02582cff59cc" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="1fc07816-1215-4680-bcf0-7be6c2deb98a" name="2147483647" value="2147483647">
+                <elementDefinition Id="28d508e6-9ea2-498c-8ca6-59bf346d031e" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <opaqueAction Id="3cbba6bc-64d7-4579-b2c5-5f70b2087de3" name="Cache Error Fetcher to DataFlow Sys" isLeaf="false">
+            <elementDefinition Id="9eaf451c-099b-4852-91eb-164e67faa669" />
+            <flowNodeTargets>
+              <controlFlow Id="d5cf2861-87b0-450d-881a-0940646be0ae" isLeaf="false">
+                <acceptEventActionMoniker Id="4b483a1c-761c-4a42-86bf-bedf1162d074" LastKnownName="Input: Error Object" />
+                <elementDefinition Id="3a400b7f-d9d6-42bc-9023-e5081a09e968" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <objectNode Id="1b281ed3-268a-4c89-b437-6b8d1f5ef406" name="Error Snapshot (Image)" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="95c7a76e-2a92-4b53-be70-9af79c9ddba9" />
+            <objectFlowTargets>
+              <objectFlow Id="d57637cd-40ca-4a94-8a9f-8ecfb0a95794" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="a575143a-e193-479f-8a78-cf05c845d603" LastKnownName="Save on local Disk" />
+                <elementDefinition Id="56a473a5-5453-4036-ac47-2b2c0380f3d5" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="eb8af7ec-911e-421a-bb08-6cd03a5ba5b9" name="2147483647" value="2147483647">
+                <elementDefinition Id="8f88c645-71ee-4369-9f36-3a4bb224f352" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="a575143a-e193-479f-8a78-cf05c845d603" name="Save on local Disk" isLeaf="false">
+            <elementDefinition Id="79bc607d-d682-4957-a5b9-6df617b4fc95" />
+            <flowNodeTargets>
+              <controlFlow Id="31060bf8-283d-4e23-910f-dc1c0f5a43c6" isLeaf="false">
+                <opaqueActionMoniker Id="5d09b637-3452-4a9e-88d6-c00a6f394abd" LastKnownName="Set SnapshotAddress" />
+                <elementDefinition Id="1ee12f74-b5a0-4d0a-a16e-f43b814d6c3a" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="2e5d7feb-9ec6-4c42-b286-80c316de45c9" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityParameterNodeMoniker Id="89a28e0b-cb38-4962-8356-ea3b28c18e57" LastKnownName="Hard Disk Drive (Local)" />
+                <elementDefinition Id="040f034b-5c59-4edf-b137-cbfb6b55442c" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <activityParameterNode Id="89a28e0b-cb38-4962-8356-ea3b28c18e57" name="Hard Disk Drive (Local)" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="ba217929-a9c3-404d-bde9-5a083c121f2a" />
+            <objectFlowTargets>
+              <objectFlow Id="2e435bfa-704d-4ca1-ad32-b8f69942c85a" isLeaf="false" isMulticast="true" isMultireceive="true">
+                <opaqueActionMoniker Id="c526dfa6-bdfb-46c1-8480-21db9f5657bc" LastKnownName="Uploader" />
+                <description>Send Snapshot Image file</description>
+                <elementDefinition Id="d3668a0d-b542-4137-802d-441d05b7ca0f" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="8768ec48-3808-4dc1-952b-c7e2f19044aa" name="2147483647" value="2147483647">
+                <elementDefinition Id="0a4118d8-f2c2-44f8-bf26-cca5674bf626" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <opaqueAction Id="2e6b0c5f-3c20-4ca1-ace3-4fdc1e3a194c" name="Save Snapshot Image on Disk" isLeaf="false">
+            <elementDefinition Id="0e4f5e40-5a08-4edf-bcd1-3045b94c7c4b" />
+            <objectFlowTargets>
+              <objectFlow Id="651d2868-9ba0-4e60-833c-c730f34e3303" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="1b281ed3-268a-4c89-b437-6b8d1f5ef406" LastKnownName="Error Snapshot (Image)" />
+                <elementDefinition Id="a1da4323-9e40-4c07-a012-5ca9c738aac6" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <opaqueAction Id="5d09b637-3452-4a9e-88d6-c00a6f394abd" name="Set SnapshotAddress" isLeaf="false">
+            <elementDefinition Id="6fccb1fe-a222-402d-96f6-975fecee3233" />
+          </opaqueAction>
+          <acceptEventAction Id="4b483a1c-761c-4a42-86bf-bedf1162d074" name="Input: Error Object" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="7bf80562-28b1-4630-b6f3-760338f0767e" />
+          </acceptEventAction>
+          <sendSignalAction Id="f0782383-fe43-4ca8-8e5f-89a2c7ca79c1" name="Output: Error Object" isLeaf="false">
+            <elementDefinition Id="ddef9045-33a7-4048-9be2-9707ea26b802" />
+            <flowNodeTargets>
+              <controlFlow Id="e7b5db03-7924-4ff9-8a02-9fe933569650" isLeaf="false">
+                <acceptEventActionMoniker Id="e22985b3-892d-4b44-84f7-e399175c660e" LastKnownName="Input: Error Object" />
+                <elementDefinition Id="1dc1034e-2a1d-46aa-909c-9122d506ac9d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <opaqueAction Id="fd3f176a-b142-4276-b335-2c41113ee72d" name="Create JSON string from Error Object" isLeaf="false">
+            <elementDefinition Id="97fe9502-3d5a-4ee5-8eb8-21c9244be8b6" />
+          </opaqueAction>
+          <opaqueAction Id="3bfa0465-1df4-42c8-8dbe-9146b29a9d6c" name="Dispose Error Object" isLeaf="false">
+            <elementDefinition Id="069ba06d-3e6b-4c9c-98c3-3b4d9521974f" />
+          </opaqueAction>
+          <acceptEventAction Id="e22985b3-892d-4b44-84f7-e399175c660e" name="Input: Error Object" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="01b14913-738d-425b-9b5c-563e3599474e" />
+          </acceptEventAction>
+          <sendSignalAction Id="6aeb1e78-5854-4a85-8c8e-bde23b020473" name="Output: JSON String" isLeaf="false">
+            <elementDefinition Id="bd1591a0-af43-4d85-ab95-39e8df28ddfe" />
+            <flowNodeTargets>
+              <controlFlow Id="43630d0e-39d7-48eb-be46-8c6b5d3a0b18" isLeaf="false">
+                <acceptEventActionMoniker Id="b472986b-a047-4356-a782-e0dac70c3513" LastKnownName="Input: JSON String" />
+                <elementDefinition Id="92ad5526-7e09-4246-a564-9d933f0f1c5a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <opaqueAction Id="17b9dd9d-1610-4e29-92bd-87d30f67eb6a" name="Save JSON string on Disk" isLeaf="false">
+            <elementDefinition Id="afd4d6f9-3e32-4d62-9323-9b68a4d9d099" />
+            <objectFlowTargets>
+              <objectFlow Id="534a09f1-fb53-49d7-9558-e0a391b7ad39" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <activityParameterNodeMoniker Id="89a28e0b-cb38-4962-8356-ea3b28c18e57" LastKnownName="Hard Disk Drive (Local)" />
+                <elementDefinition Id="63e47d36-b544-4858-9cc4-1d807ca01b49" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <acceptEventAction Id="b472986b-a047-4356-a782-e0dac70c3513" name="Input: JSON String" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="a84c6543-bf18-4fad-8c32-73e2a4afb8ea" />
+          </acceptEventAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="b41c2905-5213-415a-b875-1d813cf96e79" name="ModelingProject">
+    <elementDefinition Id="5fd4dc8c-abd3-416a-84a0-9147881db61a" />
+    <profileInstances>
+      <packageHasProfileInstances Id="7ac3e04c-acf9-42bf-90af-4bc7c39b4ee3">
+        <profileInstance Id="69c69093-bb6f-4efb-918b-94d7d71d8082" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="61f3f7fb-67ca-455e-a4b3-c020f9a5b45a">
+        <profileInstance Id="c9ea1d6b-ff10-4067-b02a-219733ebad1d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

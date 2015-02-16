@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DatabaseDiagram.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DatabaseDiagramTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DatabaseDiagram" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseDiagramContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ErrorControls" EntityType="DatabaseDiagram.ErrorControls" />
+          <EntitySet Name="Snapshots" EntityType="DatabaseDiagram.Snapshots" />
+        </EntityContainer>
+        <EntityType Name="ErrorControls">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="true" />
+          <Property Name="Source" Type="String" Nullable="true" />
+          <Property Name="StackTrace" Type="String" Nullable="true" />
+          <Property Name="CurrentCulture" Type="String" Nullable="true" />
+          <Property Name="DateTime" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Method" Type="String" Nullable="true" />
+          <Property Name="IsHandled" Type="Boolean" Nullable="false" />
+          <Property Name="User" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Processes" Type="String" Nullable="true" />
+          <Property Name="AppName" Type="String" Nullable="false" />
+          <Property Name="ErrorDateTime" Type="DateTime" Nullable="true" />
+          <Property Name="OS" Type="String" Nullable="true" />
+          <Property Name="MemberType" Type="String" Nullable="true" />
+          <Property Name="ModuleName" Type="String" Nullable="true" />
+          <Property Name="CLRVersion" Type="String" Nullable="true" />
+          <Property Name="Host" Type="String" Nullable="false" />
+          <Property Name="MacAddress" Type="String" Nullable="true" />
+          <Property Name="IPv4Address" Type="String" Nullable="true" />
+          <Property Name="HResult" Type="Int32" Nullable="true" />
+          <Property Name="LineColumn" Type="String" Nullable="false" />
+          <Property Name="Duplicate" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Snapshots">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScreenCapture" Type="Binary" Nullable="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DatabaseDiagram" />
+        <Alias Key="Target" Value="DatabaseDiagram.Store" />
+        <EntityContainerMapping CdmEntityContainer="DatabaseDiagramContainer" StorageEntityContainer="DatabaseDiagramTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

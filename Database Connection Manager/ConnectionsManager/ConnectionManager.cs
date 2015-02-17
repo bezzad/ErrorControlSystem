@@ -45,7 +45,7 @@ namespace ConnectionsManager
         /// <summary>
         /// Use to add or remove ConnectionItem instances to a Connection.
         /// </summary>
-        public volatile static ConnectionCollection Items = new ConnectionCollection();
+        public volatile static ConnectionManagerCollection Items = new ConnectionManagerCollection();
 
         #endregion
 
@@ -528,7 +528,7 @@ namespace ConnectionsManager
 
         public static void Clear()
         {
-            Items.Clear();
+           Items.Clear();
         }
 
         /// <summary>

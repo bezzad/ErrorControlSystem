@@ -339,7 +339,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionCollection.cs")]
         public void CreateConnectionCollection()
         {
-            var items = new ConnectionCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
+            var items = new ConnectionManagerCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
 
             Assert.AreEqual(2, items.Count); // because 2connection have duplicate name and update when added to list!
 
@@ -399,7 +399,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionCollection.cs")]
         public void TestConnectionCollection()
         {
-            var items = new ConnectionCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
+            var items = new ConnectionManagerCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
 
             items["Test"] = new ConnectionManager(_conn);
 

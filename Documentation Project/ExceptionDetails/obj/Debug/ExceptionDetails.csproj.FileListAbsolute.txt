@@ -94,3 +94,5 @@ D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\Exception
 D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
 D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll.CodeAnalysisLog.xml
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll.lastcodeanalysissucceeded

@@ -43,7 +43,6 @@ namespace ErrorHandlerEngine.ExceptionManager
             ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber, attachDbFilename, providerName));
         }
 
-
         public HandleExceptionsAttribute(string dataSource, string initialCatalog, int timeOut, string username,
             string pass, int portNumber = 1433,
             ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
@@ -58,6 +57,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         {
             ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut));
         }
+
         #endregion
 
         #region Methods
@@ -141,6 +141,5 @@ namespace ErrorHandlerEngine.ExceptionManager
         }
 
         #endregion
-
     }
 }

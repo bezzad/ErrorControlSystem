@@ -90,3 +90,4 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Erro
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.csproj.GenerateResource.Cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.exe
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.csprojResolveAssemblyReference.cache

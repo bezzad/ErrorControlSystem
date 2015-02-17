@@ -86,11 +86,9 @@ namespace ErrorHandlerEngine.ModelObjecting
         #region Get Server Date Time
         public static DateTime GetServerDateTime()
         {
-            if (ConnectionManager.Find("UM").IsReady)
-                return DynamicStoredProcedures.FetchServerDataTimeTsql(ConnectionManager.Find("UM"));
-
-            return DateTime.Now;
+            return ConnectionManager.Find("UM").IsReady ? DynamicStoredProcedures.FetchServerDataTimeTsql(ConnectionManager.Find("UM")) : DateTime.Now;
         }
+
         #endregion
     }
 }

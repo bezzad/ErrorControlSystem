@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorHandlerEngine.CacheHandledErrors;
@@ -13,8 +12,7 @@ namespace ErrorHandlerEngine.ServerUploader
     public static class CacheReader
     {
         public static ErrorUniqueCollection ErrorHistory = new ErrorUniqueCollection();
-
-
+        
         #region Read Cache to Error History
 
         /// <summary>
@@ -30,9 +28,6 @@ namespace ErrorHandlerEngine.ServerUploader
         }
 
         #endregion
-
-
-
 
         public static async void ReadCacheToServerUploader()
         {

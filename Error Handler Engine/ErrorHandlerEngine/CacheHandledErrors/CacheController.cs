@@ -15,11 +15,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         public static bool AreErrorsInSendState = false;
 
         #region Methods
-
-        #region Check Cache State to Send Data to Server or Not ?
-
+        
         /// <summary>
-        /// Check cache state to send data or not
+        /// Check Cache State to Send Data to Server or Not ?
         /// </summary>
         public static void CheckState(RoutingDataStoragePath router)
         {
@@ -30,7 +28,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             {
                 AreErrorsInSendState = true;
 
-                // C:\Users\[User Name]\AppData\Local\MyApp v1.*\
+                // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
+                // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\TestErrorHandlerBySelf v1
                 var rootDir = router.ErrorLogFilePath.Substring(0, router.ErrorLogFilePath.LastIndexOf('\\'));
 
                 long errorDataSize = new DirectoryInfo(rootDir).GetDirectorySize();
@@ -51,12 +50,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 AreErrorsInSendState = false;
             }
         }
-
-        #endregion
-
-
-        #region Get Directory Size
-
+        
         /// <summary>
         /// Get Size of directory by all sub directory and files.
         /// </summary>
@@ -86,8 +80,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             return sum;
         }
-
-        #endregion
 
         #endregion
     }

@@ -40,7 +40,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 foreach (var error in ErrorHistory)
                 {
-                    await Kernel.Instance.Uploader.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
+                    await Kernel.Uploader.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
                 }
             });
 

@@ -93,4 +93,3 @@ D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\Exception
 D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csproj.GenerateResource.Cache
 D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
 D:\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache

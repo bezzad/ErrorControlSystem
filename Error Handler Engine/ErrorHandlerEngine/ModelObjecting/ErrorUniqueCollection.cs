@@ -113,7 +113,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                 {
                     try
                     {
-                        Kernel.Instance.Router.WriteText(json);
+                        Kernel.Router.WriteText(json);
                     }
                     finally { Kernel.IsSelfException = false; }
                 }

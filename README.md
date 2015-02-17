@@ -45,9 +45,8 @@ APIs being demonstrated.
 * http://drupalcode.org/project/examples.git allows you to browse the git
 repository for the Examples project.
 
-
-### How To Install The Modules ###
 --------------------------
+### How To Install The Modules ###
 
 1. Install Examples for Developers (unpacking it to your Drupal
 /sites/all/modules directory if you're installing by hand, for example).
@@ -65,3 +64,22 @@ it, and hopefully quickly grasp how things work.
 If you find a problem, incorrect comment, obsolete or improper code or such,
 please search for an issue about it at http://drupal.org/project/issues/examples
 If there isn't already an issue for it, please create a new one.
+
+--------------------------
+### LICENSE INFORMATION ###
+
+Error Handler Engine 1.0.0.2
+This Class Library creates a way of handling structured exception handling,
+inheriting from the Exception class gives us access to many method
+we wouldn't otherwise have access to
+                  
+Copyright (C) 2015  
+Behzad Khosravifar
+Email: Behzad.Khosravifar@Gmail.com
+
+This program published by the Free Software Foundation,
+either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

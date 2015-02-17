@@ -13,6 +13,8 @@ namespace ConnectionsManager
         /// </summary>
         protected Dictionary<string, ConnectionManager> Items = new Dictionary<string, ConnectionManager>();
 
+        protected Dictionary<string, bool> IsItemsReady = new Dictionary<string, bool>();
+
         #endregion
 
 

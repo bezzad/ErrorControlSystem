@@ -12,13 +12,6 @@ namespace ConnectionsManager
 {
     public class ConnectionManager : Connection, IDisposable
     {
-        #region Fields
-
-        protected readonly object SyncRoot;
-
-        #endregion
-
-
         #region Read-only Properties
 
         public System.Data.ConnectionState State { get { return SqlConn.State; } }
@@ -57,8 +50,6 @@ namespace ConnectionsManager
             : base(connectionItem)
         {
             IsReady = false;
-
-            SyncRoot = new object();
 
             SqlConn = new SqlConnection(ConnectionString);
         }
@@ -186,7 +177,6 @@ namespace ConnectionsManager
             SqlConn.Open();
         }
 
-
         /// <summary>
         /// Open connection the asynchronous.
         /// </summary>
@@ -198,6 +188,7 @@ namespace ConnectionsManager
         /// </exception>
         public async Task OpenAsync(System.Threading.CancellationToken cancellationToken)
         {
+            //
             // Can not use Lock block for async methods
             await SqlConn.OpenAsync(cancellationToken);
         }
@@ -212,8 +203,8 @@ namespace ConnectionsManager
         /// </exception>
         public async Task OpenAsync()
         {
+            //
             // Can not use Lock block for async methods
-            // if (State == ConnectionState.Closed) 
             await SqlConn.OpenAsync();
         }
 
@@ -527,7 +518,7 @@ namespace ConnectionsManager
 
         public static void Clear()
         {
-           Items.Clear();
+            Items.Clear();
         }
 
         /// <summary>

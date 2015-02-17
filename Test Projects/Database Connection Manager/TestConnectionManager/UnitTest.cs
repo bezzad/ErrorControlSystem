@@ -710,5 +710,50 @@ namespace TestConnectionManager
         }
 
         #endregion
+
+        #region Test All
+        [TestMethod, TestCategory("All")]
+        public void TestIsReady()
+        {
+            var i = ConnectionManager.Add(_conn);
+
+            Assert.IsFalse(i.IsReady);
+            Assert.IsFalse(_conn.IsReady);
+
+            if (i.CheckDbConnection())
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    Assert.IsTrue(i.IsReady);
+                    Assert.IsTrue(ConnectionManager.Find("um").IsReady);
+                    Assert.IsFalse(_conn.IsReady);
+
+                    var ii = ConnectionManager.Items["UM"];
+                    Assert.IsTrue(ii.IsReady);
+
+                    Assert.IsTrue(ii.State == ConnectionState.Closed);
+                    ii.Open();
+                    Assert.IsTrue(ii.State == ConnectionState.Open);
+                }
+            }
+            else
+                Assert.Fail("CheckDbConnection is false!!");
+
+            //
+            // Check not ready
+            //
+            Assert.IsTrue(ConnectionManager.Items["um"].IsReady);
+            ConnectionManager.Edit("uM", _connFalse);
+            Assert.IsFalse(ConnectionManager.Items["um"].IsReady);
+            ConnectionManager.Edit("uM", _connJustTrueServer);
+            Assert.IsFalse(ConnectionManager.Items["um"].IsReady);
+            Assert.IsTrue(ConnectionManager.Items["um"].IsServerOnline());
+            Assert.IsFalse(ConnectionManager.Items["um"].IsReady); // server is trust but not sure do the DB correctly worked!?
+            Assert.IsFalse(ConnectionManager.Items["um"].CheckDbConnection());
+            ConnectionManager.Edit("Um", _conn);
+            Assert.IsTrue(ConnectionManager.Items["um"].CheckDbConnection()); // when add first time this is work correctly but now not work
+            Assert.IsTrue(ConnectionManager.Items["um"].IsReady);
+        }
+        #endregion
     }
 }

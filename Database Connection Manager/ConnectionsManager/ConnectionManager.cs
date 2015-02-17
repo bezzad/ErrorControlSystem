@@ -46,8 +46,6 @@ namespace ConnectionsManager
         public ConnectionManager(Connection connectionItem)
             : base(connectionItem)
         {
-            IsReady = false;
-
             SqlConn = new SqlConnection(ConnectionString);
         }
 
@@ -496,6 +494,18 @@ namespace ConnectionsManager
         public static ConnectionManager Add(Connection conn)
         {
             return Items.Add(conn);
+        }
+
+        /// <summary>
+        /// Add a new Connection instance.  
+        /// Add ConnectionItems to the Connection instance before adding it to the ConnectionManager.
+        /// </summary>
+        /// <param name="connName">Name of connection in list.</param>
+        /// <param name="conn">The connection.</param>
+        /// <returns>ConnectionManager</returns>
+        public static void Edit(string connName, Connection conn)
+        {
+            Items[connName] = new ConnectionManager(conn);
         }
 
         /// <summary>

@@ -23,6 +23,7 @@ namespace ConnectionsManager
             if (conn == null)
                 throw new ArgumentNullException("conn");
 
+            conn.IsReady = false;
             Items[conn.Name.ToUpper()] = conn;
         }
 
@@ -35,6 +36,7 @@ namespace ConnectionsManager
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException("name");
 
+            conn.IsReady = false;
             Items[name.ToUpper()] = conn;
         }
 
@@ -45,7 +47,6 @@ namespace ConnectionsManager
 
             set { SetValue(connectionName, value); }
         }
-
 
         /// <summary>
         /// Find a Connection instance using name and server type.
@@ -163,6 +164,5 @@ namespace ConnectionsManager
         }
 
         #endregion
-
     }
 }

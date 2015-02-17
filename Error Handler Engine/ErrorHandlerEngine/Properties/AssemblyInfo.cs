@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ErrorHandlerEngine")]
-[assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker  \n\rCreator Info:\n\r Mr.Behzad Khosravifar [mailto:Behzad.Khosravifar@gmail.com] \n\r Mr.Ayuob Amini  [mailto:Ayyub.Amini@gmail.com]")]
+[assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker  \n\rCreator Info:\n\r Mr.Behzad Khosravifar [mailto:Behzad.Khosravifar@gmail.com]")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Shoniz")]
 [assembly: AssemblyProduct("ErrorHandlerEngine")]
-[assembly: AssemblyCopyright("Copyright © 2014-2015 Shoniz Corporation.")]
+[assembly: AssemblyCopyright("Copyright © 2014-2015 Behzad Khosravifar Corporation.")]
 [assembly: AssemblyTrademark("Shoniz")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]

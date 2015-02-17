@@ -38,11 +38,23 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #endregion
 
+
         #region Properties
+
         public static Size MaxScreenShotSize = new Size(800, 600); // set to aspect 800×600
+
         #endregion
 
-        #region Raise Error Log
+
+        #region Methods
+        
+        /// <summary>
+        /// Raise log of handled error's.
+        /// </summary>
+        /// <param name="exp">The Error object.</param>
+        /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
+        /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
+        /// <returns></returns>
         public static Error RaiseLog(this Exception exp, ErrorHandlingOption option = ErrorHandlingOption.Default, String errorTitle = "UnHandled Exception")
         {
             if (Kernel.IsSelfException)
@@ -51,7 +63,8 @@ namespace ErrorHandlerEngine.ExceptionManager
                 return null;
             }
 
-            var error = exp.HandleError(option);
+            // initial the error object by additional data 
+            var error = exp.CreateError(option);
 
             if (option.HasFlag(ErrorHandlingOption.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOption.IsHandled)) // Alert Unhandled Error 
             {
@@ -67,10 +80,14 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             return error;
         }
-        #endregion
 
-        #region Get Handled Error Object
-        private static Error HandleError(this Exception exception, ErrorHandlingOption option = ErrorHandlingOption.Default)
+        /// <summary>
+        /// Get handled exception's by additional data.
+        /// </summary>
+        /// <param name="exception">The occurrence raw error.</param>
+        /// <param name="option">What preprocess must be doing on that exception's ?</param>
+        /// <returns>The ripe error object's.</returns>
+        private static Error CreateError(this Exception exception, ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
             // Create Empty Error object
             var error = new Error();
@@ -239,6 +256,5 @@ namespace ErrorHandlerEngine.ExceptionManager
         }
 
         #endregion
-
     }
 }

@@ -327,8 +327,6 @@ namespace TestConnectionManager
             Assert.AreEqual(conn.ConnectionString, ((Connection)connObj).ConnectionString);
             Assert.AreEqual(connObjThis.ConnectionString, ((Connection)connObj).ConnectionString);
             Assert.AreEqual(connObjThis.ConnectionString, conn.ConnectionString);
-
-            conn.Dispose();
         }
 
         #endregion

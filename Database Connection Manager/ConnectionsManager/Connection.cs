@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace ConnectionsManager
 {
-    public class Connection : ICloneable, IDisposable
+    public class Connection : ICloneable
     {
         #region Fields
 
@@ -360,29 +360,6 @@ namespace ConnectionsManager
             foreach (var pi in source.GetType().GetProperties()
                 .Where(pi => pi.CanRead && pi.CanWrite && pi.Name != "ConnectionString"))
                 pi.SetValue(destination, pi.GetValue(source, null), null);
-        }
-
-        #endregion
-
-
-        #region Implement IDisposable
-
-        public void Dispose()
-        {
-            // Use the Null Value property of each properties to actually set it, via reflection.
-            Server = string.Empty;
-            UserId = "";
-            Password = "";
-            DatabaseName = "";
-            PortNumber = 0;
-            ProviderName = "";
-            IntegratedSecurity = "";
-            PersistSecurityInfo = false;
-            AttachDbFilename = "";
-            TimeOut = 0;
-            Description = "";
-            Name = "";
-            Id = -1;
         }
 
         #endregion

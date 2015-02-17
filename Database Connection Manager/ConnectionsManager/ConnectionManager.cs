@@ -533,7 +533,7 @@ namespace ConnectionsManager
 
         #region IDisposable Members
 
-        public new void Dispose()
+        public void Dispose()
         {
             if (SqlConn != null && Transaction != null)
             {
@@ -547,7 +547,6 @@ namespace ConnectionsManager
             // Because that's have Error:     'Internal .Net Framework Data Provider error 1'
             //
             SqlConn = null;
-            base.Dispose();
             // Take yourself off the Finalization queue 
             // to prevent finalization code for this object
             // from executing a second time.

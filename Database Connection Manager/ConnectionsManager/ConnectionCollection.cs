@@ -11,7 +11,7 @@ namespace ConnectionsManager
         /// <summary>
         /// Use to add or remove ConnectionItem instances to list.
         /// </summary>
-        protected Dictionary<string, ConnectionManager> Items = new Dictionary<string, ConnectionManager>();
+        protected Dictionary<string, Connection> Items = new Dictionary<string, Connection>();
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace ConnectionsManager
             if (conn == null)
                 throw new ArgumentNullException("conn");
 
-            Items[conn.Name.ToUpper()] = new ConnectionManager(conn);
+            Items[conn.Name.ToUpper()] = conn;
         }
 
 
@@ -35,7 +35,7 @@ namespace ConnectionsManager
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException("name");
 
-            Items[name.ToUpper()] = new ConnectionManager(conn);
+            Items[name.ToUpper()] = conn;
         }
 
 
@@ -54,7 +54,7 @@ namespace ConnectionsManager
         /// <returns>If the connection name is exist then return Connection, either not exist return null</returns>
         public ConnectionManager Find(string connectionName)
         {
-            return Items.ContainsKey(connectionName.ToUpper()) ? Items[connectionName.ToUpper()] : null;
+            return Items.ContainsKey(connectionName.ToUpper()) ? new ConnectionManager(Items[connectionName.ToUpper()]) : null;
         }
 
 
@@ -105,9 +105,7 @@ namespace ConnectionsManager
             if (Items.ContainsKey(cm.Name.ToUpper())) // Exist Connection, so update old Connection
                 SetValue(cm);
             else // New Connection
-            {
                 Items.Add(cm.Name.ToUpper(), cm);
-            }
 
             return cm;
         }
@@ -130,7 +128,7 @@ namespace ConnectionsManager
         /// <exception cref="System.ArgumentException">If the array.Length - arrayIndex is less than sourceArray.Count()</exception>
         public void CopyTo(Connection[] array, int arrayIndex)
         {
-            Items.Values.ToArray<Connection>().CopyTo(array, arrayIndex);
+            Items.Values.CopyTo(array, arrayIndex);
         }
 
 
@@ -147,9 +145,6 @@ namespace ConnectionsManager
 
         public void Dispose()
         {
-            foreach (var conn in this)
-                conn.Dispose();
-
             Clear();
         }
 
@@ -159,12 +154,12 @@ namespace ConnectionsManager
 
         IEnumerator<ConnectionManager> IEnumerable<ConnectionManager>.GetEnumerator()
         {
-            return Items.Values.GetEnumerator();
+            return Items.Values.Select(x => new ConnectionManager(x)).GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return Items.Values.GetEnumerator();
+            return Items.Values.Select(x => new ConnectionManager(x)).GetEnumerator();
         }
 
         #endregion

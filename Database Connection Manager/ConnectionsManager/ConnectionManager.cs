@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.Sql;
@@ -24,8 +23,6 @@ namespace ConnectionsManager
         {
             get { return SqlConn.ServerVersion; }
         }
-
-        public bool IsReady { get; protected set; }
 
         public SqlTransaction Transaction { get; protected set; }
 

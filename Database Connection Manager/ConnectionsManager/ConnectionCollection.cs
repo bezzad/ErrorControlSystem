@@ -9,18 +9,16 @@ namespace ConnectionsManager
         #region Properties
 
         /// <summary>
-        /// Use to add or remove ConnectionItem instances to a Connection.
+        /// Use to add or remove ConnectionItem instances to list.
         /// </summary>
         protected Dictionary<string, ConnectionManager> Items = new Dictionary<string, ConnectionManager>();
-
-        protected Dictionary<string, bool> IsItemsReady = new Dictionary<string, bool>();
 
         #endregion
 
 
         #region Methods
 
-        public void SetValue(Connection conn)
+        protected void SetValue(Connection conn)
         {
             if (conn == null)
                 throw new ArgumentNullException("conn");
@@ -29,7 +27,7 @@ namespace ConnectionsManager
         }
 
 
-        private void SetValue(string name, Connection conn)
+        protected void SetValue(string name, Connection conn)
         {
             if (conn == null)
                 throw new ArgumentNullException("conn");
@@ -107,7 +105,9 @@ namespace ConnectionsManager
             if (Items.ContainsKey(cm.Name.ToUpper())) // Exist Connection, so update old Connection
                 SetValue(cm);
             else // New Connection
+            {
                 Items.Add(cm.Name.ToUpper(), cm);
+            }
 
             return cm;
         }
@@ -139,7 +139,7 @@ namespace ConnectionsManager
             get { return Items.Count; }
         }
 
-        
+
         #endregion
 
 

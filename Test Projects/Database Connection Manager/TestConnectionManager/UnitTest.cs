@@ -383,7 +383,6 @@ namespace TestConnectionManager
             Assert.IsTrue(umC.State == ConnectionState.Open);
 
             items.Remove("Test1");
-            items.SetValue(_connHost);
             items["UM"] = new ConnectionManager(_conn);
 
             foreach (var item in items)

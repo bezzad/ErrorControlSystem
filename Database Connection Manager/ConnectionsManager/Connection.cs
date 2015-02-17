@@ -57,6 +57,9 @@ namespace ConnectionsManager
 
         public int Id { get; protected set; }
 
+        [DefaultValue(false)]
+        public bool IsReady { get; protected set; }
+
         #endregion
 
 

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.Properties;
 using ErrorHandlerEngine.ServerUploader;
@@ -24,29 +25,24 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             if (AreErrorsInSendState) return;
 
-
             Kernel.IsSelfException = true;
             try
             {
                 AreErrorsInSendState = true;
 
-                // Sent to server is ON or OFF
-                if (Kernel.Conn.SqlConn != null)
+                // C:\Users\[User Name]\AppData\Local\MyApp v1.*\
+                var rootDir = router.ErrorLogFilePath.Substring(0, router.ErrorLogFilePath.LastIndexOf('\\'));
+
+                long errorDataSize = new DirectoryInfo(rootDir).GetDirectorySize();
+
+                var maxSize = Int64.Parse(Resources.SizeLimitBytes);
+
+
+                // if errors caching data was larger than limited size then send it to server 
+                // and if successful sent then clear them...
+                if (errorDataSize >= maxSize && ConnectionManager.Find("UM").IsReady)
                 {
-                    // C:\Users\[User Name]\AppData\Local\MyApp v1.*\
-                    var rootDir = router.ErrorLogFilePath.Substring(0, router.ErrorLogFilePath.LastIndexOf('\\'));
-
-                    long errorDataSize = new DirectoryInfo(rootDir).GetDirectorySize();
-
-                    var maxSize = Int64.Parse(Resources.SizeLimitBytes);
-
-
-                    // if errors caching data was larger than limited size then send it to server 
-                    // and if successful sent then clear them...
-                    if (errorDataSize >= maxSize)
-                    {
-                        CacheReader.ReadCacheToServerUploader();
-                    }
+                    CacheReader.ReadCacheToServerUploader();
                 }
             }
             finally

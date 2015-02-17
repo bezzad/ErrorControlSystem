@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using ErrorHandlerEngine.ExceptionManager;
+using ConnectionsManager;
 using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting
@@ -86,8 +86,8 @@ namespace ErrorHandlerEngine.ModelObjecting
         #region Get Server Date Time
         public static DateTime GetServerDateTime()
         {
-            if (Kernel.Conn.IsReady)
-                return DynamicStoredProcedures.FetchServerDataTimeTsql(Kernel.Conn);
+            if (ConnectionManager.Find("UM").IsReady)
+                return DynamicStoredProcedures.FetchServerDataTimeTsql(ConnectionManager.Find("UM"));
 
             return DateTime.Now;
         }

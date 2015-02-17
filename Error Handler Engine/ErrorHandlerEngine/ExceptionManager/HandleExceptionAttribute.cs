@@ -14,9 +14,10 @@ namespace ErrorHandlerEngine.ExceptionManager
     [Serializable]
     [ComVisible(true)]
     [SecurityCritical]
-    [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain |
-        SecurityPermissionFlag.ControlThread | SecurityPermissionFlag.UnmanagedCode)]
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = true, AllowMultiple = false)] // Non-Multiuse attribute.
+    [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Module |
+                    AttributeTargets.Constructor | AttributeTargets.Assembly,
+                    Inherited = true, AllowMultiple = false)] // Non-Multiuse attribute.
     public class HandleExceptionsAttribute : Attribute
     {
         #region Private Properties
@@ -39,8 +40,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
             : this(option)
         {
-            Kernel.SetConnection(
-                new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber, attachDbFilename, providerName));
+            ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber, attachDbFilename, providerName));
         }
 
 
@@ -49,14 +49,14 @@ namespace ErrorHandlerEngine.ExceptionManager
             ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
             : this(option)
         {
-            Kernel.SetConnection(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber));
+            ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber));
         }
 
         public HandleExceptionsAttribute(string dataSource, string initialCatalog, int timeOut = 30,
             ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
             : this(option)
         {
-            Kernel.SetConnection(new Connection("UM", dataSource, initialCatalog, timeOut));
+            ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut));
         }
         #endregion
 
@@ -67,7 +67,6 @@ namespace ErrorHandlerEngine.ExceptionManager
             _notInitial = true;
 
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Optimized);
 
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 

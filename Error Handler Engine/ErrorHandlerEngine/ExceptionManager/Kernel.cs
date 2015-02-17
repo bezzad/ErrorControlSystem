@@ -15,7 +15,7 @@ namespace ErrorHandlerEngine.ExceptionManager
     {
         #region SingleTon Kernel Instance
 
-        private static object syncObj = new object();
+        //private static object syncObj = new object();
         //private static Kernel _instance;
 
         //public static Kernel Instance
@@ -35,31 +35,21 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Properties
 
-        #region Static Fields
-
         public static volatile bool IsSelfException = false;
-
-        public static ConnectionManager Conn { get; private set; }
-
-        #endregion
-
-        #region Dynamic Fields
 
         public static UploadController Uploader { get; private set; }
 
         public static RoutingDataStoragePath Router { get; private set; }
 
         public static FetchErrorsToDisk CacheManager { get; private set; }
-
-        #endregion
-
+        
         #endregion
 
         #region Protected Constructor
 
         static Kernel()
         {
-            Uploader = new UploadController(Conn);
+            Uploader = new UploadController(ConnectionManager.Items["UM"]);
             Router = new RoutingDataStoragePath();
             CacheManager = new FetchErrorsToDisk(Router);
 
@@ -78,15 +68,11 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Methods
 
-        public static void SetConnection(Connection conn)
-        {
-            Conn = new ConnectionManager(conn);
-        }
-
-        public static void SetConnection(string connString)
-        {
-            Conn = new ConnectionManager(connString);
-        }
+        //public static void SetConnection(Connection conn)
+        //{
+        //    Conn = ConnectionManager.Add(conn);
+        //}
+        
 
         #endregion
     }

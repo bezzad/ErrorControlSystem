@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine;
 using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestErrorHandlerBySelf
@@ -8,7 +7,7 @@ namespace TestErrorHandlerBySelf
     //[HandleExceptions(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot)]
 
 #if DEBUG
-    [HandleExceptions("Behzad-PC", "UsersManagements", 20, "sa", "123")] 
+    [HandleExceptions(".", "UsersManagements")]
 #endif
     static class Program
     {

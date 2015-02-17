@@ -55,3 +55,7 @@ D:\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseM
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll.CodeAnalysisLog.xml
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll.lastcodeanalysissucceeded
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll
+D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
+D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb

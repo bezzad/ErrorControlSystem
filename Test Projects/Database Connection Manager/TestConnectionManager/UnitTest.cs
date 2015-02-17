@@ -339,7 +339,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionCollection.cs")]
         public void CreateConnectionCollection()
         {
-            var items = new ConnectionManagerCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
+            var items = new ConnectionCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
 
             Assert.AreEqual(2, items.Count); // because 2connection have duplicate name and update when added to list!
 
@@ -399,41 +399,20 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionCollection.cs")]
         public void TestConnectionCollection()
         {
-            var items = new ConnectionManagerCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
+            var items = new ConnectionCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
 
             items["Test"] = new ConnectionManager(_conn);
 
             Assert.AreEqual(items["Test"].ConnectionString, _conn.ConnectionString);
 
-            foreach (var cm in items.AllConnectionManagers)
+            foreach (var cm in items.GetConnectionManagers)
             {
                 TestTools.ExceptException<SqlException>(() =>
                 {
                     cm.Open();
                     Assert.IsTrue(cm.State == ConnectionState.Open);
                 });
-
             }
-
-            var ge = items.GetEnumerator();
-
-            while (ge.MoveNext())
-            {
-                // All is new connection so that is closed
-                Assert.IsTrue(new ConnectionManager(ge.Current).State == ConnectionState.Closed);
-            }
-
-            items.Remove(_conn);
-            Assert.IsNull(items[_conn.Name]);
-            Assert.IsFalse(items.Remove("UM")); // already removed !
-
-            while (items.MoveNext())
-            {
-                Assert.IsNotNull(items.Current);
-            }
-            items.Reset();
-
-            TestTools.ExceptException<ArgumentOutOfRangeException>(() => Assert.IsNull(items.Current));
         }
 
         #endregion

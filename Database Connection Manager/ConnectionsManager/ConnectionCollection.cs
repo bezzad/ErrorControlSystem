@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 
 namespace ConnectionsManager
 {
-    public class ConnectionManagerCollection : ICollection<ConnectionManager>//, ICollection<Connection>
+    public class ConnectionCollection : ICollection<Connection>, IDisposable
     {
         #region Properties
 
@@ -18,7 +19,7 @@ namespace ConnectionsManager
 
         #region Methods
 
-        public ConnectionManagerCollection()
+        public ConnectionCollection()
         {
             Items = new Dictionary<string, ConnectionManager>();
         }
@@ -30,7 +31,7 @@ namespace ConnectionsManager
 
             Items[conn.Name.ToUpper()] = new ConnectionManager(conn);
         }
-        
+
         private void SetValue(string name, Connection conn)
         {
             if (conn == null)
@@ -56,7 +57,7 @@ namespace ConnectionsManager
         /// <returns>If the connection name is exist then return Connection, either not exist return null</returns>
         public ConnectionManager Find(string connectionName)
         {
-            return Items.ContainsKey(connectionName.ToUpper()) ? new ConnectionManager(Items[connectionName.ToUpper()]) : null;
+            return Items.ContainsKey(connectionName.ToUpper()) ? Items[connectionName.ToUpper()] : null;
         }
 
         /// <summary>
@@ -74,9 +75,14 @@ namespace ConnectionsManager
             return Items.ContainsKey(connName.ToUpper());
         }
 
+        public IEnumerable<ConnectionManager> GetConnectionManagers
+        {
+            get { return Items.Values; }
+        }
+
         #endregion
 
-        /*
+
         #region Implement ICollection<Connection>
 
         /// <summary>
@@ -85,7 +91,7 @@ namespace ConnectionsManager
         /// </summary>
         /// <param name="conn">The Connection.</param>
         /// <returns></returns>
-        void ICollection<Connection>.Add(Connection conn)
+        public void Add(Connection conn)
         {
             if (Items.ContainsKey(conn.Name.ToUpper())) // Exist Connection, so update old Connection
                 SetValue(conn);
@@ -93,12 +99,12 @@ namespace ConnectionsManager
                 Items.Add(conn.Name.ToUpper(), new ConnectionManager(conn));
         }
 
-        void ICollection<Connection>.Clear()
+        public void Clear()
         {
             Items.Clear();
         }
 
-        bool ICollection<Connection>.Contains(Connection item)
+        public bool Contains(Connection item)
         {
             return Contains(item.Name.ToUpper()) && Items[item.Name.ToUpper()].ConnectionString == item.ConnectionString;
         }
@@ -112,17 +118,17 @@ namespace ConnectionsManager
         /// <exception cref="System.ArgumentException">If the array is not 1D, so Rank is not less or greater than 1</exception>
         /// <exception cref="System.ArgumentOutOfRangeException">If the arrayIndex is less than 0</exception>
         /// <exception cref="System.ArgumentException">If the array.Length - arrayIndex is less than sourceArray.Count()</exception>
-        void ICollection<Connection>.CopyTo(Connection[] array, int arrayIndex)
+        public void CopyTo(Connection[] array, int arrayIndex)
         {
             Items.Values.ToArray<Connection>().CopyTo(array, arrayIndex);
         }
 
-        int ICollection<Connection>.Count
+        public int Count
         {
             get { return Items.Count; }
         }
 
-        bool ICollection<Connection>.IsReadOnly
+        public bool IsReadOnly
         {
             get { return false; }
         }
@@ -132,66 +138,12 @@ namespace ConnectionsManager
         /// </summary>
         /// <param name="item">The Connection.</param>
         /// <returns></returns>
-        bool ICollection<Connection>.Remove(Connection item)
+        public bool Remove(Connection item)
         {
             return Items.Remove(item.Name.ToUpper());
         }
 
         IEnumerator<Connection> IEnumerable<Connection>.GetEnumerator()
-        {
-            return Items.Values.GetEnumerator();
-        }
-
-        #endregion
-        */
-
-        #region Implement ICollection<ConnectionManager>
-
-        /// <summary>
-        /// Add a new ConnectionManager instance.  
-        /// Add ConnectionItems to the Connection instance before adding it to the Connection.
-        /// </summary>
-        /// <param name="conn">The Connection.</param>
-        /// <returns></returns>
-        void ICollection<ConnectionManager>.Add(ConnectionManager conn)
-        {
-            if (Items.ContainsKey(conn.Name.ToUpper())) // Exist Connection, so update old Connection
-                SetValue(conn);
-            else // New Connection
-                Items.Add(conn.Name.ToUpper(), conn);
-        }
-
-        void ICollection<ConnectionManager>.Clear()
-        {
-            Items.Clear();
-        }
-
-        bool ICollection<ConnectionManager>.Contains(ConnectionManager item)
-        {
-            return Contains(item.Name.ToUpper()) && Items[item.Name.ToUpper()].ConnectionString == item.ConnectionString;
-        }
-
-        void ICollection<ConnectionManager>.CopyTo(ConnectionManager[] array, int arrayIndex)
-        {
-            Items.Values.CopyTo(array, arrayIndex);
-        }
-
-        int ICollection<ConnectionManager>.Count
-        {
-            get { return Items.Count; }
-        }
-
-        bool ICollection<ConnectionManager>.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        bool ICollection<ConnectionManager>.Remove(ConnectionManager item)
-        {
-            return Items.Remove(item.Name.ToUpper());
-        }
-
-        IEnumerator<ConnectionManager> IEnumerable<ConnectionManager>.GetEnumerator()
         {
             return Items.Values.GetEnumerator();
         }
@@ -203,5 +155,16 @@ namespace ConnectionsManager
 
         #endregion
 
+        #region Implement IDisposable
+
+        public void Dispose()
+        {
+            foreach (var conn in GetConnectionManagers)
+                conn.Dispose();
+
+            Clear();
+        }
+
+        #endregion
     }
 }

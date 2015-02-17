@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.Sql;
@@ -45,7 +46,7 @@ namespace ConnectionsManager
         /// <summary>
         /// Use to add or remove ConnectionItem instances to a Connection.
         /// </summary>
-        public volatile static ConnectionManagerCollection Items = new ConnectionManagerCollection();
+        public volatile static ConnectionCollection Items = new ConnectionCollection();
 
         #endregion
 

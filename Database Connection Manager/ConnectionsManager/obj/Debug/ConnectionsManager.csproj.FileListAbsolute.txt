@@ -23,3 +23,8 @@ D:\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\C
 D:\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\ConnectionsManager.pdb
 D:\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\ConnectionsManager.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\ConnectionsManager.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\ConnectionsManager.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Database Connection Manager\ConnectionsManager\bin\Debug\ConnectionsManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Database Connection Manager\ConnectionsManager\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\ConnectionsManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Database Connection Manager\ConnectionsManager\obj\Debug\ConnectionsManager.pdb

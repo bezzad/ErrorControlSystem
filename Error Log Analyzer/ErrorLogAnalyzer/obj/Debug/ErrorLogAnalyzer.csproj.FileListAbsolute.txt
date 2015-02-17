@@ -78,3 +78,12 @@ D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsM
 D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
 D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
 D:\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb

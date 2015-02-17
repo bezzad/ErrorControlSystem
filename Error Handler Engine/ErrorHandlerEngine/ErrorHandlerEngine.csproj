@@ -66,6 +66,7 @@
     <Compile Include="ModelObjecting\HResults.cs" />
     <Compile Include="ModelObjecting\LazyError.cs" />
     <Compile Include="ModelObjecting\LazyErrorEventArgs.cs" />
+    <Compile Include="ModelObjecting\NetworkHelper.cs" />
     <Compile Include="ModelObjecting\OperationSystem.cs" />
     <Compile Include="ModelObjecting\OperationSystemInfo.cs" />
     <Compile Include="ModelObjecting\CurrentProcesses.cs" />

@@ -22,12 +22,8 @@
 using System;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Windows.Forms;
 using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
@@ -46,7 +42,6 @@ namespace ErrorHandlerEngine.ExceptionManager
         public static Size MaxScreenShotSize = new Size(800, 600); // set to aspect 800×600
         #endregion
 
-        #region Public Methods
         #region Raise Error Log
         public static Error RaiseLog(this Exception exp, ErrorHandlingOption option = ErrorHandlingOption.Default, String errorTitle = "UnHandled Exception")
         {
@@ -73,10 +68,6 @@ namespace ErrorHandlerEngine.ExceptionManager
             return error;
         }
         #endregion
-
-        #endregion
-
-        #region Private Methods
 
         #region Get Handled Error Object
         private static Error HandleError(this Exception exception, ErrorHandlingOption option = ErrorHandlingOption.Default)
@@ -111,7 +102,9 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Server Date Time
 
-            error.ServerDateTime = option.HasFlag(ErrorHandlingOption.FetchServerDateTime) ? GetServerDateTime() : DateTime.Now;
+            error.ServerDateTime = option.HasFlag(ErrorHandlingOption.FetchServerDateTime)
+                ? NetworkHelper.GetServerDateTime()
+                : DateTime.Now;
 
             #endregion
 
@@ -197,13 +190,13 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Current Static Valid IPv4 Address
 
-            error.IPv4Address = GetIpAddress();
+            error.IPv4Address = NetworkHelper.GetIpAddress();
 
             #endregion
 
             #region Network Physical Address [MAC HEX]
 
-            error.MacAddress = GetMacAddress();
+            error.MacAddress = NetworkHelper.GetMacAddress();
 
             #endregion
 
@@ -247,90 +240,5 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #endregion
 
-        #region Get Current PC MAC Address
-        /// <summary>
-        /// Gets the MAC address of the current PC.
-        /// </summary>
-        /// <returns></returns>
-        private static string GetMacAddress()
-        {
-            // only recognizes changes related to Internet adapters
-            if (IsNetworkAvailable())
-            {
-                foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
-                {
-                    // Only consider Ethernet network interfaces
-                    if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet &&
-                        nic.OperationalStatus == OperationalStatus.Up)
-                    {
-                        return nic.GetPhysicalAddress().ToString();
-                    }
-                }
-            }
-
-            return "Network Not Available";
-        }
-        #endregion
-
-        #region Get Current PC IP Address
-        /// <summary>
-        /// Gets the IP address of the current PC.
-        /// </summary>
-        /// <returns></returns>
-        private static string GetIpAddress()
-        {
-            if (IsNetworkAvailable())
-            {
-                var host = Dns.GetHostEntry(Dns.GetHostName());
-
-                foreach (var ip in host.AddressList)
-                {
-                    if (ip.AddressFamily.ToString() == "InterNetwork")
-                    {
-                        return ip.ToString();
-                    }
-                }
-            }
-
-            return "Network Not Available";
-        }
-        #endregion
-
-        #region Check Network Availability
-        /// <summary>
-        /// Indicates whether any network connection is available
-        /// </summary>
-        /// <returns>
-        ///     <c>true</c> if a network connection is available; otherwise, <c>false</c>.
-        /// </returns>
-        private static bool IsNetworkAvailable()
-        {
-            // only recognizes changes related to Internet adapters
-            if (NetworkInterface.GetIsNetworkAvailable())
-            {
-                // however, this will include all adapters
-                return 
-                    NetworkInterface.GetAllNetworkInterfaces().
-                    Where(face => face.OperationalStatus == OperationalStatus.Up).
-                    Any(face => 
-                        (face.NetworkInterfaceType != NetworkInterfaceType.Tunnel) && 
-                        (face.NetworkInterfaceType != NetworkInterfaceType.Loopback));
-            }
-
-            return false;
-        }
-        #endregion
-
-        #region Get Server Date Time
-        private static DateTime GetServerDateTime()
-        {
-            if (Kernel.Conn.IsReady)
-                return DynamicStoredProcedures.FetchServerDataTimeTsql(Kernel.Conn);
-
-            return DateTime.Now;
-        }
-        #endregion
-
-        #endregion
     }
 }

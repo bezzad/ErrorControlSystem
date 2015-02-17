@@ -382,7 +382,6 @@ namespace TestConnectionManager
             umC.Open();
             Assert.IsTrue(umC.State == ConnectionState.Open);
 
-            Assert.IsFalse(items.IsReadOnly);
             items.Remove("Test1");
             items.SetValue(_connHost);
             items["UM"] = new ConnectionManager(_conn);
@@ -405,7 +404,7 @@ namespace TestConnectionManager
 
             Assert.AreEqual(items["Test"].ConnectionString, _conn.ConnectionString);
 
-            foreach (var cm in items.GetConnectionManagers)
+            foreach (var cm in items)
             {
                 TestTools.ExceptException<SqlException>(() =>
                 {

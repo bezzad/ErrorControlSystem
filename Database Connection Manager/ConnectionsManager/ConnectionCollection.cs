@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 
 namespace ConnectionsManager
 {
-    public class ConnectionCollection : ICollection<Connection>, IDisposable
+    public class ConnectionCollection : IEnumerable<ConnectionManager>, IDisposable
     {
         #region Properties
 
         /// <summary>
         /// Use to add or remove ConnectionItem instances to a Connection.
         /// </summary>
-        protected Dictionary<string, ConnectionManager> Items;
+        protected Dictionary<string, ConnectionManager> Items = new Dictionary<string, ConnectionManager>();
 
         #endregion
 
 
         #region Methods
-
-        public ConnectionCollection()
-        {
-            Items = new Dictionary<string, ConnectionManager>();
-        }
 
         public void SetValue(Connection conn)
         {
@@ -31,6 +25,7 @@ namespace ConnectionsManager
 
             Items[conn.Name.ToUpper()] = new ConnectionManager(conn);
         }
+
 
         private void SetValue(string name, Connection conn)
         {
@@ -43,12 +38,14 @@ namespace ConnectionsManager
             Items[name.ToUpper()] = new ConnectionManager(conn);
         }
 
+
         public ConnectionManager this[string connectionName]
         {
             get { return Find(connectionName); }
 
             set { SetValue(connectionName, value); }
         }
+
 
         /// <summary>
         /// Find a Connection instance using name and server type.
@@ -60,6 +57,7 @@ namespace ConnectionsManager
             return Items.ContainsKey(connectionName.ToUpper()) ? Items[connectionName.ToUpper()] : null;
         }
 
+
         /// <summary>
         /// Remove a Connection instance from the Connection.
         /// </summary>
@@ -70,20 +68,29 @@ namespace ConnectionsManager
             return Items.Remove(name.ToUpper());
         }
 
+
+        /// <summary>
+        /// Remove a Connection instance from the Connection.
+        /// </summary>
+        /// <param name="item">The Connection.</param>
+        /// <returns></returns>
+        public bool Remove(Connection item)
+        {
+            return Items.Remove(item.Name.ToUpper());
+        }
+
+
         public bool Contains(string connName)
         {
             return Items.ContainsKey(connName.ToUpper());
         }
 
-        public IEnumerable<ConnectionManager> GetConnectionManagers
+
+        public bool Contains(Connection item)
         {
-            get { return Items.Values; }
+            return Contains(item.Name.ToUpper()) && Items[item.Name.ToUpper()].ConnectionString == item.ConnectionString;
         }
 
-        #endregion
-
-
-        #region Implement ICollection<Connection>
 
         /// <summary>
         /// Add a new Connection instance.  
@@ -91,23 +98,24 @@ namespace ConnectionsManager
         /// </summary>
         /// <param name="conn">The Connection.</param>
         /// <returns></returns>
-        public void Add(Connection conn)
+        public ConnectionManager Add(Connection conn)
         {
-            if (Items.ContainsKey(conn.Name.ToUpper())) // Exist Connection, so update old Connection
-                SetValue(conn);
+            var cm = new ConnectionManager(conn);
+
+            if (Items.ContainsKey(cm.Name.ToUpper())) // Exist Connection, so update old Connection
+                SetValue(cm);
             else // New Connection
-                Items.Add(conn.Name.ToUpper(), new ConnectionManager(conn));
+                Items.Add(cm.Name.ToUpper(), cm);
+
+            return cm;
         }
+
 
         public void Clear()
         {
             Items.Clear();
         }
 
-        public bool Contains(Connection item)
-        {
-            return Contains(item.Name.ToUpper()) && Items[item.Name.ToUpper()].ConnectionString == item.ConnectionString;
-        }
 
         /// <summary>
         /// Copy this Array to destining array from arrayIndex
@@ -123,27 +131,31 @@ namespace ConnectionsManager
             Items.Values.ToArray<Connection>().CopyTo(array, arrayIndex);
         }
 
+
         public int Count
         {
             get { return Items.Count; }
         }
 
-        public bool IsReadOnly
+        
+        #endregion
+
+
+        #region Implement IDisposable
+
+        public void Dispose()
         {
-            get { return false; }
+            foreach (var conn in this)
+                conn.Dispose();
+
+            Clear();
         }
 
-        /// <summary>
-        /// Remove a Connection instance from the Connection.
-        /// </summary>
-        /// <param name="item">The Connection.</param>
-        /// <returns></returns>
-        public bool Remove(Connection item)
-        {
-            return Items.Remove(item.Name.ToUpper());
-        }
+        #endregion
 
-        IEnumerator<Connection> IEnumerable<Connection>.GetEnumerator()
+        #region Implement IEnumerable<ConnectionManager>
+
+        IEnumerator<ConnectionManager> IEnumerable<ConnectionManager>.GetEnumerator()
         {
             return Items.Values.GetEnumerator();
         }
@@ -155,16 +167,5 @@ namespace ConnectionsManager
 
         #endregion
 
-        #region Implement IDisposable
-
-        public void Dispose()
-        {
-            foreach (var conn in GetConnectionManagers)
-                conn.Dispose();
-
-            Clear();
-        }
-
-        #endregion
     }
 }

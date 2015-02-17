@@ -507,9 +507,7 @@ namespace ConnectionsManager
         /// <returns>ConnectionManager</returns>
         public static ConnectionManager Add(Connection conn)
         {
-            Items.Add(conn);
-
-            return Items[conn.Name];
+            return Items.Add(conn);
         }
 
         /// <summary>

@@ -74,8 +74,7 @@ inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to
                   
 Copyright (C) 2015  
-Behzad Khosravifar
-Email: Behzad.Khosravifar@Gmail.com
+[Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,
 either version 2 of the License, or (at your option) any later version.

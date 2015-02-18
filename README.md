@@ -33,7 +33,7 @@ This is initializer codes of the module by C# language:
 		        [STAThread]
 		        private static void Main()
 		        {
-		            HandleExceptions.Start("localhost", "UsersManagements");
+		            HandleExceptions.Start(".", "UsersManagements", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
 
 		            Application.Run(new Form1());
 		        }

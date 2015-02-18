@@ -6,9 +6,9 @@ namespace TestErrorHandlerBySelf
 {
     //[HandleExceptions(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot)]
 
-#if DEBUG
-    [HandleExceptions(".", "UsersManagements")]
-#endif
+//#if DEBUG
+   // [HandleExceptions(".", "UsersManagements")]
+//#endif
     static class Program
     {
         /// <summary>
@@ -20,7 +20,8 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Attribute.GetCustomAttributes(typeof(Program));
+            HandleExceptions.Start(".", "UsersManagements");
+            //Attribute.GetCustomAttributes(typeof(Program));
 
             Application.Run(new Form1());
         }

@@ -728,7 +728,7 @@ namespace TestConnectionManager
                 {
                     Assert.IsTrue(i.IsReady);
                     Assert.IsTrue(ConnectionManager.Find("um").IsReady);
-                    Assert.IsFalse(_conn.IsReady);
+                    Assert.IsTrue(_conn.IsReady);
 
                     var ii = ConnectionManager.Find("UM");
                     Assert.IsTrue(ii.IsReady);

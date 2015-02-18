@@ -11,56 +11,49 @@ using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
+
     [Serializable]
     [ComVisible(true)]
     [SecurityCritical]
     [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Module | AttributeTargets.Method |
-                    AttributeTargets.Constructor | AttributeTargets.Assembly,
-                    Inherited = true, AllowMultiple = false)] // Non-Multiuse attribute.
-    public class HandleExceptionsAttribute : Attribute
+    public static class HandleExceptions
     {
         #region Private Properties
 
-        private bool _notInitial = true;
-        private ErrorHandlingOption _option;
+        private static bool _notInitial = true;
+        private static ErrorHandlingOption _option;
 
         #endregion
-
-        static HandleExceptionsAttribute()
-        {
-            MessageBox.Show("Static Constructor is running!");
-        }
 
 
         #region Constructors
 
-        public HandleExceptionsAttribute(ErrorHandlingOption option = ErrorHandlingOption.Default) // Constructor just for Caching not sent to server
+        public static void Start(ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
             _option = option;
             if (_notInitial) Initialize();
         }
 
-        public HandleExceptionsAttribute(string dataSource, string initialCatalog, int timeOut, string username,
+        public static void Start(string dataSource, string initialCatalog, int timeOut, string username,
             string pass, int portNumber, string attachDbFilename, string providerName = "System.Data.SqlClient",
-            ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
-            : this(option)
+            ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
+            Start(option);
             ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber, attachDbFilename, providerName));
         }
 
-        public HandleExceptionsAttribute(string dataSource, string initialCatalog, int timeOut, string username,
+        public static void Start(string dataSource, string initialCatalog, int timeOut, string username,
             string pass, int portNumber = 1433,
-            ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
-            : this(option)
+            ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
+            Start(option);
             ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber));
         }
 
-        public HandleExceptionsAttribute(string dataSource, string initialCatalog, int timeOut = 30,
-            ErrorHandlingOption option = ErrorHandlingOption.Default) // Send caching data to server
-            : this(option)
+        public static void Start(string dataSource, string initialCatalog, int timeOut = 30,
+            ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
+            Start(option);
             ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut));
         }
 
@@ -68,9 +61,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Methods
 
-        private void Initialize()
+        private static void Initialize()
         {
-            MessageBox.Show("Constructor Runned!");
             _notInitial = true;
 
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
@@ -99,7 +91,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected virtual void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+        private static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
         {
             e.Exception.RaiseLog(_option | ErrorHandlingOption.IsHandled);
         }
@@ -111,7 +103,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected virtual void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
             e.Exception.RaiseLog(_option, "Unobserved Task Exception");
         }
@@ -123,7 +115,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected virtual void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs args)
+        private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs args)
         {
             args.Exception.RaiseLog(_option, "Unhandled Thread Exception");
         }
@@ -137,7 +129,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        protected virtual void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+        private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs args)
         {
 #if DEBUG // In debug mode do not custom-handle the exception, let Visual Studio handle it
             MessageBox.Show(((Exception)args.ExceptionObject).Message, "Unhandled UI Exception - In Debug Mode");

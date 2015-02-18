@@ -12,6 +12,7 @@ NOTE:
 > This program is only for exception handling of Windows-based applications 
 > that are written by .NET.
 
+
 --------------------------------
 ### How To Use The Examples ###
 
@@ -19,33 +20,48 @@ To interact with this project, at first find main class of your project to
 add this module. Then, at the beginning of the instructions before any other 
 user codes, enter the following command to invoke and run the module.
 
-This is initializer codes of the module by C# language:
+This is initializer codes of the module by `C# language`:
  
-    :::C#
-        using System;
-		using System.Windows.Forms;
-		using ErrorControlSystem.ErrorHandlerEngine;
+```csharp
 
-		namespace TestApplication
-		{
-		    static class Program
-		    {
-		        [STAThread]
-		        private static void Main()
-		        {
-		            HandleExceptions.Start(".", "UsersManagements", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+using System;
+using System.Windows.Forms;
+using ErrorControlSystem.ErrorHandlerEngine;
 
-		            Application.Run(new Form1());
-		        }
-		    }
-		}
+namespace TestApplication
+{
+    static class Program
+    {
+        [STAThread]
+        private static void Main()
+        {
+               HandleExceptions.Start(".", "UsersManagements", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
 
-* https://api.drupal.org/api/examples is the main API site for all of Drupal.
-It has all manner of cross-linked references between the example code and the
-APIs being demonstrated.
+               Application.Run(new Form1());
+        }
+    }
+}
+```
 
-* http://drupalcode.org/project/examples.git allows you to browse the git
-repository for the Examples project.
+In the above code snippet you've seen that, for the `HandleExceptions` method should be an option. This option is used to specify the error data, which includes the following values:
+
+-  All
+-  AlertUnHandledError
+-  Default (AlertUnHandledError + FetchServerDateTime + Snapshot)
+-  FetchServerDateTime
+-  IsHandled
+-  None
+-  ReSizeSnapshots
+-  Snapshot
+
+For example in above codes, this code means is:
+```csharp
+HandleExceptions.Start(".", "UsersManagements", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+```
+Select all options by excepted `ReSizeSnapshots`
+
+By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including __Handled__ or __UnHandled__ exceptions on the your database.
+
 
 --------------------------
 ### How To Install The Modules ###
@@ -67,6 +83,7 @@ If you find a problem, incorrect comment, obsolete or improper code or such,
 please search for an issue about it at http://drupal.org/project/issues/examples
 If there isn't already an issue for it, please create a new one.
 
+
 --------------------------
 ### LICENSE INFORMATION ###
 
@@ -75,7 +92,7 @@ This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to
                   
-Copyright (C) 2015  
+Copyright (C) 2015  [Shoniz](www.shoniz.com) corporation
 [Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,

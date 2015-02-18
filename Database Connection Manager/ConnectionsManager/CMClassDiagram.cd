@@ -1,94 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="System.Data.Common.DbConnection" Collapsed="true">
-    <Position X="2" Y="0.75" Width="1.5" />
+    <Position X="1.25" Y="0.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="System.Data.SqlClient.SqlConnection" Collapsed="true">
-    <Position X="2" Y="2.25" Width="1.5" />
+    <Position X="1.25" Y="2.25" Width="1.5" />
     <InheritanceLine Type="System.Data.Common.DbConnection" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="3.312" Y="1.441" />
-        <Point X="3.312" Y="1.875" />
-        <Point X="3.312" Y="1.875" />
-        <Point X="3.312" Y="2.25" />
+        <Point X="2.562" Y="1.441" />
+        <Point X="2.562" Y="2.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier />
     <Lollipop Position="0.1" />
   </Class>
-  <Class Name="ConnectionsManager.Connection" Collapsed="true">
-    <Position X="4" Y="1.25" Width="1.5" />
-    <InheritanceLine Type="System.Object" FixedToPoint="true">
+  <Class Name="ConnectionsManager.Connection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="System.Object" FixedFromPoint="true">
       <Path>
-        <Point X="5" Y="3.25" />
-        <Point X="5" Y="1.812" />
+        <Point X="5" Y="1.312" />
+        <Point X="5" Y="3.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAiAAAAACAgEAIEQAQAAAwAAACACAAGACEAIhIVABA=</HashCode>
+      <HashCode>AAAiAAAAAAAgGAYEQAQAAAwAAACACAAGCCEAIhIVABA=</HashCode>
       <FileName>Connection.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
+    <ShowAsAssociation>
+      <Field Name="Items" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Bottom" Position="0.1" />
   </Class>
-  <Class Name="ConnectionsManager.ConnectionManager" Collapsed="true">
-    <Position X="1" Y="3.75" Width="3" />
-    <InheritanceLine Type="ConnectionsManager.Connection" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+  <Class Name="ConnectionsManager.ConnectionCollection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="3.75" Width="1.75" />
+    <InheritanceLine Type="System.Object" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.438" Y="1.812" />
-        <Point X="4.438" Y="2.913" />
-        <Point X="3.75" Y="2.913" />
-        <Point X="3.75" Y="3.75" />
+        <Point X="5" Y="1.312" />
+        <Point X="5" Y="3.375" />
+        <Point X="7.938" Y="3.375" />
+        <Point X="7.938" Y="3.75" />
       </Path>
     </InheritanceLine>
-    <AssociationLine Name="SqlConn" Type="System.Data.SqlClient.SqlConnection" FixedToPoint="true">
-      <Path>
-        <Point X="2.25" Y="3.75" />
-        <Point X="2.25" Y="2.941" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="ConnectionCollection" Type="ConnectionsManager.ConnectionCollection" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="1.375" Y="4.441" />
-        <Point X="1.375" Y="5.562" />
-        <Point X="3" Y="5.562" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAKAAAABACCArCAAQBAAFUAAAAAoAADRCAAABACAASA=</HashCode>
+      <HashCode>ACIAAABAACAACgAACAAABAQAAAAIAAAAAAAAAABQIAA=</HashCode>
+      <FileName>ConnectionCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Items" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Bottom" Position="0.273" />
+  </Class>
+  <Class Name="ConnectionsManager.ConnectionManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="3.75" Width="1.75" />
+    <InheritanceLine Type="System.Object" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="1.312" />
+        <Point X="5" Y="3.375" />
+        <Point X="2.562" Y="3.375" />
+        <Point X="2.562" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAKAAAABACCAJCFAYBAABWQAAAAoAADTCCAABACAASA=</HashCode>
       <FileName>ConnectionManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Property Name="Connection" />
       <Property Name="SqlConn" />
-      <Property Name="ConnectionCollection" />
     </ShowAsAssociation>
-    <Lollipop Position="0.2" />
+    <Lollipop Orientation="Bottom" Position="0.263" />
   </Class>
-  <Class Name="ConnectionsManager.StringCipher">
-    <Position X="6.25" Y="2" Width="3.75" />
+  <Class Name="ConnectionsManager.StringCipher" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAIAAAAAYACAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>StringCipher.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConnectionsManager.ConnectionCollection" Collapsed="true">
-    <Position X="3" Y="5.25" Width="2.75" />
-    <InheritanceLine Type="System.Object" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="5.25" Y="3.812" />
-        <Point X="5.25" Y="5.25" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>ACIAEAAAACAABhAQCACABAQAABAIAAAAIAAABABQIAA=</HashCode>
-      <FileName>ConnectionCollection.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="System.Object" Collapsed="true">
-    <Position X="4.25" Y="3.25" Width="1.5" />
+    <Position X="4.25" Y="0.75" Width="1.5" />
     <TypeIdentifier />
+  </Class>
+  <Class Name="System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="6.25" Y="2.25" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

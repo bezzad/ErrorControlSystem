@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.ModelObjecting;
 
 namespace TestErrorHandlerBySelf
 {
@@ -15,11 +16,8 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-#if DEBUG
+            //HandleExceptions.Start(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot);
             HandleExceptions.Start(".", "UsersManagements");
-#else
-            HandleExceptions.Start(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot)
-#endif
 
             Application.Run(new Form1());
         }

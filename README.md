@@ -66,21 +66,18 @@ By adding the our module starter code to the beginning of your program code, you
 --------------------------
 ### How To Install The Modules ###
 
-1. Install Examples for Developers (unpacking it to your Drupal
-/sites/all/modules directory if you're installing by hand, for example).
+1. Install Examples for Developers (unpacking it to your disk, and get to
+\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngine\bin\Release directory if you're installing by hand, for example).
 
-2. Enable any Example modules in Admin menu > Site building > Modules.
+2. In your project reference add this module dll file:  References > Add Reference... > Browse to above path > Select ErrorHandlerEngine.dll
 
 3. Rebuild access permissions if you are prompted to.
-
-4. Profit!  The examples will appear in your Navigation menu (on the left
-sidebar by default; you'll need to reenable it if you removed it).
 
 Now you can read the code and its comments and see the result, experiment with
 it, and hopefully quickly grasp how things work.
 
 If you find a problem, incorrect comment, obsolete or improper code or such,
-please search for an issue about it at http://drupal.org/project/issues/examples
+please search for an issue about it at [ECS Issue](https://bitbucket.org/BehzadKhosravifar/error-control-system/issues)
 If there isn't already an issue for it, please create a new one.
 
 

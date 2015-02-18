@@ -2,7 +2,7 @@
 ---------------------
 ### What Is This? ###
 
-This is a C#.Net project's for manage .Net applications __Exceptions__ by handling and 
+This is a C#.Net project's for manage __Exceptions__ of .Net applications by handling and 
 logging that. This is a dll modules to provide error handling worker on your app background's.
 The modules strive to be simple, well documented and
 modification friendly, in order to help developers quickly learn their inner
@@ -15,28 +15,30 @@ NOTE:
 --------------------------------
 ### How To Use The Examples ###
 
-There are three main ways to interact with the examples in this project:
+To interact with this project, at first find main class of your project to 
+add this module. Then, at the beginning of the instructions before any other 
+user codes, enter the following command to invoke and run the module.
 
-1. Enable the modules and use them within Drupal. Not all modules will have
-obvious things to see within Drupal. For instance, while the Page and Form API
-examples will show you forms, the Database API example will not show you much
-within Drupal itself.
-
-2. Read the code. Much effort has gone into making the example code readable,
-not only in terms of the code itself, but also the extensive inline comments
-and documentation blocks.
-
-3. Browse the code and documentation on the web. There are two main places to
-do this:
-
-This is some very random C#:
+This is initializer codes of the module by C# language:
  
     :::C#
-        function foo() 
-        {
-            int poo = 1;
-                return;
-        }
+        using System;
+		using System.Windows.Forms;
+		using ErrorControlSystem.ErrorHandlerEngine;
+
+		namespace TestApplication
+		{
+		    static class Program
+		    {
+		        [STAThread]
+		        private static void Main()
+		        {
+		            HandleExceptions.Start("localhost", "UsersManagements");
+
+		            Application.Run(new Form1());
+		        }
+		    }
+		}
 
 * https://api.drupal.org/api/examples is the main API site for all of Drupal.
 It has all manner of cross-linked references between the example code and the

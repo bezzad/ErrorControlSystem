@@ -17,7 +17,7 @@ namespace TestErrorHandlerBySelf
             Application.SetCompatibleTextRenderingDefault(false);
 
             //HandleExceptions.Start(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot);
-            HandleExceptions.Start(".", "UsersManagements");
+            HandleExceptions.Start(".", "UsersManagements", 5, ErrorHandlingOption.All);
 
             Application.Run(new Form1());
         }

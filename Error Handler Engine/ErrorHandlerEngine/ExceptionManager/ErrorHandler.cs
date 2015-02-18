@@ -41,13 +41,13 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Properties
 
-        public static Size MaxScreenShotSize = new Size(800, 600); // set to aspect 800×600
+        public static Size ScreenShotReSizeAspectRatio = new Size(1024, 768); // set to aspect 1024×768
 
         #endregion
 
 
         #region Methods
-        
+
         /// <summary>
         /// Raise log of handled error's.
         /// </summary>
@@ -98,7 +98,9 @@ namespace ErrorHandlerEngine.ExceptionManager
             #region Screen Capture
             // First initialize Snapshot of Error, because that's speed is important!
             error.SetSnapshot(option.HasFlag(ErrorHandlingOption.Snapshot) ?
-                ScreenCapture.CaptureScreen().ResizeImage(MaxScreenShotSize.Width, MaxScreenShotSize.Height) // Resize and reduce size of screen shot image file
+                    (option.HasFlag(ErrorHandlingOption.ReSizeSnapshots) ? // Resize and reduce size of screen shot image file
+                     ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
+                     : ScreenCapture.CaptureScreen())
                 : null);
 
             #endregion

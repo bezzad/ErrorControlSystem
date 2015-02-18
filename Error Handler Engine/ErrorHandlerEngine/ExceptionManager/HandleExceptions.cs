@@ -20,18 +20,38 @@ namespace ErrorHandlerEngine.ExceptionManager
     {
         #region Private Properties
 
-        private static bool _notInitial = true;
         private static ErrorHandlingOption _option;
 
         #endregion
+        
+        #region Static Constructors
 
+        static HandleExceptions()
+        {
+            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
-        #region Constructors
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+
+            // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
+            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+
+            // Catch all unhandled exceptions in all threads.
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
+
+            // Catch all unobserved task exceptions.
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+            // Catch all unhandled exceptions.
+            Application.ThreadException += ThreadExceptionHandler;
+        }
+
+        #endregion
+
+        #region Methods
 
         public static void Start(ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
             _option = option;
-            if (_notInitial) Initialize();
         }
 
         public static void Start(string dataSource, string initialCatalog, int timeOut, string username,
@@ -57,30 +77,6 @@ namespace ErrorHandlerEngine.ExceptionManager
             ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut));
         }
 
-        #endregion
-
-        #region Methods
-
-        private static void Initialize()
-        {
-            _notInitial = true;
-
-            Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-
-            // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
-            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
-
-            // Catch all unhandled exceptions in all threads.
-            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
-
-            // Catch all unobserved task exceptions.
-            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-
-            // Catch all unhandled exceptions.
-            Application.ThreadException += ThreadExceptionHandler;
-        }
 
         /// <summary>
         /// This is new to .Net 4 and is extremely useful for ensuring that you ALWAYS log SOMETHING.

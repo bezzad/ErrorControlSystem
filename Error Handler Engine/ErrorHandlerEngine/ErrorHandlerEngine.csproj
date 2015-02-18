@@ -63,7 +63,6 @@
     <Compile Include="ModelObjecting\ErrorHandlingOption.cs" />
     <Compile Include="ModelObjecting\IError.cs" />
     <Compile Include="ExceptionManager\ErrorHandler.cs" />
-    <Compile Include="ExceptionManager\HandleExceptionAttribute.cs" />
     <Compile Include="ModelObjecting\HResults.cs" />
     <Compile Include="ModelObjecting\LazyError.cs" />
     <Compile Include="ModelObjecting\LazyErrorEventArgs.cs" />

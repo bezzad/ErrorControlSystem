@@ -4,11 +4,6 @@ using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestErrorHandlerBySelf
 {
-    //[HandleExceptions(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot)]
-
-//#if DEBUG
-   // [HandleExceptions(".", "UsersManagements")]
-//#endif
     static class Program
     {
         /// <summary>
@@ -20,8 +15,11 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+#if DEBUG
             HandleExceptions.Start(".", "UsersManagements");
-            //Attribute.GetCustomAttributes(typeof(Program));
+#else
+            HandleExceptions.Start(ErrorHandlingOption.Default & ~ErrorHandlingOption.Snapshot)
+#endif
 
             Application.Run(new Form1());
         }

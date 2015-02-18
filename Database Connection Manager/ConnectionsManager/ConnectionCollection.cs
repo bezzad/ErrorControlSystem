@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ConnectionsManager
 {
-    public class ConnectionCollection : IEnumerable<ConnectionManager>, IDisposable
+    public class ConnectionCollection : IEnumerable<Connection>, IDisposable
     {
         #region Properties
 
@@ -41,7 +40,7 @@ namespace ConnectionsManager
         }
 
 
-        public ConnectionManager this[string connectionName]
+        public Connection this[string connectionName]
         {
             get { return Find(connectionName); }
 
@@ -53,9 +52,9 @@ namespace ConnectionsManager
         /// <param name="connectionName">The Connection name.</param>
         /// </summary>
         /// <returns>If the connection name is exist then return Connection, either not exist return null</returns>
-        public ConnectionManager Find(string connectionName)
+        public Connection Find(string connectionName)
         {
-            return Items.ContainsKey(connectionName.ToUpper()) ? new ConnectionManager(Items[connectionName.ToUpper()]) : null;
+            return Items.ContainsKey(connectionName.ToUpper()) ? Items[connectionName.ToUpper()] : null;
         }
 
 
@@ -99,16 +98,14 @@ namespace ConnectionsManager
         /// </summary>
         /// <param name="conn">The Connection.</param>
         /// <returns></returns>
-        public ConnectionManager Add(Connection conn)
+        public Connection Add(Connection conn)
         {
-            var cm = new ConnectionManager(conn);
-
-            if (Items.ContainsKey(cm.Name.ToUpper())) // Exist Connection, so update old Connection
-                SetValue(cm);
+            if (Items.ContainsKey(conn.Name.ToUpper())) // Exist Connection, so update old Connection
+                SetValue(conn);
             else // New Connection
-                Items.Add(cm.Name.ToUpper(), cm);
+                Items.Add(conn.Name.ToUpper(), conn);
 
-            return cm;
+            return Items[conn.Name.ToUpper()];
         }
 
 
@@ -153,14 +150,14 @@ namespace ConnectionsManager
 
         #region Implement IEnumerable<ConnectionManager>
 
-        IEnumerator<ConnectionManager> IEnumerable<ConnectionManager>.GetEnumerator()
+        IEnumerator<Connection> IEnumerable<Connection>.GetEnumerator()
         {
-            return Items.Values.Select(x => new ConnectionManager(x)).GetEnumerator();
+            return Items.Values.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return Items.Values.Select(x => new ConnectionManager(x)).GetEnumerator();
+            return Items.Values.GetEnumerator();
         }
 
         #endregion

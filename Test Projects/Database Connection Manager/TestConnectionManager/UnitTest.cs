@@ -40,9 +40,9 @@ namespace TestConnectionManager
 
                 var plaintext = GetRandomText(10000);
 
-                var encryptedstring = StringCipher.Encrypt(plaintext, password);
+                var encryptedstring = plaintext.Encrypt(password);
 
-                var decryptedstring = StringCipher.Decrypt(encryptedstring, password);
+                var decryptedstring = encryptedstring.Decrypt(password);
 
                 Assert.AreEqual(plaintext, decryptedstring);
             }
@@ -374,14 +374,14 @@ namespace TestConnectionManager
             items.Add(_conn);
             items.Add(_connJustTrueServer);
 
-            var umC = items.Find("UM");
+            var umC = new ConnectionManager(items.Find("UM"));
 
             Assert.IsNotNull(umC);
             umC.Open();
             Assert.IsTrue(umC.State == ConnectionState.Open);
 
             items.Remove("Test1");
-            items["UM"] = new ConnectionManager(_conn);
+            items["UM"] = _conn;
 
             foreach (var item in items)
             {
@@ -397,11 +397,11 @@ namespace TestConnectionManager
         {
             var items = new ConnectionCollection { _conn, _connHost, _connFalse, _connJustTrueServer };
 
-            items["Test"] = new ConnectionManager(_conn);
+            items["Test"] = _conn;
 
             Assert.AreEqual(items["Test"].ConnectionString, _conn.ConnectionString);
 
-            foreach (var cm in items)
+            foreach (var cm in items.Select(x => new ConnectionManager(x)))
             {
                 TestTools.ExceptException<SqlException>(() =>
                 {
@@ -421,18 +421,18 @@ namespace TestConnectionManager
         {
             var cm = ConnectionManager.Add(_conn);
 
-            Assert.IsInstanceOfType(ConnectionManager.Items["UM"], typeof(ConnectionManager)); // check type
-            Assert.AreEqual(ConnectionManager.Items["UM"].ConnectionString, _conn.ConnectionString); // check content of object
+            Assert.IsInstanceOfType(ConnectionManager.Find("UM"), typeof(ConnectionManager)); // check type
+            Assert.AreEqual(ConnectionManager.Find("UM").ConnectionString, _conn.ConnectionString); // check content of object
             //
             // Open Connection then close that by disposing
-            var c1 = ConnectionManager.Items["UM"];
+            var c1 = ConnectionManager.Find("UM");
             c1.Open();
             Assert.IsTrue(c1.State == ConnectionState.Open);
             c1.Dispose();
             Assert.IsTrue(c1.SqlConn == null);
 
-            ConnectionManager.Items["UM"].Open();
-            Assert.IsTrue(ConnectionManager.Items["UM"].State == ConnectionState.Closed); // because every time fetch new connection
+            ConnectionManager.Find("UM").Open();
+            Assert.IsTrue(ConnectionManager.Find("UM").State == ConnectionState.Closed); // because every time fetch new connection
 
             //
             // Test Duplicate Creating
@@ -441,10 +441,11 @@ namespace TestConnectionManager
             ConnectionManager.Add(_conn);
             Assert.IsTrue(cm.State == ConnectionState.Open);
 
-            ConnectionManager.Items[cm.Name] = new ConnectionManager(_connHost);
-            Assert.AreEqual(ConnectionManager.Items[cm.Name].ConnectionString, _connHost.ConnectionString);
+            ConnectionManager.Edit(_connHost, cm.Connection.Name);
 
-            TestTools.ExceptException<ArgumentNullException>(() => ConnectionManager.Items[cm.Name] = null); // throw ArgumentNullException
+            Assert.AreEqual(ConnectionManager.Find(cm.Connection.Name).ConnectionString, _connHost.ConnectionString);
+
+            TestTools.ExceptException<ArgumentNullException>(() => ConnectionManager.Edit(null, cm.Connection.Name)); // throw ArgumentNullException
         }
 
         [TestMethod, TestCategory("ConnectionManager.cs")]
@@ -454,15 +455,15 @@ namespace TestConnectionManager
             conn2.Open();
 
             TestTools.ExceptException<InvalidOperationException>(() =>
-                Assert.AreEqual(ConnectionManager.Items[conn2.Name].ServerVersion, new ConnectionManager(_conn).ServerVersion));
+                Assert.AreEqual(ConnectionManager.Find(conn2.Connection.Name).ServerVersion, new ConnectionManager(_conn).ServerVersion));
 
             Assert.AreEqual(conn2.State, ConnectionState.Open);
 
-            Assert.AreEqual(ConnectionManager.Items["UM"].State, ConnectionState.Closed); // when call .State then create new SqlConnection , so that is closed always.
-            ConnectionManager.Items["UM"].Open(); // Create New SqlConnection
+            Assert.AreEqual(ConnectionManager.Find("UM").State, ConnectionState.Closed); // when call .State then create new SqlConnection , so that is closed always.
+            ConnectionManager.Find("UM").Open(); // Create New SqlConnection
 
             conn2.Close();
-            Assert.AreEqual(ConnectionManager.Items["UM"].State, ConnectionState.Closed);
+            Assert.AreEqual(ConnectionManager.Find("UM").State, ConnectionState.Closed);
             Assert.AreEqual(conn2.State, ConnectionState.Closed);
         }
 
@@ -696,20 +697,21 @@ namespace TestConnectionManager
             var xmlConnections = ConnectionManager.SaveToXml();
             var xmlConnectionsEncrypted = ConnectionManager.SaveToXml(true);
 
-            ConnectionManager.Clear();
-            Assert.IsTrue(ConnectionManager.Items.Count == 0);
+            ConnectionManager.ClearAll(); ;
+            Assert.IsTrue(ConnectionManager.Count == 0);
 
             ConnectionManager.LoadFromXml(xmlConnections);
-            Assert.IsTrue(ConnectionManager.Items.Count == 2);
+            Assert.IsTrue(ConnectionManager.Count == 2);
 
-            ConnectionManager.Clear();
-            Assert.IsTrue(ConnectionManager.Items.Count == 0);
+            ConnectionManager.ClearAll();
+            Assert.IsTrue(ConnectionManager.Count == 0);
 
             ConnectionManager.LoadFromXml(xmlConnectionsEncrypted);
-            Assert.IsTrue(ConnectionManager.Items.Count == 2);
+            Assert.IsTrue(ConnectionManager.Count == 2);
         }
 
         #endregion
+
 
         #region Test All
         [TestMethod, TestCategory("All")]
@@ -728,7 +730,7 @@ namespace TestConnectionManager
                     Assert.IsTrue(ConnectionManager.Find("um").IsReady);
                     Assert.IsFalse(_conn.IsReady);
 
-                    var ii = ConnectionManager.Items["UM"];
+                    var ii = ConnectionManager.Find("UM");
                     Assert.IsTrue(ii.IsReady);
 
                     Assert.IsTrue(ii.State == ConnectionState.Closed);
@@ -742,17 +744,17 @@ namespace TestConnectionManager
             //
             // Check not ready
             //
-            Assert.IsTrue(ConnectionManager.Items["um"].IsReady);
-            ConnectionManager.Edit("uM", _connFalse);
-            Assert.IsFalse(ConnectionManager.Items["um"].IsReady);
-            ConnectionManager.Edit("uM", _connJustTrueServer);
-            Assert.IsFalse(ConnectionManager.Items["um"].IsReady);
-            Assert.IsTrue(ConnectionManager.Items["um"].IsServerOnline());
-            Assert.IsFalse(ConnectionManager.Items["um"].IsReady); // server is trust but not sure do the DB correctly worked!?
-            Assert.IsFalse(ConnectionManager.Items["um"].CheckDbConnection());
-            ConnectionManager.Edit("Um", _conn);
-            Assert.IsTrue(ConnectionManager.Items["um"].CheckDbConnection()); // when add first time this is work correctly but now not work
-            Assert.IsTrue(ConnectionManager.Items["um"].IsReady);
+            Assert.IsTrue(ConnectionManager.Find("UM").IsReady);
+            ConnectionManager.Edit(_connFalse, "uM");
+            Assert.IsFalse(ConnectionManager.Find("UM").IsReady);
+            ConnectionManager.Edit(_connJustTrueServer, "uM");
+            Assert.IsFalse(ConnectionManager.Find("UM").IsReady);
+            Assert.IsTrue(ConnectionManager.Find("UM").IsServerOnline());
+            Assert.IsFalse(ConnectionManager.Find("UM").IsReady); // server is trust but not sure do the DB correctly worked!?
+            Assert.IsFalse(ConnectionManager.Find("UM").CheckDbConnection());
+            ConnectionManager.Edit(_conn, "Um");
+            Assert.IsTrue(ConnectionManager.Find("UM").CheckDbConnection()); // when add first time this is work correctly but now not work
+            Assert.IsTrue(ConnectionManager.Find("UM").IsReady);
         }
         #endregion
     }

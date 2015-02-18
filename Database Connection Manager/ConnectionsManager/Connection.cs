@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -10,6 +11,7 @@ namespace ConnectionsManager
         #region Fields
 
         private string _server;
+        
         #endregion
 
 
@@ -25,7 +27,7 @@ namespace ConnectionsManager
             get { return _server; }
             set
             {
-                _server = (string.IsNullOrEmpty(value) || value == ".")
+                _server = (String.IsNullOrEmpty(value) || value == ".")
                     ? "localhost"
                     : value;
             }
@@ -63,6 +65,16 @@ namespace ConnectionsManager
         #endregion
 
 
+        #region Static Properties
+
+        /// <summary>
+        /// Use to add or remove ConnectionItem instances to a Connection.
+        /// </summary>
+        internal volatile static ConnectionCollection Items = new ConnectionCollection();
+
+        #endregion
+
+
         #region Read-only Properties
 
         public string ConnectionString
@@ -73,16 +85,16 @@ namespace ConnectionsManager
                 return
                         String.Format("Data Source={0}{1};{2}{3}{4}",
                             Server,
-                            PortNumber == 1433 || PortNumber == 0 ? "" : string.Format(",{0}", PortNumber),
-                            string.IsNullOrEmpty(DatabaseName) ? "" : string.Format("Initial Catalog={0};", DatabaseName),
-                            string.IsNullOrEmpty(UserId) ?
-                                string.Format("Integrated Security={0};", IntegratedSecurity) :
-                                string.Format("Persist Security Info={0};User ID={1};Password={2};", PersistSecurityInfo, UserId, Password),
-                            TimeOut <= 0 ? "" : string.Format("Connection Timeout={0};", TimeOut));
+                            PortNumber == 1433 || PortNumber == 0 ? "" : String.Format(",{0}", PortNumber),
+                            String.IsNullOrEmpty(DatabaseName) ? "" : String.Format("Initial Catalog={0};", DatabaseName),
+                            String.IsNullOrEmpty(UserId) ?
+                                String.Format("Integrated Security={0};", IntegratedSecurity) :
+                                String.Format("Persist Security Info={0};User ID={1};Password={2};", PersistSecurityInfo, UserId, Password),
+                            TimeOut <= 0 ? "" : String.Format("Connection Timeout={0};", TimeOut));
             }
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (String.IsNullOrEmpty(value))
                     throw new NullReferenceException("You can't pass null reference object for ConnectionString property!");
 
                 var conn = Parse(value);
@@ -150,18 +162,18 @@ namespace ConnectionsManager
             string pass, int portNumber = 1433, string description = "")
             : this(connectionName, server, databaseName,
                 timeOut, username,
-                pass, portNumber, description, string.Empty)
+                pass, portNumber, description, String.Empty)
         { }
 
         public Connection(string connectionName, string server, string databaseName,
             int timeOut = 30, string description = "")
             : this(connectionName, server, databaseName,
-                timeOut, description, string.Empty)
+                timeOut, description, String.Empty)
         { }
 
         public Connection(string connectionName, string server, int timeOut, string description = "")
             : this(connectionName, server, "master",
-                timeOut, description, string.Empty)
+                timeOut, description, String.Empty)
         { }
 
 
@@ -255,7 +267,7 @@ namespace ConnectionsManager
                 connectionString = connectionString.Substring(1).Decrypt();
 
 
-            var scsb = new System.Data.SqlClient.SqlConnectionStringBuilder(connectionString);
+            var scsb = new SqlConnectionStringBuilder(connectionString);
 
             var conn = new Connection
             {
@@ -302,8 +314,8 @@ namespace ConnectionsManager
 
             conn.ProviderName = encrypted ? providerName.Decrypt() : providerName;
 
-            conn.Id = int.Parse(
-                string.IsNullOrEmpty(publicKeyToken)
+            conn.Id = Int32.Parse(
+                String.IsNullOrEmpty(publicKeyToken)
                     ? GetUniqueId().ToString()
                     : publicKeyToken);
 

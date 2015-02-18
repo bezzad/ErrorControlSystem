@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.Sql;
@@ -9,9 +10,15 @@ using System.Xml.Linq;
 
 namespace ConnectionsManager
 {
-    public class ConnectionManager : Connection, IDisposable
+    public class ConnectionManager : IDisposable
     {
-        #region Read-only Properties
+        #region Properties
+
+        public Connection Connection { get; protected set; }
+
+        public string ConnectionString { get { return Connection.ConnectionString; } }
+
+        public bool IsReady { get { return Connection.IsReady; } protected set { Connection.IsReady = value; } }
 
         public System.Data.ConnectionState State { get { return SqlConn.State; } }
 
@@ -31,22 +38,13 @@ namespace ConnectionsManager
         #endregion
 
 
-        #region Static Properties
-
-        /// <summary>
-        /// Use to add or remove ConnectionItem instances to a Connection.
-        /// </summary>
-        public volatile static ConnectionCollection Items = new ConnectionCollection();
-
-        #endregion
-
-
         #region Constructors
 
         public ConnectionManager(Connection connectionItem)
-            : base(connectionItem)
         {
-            SqlConn = new SqlConnection(ConnectionString);
+            Connection = connectionItem;
+
+            SqlConn = new SqlConnection(Connection.ConnectionString);
         }
 
         #endregion
@@ -67,7 +65,7 @@ namespace ConnectionsManager
             // Try to Create provider factory for connect to Database
             try
             {
-                DbProviderFactories.GetFactory(ProviderName);
+                DbProviderFactories.GetFactory(Connection.ProviderName);
             }
             catch
             {
@@ -106,7 +104,7 @@ namespace ConnectionsManager
             // Try to Create provider factory for connect to Database
             try
             {
-                DbProviderFactories.GetFactory(ProviderName);
+                DbProviderFactories.GetFactory(Connection.ProviderName);
             }
             catch
             {
@@ -467,7 +465,7 @@ namespace ConnectionsManager
         /// </returns>
         public static string SaveToXml(bool encrypt = false)
         {
-            return new XElement("ConnectionStrings", Items.Select(x => x.ToXml(encrypt).Element("add"))).ToString(SaveOptions.None);
+            return new XElement("ConnectionStrings", Connection.Items.Select(x => x.ToXml(encrypt).Element("add"))).ToString(SaveOptions.None);
         }
 
         /// <summary>
@@ -481,7 +479,7 @@ namespace ConnectionsManager
 
             foreach (XElement xmlConn in xmlConnectionStrings.Elements("add"))
             {
-                Items.Add(Connection.Parse(xmlConn));
+                Connection.Items.Add(Connection.Parse(xmlConn));
             }
         }
 
@@ -493,39 +491,43 @@ namespace ConnectionsManager
         /// <returns>ConnectionManager</returns>
         public static ConnectionManager Add(Connection conn)
         {
-            return Items.Add(conn);
+            return new ConnectionManager(Connection.Items.Add(conn));
         }
 
         /// <summary>
-        /// Add a new Connection instance.  
-        /// Add ConnectionItems to the Connection instance before adding it to the ConnectionManager.
+        /// Edit a new Connection instance.  
+        /// Update ConnectionItems to the Connection instance before adding it to the ConnectionManager.
         /// </summary>
         /// <param name="connName">Name of connection in list.</param>
         /// <param name="conn">The connection.</param>
-        /// <returns>ConnectionManager</returns>
-        public static void Edit(string connName, Connection conn)
+        public static void Edit(Connection conn, string connName)
         {
-            Items[connName] = new ConnectionManager(conn);
+            Connection.Items[connName] = conn;
         }
 
         /// <summary>
-        /// Remove a Connection instance from the ConnectionManager.
+        /// Edit a new Connection instance.  
+        /// Update ConnectionItems to the Connection instance before adding it to the ConnectionManager.
         /// </summary>
         /// <param name="conn">The connection.</param>
-        /// <returns></returns>
-        public static bool Remove(ConnectionManager conn)
+        public static void Edit(Connection conn)
         {
-            return Items.Remove(conn.Name);
+            Edit(conn, conn.Name);
         }
 
         public static bool Remove(string connName)
         {
-            return Items.Remove(connName);
+            return Connection.Items.Remove(connName);
         }
 
-        public static void Clear()
+        public static bool Remove(ConnectionManager cm)
         {
-            Items.Clear();
+            return Connection.Items.Remove(cm.Connection.Name);
+        }
+
+        public static void ClearAll()
+        {
+            Connection.Items.Clear();
         }
 
         /// <summary>
@@ -535,7 +537,22 @@ namespace ConnectionsManager
         /// <returns></returns>
         public static ConnectionManager Find(string connectionName)
         {
-            return Items.Find(connectionName);
+            return new ConnectionManager(Connection.Items.Find(connectionName));
+        }
+
+        public static int Count
+        {
+            get { return Connection.Items.Count; }
+        }
+
+        public static ConnectionManager Factory(Connection conn)
+        {
+            return new ConnectionManager(conn);
+        }
+
+        public static IEnumerable<Connection> GetConnections()
+        {
+            return Connection.Items;
         }
 
         #endregion

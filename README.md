@@ -35,7 +35,8 @@ namespace TestApplication
         [STAThread]
         private static void Main()
         {
-               HandleExceptions.Start("MyServer", "UsersManagementsDB", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+               HandleExceptions.Start(new Connection("localhost", "UsersManagements"), 
+                ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
 
                Application.Run(new Form1());
         }
@@ -56,7 +57,8 @@ In the above code snippet you've seen that, for the `HandleExceptions` method sh
 
 For example in above codes, this code means is:
 ```csharp
-HandleExceptions.Start("MyServer", "UsersManagementsDB", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+HandleExceptions.Start(new Connection("localhost", "UsersManagements"), 
+                ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
 ```
 Select all options by excepted `ReSizeSnapshots`
 

@@ -22,10 +22,10 @@ namespace TestConnectionManager
         [TestInitialize]
         public void UnitTestInitializer()
         {
-            _conn = new Connection("UM", ".", "UsersManagements", "sa", "123");
-            _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", "sa", "123");
-            _connJustTrueServer = new Connection("Test", Environment.MachineName, "TestNotExistDbName");
-            _connFalse = new Connection("Test", "TestNotExistServer", "TestNotExistDbName", "sa", "123");
+            _conn = new Connection("UM", ".", "UsersManagements", "sa", "123") { Name = "UM" };
+            _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", "sa", "123") { Name = "UM" };
+            _connJustTrueServer = new Connection("Test", Environment.MachineName, "TestNotExistDbName") { Name = "Test" };
+            _connFalse = new Connection("Test", "TestNotExistServer", "TestNotExistDbName", "sa", "123") { Name = "Test" };
         }
 
 
@@ -195,21 +195,13 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 3 Arguments ------------------------------------------
             //
-            var conn1 = new Connection("UM", ".", "UsersManagements");
-
+            var conn1 = new Connection(".", "UsersManagements");
+            conn1.Name = "UM";
             Assert.AreEqual(conn1.ToXml().ToString(SaveOptions.None), conn1.ToString());
             Assert.AreEqual(conn1.ToXml(true).ToString(SaveOptions.None), conn1.ToString(true));
             Assert.AreEqual(
                 Connection.Parse(conn1.ToXml(true)).ConnectionString,
                 conn1.ConnectionString);
-
-
-            var conn1_2 = new Connection("UMClone")
-            {
-                ConnectionString = conn1.ConnectionString
-            };
-
-            Assert.AreEqual(conn1.ConnectionString, conn1_2.ConnectionString);
         }
 
         [TestMethod, TestCategory("Connection.cs")]
@@ -227,7 +219,7 @@ namespace TestConnectionManager
                 conn.ConnectionString);
 
 
-            var conn1_2 = new Connection("UMClone")
+            var conn1_2 = new Connection()
             {
                 ConnectionString = conn.ConnectionString
             };
@@ -250,7 +242,7 @@ namespace TestConnectionManager
                 conn2.ConnectionString);
 
 
-            var conn2_2 = new Connection("UMClone")
+            var conn2_2 = new Connection()
             {
                 ConnectionString = conn2.ConnectionString
             };
@@ -272,7 +264,7 @@ namespace TestConnectionManager
                 Connection.Parse(conn3.ToXml(true)).ConnectionString,
                 conn3.ConnectionString);
 
-            var conn3_2 = new Connection("UMClone")
+            var conn3_2 = new Connection()
             {
                 ConnectionString = conn3.ConnectionString
             };

@@ -17,8 +17,10 @@ namespace ConnectionsManager
 
         #region Properties
 
+        [DefaultValue("")]
         public string UserId { get; set; }
 
+        [DefaultValue("")]
         public string Password { get; set; }
 
         [DefaultValue("localhost")]
@@ -48,13 +50,16 @@ namespace ConnectionsManager
         [DefaultValue(true)]
         public bool PersistSecurityInfo { get; set; }
 
+        [DefaultValue("")]
         public string AttachDbFilename { get; set; }
 
         [DefaultValue(30)]
         public int TimeOut { get; set; }
 
+        [DefaultValue("")]
         public string Description { get; set; }
 
+        [DefaultValue("")]
         public string Name { get; set; }
 
         public int Id { get; protected set; }
@@ -369,7 +374,8 @@ namespace ConnectionsManager
                 AttachDbFilename = scsb.AttachDBFilename,
                 PersistSecurityInfo = scsb.PersistSecurityInfo,
                 IntegratedSecurity = scsb.IntegratedSecurity ?
-                    connectionString.Substring(connectionString.IndexOf("Integrated Security=") + "Integrated Security=".Length, 4) :
+                    connectionString.Substring(connectionString.IndexOf("Integrated Security=") +
+                    "Integrated Security=".Length, 4) :
                     "false"
             };
 
@@ -464,6 +470,5 @@ namespace ConnectionsManager
         }
 
         #endregion
-
     }
 }

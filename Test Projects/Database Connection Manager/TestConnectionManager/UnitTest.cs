@@ -22,10 +22,10 @@ namespace TestConnectionManager
         [TestInitialize]
         public void UnitTestInitializer()
         {
-            _conn = new Connection("UM", ".", "UsersManagements", "sa", "123") { Name = "UM" };
-            _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", "sa", "123") { Name = "UM" };
-            _connJustTrueServer = new Connection("Test", Environment.MachineName, "TestNotExistDbName") { Name = "Test" };
-            _connFalse = new Connection("Test", "TestNotExistServer", "TestNotExistDbName", "sa", "123") { Name = "Test" };
+            _conn = new Connection(".", "UsersManagements", "sa", "123") { Name = "UM" };
+            _connHost = new Connection(Environment.MachineName, "UsersManagements", "sa", "123") { Name = "UM" };
+            _connJustTrueServer = new Connection(Environment.MachineName, "TestNotExistDbName") { Name = "Test" };
+            _connFalse = new Connection("TestNotExistServer", "TestNotExistDbName", "sa", "123") { Name = "Test" };
         }
 
 

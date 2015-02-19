@@ -192,7 +192,7 @@ namespace ConnectionsManager
             string database,
             string username,
             string pass,
-            string description)
+            string description = "")
         {
             Initilizer(
                 server,

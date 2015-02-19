@@ -13,22 +13,15 @@ namespace TestConnectionManager
     [TestClass]
     public class UnitTest
     {
-        public TestContext TestContext { get; set; }
-
         private Connection _conn;
         private Connection _connHost;
         private Connection _connJustTrueServer;
         private Connection _connFalse;
 
 
-        //[TestInitialize]
-        [TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "|DataDirectory|\\TestConnections.xml", "add", DataAccessMethod.Sequential)]
+        [TestInitialize]
         public void UnitTestInitializer()
         {
-            string test = this.TestContext.DataRow["TestConnectionString1"].ToString();
-            var conn1 = Connection.Parse(test);
-
             _conn = new Connection("UM", ".", "UsersManagements", "sa", "123");
             _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", "sa", "123");
             _connJustTrueServer = new Connection("Test", Environment.MachineName, "TestNotExistDbName");

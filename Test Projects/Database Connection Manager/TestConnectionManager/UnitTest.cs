@@ -13,15 +13,22 @@ namespace TestConnectionManager
     [TestClass]
     public class UnitTest
     {
+        public TestContext TestContext { get; set; }
+
         private Connection _conn;
         private Connection _connHost;
         private Connection _connJustTrueServer;
         private Connection _connFalse;
 
 
-        [TestInitialize]
+        //[TestInitialize]
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", "|DataDirectory|\\TestConnections.xml", "add", DataAccessMethod.Sequential)]
         public void UnitTestInitializer()
         {
+            string test = this.TestContext.DataRow["TestConnectionString1"].ToString();
+            var conn1 = Connection.Parse(test);
+
             _conn = new Connection("UM", ".", "UsersManagements", "sa", "123");
             _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", "sa", "123");
             _connJustTrueServer = new Connection("Test", Environment.MachineName, "TestNotExistDbName");
@@ -162,10 +169,7 @@ namespace TestConnectionManager
             var c = Connection.Parse(newConnWithoutId);
             Assert.AreEqual(c.ConnectionString, conn.ConnectionString); // c.Id != conn.Id but both of them have duplicate connectionString
 
-            var conn2 = new Connection("UMClone")
-            {
-                ConnectionString = conn.ConnectionString
-            };
+            var conn2 = new Connection(conn.ConnectionString);
 
             TestTools.ExpectException<NullReferenceException>(() => conn.ConnectionString = null); // Test throw NullReferenceException
 
@@ -187,10 +191,7 @@ namespace TestConnectionManager
                 Connection.Parse(conn.ToXml(true)).ConnectionString,
                 conn.ConnectionString);
 
-            var conn2 = new Connection("UMClone")
-            {
-                ConnectionString = conn.ConnectionString
-            };
+            var conn2 = new Connection(conn.ConnectionString);
 
             Assert.AreEqual(conn.ConnectionString, conn2.ConnectionString);
         }

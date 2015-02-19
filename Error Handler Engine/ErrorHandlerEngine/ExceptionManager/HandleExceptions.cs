@@ -58,7 +58,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         public static void Start(Connection conn, ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
             Start(option);
-            ConnectionManager.Add(conn, "UM");
+            ConnectionManager.Add(conn, "ErrorHandlerServer");
         }
 
 

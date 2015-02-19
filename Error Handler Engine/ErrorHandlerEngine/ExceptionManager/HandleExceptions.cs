@@ -23,7 +23,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         private static ErrorHandlingOption _option;
 
         #endregion
-        
+
         #region Static Constructors
 
         static HandleExceptions()
@@ -51,30 +51,14 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static void Start(ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
-            _option = option;
+            _option = option & ~ErrorHandlingOption.SendCacheToServer;
         }
 
-        public static void Start(string dataSource, string initialCatalog, int timeOut, string username,
-            string pass, int portNumber, string attachDbFilename, string providerName = "System.Data.SqlClient",
-            ErrorHandlingOption option = ErrorHandlingOption.Default)
-        {
-            Start(option);
-            ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber, attachDbFilename, providerName));
-        }
 
-        public static void Start(string dataSource, string initialCatalog, int timeOut, string username,
-            string pass, int portNumber = 1433,
-            ErrorHandlingOption option = ErrorHandlingOption.Default)
+        public static void Start(Connection conn, ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
             Start(option);
-            ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut, username, pass, portNumber));
-        }
-
-        public static void Start(string dataSource, string initialCatalog, int timeOut = 30,
-            ErrorHandlingOption option = ErrorHandlingOption.Default)
-        {
-            Start(option);
-            ConnectionManager.Add(new Connection("UM", dataSource, initialCatalog, timeOut));
+            ConnectionManager.Add(conn, "UM");
         }
 
 

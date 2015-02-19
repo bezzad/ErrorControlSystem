@@ -20,9 +20,10 @@ namespace ErrorHandlerEngine.ModelObjecting
         Snapshot = 4,
         FetchServerDateTime = 8,
         ReSizeSnapshots = 16,
+        SendCacheToServer = 32,
 
-        Default = Snapshot | FetchServerDateTime | AlertUnHandledError,
-        All = 0xFFF // Combined value of all
+        Default = Snapshot | FetchServerDateTime | AlertUnHandledError | SendCacheToServer,
+        All = 0xFFFF // Combined value of all
     }
 
 }

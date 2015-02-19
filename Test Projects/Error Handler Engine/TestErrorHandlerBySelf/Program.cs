@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net.Configuration;
 using System.Windows.Forms;
+using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 
@@ -16,7 +18,8 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            HandleExceptions.Start(".", "UsersManagements", 5, ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+            HandleExceptions.Start(new Connection(".", "UsersManagements"), 
+                ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
 
             Application.Run(new Form1());
         }

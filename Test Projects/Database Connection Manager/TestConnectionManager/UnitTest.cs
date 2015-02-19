@@ -22,10 +22,10 @@ namespace TestConnectionManager
         [TestInitialize]
         public void UnitTestInitializer()
         {
-            _conn = new Connection("UM", ".", "UsersManagements", 3, "sa", "123");
-            _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", 3, "sa", "123");
+            _conn = new Connection("UM", ".", "UsersManagements", "sa", "123");
+            _connHost = new Connection("UM", Environment.MachineName, "UsersManagements", "sa", "123");
             _connJustTrueServer = new Connection("Test", Environment.MachineName, "TestNotExistDbName");
-            _connFalse = new Connection("Test", "TestNotExistServer", "TestNotExistDbName", 3, "sa", "123");
+            _connFalse = new Connection("Test", "TestNotExistServer", "TestNotExistDbName", "sa", "123");
         }
 
 
@@ -152,7 +152,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 1 Arguments ------------------------------------------
             //
-            var connFull = new Connection("UM", ".", "UsersManagements", 3, "sa", "123", 1433, "Test Connection");
+            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", 1433);
             var conn = new Connection(connFull);
 
             Assert.AreEqual(conn.ToXml(false).ToString(SaveOptions.None), conn.ToString());
@@ -178,8 +178,8 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 2 Arguments ------------------------------------------
             //
-            var connFull = new Connection("UM", ".", "UsersManagements", 3, "sa", "123", 0, "Test Connection");
-            var conn = new Connection("UM", connFull.ConnectionString);
+            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", 0);
+            var conn = new Connection(connFull.ConnectionString);
 
             Assert.AreEqual(conn.ToXml(false).ToString(SaveOptions.None), conn.ToString());
             Assert.AreEqual(conn.ToXml(true).ToString(SaveOptions.None), conn.ToString(true));
@@ -224,7 +224,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 4 Arguments ------------------------------------------
             //
-            var conn = new Connection("UM", ".", 3);
+            var conn = new Connection();
 
             Assert.AreEqual(conn.ToXml().ToString(SaveOptions.None), conn.ToString());
             Assert.AreEqual(conn.ToXml(true).ToString(SaveOptions.None), conn.ToString(true));
@@ -247,7 +247,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 6 Arguments ------------------------------------------
             //
-            var conn2 = new Connection("UM", ".", "UsersManagements", -3, "sa", "123");
+            var conn2 = new Connection(".", "UsersManagements", "sa", "123", -3);
 
             Assert.AreEqual(conn2.ToXml().ToString(SaveOptions.None), conn2.ToString());
             Assert.AreEqual(conn2.ToXml(true).ToString(SaveOptions.None), conn2.ToString(true));
@@ -270,7 +270,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 8 Arguments ------------------------------------------
             //
-            var conn3 = new Connection("UM", ".", "UsersManagements", 3, "sa", "123", 1433, "Test Connection");
+            var conn3 = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", 1433);
 
             Assert.AreEqual(conn3.ToXml(false).ToString(SaveOptions.None), conn3.ToString());
             Assert.AreEqual(conn3.ToXml(true).ToString(SaveOptions.None), conn3.ToString(true));
@@ -419,7 +419,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionManager.cs")]
         public void CreateConnectionManager()
         {
-            var cm = ConnectionManager.Add(_conn);
+            var cm = ConnectionManager.Add(_conn, "um");
 
             Assert.IsInstanceOfType(ConnectionManager.Find("UM"), typeof(ConnectionManager)); // check type
             Assert.AreEqual(ConnectionManager.Find("UM").ConnectionString, _conn.ConnectionString); // check content of object
@@ -436,9 +436,9 @@ namespace TestConnectionManager
 
             //
             // Test Duplicate Creating
-            cm = ConnectionManager.Add(_connHost);
+            cm = ConnectionManager.Add(_connHost, "um");
             cm.Open();
-            ConnectionManager.Add(_conn);
+            ConnectionManager.Add(_conn, "um");
             Assert.IsTrue(cm.State == ConnectionState.Open);
 
             ConnectionManager.Edit(_connHost, cm.Connection.Name);
@@ -451,7 +451,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionManager.cs")]
         public void CheckConnectionOpenConfilict()
         {
-            var conn2 = ConnectionManager.Add(_conn);
+            var conn2 = ConnectionManager.Add(_conn, "um");
             conn2.Open();
 
             TestTools.ExceptException<InvalidOperationException>(() =>
@@ -470,7 +470,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionManager.cs")]
         public void TestMultipleConnectionOpenClose()
         {
-            var cm = ConnectionManager.Add(_conn);
+            var cm = ConnectionManager.Add(_conn, "um");
 
 
             //cm.Open();
@@ -495,7 +495,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionManager.cs")]
         public async Task TestMultipleConnectionOpenAsync()
         {
-            var cm = ConnectionManager.Add(_conn);
+            var cm = ConnectionManager.Add(_conn, "um");
             Assert.IsTrue(cm.State == ConnectionState.Closed);
 
             var counter = 0;
@@ -520,7 +520,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionManager.cs")]
         public void TestMultipleConnectionOpenAsyncByCancellationToken()
         {
-            var cm = ConnectionManager.Add(_conn);
+            var cm = ConnectionManager.Add(_conn, "um");
             Assert.IsTrue(cm.State == ConnectionState.Closed);
 
             var counter = 0;
@@ -547,8 +547,8 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("ConnectionManager.cs")]
         public void TestRemoveConnection()
         {
-            var c = ConnectionManager.Add(_connHost);
-            var cm = ConnectionManager.Add(_conn);
+            var c = ConnectionManager.Add(_connHost, "um");
+            var cm = ConnectionManager.Add(_conn, "um");
             cm.Open();
             Assert.IsTrue(cm.State == ConnectionState.Open);
 
@@ -574,14 +574,14 @@ namespace TestConnectionManager
             //
             // Test Full Trust Connection
             //
-            var cm = ConnectionManager.Add(_conn); // Test by localhost server name
+            var cm = ConnectionManager.Add(_conn, "um"); // Test by localhost server name
 
             Assert.IsFalse(cm.IsReady); // IsReady is false in first time
 
             Assert.IsTrue(cm.IsServerOnline()); // Server is True but isReady set just false time
             Assert.IsFalse(cm.IsReady);
 
-            cm = ConnectionManager.Add(_connHost); // Test by Host server name
+            cm = ConnectionManager.Add(_connHost, "um"); // Test by Host server name
 
             Assert.IsFalse(cm.IsReady); // IsReady is false in first time
 
@@ -591,7 +591,7 @@ namespace TestConnectionManager
             //
             // Test Just True Server by inCorrect database name
             //
-            cm = ConnectionManager.Add(_connJustTrueServer); // Test by true server name
+            cm = ConnectionManager.Add(_connJustTrueServer, "test"); // Test by true server name
 
             Assert.IsFalse(cm.IsReady); // IsReady is false in first time
 
@@ -604,7 +604,7 @@ namespace TestConnectionManager
             //
             // Test by inCorrect connection
             //
-            cm = ConnectionManager.Add(_connFalse); // Test by incorrect server name
+            cm = ConnectionManager.Add(_connFalse, "test"); // Test by incorrect server name
 
             Assert.IsFalse(cm.IsReady);
 
@@ -624,14 +624,14 @@ namespace TestConnectionManager
             //
             // Test Full Trust Connection
             //
-            var cm = ConnectionManager.Add(_conn); // Test by localhost server name
+            var cm = ConnectionManager.Add(_conn, "um"); // Test by localhost server name
 
             Assert.IsFalse(cm.IsReady); // IsReady is false in first time
 
             Assert.IsTrue(await cm.IsServerOnlineAsync()); // Server is True but isReady set just false time
             Assert.IsFalse(cm.IsReady);
 
-            cm = ConnectionManager.Add(_connHost); // Test by Host server name
+            cm = ConnectionManager.Add(_connHost, "um"); // Test by Host server name
 
             Assert.IsFalse(cm.IsReady); // IsReady is false in first time
 
@@ -641,7 +641,7 @@ namespace TestConnectionManager
             //
             // Test Just True Server by inCorrect database name
             //
-            cm = ConnectionManager.Add(_connJustTrueServer); // Test by true server name
+            cm = ConnectionManager.Add(_connJustTrueServer, "test"); // Test by true server name
 
             Assert.IsFalse(cm.IsReady); // IsReady is false in first time
 
@@ -654,7 +654,7 @@ namespace TestConnectionManager
             //
             // Test by inCorrect connection
             //
-            cm = ConnectionManager.Add(_connFalse); // Test by incorrect server name
+            cm = ConnectionManager.Add(_connFalse, "test"); // Test by incorrect server name
 
             Assert.IsFalse(cm.IsReady);
 
@@ -674,7 +674,7 @@ namespace TestConnectionManager
             //
             // Test Add and Find
             //
-            var c1 = ConnectionManager.Add(_conn);
+            var c1 = ConnectionManager.Add(_conn, "um");
             var c2 = ConnectionManager.Find("um");
             Assert.AreEqual(c1.ConnectionString, c2.ConnectionString);
             //
@@ -692,8 +692,8 @@ namespace TestConnectionManager
             //
             // Convert connections to XML
             //
-            ConnectionManager.Add(_conn);
-            ConnectionManager.Add(_connJustTrueServer);
+            ConnectionManager.Add(_conn, "um");
+            ConnectionManager.Add(_connJustTrueServer, "test");
             var xmlConnections = ConnectionManager.SaveToXml();
             var xmlConnectionsEncrypted = ConnectionManager.SaveToXml(true);
 
@@ -717,7 +717,7 @@ namespace TestConnectionManager
         [TestMethod, TestCategory("All")]
         public void TestIsReady()
         {
-            var i = ConnectionManager.Add(_conn);
+            var i = ConnectionManager.Add(_conn, "um");
 
             Assert.IsFalse(i.IsReady);
             Assert.IsFalse(_conn.IsReady);

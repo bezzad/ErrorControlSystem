@@ -487,10 +487,12 @@ namespace ConnectionsManager
         /// Add a new Connection instance.  
         /// Add ConnectionItems to the Connection instance before adding it to the ConnectionManager.
         /// </summary>
+        /// <param name="name">Connection Name</param>
         /// <param name="conn">The connection.</param>
         /// <returns>ConnectionManager</returns>
-        public static ConnectionManager Add(Connection conn)
+        public static ConnectionManager Add(Connection conn, string name)
         {
+            conn.Name = name.ToUpper();
             return new ConnectionManager(Connection.Items.Add(conn));
         }
 
@@ -498,11 +500,11 @@ namespace ConnectionsManager
         /// Edit a new Connection instance.  
         /// Update ConnectionItems to the Connection instance before adding it to the ConnectionManager.
         /// </summary>
-        /// <param name="connName">Name of connection in list.</param>
+        /// <param name="name">Name of connection in list.</param>
         /// <param name="conn">The connection.</param>
-        public static void Edit(Connection conn, string connName)
+        public static void Edit(Connection conn, string name)
         {
-            Connection.Items[connName] = conn;
+            Connection.Items[name] = conn;
         }
 
         /// <summary>

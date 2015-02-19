@@ -11,7 +11,7 @@ namespace ConnectionsManager
         #region Fields
 
         private string _server;
-        
+
         #endregion
 
 
@@ -111,9 +111,8 @@ namespace ConnectionsManager
         /// <summary>
         /// Initializes a new instance of the <see cref="Connection" /> class.
         /// </summary>
-        /// <param name="connectionName">The name of Connection to call that in from other usage classes</param>
         /// <param name="server">The server name or IP or data source.</param>
-        /// <param name="databaseName">The database name or initialCatalog.</param>
+        /// <param name="database">The database name or initialCatalog.</param>
         /// <param name="timeOut">The time out always grater than zero 0.</param>
         /// <param name="username">The database author user name.</param>
         /// <param name="pass">The database author password.</param>
@@ -121,18 +120,151 @@ namespace ConnectionsManager
         /// <param name="description">Gets or sets the description of the Connection object.</param>
         /// <param name="attachDbFilename">The attach database filename.</param>
         /// <param name="providerName">Name of the provider.<example>"System.Data.SqlClient"</example></param>
-        public Connection(string connectionName, string server, string databaseName,
-            int timeOut, string username,
-            string pass, int portNumber, string description,
-            string attachDbFilename, string providerName = "System.Data.SqlClient")
+        public Connection(
+            string server,
+            string database,
+            string username,
+            string pass,
+            int timeOut,
+            string description,
+            int portNumber,
+            string attachDbFilename,
+            string providerName = "System.Data.SqlClient")
+        {
+            Initilizer(
+                server,
+                database,
+                username,
+                pass,
+                timeOut,
+                description,
+                portNumber,
+                attachDbFilename,
+                providerName);
+        }
+
+        public Connection(
+            string server,
+            string database,
+            string username,
+            string pass,
+            int timeOut,
+            string description,
+            int portNumber)
+        {
+            Initilizer(
+                server,
+                database,
+                username,
+                pass,
+                timeOut,
+                description,
+                portNumber,
+                string.Empty);
+        }
+
+        public Connection(
+            string server,
+            string database,
+            string username,
+            string pass,
+            int timeOut,
+            string description = "")
+        {
+            Initilizer(
+                server,
+                database,
+                username,
+                pass,
+                timeOut,
+                description,
+                1433,
+                "");
+        }
+
+        public Connection(
+            string server,
+            string database,
+            string username,
+            string pass,
+            string description)
+        {
+            Initilizer(
+                server,
+                database,
+                username,
+                pass,
+                10,
+                description,
+                1433,
+                "");
+        }
+
+        public Connection(
+            string server,
+            string database,
+            string description)
+        {
+            Initilizer(
+                server,
+                database,
+                "",
+                "",
+                10,
+                description,
+                1433,
+                "");
+        }
+
+        public Connection(
+           string server = "master",
+           string database = "")
+        {
+            Initilizer(
+                server,
+                database,
+                "",
+                "",
+                10,
+                "",
+                1433,
+                "");
+        }
+
+        public Connection(
+            string connString)
+        {
+            ConnectionString = connString;
+        }
+
+        public Connection(Connection conn)
+        {
+            Clone(conn, this);
+        }
+
+        protected Connection()
+        {
+            SetToDefaultConnection();
+        }
+
+        private void Initilizer(
+            string server,
+            string database,
+            string username,
+            string pass,
+            int timeOut,
+            string description,
+            int portNumber,
+            string attachDbFilename,
+            string providerName = "System.Data.SqlClient")
         {
             #region initialing
 
-            Name = connectionName;
+            Name = "";
 
             Server = server;
 
-            DatabaseName = databaseName;
+            DatabaseName = database;
 
             TimeOut = timeOut;
 
@@ -157,49 +289,6 @@ namespace ConnectionsManager
             #endregion
         }
 
-        public Connection(string connectionName, string server, string databaseName,
-            int timeOut, string username,
-            string pass, int portNumber = 1433, string description = "")
-            : this(connectionName, server, databaseName,
-                timeOut, username,
-                pass, portNumber, description, String.Empty)
-        { }
-
-        public Connection(string connectionName, string server, string databaseName,
-            int timeOut = 30, string description = "")
-            : this(connectionName, server, databaseName,
-                timeOut, description, String.Empty)
-        { }
-
-        public Connection(string connectionName, string server, int timeOut, string description = "")
-            : this(connectionName, server, "master",
-                timeOut, description, String.Empty)
-        { }
-
-
-        public Connection(string connectionName, string connString)
-        {
-            ConnectionString = connString;
-
-            Name = connectionName;
-        }
-
-
-        public Connection(string connectionName)
-            : this()
-        {
-            Name = connectionName;
-        }
-
-        public Connection(Connection conn)
-        {
-            Clone(conn, this);
-        }
-
-        protected Connection()
-        {
-            SetToDefaultConnection();
-        }
         #endregion
 
 

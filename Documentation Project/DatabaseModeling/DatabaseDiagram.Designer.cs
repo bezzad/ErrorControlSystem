@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Shoniz\Error Control System\Error Handler Engine\DatabaseModeling\DatabaseDiagram.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\DatabaseDiagram.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

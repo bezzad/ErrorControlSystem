@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ErrorHandlerEngine")]
-[assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker  \n\rCreator Info:\n\r Mr.Behzad Khosravifar [mailto:Behzad.Khosravifar@gmail.com]")]
+[assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shoniz")]
+[assembly: AssemblyCompany("Shoniz.co by Mr.Behzad Khosravifar")]
 [assembly: AssemblyProduct("ErrorHandlerEngine")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Behzad Khosravifar Corporation.")]
 [assembly: AssemblyTrademark("Shoniz")]

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6eaaf9af435a4a3b8bad989520dafe8d" Name="ErrorControlsDiagram" ZoomLevel="113" >
+      <Diagram DiagramId="6eaaf9af435a4a3b8bad989520dafe8d" Name="ErrorControlsDiagram" ZoomLevel="111" >
         <EntityTypeShape EntityType="DatabaseDiagram.ErrorControls" Width="2" PointX="3.125" PointY="0.5" />
         <EntityTypeShape EntityType="DatabaseDiagram.Snapshots" Width="1.5" PointX="5.625" PointY="2" />
       </Diagram>

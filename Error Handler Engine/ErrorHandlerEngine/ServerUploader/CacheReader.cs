@@ -18,7 +18,6 @@ namespace ErrorHandlerEngine.ServerUploader
         /// <summary>
         /// Read cache and fill ErrorHistory array
         /// </summary>
-        /// <param name="router"></param>
         public static async void ReadCacheToHistory()
         {
             var errors = await ReadLogToErros();

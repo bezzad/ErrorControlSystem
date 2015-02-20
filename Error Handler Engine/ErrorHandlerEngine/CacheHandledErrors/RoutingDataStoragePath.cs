@@ -162,29 +162,29 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             if (!File.Exists(filePath)) return "";
 
-            //using (var sourceStream = new FileStream(filePath,
-            //    FileMode.Open, FileAccess.Read, FileShare.ReadWrite,
-            //    bufferSize: 4096, useAsync: true))
-            //{
-            //    var sb = new StringBuilder();
-
-            //    var buffer = new byte[0x1000];
-            //    int numRead;
-            //    while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
-            //    {
-            //        var text = Encoding.Unicode.GetString(buffer, 0, numRead);
-            //        sb.Append(text);
-            //    }
-
-            //    sourceStream.Close();
-
-            //    return sb.ToString();
-            //}
-
-            using (TextReader file = File.OpenText(filePath))
+            using (var sourceStream = new FileStream(filePath,
+                FileMode.Open, FileAccess.Read, FileShare.ReadWrite,
+                bufferSize: 4096, useAsync: true))
             {
-                return await file.ReadToEndAsync();
+                var sb = new StringBuilder();
+
+                var buffer = new byte[0x1000];
+                int numRead;
+                while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                {
+                    var text = Encoding.Unicode.GetString(buffer, 0, numRead);
+                    sb.Append(text);
+                }
+
+                sourceStream.Close();
+
+                return sb.ToString();
             }
+
+            //using (TextReader file = File.OpenText(filePath))
+            //{
+            //    return await file.ReadToEndAsync();
+            //}
         }
 
         public static async Task WriteTextAsync(string text)
@@ -225,8 +225,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                     if (File.Exists(imgAddress))
                         File.Delete(imgAddress);
                 }
-                catch (IOException)
-                { }
                 finally { Kernel.IsSelfException = false; }
             });
 

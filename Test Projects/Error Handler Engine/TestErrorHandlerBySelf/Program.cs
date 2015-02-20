@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Configuration;
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;

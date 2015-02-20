@@ -86,7 +86,8 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option, "Unobserved Task Exception");
+            e.Exception.RaiseLog(_option.HasFlag(ErrorHandlingOption.IsHandled) ? _option & ~ErrorHandlingOption.IsHandled : _option,
+                "Unobserved Task Exception");
         }
 
         /// <summary>
@@ -95,10 +96,12 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// but at least you get to see what the problem was.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs args)
+        /// <param name="e"></param>
+        private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
         {
-            args.Exception.RaiseLog(_option, "Unhandled Thread Exception");
+            e.Exception.RaiseLog(
+                _option.HasFlag(ErrorHandlingOption.IsHandled) ? _option & ~ErrorHandlingOption.IsHandled : _option,
+                "Unhandled Thread Exception");
         }
 
         /// <summary>
@@ -109,15 +112,14 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// but there are no Handled property, just an IsTerminating flag.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs args)
+        /// <param name="e"></param>
+        private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
-#if DEBUG // In debug mode do not custom-handle the exception, let Visual Studio handle it
-            MessageBox.Show(((Exception)args.ExceptionObject).Message, "Unhandled UI Exception - In Debug Mode");
-#else
-            (args.ExceptionObject as Exception).RaiseLog(_Option, "Unhandled UI Exception");
+            (e.ExceptionObject as Exception).RaiseLog(
+                _option.HasFlag(ErrorHandlingOption.IsHandled) ? _option & ~ErrorHandlingOption.IsHandled : _option,
+                    "Unhandled UI Exception");
+
             Application.Exit();
-#endif
         }
 
         #endregion

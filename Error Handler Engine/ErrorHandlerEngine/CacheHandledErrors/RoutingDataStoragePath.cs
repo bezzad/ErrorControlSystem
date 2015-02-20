@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,7 +45,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
                 // Application Name and Major Version 
                 var appNameVer = String.Format("{0} v{1}",
-                    AppDomain.CurrentDomain.FriendlyName.Substring(0, 
+                    AppDomain.CurrentDomain.FriendlyName.Substring(0,
                     AppDomain.CurrentDomain.FriendlyName.IndexOf('.')),
                     Version.Parse(Application.ProductVersion).Major);
 
@@ -215,7 +217,15 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
                 using (var img = error.GetSnapshot())
                 {
-                    img.Save(path);
+                    //img.Save(path);
+                    var encodedImage = img.ToBytes();
+
+                    using (var sourceStream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
+                    {
+                        sourceStream.Write(encodedImage, 0, encodedImage.Length);
+
+                        sourceStream.Close();
+                    }
                 }
 
                 return path;
@@ -245,7 +255,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 var encodedText = Encoding.Unicode.GetBytes(text);
 
                 using (var sourceStream = new FileStream(ErrorLogFilePath,
-                    FileMode.Create, FileAccess.Write , FileShare.ReadWrite,
+                    FileMode.Create, FileAccess.Write, FileShare.ReadWrite,
                     bufferSize: 4096, useAsync: true))
                 {
                     sourceStream.Write(encodedText, 0, encodedText.Length);

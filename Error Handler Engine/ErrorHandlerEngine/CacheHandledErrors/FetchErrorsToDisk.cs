@@ -20,7 +20,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         #endregion
 
         #region Constructor
-        public FetchErrorsToDisk(RoutingDataStoragePath router)
+        public FetchErrorsToDisk()
         {
             #region Link FetchErrorsInDataFlows to Error Handler Event's
             ErrorHandler.OnErrorRaised += OnErrorHandled;
@@ -32,7 +32,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             {
                 await CacheReader.ErrorHistory.AddByConcurrencyToFileAsync(error);
 
-                CacheController.CheckState(router);
+                CacheController.CheckState();
             },
                 new ExecutionDataflowBlockOptions
                 {
@@ -45,7 +45,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             tbErrorSnapshotSaver = new TransformBlock<Error, Error>(async error =>
             {
                 // Save error.Snapshot image file on Disk and set that's address
-                error.SnapshotAddress = await router.SaveSnapshotImageOnDiskAsync(error);
+                error.SnapshotAddress = await RoutingDataStoragePath.SaveSnapshotImageOnDiskAsync(error);
 
                 // Dispose Image of Error On Memory 
                 error.GetSnapshot().Dispose();

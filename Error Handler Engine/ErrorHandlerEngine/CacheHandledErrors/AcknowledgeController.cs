@@ -19,7 +19,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 {
                     //
                     // Remove Error Snapshot from Snapshots Folder's:
-                    await Kernel.Router.DeleteSnapshotImageOnDiskAsync(acknowledge.Item1.SnapshotAddress);
+                    await RoutingDataStoragePath.DeleteSnapshotImageOnDiskAsync(acknowledge.Item1.SnapshotAddress);
                     //
                     // Remove Error from Log file:
                     await CacheReader.ErrorHistory.RemoveByConcurrencyAsync(acknowledge.Item1.GetErrorObject);

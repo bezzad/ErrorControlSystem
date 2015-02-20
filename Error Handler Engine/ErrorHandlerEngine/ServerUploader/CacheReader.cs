@@ -19,9 +19,9 @@ namespace ErrorHandlerEngine.ServerUploader
         /// Read cache and fill ErrorHistory array
         /// </summary>
         /// <param name="router"></param>
-        public static async void ReadCacheToHistory(this RoutingDataStoragePath router)
+        public static async void ReadCacheToHistory()
         {
-            var errors = await ReadLogToErros(router);
+            var errors = await ReadLogToErros();
             //
             // Read any error in errors array to sent it to ServerUploader
             ErrorHistory.AddRange(errors);
@@ -43,14 +43,14 @@ namespace ErrorHandlerEngine.ServerUploader
 
         #region Error Read from Json Log file
 
-        public static async Task<Error[]> ReadLogToErros(RoutingDataStoragePath router)
+        public static async Task<Error[]> ReadLogToErros()
         {
             Kernel.IsSelfException = true;
             try
             {
                 //
                 // Read Error Log Json File
-                var allJsonString = await router.ReadTextAsync();
+                var allJsonString = await RoutingDataStoragePath.ReadLogAsync();
                 //
                 // Check file is not empty ?
                 if (String.IsNullOrEmpty(allJsonString)) return null;

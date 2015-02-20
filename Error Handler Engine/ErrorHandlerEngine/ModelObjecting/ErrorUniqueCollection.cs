@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ExceptionManager;
-using ErrorHandlerEngine.ServerUploader;
 using Newtonsoft.Json;
 
 namespace ErrorHandlerEngine.ModelObjecting
@@ -113,7 +110,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                 {
                     try
                     {
-                        Kernel.Router.WriteText(json);
+                        RoutingDataStoragePath.WriteTextToLog(json);
                     }
                     finally { Kernel.IsSelfException = false; }
                 }

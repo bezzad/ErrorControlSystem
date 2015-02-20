@@ -17,8 +17,6 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static UploadController Uploader { get; private set; }
 
-        public static RoutingDataStoragePath Router { get; private set; }
-
         public static FetchErrorsToDisk CacheManager { get; private set; }
 
         #endregion
@@ -28,14 +26,13 @@ namespace ErrorHandlerEngine.ExceptionManager
         static Kernel()
         {
             Uploader = new UploadController(ConnectionManager.GetDefaultConnection());
-            Router = new RoutingDataStoragePath();
-            CacheManager = new FetchErrorsToDisk(Router);
+            CacheManager = new FetchErrorsToDisk();
 
             // First time create history of errors to buffer any occurrence error
             //
             // Load error log data to history of errors without snapshot images
             if (CacheReader.ErrorHistory.Count <= 0)
-                Router.ReadCacheToHistory();
+                CacheReader.ReadCacheToHistory();
         }
 
         #endregion

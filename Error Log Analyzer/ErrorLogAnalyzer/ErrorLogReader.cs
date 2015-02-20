@@ -8,8 +8,6 @@ namespace ErrorLogAnalyzer
 {
     public static class ErrorLogReader
     {
-        static RoutingDataStoragePath router = new RoutingDataStoragePath();
-
         public static EventHandler<LazyErrorEventArgs> OnReadLazyError = delegate { };
 
         #region Action Block Fetch Errors By Event-Driven System
@@ -34,7 +32,7 @@ namespace ErrorLogAnalyzer
 
         public static async void ReadAsync()
         {
-            var allJsonString = await router.ReadTextAsync();
+            var allJsonString = await RoutingDataStoragePath.ReadLogAsync();
 
             if (!string.IsNullOrEmpty(allJsonString))
             {

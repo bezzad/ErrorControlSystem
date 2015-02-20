@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,25 +12,25 @@ namespace ErrorHandlerEngine.CacheHandledErrors
     /// <summary>
     /// Routing Where the data must be saved
     /// </summary>
-    public class RoutingDataStoragePath
+    public static class RoutingDataStoragePath
     {
         #region Properties
 
-        public string ErrorLogFilePath;
-        public string SnapshotImagesPath;
+        public static string ErrorLogFilePath;
+        public static string SnapshotImagesPath;
 
         #endregion
 
         #region Constructor
 
-        public RoutingDataStoragePath()
+        static RoutingDataStoragePath()
         {
             var pathsChanged = false;
 
             #region Load Saved Path
 
-            ErrorLogFilePath = (string)ReadFromSetting("ErrorLogPath");
-            SnapshotImagesPath = (string)ReadFromSetting("SnapshotsPath");
+            ErrorLogFilePath = ReadFromSetting("ErrorLogPath");
+            SnapshotImagesPath = ReadFromSetting("SnapshotsPath");
 
             #endregion
 
@@ -57,7 +55,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 {
                     var dir = Directory.CreateDirectory(storageDirPath);
                     dir.CreateSubdirectory("Snapshots");
-                    dir.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                    dir.Attributes = FileAttributes.Directory;
                 }
 
                 ErrorLogFilePath = Path.Combine(storageDirPath, "Errors.log");
@@ -80,7 +78,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 if (!Directory.Exists(SnapshotImagesPath))
                 {
                     var dir = Directory.CreateDirectory(SnapshotImagesPath);
-                    dir.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                    dir.Attributes = FileAttributes.Directory;
                 }
 
                 pathsChanged = true;
@@ -102,7 +100,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         #region Methods
 
-        private async void RegisterErrorPathsAsync()
+        private static async void RegisterErrorPathsAsync()
         {
             // Add Error data path to [ErrorLogPath] of setting file:
             await WriteToSettingAsync("ErrorLogPath", ErrorLogFilePath);
@@ -111,13 +109,13 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             await WriteToSettingAsync("SnapshotsPath", SnapshotImagesPath);
         }
 
-        public async Task<bool> WriteToSettingAsync(string key, string value, bool attach = false)
+        public static async Task<bool> WriteToSettingAsync(string key, string value, bool attach = false)
         {
             return await Task.Run(() =>
             {
                 try
                 {
-                    Settings.Default[key] = (attach ? ((string)ReadFromSetting(key) ?? "") : "") + value;
+                    Settings.Default[key] = (attach ? (ReadFromSetting(key) ?? "") : "") + value;
 
                     Settings.Default.Save();
 
@@ -130,22 +128,13 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             });
         }
 
-        public object ReadFromSetting(string key)
+        public static string ReadFromSetting(string key)
         {
-            object result;
-            try
-            {
-                result = Settings.Default[key];
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-
-            return result;
+            try { return (string)Settings.Default[key]; }
+            catch { return ""; }
         }
 
-        public async Task WriteTextToDiskAsync(string filePath, string text)
+        public static async Task WriteTextToDiskAsync(string filePath, string text)
         {
             try
             {
@@ -169,59 +158,64 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
         }
 
-        public async Task<string> ReadTextFromDiskAsync(string filePath)
+        public static async Task<string> ReadTextFromDiskAsync(string filePath)
         {
-            if (File.Exists(filePath))
+            if (!File.Exists(filePath)) return "";
+
+            //using (var sourceStream = new FileStream(filePath,
+            //    FileMode.Open, FileAccess.Read, FileShare.ReadWrite,
+            //    bufferSize: 4096, useAsync: true))
+            //{
+            //    var sb = new StringBuilder();
+
+            //    var buffer = new byte[0x1000];
+            //    int numRead;
+            //    while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+            //    {
+            //        var text = Encoding.Unicode.GetString(buffer, 0, numRead);
+            //        sb.Append(text);
+            //    }
+
+            //    sourceStream.Close();
+
+            //    return sb.ToString();
+            //}
+
+            using (TextReader file = File.OpenText(filePath))
             {
-                using (var sourceStream = new FileStream(filePath,
-                    FileMode.Open, FileAccess.Read, FileShare.ReadWrite,
-                    bufferSize: 4096, useAsync: true))
-                {
-                    var sb = new StringBuilder();
-
-                    var buffer = new byte[0x1000];
-                    int numRead;
-                    while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
-                    {
-                        var text = Encoding.Unicode.GetString(buffer, 0, numRead);
-                        sb.Append(text);
-                    }
-
-                    sourceStream.Close();
-
-                    return sb.ToString();
-                }
+                return await file.ReadToEndAsync();
             }
-
-            return "";
         }
 
-        public async Task WriteTextAsync(string text)
+        public static async Task WriteTextAsync(string text)
         {
             await WriteTextToDiskAsync(ErrorLogFilePath, text);
         }
 
-        public async Task<string> ReadTextAsync()
+        public static async Task<string> ReadLogAsync()
         {
             return await ReadTextFromDiskAsync(ErrorLogFilePath);
         }
 
-        public async Task<string> SaveSnapshotImageOnDiskAsync(Error error)
+        public static async Task<string> SaveSnapshotImageOnDiskAsync(Error error)
         {
             return await Task.Run(() =>
             {
                 var path = Path.Combine(SnapshotImagesPath, string.Format("ScreenCapture_{0}.png", error.Id));
 
-                using (var img = error.GetSnapshot())
+                if (!File.Exists(path))
                 {
-                    img.Save(path);
+                    using (var img = error.GetSnapshot())
+                    {
+                        img.Save(path);
+                    }
                 }
 
                 return path;
             });
         }
 
-        public async Task DeleteSnapshotImageOnDiskAsync(string imgAddress)
+        public static async Task DeleteSnapshotImageOnDiskAsync(string imgAddress)
         {
             await Task.Run(() =>
             {
@@ -238,7 +232,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         }
 
-        public void WriteText(string text)
+        public static void WriteTextToLog(string text)
         {
             try
             {

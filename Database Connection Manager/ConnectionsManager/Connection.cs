@@ -114,158 +114,25 @@ namespace ConnectionsManager
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Connection" /> class.
+        /// Initializes a new instance of the <see cref="Connection"/> class.
         /// </summary>
         /// <param name="server">The server name or IP or data source.</param>
         /// <param name="database">The database name or initialCatalog.</param>
         /// <param name="timeOut">The time out always grater than zero 0.</param>
         /// <param name="username">The database author user name.</param>
         /// <param name="pass">The database author password.</param>
-        /// <param name="portNumber">The server port no. <example>default port for SQL is 1433</example></param>
         /// <param name="description">Gets or sets the description of the Connection object.</param>
+        /// <param name="portNumber">The port number.</param>
         /// <param name="attachDbFilename">The attach database filename.</param>
-        /// <param name="providerName">Name of the provider.<example>"System.Data.SqlClient"</example></param>
-        public Connection(
-            string server,
-            string database,
-            string username,
-            string pass,
-            int timeOut,
-            string description,
-            int portNumber,
-            string attachDbFilename,
-            string providerName = "System.Data.SqlClient")
-        {
-            Initilizer(
-                server,
-                database,
-                username,
-                pass,
-                timeOut,
-                description,
-                portNumber,
-                attachDbFilename,
-                providerName);
-        }
-
-        public Connection(
-            string server,
-            string database,
-            string username,
-            string pass,
-            int timeOut,
-            string description,
-            int portNumber)
-        {
-            Initilizer(
-                server,
-                database,
-                username,
-                pass,
-                timeOut,
-                description,
-                portNumber,
-                string.Empty);
-        }
-
-        public Connection(
-            string server,
-            string database,
-            string username,
-            string pass,
-            int timeOut,
-            string description = "")
-        {
-            Initilizer(
-                server,
-                database,
-                username,
-                pass,
-                timeOut,
-                description,
-                1433,
-                "");
-        }
-
-        public Connection(
-            string server,
-            string database,
-            string username,
-            string pass,
-            string description = "")
-        {
-            Initilizer(
-                server,
-                database,
-                username,
-                pass,
-                10,
-                description,
-                1433,
-                "");
-        }
-
-        public Connection(
-            string server,
-            string database,
-            string description)
-        {
-            Initilizer(
-                server,
-                database,
-                "",
-                "",
-                10,
-                description,
-                1433,
-                "");
-        }
-
-        public Connection(
-           string server = "master",
-           string database = "")
-        {
-            Initilizer(
-                server,
-                database,
-                "",
-                "",
-                10,
-                "",
-                1433,
-                "");
-        }
-
-        public Connection(
-            string connString)
-        {
-            ConnectionString = connString;
-        }
-
-        public Connection(Connection conn)
-        {
-            Clone(conn, this);
-        }
-
-        protected Connection()
-        {
-            SetToDefaultConnection();
-        }
-
-        private void Initilizer(
-            string server,
-            string database,
-            string username,
-            string pass,
-            int timeOut,
-            string description,
-            int portNumber,
-            string attachDbFilename,
-            string providerName = "System.Data.SqlClient")
+        /// <param name="provider">Name of the provider.</param>
+        /// <param name="name">Name of the connection</param>
+        public Connection(string server, string database,
+            string username, string pass, int timeOut, string description,
+            int portNumber, string attachDbFilename, string provider, string name)
         {
             #region initialing
 
-            Name = "";
+            Name = name;
 
             Server = server;
 
@@ -283,7 +150,7 @@ namespace ConnectionsManager
 
             Description = description;
 
-            ProviderName = providerName;
+            ProviderName = provider;
 
             IntegratedSecurity = "sspi";
 
@@ -293,6 +160,108 @@ namespace ConnectionsManager
 
             #endregion
         }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection" /> class.
+        /// </summary>
+        /// <param name="server">The server name or IP or data source.</param>
+        /// <param name="database">The database name or initialCatalog.</param>
+        /// <param name="timeOut">The time out always grater than zero 0.</param>
+        /// <param name="username">The database author user name.</param>
+        /// <param name="pass">The database author password.</param>
+        /// <param name="description">Gets or sets the description of the Connection object.</param>
+        /// <param name="name">Name of the connection</param>
+        public Connection(string server, string database,
+            string username, string pass, int timeOut, string description, string name)
+            : this(server, database, username, pass, timeOut, description, 1433, "", "System.Data.SqlClient", name)
+        { }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection" /> class.
+        /// </summary>
+        /// <param name="server">The server name or IP or data source.</param>
+        /// <param name="database">The database name or initialCatalog.</param>
+        /// <param name="timeOut">The time out always grater than zero 0.</param>
+        /// <param name="username">The database author user name.</param>
+        /// <param name="pass">The database author password.</param>
+        /// <param name="name">Name of the connection</param>
+        public Connection(string server, string database,
+            string username, string pass, int timeOut, string name = "")
+            : this(server, database, username, pass, timeOut, "", 1433, "", "System.Data.SqlClient", name)
+        { }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection" /> class.
+        /// </summary>
+        /// <param name="server">The server name or IP or data source.</param>
+        /// <param name="database">The database name or initialCatalog.</param>
+        /// <param name="username">The database author user name.</param>
+        /// <param name="pass">The database author password.</param>
+        /// <param name="description">Gets or sets the description of the Connection object.</param>
+        /// <param name="name">Name of the connection</param>
+        public Connection(string server, string database,
+            string username, string pass, string description, string name)
+            : this(server, database, username, pass, 10, description, 1433, "", "System.Data.SqlClient", name)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection" /> class.
+        /// </summary>
+        /// <param name="server">The server name or IP or data source.</param>
+        /// <param name="database">The database name or initialCatalog.</param>
+        /// <param name="username">The database author user name.</param>
+        /// <param name="pass">The database author password.</param>
+        /// <param name="name">Name of the connection</param>
+        public Connection(string server, string database,
+            string username, string pass, string name = "")
+            : this(server, database, username, pass, 10, "", 1433, "", "System.Data.SqlClient", name)
+        { }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection" /> class.
+        /// </summary>
+        /// <param name="server">The server name or IP or data source.</param>
+        /// <param name="database">The database name or initialCatalog.</param>
+        /// <param name="name">Name of the connection</param>
+        public Connection(string server, string database, string name = "")
+            : this(server, database, "", "", 10, "", 1433, "", "System.Data.SqlClient", name)
+        { }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection"/> class.
+        /// Server is <c>Master</c>
+        /// </summary>
+        public Connection()
+            : this("master", "", "", "", 10, "", 1433, "", "System.Data.SqlClient", "")
+        {
+            SetToDefaultConnection();
+        }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection"/> class.
+        /// </summary>
+        /// <param name="connString">The connection string.</param>
+        public Connection(string connString)
+        {
+            ConnectionString = connString;
+        }
+
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Connection"/> class.
+        /// </summary>
+        /// <param name="conn">The connection object.</param>
+        public Connection(Connection conn)
+        {
+            Clone(conn, this);
+        }
+
 
         #endregion
 

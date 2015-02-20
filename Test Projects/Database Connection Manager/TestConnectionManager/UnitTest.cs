@@ -152,7 +152,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 1 Arguments ------------------------------------------
             //
-            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", 1433);
+            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", "um");
             var conn = new Connection(connFull);
 
             Assert.AreEqual(conn.ToXml(false).ToString(SaveOptions.None), conn.ToString());
@@ -175,7 +175,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 2 Arguments ------------------------------------------
             //
-            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", 0);
+            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", "um");
             var conn = new Connection(connFull.ConnectionString);
 
             Assert.AreEqual(conn.ToXml(false).ToString(SaveOptions.None), conn.ToString());
@@ -256,7 +256,7 @@ namespace TestConnectionManager
             //
             // --------------- Constructor 8 Arguments ------------------------------------------
             //
-            var conn3 = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", 1433);
+            var conn3 = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", "name");
 
             Assert.AreEqual(conn3.ToXml(false).ToString(SaveOptions.None), conn3.ToString());
             Assert.AreEqual(conn3.ToXml(true).ToString(SaveOptions.None), conn3.ToString(true));

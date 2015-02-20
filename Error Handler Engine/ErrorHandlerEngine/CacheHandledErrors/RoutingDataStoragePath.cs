@@ -115,21 +115,18 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             return await Task.Run(() =>
             {
-                var successWrite = false;
                 try
                 {
                     Settings.Default[key] = (attach ? ((string)ReadFromSetting(key) ?? "") : "") + value;
 
                     Settings.Default.Save();
 
-                    successWrite = true;
+                    return true;
                 }
-                catch (Exception)
+                catch
                 {
-                    successWrite = false;
+                    return false;
                 }
-
-                return successWrite;
             });
         }
 
@@ -217,15 +214,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
                 using (var img = error.GetSnapshot())
                 {
-                    //img.Save(path);
-                    var encodedImage = img.ToBytes();
-
-                    using (var sourceStream = new FileStream(path, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
-                    {
-                        sourceStream.Write(encodedImage, 0, encodedImage.Length);
-
-                        sourceStream.Close();
-                    }
+                    img.Save(path);
                 }
 
                 return path;
@@ -236,20 +225,21 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             await Task.Run(() =>
             {
-                if (File.Exists(imgAddress))
-                    try
-                    {
-                        Kernel.IsSelfException = true;
+                try
+                {
+                    Kernel.IsSelfException = true;
+                    if (File.Exists(imgAddress))
                         File.Delete(imgAddress);
-                    }
-                    finally { Kernel.IsSelfException = false; }
+                }
+                catch (IOException)
+                { }
+                finally { Kernel.IsSelfException = false; }
             });
 
         }
 
         public void WriteText(string text)
         {
-            Kernel.IsSelfException = true;
             try
             {
                 var encodedText = Encoding.Unicode.GetBytes(text);
@@ -266,10 +256,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             catch (IOException exp)
             {
                 MessageBox.Show(exp.Message, "Can not to Write Text");
-            }
-            finally
-            {
-                Kernel.IsSelfException = false;
             }
         }
         #endregion

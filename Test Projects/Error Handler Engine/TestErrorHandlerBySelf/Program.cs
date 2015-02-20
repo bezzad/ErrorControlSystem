@@ -18,7 +18,7 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            HandleExceptions.Start(new Connection(".", "UsersManagements"), 
+            HandleExceptions.Start(new Connection("localhost", "UsersManagements"), 
                 ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
 
             Application.Run(new Form1());

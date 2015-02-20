@@ -14,6 +14,8 @@ namespace ConnectionsManager
     {
         #region Properties
 
+        private static string DefaultConnectionName { get; set; }
+
         public Connection Connection { get; protected set; }
 
         public string ConnectionString { get { return Connection.ConnectionString; } }
@@ -547,6 +549,7 @@ namespace ConnectionsManager
             get { return Connection.Items.Count; }
         }
 
+
         public static ConnectionManager Factory(Connection conn)
         {
             return new ConnectionManager(conn);
@@ -589,5 +592,15 @@ namespace ConnectionsManager
 
         #endregion
 
+        public static ConnectionManager GetDefaultConnection()
+        {
+            return Find(DefaultConnectionName);
+        }
+
+
+        public static void SetToDefaultConnection(string name)
+        {
+            DefaultConnectionName = name;
+        }
     }
 }

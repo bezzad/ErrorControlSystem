@@ -39,7 +39,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if (errorDataSize >= maxSize && ConnectionManager.Find("UM").IsReady)
+                if (errorDataSize >= maxSize && ConnectionManager.GetDefaultConnection().IsReady)
                 {
                     CacheReader.ReadCacheToServerUploader();
                 }

@@ -59,6 +59,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         {
             Start(option);
             ConnectionManager.Add(conn, "ErrorHandlerServer");
+            ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
         }
 
 

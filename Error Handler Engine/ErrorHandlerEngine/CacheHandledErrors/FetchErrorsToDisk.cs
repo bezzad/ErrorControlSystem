@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Threading.Tasks.Dataflow;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
@@ -43,7 +42,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             #region Initialize Error Snapshot Saver on Disk [Transform Block]
 
-            tbErrorSnapshotSaver = new TransformBlock<Error, Error>(async (error) =>
+            tbErrorSnapshotSaver = new TransformBlock<Error, Error>(async error =>
             {
                 // Save error.Snapshot image file on Disk and set that's address
                 error.SnapshotAddress = await router.SaveSnapshotImageOnDiskAsync(error);

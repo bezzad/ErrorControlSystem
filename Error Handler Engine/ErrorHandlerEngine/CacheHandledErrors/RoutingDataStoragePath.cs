@@ -224,7 +224,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         public async Task DeleteSnapshotImageOnDiskAsync(string imgAddress)
         {
-
             await Task.Run(() =>
             {
                 if (File.Exists(imgAddress))

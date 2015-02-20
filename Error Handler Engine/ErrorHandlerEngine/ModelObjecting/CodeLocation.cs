@@ -68,19 +68,6 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         #region Methods
 
-
-        /// <devdoc>
-        ///    <para>
-        ///       Creates a <see cref='System.Drawing.PointF'/> with the coordinates of the specified
-        ///    <see cref='CodeLocation'/> 
-        ///    .
-        /// </para>
-        /// </devdoc>
-        public static implicit operator PointF(CodeLocation p)
-        {
-            return new PointF(p.Line, p.Column);
-        }
-
         /// <devdoc>
         ///    <para>
         ///       Creates a <see cref='System.Drawing.Point'/> with the coordinates of the specified
@@ -160,34 +147,6 @@ namespace ErrorHandlerEngine.ModelObjecting
         }
 
         /// <devdoc>
-        ///   Converts a PointF to a CodeLocation by performing a ceiling operation on
-        ///   all the coordinates.
-        /// </devdoc>
-        public static CodeLocation Ceiling(PointF value)
-        {
-            return new CodeLocation((int)Math.Ceiling(value.X), (int)Math.Ceiling(value.Y));
-        }
-
-        /// <devdoc>
-        ///   Converts a PointF to a CodeLocation by performing a truncate operation on
-        ///   all the coordinates.
-        /// </devdoc>
-        public static CodeLocation Truncate(PointF value)
-        {
-            return new CodeLocation((int)value.X, (int)value.Y);
-        }
-
-        /// <devdoc>
-        ///   Converts a PointF to a CodeLocation by performing a round operation on
-        ///   all the coordinates.
-        /// </devdoc>
-        public static CodeLocation Round(PointF value)
-        {
-            return new CodeLocation((int)Math.Round(value.X), (int)Math.Round(value.Y));
-        }
-
-
-        /// <devdoc>
         ///    <para>
         ///       Specifies whether this <see cref='CodeLocation'/> contains
         ///       the same coordinates as the specified <see cref='System.Object'/>.
@@ -210,26 +169,6 @@ namespace ErrorHandlerEngine.ModelObjecting
         public override int GetHashCode()
         {
             return unchecked((Line * 1000) ^ Column);
-        }
-
-        /**
-         * Offset the current CodeLocation object by the given amount
-         */
-        /// <devdoc>
-        ///    Translates this <see cref='CodeLocation'/> by the specified amount.
-        /// </devdoc>
-        public void Offset(int dx, int dy)
-        {
-            Line += dx;
-            Column += dy;
-        }
-
-        /// <devdoc>
-        ///    Translates this <see cref='CodeLocation'/> by the specified amount.
-        /// </devdoc>
-        public void Offset(CodeLocation p)
-        {
-            Offset(p.Line, p.Column);
         }
 
         /// <devdoc>

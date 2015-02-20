@@ -16,7 +16,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public UploadController(ConnectionManager Conn)
         {
-            Conn.CheckDbConnectionAsync();
+            Conn.CheckDbConnection();
 
 
             ErrorListenerTransformBlock = new TransformBlock<LazyError, Tuple<LazyError, bool>>(

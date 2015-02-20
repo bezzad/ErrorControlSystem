@@ -27,7 +27,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         static Kernel()
         {
-            Uploader = new UploadController(ConnectionManager.Find("UM"));
+            Uploader = new UploadController(ConnectionManager.GetDefaultConnection());
             Router = new RoutingDataStoragePath();
             CacheManager = new FetchErrorsToDisk(Router);
 

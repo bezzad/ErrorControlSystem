@@ -36,20 +36,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Handler Engine", "Err
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Log Analyzer", "Error Log Analyzer", "{1FC3C91A-6507-4653-8046-CB97694BD94A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestErrorHandlerBySelf", "Test Projects\Error Handler Engine\TestErrorHandlerBySelf\TestErrorHandlerBySelf.csproj", "{9BDBEF69-DA44-4186-8E89-ED5F145AC997}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestErrorHandlerAppNet2", "Test Projects\Error Handler Engine\TestErrorHandlerAppNet2\TestErrorHandlerAppNet2.csproj", "{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D1479D81-3AA1-461D-8801-7DC23A5E7B15} = {D1479D81-3AA1-461D-8801-7DC23A5E7B15}
-		{DF9E798A-6D3B-461E-8B74-BE0757FB3325} = {DF9E798A-6D3B-461E-8B74-BE0757FB3325}
-		{A11D0CD8-E5A8-40C7-BE3F-CBAAC5C0818E} = {A11D0CD8-E5A8-40C7-BE3F-CBAAC5C0818E}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConnectionManager", "Test Projects\Database Connection Manager\TestConnectionManager\TestConnectionManager.csproj", "{96AE171A-0FCE-4652-90FC-D72565DC7134}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestErrorHandlerEngine", "Test Projects\Error Handler Engine\TestErrorHandlerEngine\TestErrorHandlerEngine.csproj", "{3B5DD5EB-E95B-4CCC-A2A7-119A9A96887A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test All Projects", "Test All Projects", "{9C2EB6F0-5A61-4493-911A-BCE46055137C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestErrorHandlerBySelf", "Test Projects\Test All Projects\TestErrorHandlerBySelf\TestErrorHandlerBySelf.csproj", "{9BDBEF69-DA44-4186-8E89-ED5F145AC997}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestErrorHandlerAppNet2", "Test Projects\Test All Projects\TestErrorHandlerAppNet2\TestErrorHandlerAppNet2.csproj", "{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,14 +80,6 @@ Global
 		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96AE171A-0FCE-4652-90FC-D72565DC7134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96AE171A-0FCE-4652-90FC-D72565DC7134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96AE171A-0FCE-4652-90FC-D72565DC7134}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,6 +88,14 @@ Global
 		{3B5DD5EB-E95B-4CCC-A2A7-119A9A96887A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B5DD5EB-E95B-4CCC-A2A7-119A9A96887A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B5DD5EB-E95B-4CCC-A2A7-119A9A96887A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDBEF69-DA44-4186-8E89-ED5F145AC997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE48F80F-E6B5-46EC-A6EA-0F7EAD518BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,6 +23,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ExceptionManager
@@ -34,7 +35,7 @@ namespace ErrorHandlerEngine.ExceptionManager
     {
         #region Events
 
-        public static EventHandler OnErrorRaised = delegate { };
+        public static EventHandler OnErrorRaised = FetchErrorsToDisk.OnErrorHandled;
 
         #endregion
 
@@ -57,9 +58,9 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <returns></returns>
         public static Error RaiseLog(this Exception exp, ErrorHandlingOption option = ErrorHandlingOption.Default, String errorTitle = "UnHandled Exception")
         {
-            if (Kernel.IsSelfException)
+            if (HandleExceptions.IsSelfException)
             {
-                Kernel.IsSelfException = false;
+                HandleExceptions.IsSelfException = false;
                 return null;
             }
 

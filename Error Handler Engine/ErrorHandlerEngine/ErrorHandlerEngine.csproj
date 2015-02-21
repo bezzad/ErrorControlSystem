@@ -57,7 +57,6 @@
     <Compile Include="CacheHandledErrors\FetchErrorsToDisk.cs" />
     <Compile Include="CacheHandledErrors\RoutingDataStoragePath.cs" />
     <Compile Include="ExceptionManager\HandleExceptions.cs" />
-    <Compile Include="ExceptionManager\Kernel.cs" />
     <Compile Include="ModelObjecting\CodeLocation.cs" />
     <Compile Include="ModelObjecting\Error.cs" />
     <Compile Include="ModelObjecting\ErrorUniqueCollection.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.ExceptionServices;
 using System.Security;
 using System.Security.Permissions;
 using System.Threading;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.ModelObjecting;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
@@ -14,9 +16,11 @@ namespace ErrorHandlerEngine.ExceptionManager
     [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
     public static class HandleExceptions
     {
-        #region Private Properties
+        #region Properties
 
         private static ErrorHandlingOption _option;
+
+        public static volatile bool IsSelfException = false;
 
         #endregion
 
@@ -39,6 +43,12 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             // Catch all unhandled exceptions.
             Application.ThreadException += ThreadExceptionHandler;
+
+            // First time create history of errors to buffer any occurrence error
+            //
+            // Load error log data to history of errors without snapshot images
+            if (CacheReader.ErrorHistory.Count <= 0)
+                CacheReader.ReadCacheToHistory();
         }
 
         #endregion
@@ -53,9 +63,10 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static void Start(Connection conn, ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
-            Start(option);
             ConnectionManager.Add(conn, "ErrorHandlerServer");
             ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
+
+            Start(option);
         }
 
 
@@ -68,7 +79,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+        private static void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
             e.Exception.RaiseLog(_option | ErrorHandlingOption.IsHandled);
         }

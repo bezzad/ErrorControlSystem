@@ -9,23 +9,19 @@ namespace ErrorHandlerEngine.CacheHandledErrors
     /// <summary>
     /// Read Incoming Handled Errors object to save and cache.
     /// </summary>
-    public class FetchErrorsToDisk
+    public static class FetchErrorsToDisk
     {
         #region Data-Flow Blocks
 
-        private TransformBlock<Error, Error> tbErrorSnapshotSaver;
+        private static TransformBlock<Error, Error> tbErrorSnapshotSaver;
 
-        private ActionBlock<Error> abErrorSaver;
+        private static ActionBlock<Error> abErrorSaver;
 
         #endregion
 
         #region Constructor
-        public FetchErrorsToDisk()
+        static FetchErrorsToDisk()
         {
-            #region Link FetchErrorsInDataFlows to Error Handler Event's
-            ErrorHandler.OnErrorRaised += OnErrorHandled;
-            #endregion
-
             #region Initialize Add Error to History [Action Block]
 
             abErrorSaver = new ActionBlock<Error>(async error =>
@@ -72,7 +68,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         #endregion
 
         #region Methods
-        private async void OnErrorHandled(object sender, EventArgs e)
+        public static async void OnErrorHandled(object sender, EventArgs e)
         {
             var error = sender as Error;
 

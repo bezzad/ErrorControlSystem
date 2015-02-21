@@ -6,15 +6,15 @@ using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ServerUploader
 {
-    public class UploadController
+    public static class UploadController
     {
         // maybe the network have exception then dead loop occurred,
         // so this variable closed that
         public static volatile bool CanToSent = true;
 
-        public TransformBlock<LazyError, Tuple<LazyError, bool>> ErrorListenerTransformBlock;
+        public static TransformBlock<LazyError, Tuple<LazyError, bool>> ErrorListenerTransformBlock;
 
-        public UploadController()
+        static UploadController()
         {
             ConnectionManager.GetDefaultConnection().CheckDbConnection();
 

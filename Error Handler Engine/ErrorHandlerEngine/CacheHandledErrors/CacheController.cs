@@ -23,7 +23,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             if (AreErrorsInSendState) return;
 
-            Kernel.IsSelfException = true;
+            HandleExceptions.IsSelfException = true;
             try
             {
                 AreErrorsInSendState = true;
@@ -46,7 +46,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
             finally
             {
-                Kernel.IsSelfException = false;
+                HandleExceptions.IsSelfException = false;
                 AreErrorsInSendState = false;
             }
         }

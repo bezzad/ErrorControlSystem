@@ -138,7 +138,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             try
             {
-                Kernel.IsSelfException = true;
+                HandleExceptions.IsSelfException = true;
 
                 var encodedText = Encoding.Unicode.GetBytes(text);
 
@@ -154,7 +154,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
             finally
             {
-                Kernel.IsSelfException = false;
+                HandleExceptions.IsSelfException = false;
             }
         }
 
@@ -216,11 +216,11 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             {
                 try
                 {
-                    Kernel.IsSelfException = true;
+                    HandleExceptions.IsSelfException = true;
                     if (File.Exists(imgAddress))
                         File.Delete(imgAddress);
                 }
-                finally { Kernel.IsSelfException = false; }
+                finally { HandleExceptions.IsSelfException = false; }
             });
 
         }

@@ -494,7 +494,7 @@ namespace ConnectionsManager
         /// <returns>ConnectionManager</returns>
         public static ConnectionManager Add(Connection conn, string name)
         {
-            conn.Name = name.ToUpper();
+            conn.Name = name;
             return new ConnectionManager(Connection.Items.Add(conn));
         }
 

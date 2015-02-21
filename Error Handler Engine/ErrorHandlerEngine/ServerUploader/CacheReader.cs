@@ -12,7 +12,7 @@ namespace ErrorHandlerEngine.ServerUploader
     public static class CacheReader
     {
         public static ErrorUniqueCollection ErrorHistory = new ErrorUniqueCollection();
-        
+
         #region Read Cache to Error History
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 foreach (var error in ErrorHistory)
                 {
-                    await Kernel.Uploader.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
+                    await UploadController.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
                 }
             });
 
@@ -44,7 +44,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public static async Task<Error[]> ReadLogToErros()
         {
-            Kernel.IsSelfException = true;
+            HandleExceptions.IsSelfException = true;
             try
             {
                 //
@@ -60,7 +60,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
             finally
             {
-                Kernel.IsSelfException = false;
+                HandleExceptions.IsSelfException = false;
             }
 
         }

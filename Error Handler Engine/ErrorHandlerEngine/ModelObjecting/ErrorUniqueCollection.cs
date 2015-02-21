@@ -97,7 +97,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         public static async Task UpdateFileAsync(ErrorUniqueCollection euc)
         {
-            Kernel.IsSelfException = true;
+            HandleExceptions.IsSelfException = true;
 
             var errors = euc.ToList();
 
@@ -112,7 +112,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                     {
                         RoutingDataStoragePath.WriteTextToLog(json);
                     }
-                    finally { Kernel.IsSelfException = false; }
+                    finally { HandleExceptions.IsSelfException = false; }
                 }
             });
 

@@ -7,10 +7,13 @@
 	
 	
 	
+	
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=1F14E1F1F8064916B7153052D0A08631/Name/@EntryValue">UnitTest</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=1F14E1F1F8064916B7153052D0A08631/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements /&gt;&lt;/Session&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=23BCD2A7087D42A9B61463FF7110A68E/@KeyIndexDefined">True</s:Boolean>
 	<s:Int64 x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=23BCD2A7087D42A9B61463FF7110A68E/GroupingIndex/@EntryValue">3</s:Int64>
+	
+	
 	
 	
 	
@@ -23,10 +26,14 @@
 	
 	
 	
+	
+	
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=9F23C04608264D6C96D85DF8488B57FC/Name/@EntryValue">TestConnectionCheckersAsync</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=9F23C04608264D6C96D85DF8488B57FC/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements /&gt;&lt;/Session&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F99B497476AE4FA29064E9BBED947699/@KeyIndexDefined">True</s:Boolean>
 	<s:Int64 x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F99B497476AE4FA29064E9BBED947699/GroupingIndex/@EntryValue">3</s:Int64>
+	
+	
 	
 	
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F99B497476AE4FA29064E9BBED947699/Name/@EntryValue">TestConnectionCheckersAsync #2</s:String>

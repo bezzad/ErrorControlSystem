@@ -180,11 +180,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
                 return sb.ToString();
             }
-
-            //using (TextReader file = File.OpenText(filePath))
-            //{
-            //    return await file.ReadToEndAsync();
-            //}
         }
 
         public static async Task WriteTextAsync(string text)

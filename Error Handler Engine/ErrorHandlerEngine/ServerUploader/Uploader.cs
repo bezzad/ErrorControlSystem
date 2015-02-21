@@ -7,13 +7,13 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class Uploader
     {
-        public static async Task<bool> SentOneErrorToDbAsync(ConnectionManager conn, LazyError error)
+        public static async Task<bool> SentOneErrorToDbAsync(LazyError error)
         {
             if (UploadController.CanToSent)
             {
                 try
                 {
-                    await DynamicStoredProcedures.InsertErrorStoredProcedureAsync(conn, error);
+                    await DynamicStoredProcedures.InsertErrorStoredProcedureAsync(error);
                 }
                 catch
                 {
@@ -23,13 +23,13 @@ namespace ErrorHandlerEngine.ServerUploader
             return UploadController.CanToSent;
         }
 
-        public static bool SentOneErrorToDb(ConnectionManager conn, LazyError error)
+        public static bool SentOneErrorToDb(LazyError error)
         {
             if (UploadController.CanToSent)
             {
                 try
                 {
-                    DynamicStoredProcedures.InsertErrorStoredProcedure(conn, error);
+                    DynamicStoredProcedures.InsertErrorStoredProcedure(error);
                 }
                 catch
                 {

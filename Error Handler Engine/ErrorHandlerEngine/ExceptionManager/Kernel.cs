@@ -25,7 +25,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         static Kernel()
         {
-            Uploader = new UploadController(ConnectionManager.GetDefaultConnection());
+            Uploader = new UploadController();
             CacheManager = new FetchErrorsToDisk();
 
             // First time create history of errors to buffer any occurrence error

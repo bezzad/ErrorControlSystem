@@ -14,19 +14,19 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public TransformBlock<LazyError, Tuple<LazyError, bool>> ErrorListenerTransformBlock;
 
-        public UploadController(ConnectionManager Conn)
+        public UploadController()
         {
-            Conn.CheckDbConnection();
+            ConnectionManager.GetDefaultConnection().CheckDbConnection();
 
 
             ErrorListenerTransformBlock = new TransformBlock<LazyError, Tuple<LazyError, bool>>(
                 async (e) =>
                 {
-                    if (Conn.IsReady && CanToSent) // Server Connector to online or offline ?
+                    if (ConnectionManager.GetDefaultConnection().IsReady && CanToSent) // Server Connector to online or offline ?
                     {
                         try
                         {
-                            CanToSent = await Uploader.SentOneErrorToDbAsync(Conn, e);
+                            CanToSent = await Uploader.SentOneErrorToDbAsync(e);
                         }
                         catch (Exception)
                         {

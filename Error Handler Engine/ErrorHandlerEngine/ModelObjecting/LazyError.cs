@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
-    public class LazyError : IError, IDisposable, ICloneable, IEquatable<LazyError>
+    [Serializable]
+    public class LazyError : IError, IDisposable, ICloneable, IEquatable<LazyError>, ISerializable
     {
         #region Properties
 
@@ -86,10 +88,41 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Initialize Lazy<Image> Snapshot
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => string.IsNullOrEmpty(SnapshotAddress) || !File.Exists(SnapshotAddress) 
-                ? null : ScreenCapture.FromFile(SnapshotAddress));
+            Snapshot = new Lazy<Image>(() => string.IsNullOrEmpty(SnapshotAddress) || !File.Exists(SnapshotAddress)
+                ? null
+                : ScreenCapture.FromFile(SnapshotAddress));
             #endregion
         }
+
+        public LazyError(SerializationInfo info, StreamingContext ctxt)
+        {
+            //Get the values from info and assign them to the appropriate properties
+            Id = (int)info.GetValue("Id", typeof(int));
+            IsHandled = (bool)info.GetValue("IsHandled", typeof(bool));
+            ErrorDateTime = (DateTime)info.GetValue("ErrorDateTime", typeof(DateTime));
+            ServerDateTime = (DateTime)info.GetValue("ServerDateTime", typeof(DateTime));
+            HResult = (int)info.GetValue("HResult", typeof(int));
+            AppName = (string)info.GetValue("AppName", typeof(string));
+            ClrVersion = (string)info.GetValue("ClrVersion", typeof(string));
+            CurrentCulture = (string)info.GetValue("CurrentCulture", typeof(string));
+            ErrorType = (string)info.GetValue("ErrorType", typeof(string));
+            Host = (string)info.GetValue("Host", typeof(string));
+            IPv4Address = (string)info.GetValue("IPv4Address", typeof(string));
+            MacAddress = (string)info.GetValue("MacAddress", typeof(string));
+            MemberType = (string)info.GetValue("MemberType", typeof(string));
+            Message = (string)info.GetValue("Message", typeof(string));
+            Method = (string)info.GetValue("Method", typeof(string));
+            ModuleName = (string)info.GetValue("ModuleName", typeof(string));
+            OS = (string)info.GetValue("OS", typeof(string));
+            Processes = (string)info.GetValue("Processes", typeof(string));
+            SnapshotAddress = (string)info.GetValue("SnapshotAddress", typeof(string));
+            Source = (string)info.GetValue("Source", typeof(string));
+            StackTrace = (string)info.GetValue("StackTrace", typeof(string));
+            User = (string)info.GetValue("User", typeof(string));
+            ErrorLineColumn = (CodeLocation)info.GetValue("ErrorLineColumn", typeof(CodeLocation));
+            Duplicate = (int)info.GetValue("Duplicate", typeof(int));
+        }
+
         #endregion
 
         #region IError Implement
@@ -221,6 +254,38 @@ namespace ErrorHandlerEngine.ModelObjecting
         {
             // Unique ID  =  Line×1000   XOR   Column   XOR   |HResult|
             return unchecked(this.ErrorLineColumn.Line * 1000 ^ this.ErrorLineColumn.Column ^ Math.Abs(this.HResult));
+        }
+
+        #endregion
+
+        #region Implement ISerializable
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Id", this.Id);
+            info.AddValue("IsHandled", this.IsHandled);
+            info.AddValue("ErrorDateTime", this.ErrorDateTime);
+            info.AddValue("ServerDateTime", this.ServerDateTime);
+            info.AddValue("HResult", this.HResult);
+            info.AddValue("AppName", this.AppName);
+            info.AddValue("ClrVersion", this.ClrVersion);
+            info.AddValue("CurrentCulture", this.CurrentCulture);
+            info.AddValue("ErrorType", this.ErrorType);
+            info.AddValue("Host", this.Host);
+            info.AddValue("IPv4Address", this.IPv4Address);
+            info.AddValue("MacAddress", this.MacAddress);
+            info.AddValue("MemberType", this.MemberType);
+            info.AddValue("Message", this.Message);
+            info.AddValue("Method", this.Method);
+            info.AddValue("ModuleName", this.ModuleName);
+            info.AddValue("OS", this.OS);
+            info.AddValue("Processes", this.Processes);
+            info.AddValue("SnapshotAddress", this.SnapshotAddress);
+            info.AddValue("Source", this.Source);
+            info.AddValue("StackTrace", this.StackTrace);
+            info.AddValue("User", this.User);
+            info.AddValue("ErrorLineColumn", this.ErrorLineColumn);
+            info.AddValue("Duplicate", this.Duplicate);
         }
 
         #endregion

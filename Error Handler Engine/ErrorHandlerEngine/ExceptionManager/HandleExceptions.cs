@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Permissions;
 using System.Threading;
@@ -11,9 +10,6 @@ using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
-
-    [Serializable]
-    [ComVisible(true)]
     [SecurityCritical]
     [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
     public static class HandleExceptions

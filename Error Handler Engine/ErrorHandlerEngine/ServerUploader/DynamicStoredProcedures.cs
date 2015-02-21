@@ -168,12 +168,12 @@ namespace ErrorHandlerEngine.ServerUploader
          */
         #endregion
 
-        public static void InsertErrorStoredProcedure(ConnectionManager conn, LazyError error)
+        public static void InsertErrorStoredProcedure(LazyError error)
         {
             try
             {
                 // Create a command object identifying the stored procedure
-                using (var cmd = new SqlCommand("sp_InsertErrorLog", conn.SqlConn))
+                using (var cmd = new SqlCommand("sp_InsertErrorLog", ConnectionManager.GetDefaultConnection().SqlConn))
                 {
                     //
                     // Set the command object so it knows to execute a stored procedure
@@ -205,7 +205,7 @@ namespace ErrorHandlerEngine.ServerUploader
                     cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                     //
                     // Open a connection object
-                    conn.Open();
+                    ConnectionManager.GetDefaultConnection().Open();
                     //
                     // execute the command
                     cmd.ExecuteNonQuery();
@@ -213,21 +213,21 @@ namespace ErrorHandlerEngine.ServerUploader
             }
             finally
             {
-                if (conn.SqlConn != null)
+                if (ConnectionManager.GetDefaultConnection().SqlConn != null)
                 {
-                    conn.Close();
+                    ConnectionManager.GetDefaultConnection().Close();
                 }
             }
         }
 
-        public static async Task InsertErrorStoredProcedureAsync(ConnectionManager conn, LazyError error)
+        public static async Task InsertErrorStoredProcedureAsync(LazyError error)
         {
             await Task.Run(async () =>
             {
                 try
                 {
                     // Create a command object identifying the stored procedure
-                    using (var cmd = new SqlCommand("sp_InsertErrorLog", conn.SqlConn))
+                    using (var cmd = new SqlCommand("sp_InsertErrorLog", ConnectionManager.GetDefaultConnection().SqlConn))
                     {
                         //
                         // Set the command object so it knows to execute a stored procedure
@@ -259,7 +259,7 @@ namespace ErrorHandlerEngine.ServerUploader
                         cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                         //
                         // Open a connection object
-                        await conn.OpenAsync(new CancellationToken());
+                        await ConnectionManager.GetDefaultConnection().OpenAsync(new CancellationToken());
                         //
                         // execute the command
                         await cmd.ExecuteNonQueryAsync();
@@ -267,9 +267,9 @@ namespace ErrorHandlerEngine.ServerUploader
                 }
                 finally
                 {
-                    if (conn.SqlConn != null)
+                    if (ConnectionManager.GetDefaultConnection().SqlConn != null)
                     {
-                        conn.Close();
+                        ConnectionManager.GetDefaultConnection().Close();
                     }
                 }
             });

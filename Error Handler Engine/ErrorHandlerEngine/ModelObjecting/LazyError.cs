@@ -86,7 +86,8 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Initialize Lazy<Image> Snapshot
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => string.IsNullOrEmpty(SnapshotAddress) || !File.Exists(SnapshotAddress) ? null : Image.FromFile(SnapshotAddress));
+            Snapshot = new Lazy<Image>(() => string.IsNullOrEmpty(SnapshotAddress) || !File.Exists(SnapshotAddress) 
+                ? null : ScreenCapture.FromFile(SnapshotAddress));
             #endregion
         }
         #endregion

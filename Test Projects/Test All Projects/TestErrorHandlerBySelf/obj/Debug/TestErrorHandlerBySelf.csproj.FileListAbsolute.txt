@@ -173,3 +173,16 @@ D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Error Handl
 D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.exe
 D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Error Handler Engine\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.exe
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.Form1.resources
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.Properties.Resources.resources
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csproj.GenerateResource.Cache
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.exe
+D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.pdb

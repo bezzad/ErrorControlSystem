@@ -11,7 +11,7 @@ namespace ErrorHandlerEngine.ModelObjecting
     /// <summary>
     /// Provides functions to capture the entire screen, or a particular window, and save it to a file.
     /// </summary>
-    internal static class ScreenCapture
+    public static class ScreenCapture
     {
         /// <summary>
         /// Creates an Image object containing a screen shot of the entire desktop
@@ -61,24 +61,45 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// Captures a screen shot of a specific window, and saves it to a file
         /// </summary>
         /// <param name="handle"></param>
-        /// <param name="filename"></param>
+        /// <param name="fileName"></param>
         /// <param name="format"></param>
-        public static void CaptureWindowToFile(IntPtr handle, string filename, ImageFormat format)
+        public static void CaptureWindowToFile(IntPtr handle, string fileName, ImageFormat format)
         {
             var img = CaptureWindow(handle);
-            img.Save(filename, format);
+            img.Save(fileName, format);
         }
 
         /// <summary>
         /// Captures a screen shot of the entire desktop, and saves it to a file
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="fileName"></param>
         /// <param name="format"></param>
-        public static void CaptureScreenToFile(string filename, ImageFormat format)
+        public static void CaptureScreenToFile(string fileName, ImageFormat format)
         {
-            var img = CaptureScreen();
-            img.Save(filename, format);
+            var bitmapData = CaptureScreen();
+
+            using (var streamBitmap = new MemoryStream(bitmapData.ToBytes()))
+            {
+                using (var img = Image.FromStream(streamBitmap))
+                {
+                    img.Save(fileName, format);
+                }
+            }
         }
+
+
+        public static Image FromFile(string path)
+        {
+            using (var fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                Image result = System.Drawing.Image.FromStream(fs);
+                fs.Close();
+                // We MUST call the constructor here, 
+                // otherwise the bitmap will still be linked to the original file 
+                return new Bitmap(result);
+            } 
+        }
+
 
         /// <summary>
         /// Helper class containing Gdi32 API functions

@@ -8,7 +8,7 @@ namespace ErrorHandlerEngine.ModelObjecting
     /// <summary>
     /// Provides detailed information about the host operating system.
     /// </summary>
-    internal static class OperationSystem
+    public static class OperationSystem
     {
         #region ENUMS
         public enum SoftwareArchitecture

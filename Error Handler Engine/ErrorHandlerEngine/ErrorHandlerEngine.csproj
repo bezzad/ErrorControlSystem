@@ -65,7 +65,6 @@
     <Compile Include="ExceptionManager\ExceptionHandler.cs" />
     <Compile Include="ModelObjecting\HResults.cs" />
     <Compile Include="ModelObjecting\ProxyError.cs" />
-    <Compile Include="ModelObjecting\ProxyErrorEventArgs.cs" />
     <Compile Include="ModelObjecting\NetworkHelper.cs" />
     <Compile Include="ModelObjecting\OperationSystem.cs" />
     <Compile Include="ModelObjecting\OperationSystemInfo.cs" />

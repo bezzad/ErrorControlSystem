@@ -9,7 +9,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
     /// <summary>
     /// Read Incoming Handled Errors object to save and cache.
     /// </summary>
-    public static class FetchErrorsToDisk
+    public static class ErrorsReceiver
     {
         #region Data-Flow Blocks
 
@@ -20,7 +20,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         #endregion
 
         #region Constructor
-        static FetchErrorsToDisk()
+        static ErrorsReceiver()
         {
             #region Initialize Add Error to History [Action Block]
 
@@ -41,7 +41,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             tbErrorSnapshotSaver = new TransformBlock<Error, Error>(async error =>
             {
                 // Save error.Snapshot image file on Disk and set that's address
-                error.SnapshotAddress = await RoutingDataStoragePath.SaveSnapshotImageOnDiskAsync(error);
+                error.SnapshotAddress = await StorageRouter.SaveSnapshotImageOnDiskAsync(error);
 
                 // Dispose Image of Error On Memory 
                 error.GetSnapshot().Dispose();

@@ -12,7 +12,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
     /// <summary>
     /// Routing Where the data must be saved
     /// </summary>
-    public static class RoutingDataStoragePath
+    public static class StorageRouter
     {
         #region Properties
 
@@ -23,7 +23,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         #region Constructor
 
-        static RoutingDataStoragePath()
+        static StorageRouter()
         {
             var pathsChanged = false;
 
@@ -138,7 +138,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             try
             {
-                HandleExceptions.IsSelfException = true;
+                ExpHandlerEngine.IsSelfException = true;
 
                 var encodedText = Encoding.Unicode.GetBytes(text);
 
@@ -154,7 +154,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
             finally
             {
-                HandleExceptions.IsSelfException = false;
+                ExpHandlerEngine.IsSelfException = false;
             }
         }
 
@@ -216,11 +216,11 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             {
                 try
                 {
-                    HandleExceptions.IsSelfException = true;
+                    ExpHandlerEngine.IsSelfException = true;
                     if (File.Exists(imgAddress))
                         File.Delete(imgAddress);
                 }
-                finally { HandleExceptions.IsSelfException = false; }
+                finally { ExpHandlerEngine.IsSelfException = false; }
             });
 
         }

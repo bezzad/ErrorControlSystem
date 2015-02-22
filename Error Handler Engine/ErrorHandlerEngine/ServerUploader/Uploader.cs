@@ -10,7 +10,7 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class Uploader
     {
-        public static async Task<bool> SentOneErrorToDbAsync(LazyError error)
+        public static async Task<bool> SentOneErrorToDbAsync(ProxyError error)
         {
             if (CanToSent)
             {
@@ -26,7 +26,7 @@ namespace ErrorHandlerEngine.ServerUploader
             return CanToSent;
         }
 
-        public static bool SentOneErrorToDb(LazyError error)
+        public static bool SentOneErrorToDb(ProxyError error)
         {
             if (CanToSent)
             {
@@ -46,14 +46,14 @@ namespace ErrorHandlerEngine.ServerUploader
         // so this variable closed that
         public static volatile bool CanToSent = true;
 
-        public static TransformBlock<LazyError, Tuple<LazyError, bool>> ErrorListenerTransformBlock;
+        public static TransformBlock<ProxyError, Tuple<ProxyError, bool>> ErrorListenerTransformBlock;
 
         static Uploader()
         {
             Task.Run(async () => await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync());
 
 
-            ErrorListenerTransformBlock = new TransformBlock<LazyError, Tuple<LazyError, bool>>(
+            ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
                 async (e) =>
                 {
                     if (ConnectionManager.GetDefaultConnection().IsReady && CanToSent) // Server Connector to online or offline ?
@@ -73,7 +73,7 @@ namespace ErrorHandlerEngine.ServerUploader
                     }
                     //
                     // Post to Acknowledge Action Block:
-                    return new Tuple<LazyError, bool>(e, CanToSent);
+                    return new Tuple<ProxyError, bool>(e, CanToSent);
                 },
                 new ExecutionDataflowBlockOptions()
                 {
@@ -81,7 +81,7 @@ namespace ErrorHandlerEngine.ServerUploader
                     MaxDegreeOfParallelism = 1
                 });
 
-            ErrorListenerTransformBlock.LinkTo(AcknowledgeController.AcknowledgeActionBlock);
+            ErrorListenerTransformBlock.LinkTo(SendAcknowledgeController.AcknowledgeActionBlock);
         }
     }
 }

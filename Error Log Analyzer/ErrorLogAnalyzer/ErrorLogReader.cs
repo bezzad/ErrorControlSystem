@@ -32,7 +32,7 @@ namespace ErrorLogAnalyzer
 
         public static async void ReadAsync()
         {
-            var allJsonString = await RoutingDataStoragePath.ReadLogAsync();
+            var allJsonString = await StorageRouter.ReadLogAsync();
 
             if (!string.IsNullOrEmpty(allJsonString))
             {

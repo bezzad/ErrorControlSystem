@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.AcknowledgeController" Collapsed="true">
-    <Position X="6.25" Y="4.5" Width="2" />
+    <Position X="7.5" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CacheHandledErrors\AcknowledgeController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.CacheController" Collapsed="true">
-    <Position X="10.25" Y="4.5" Width="1.5" />
+    <Position X="7.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAAIAAAAAAAA=</HashCode>
       <FileName>CacheHandledErrors\CacheController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.FetchErrorsToDisk" Collapsed="true">
-    <Position X="4.25" Y="5.5" Width="1.5" />
+    <Position X="4" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAQAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>CacheHandledErrors\FetchErrorsToDisk.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.RoutingDataStoragePath" Collapsed="true">
-    <Position X="9.5" Y="5.5" Width="2" />
+    <Position X="9" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AIAAQAAAABAAAAAIAAAAFAAABAAAAAACAAAEgAAAABA=</HashCode>
       <FileName>CacheHandledErrors\RoutingDataStoragePath.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ExceptionManager.ErrorHandler" Collapsed="true">
-    <Position X="7.75" Y="6.5" Width="1.25" />
+    <Position X="11.5" Y="4.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAABAAAAAAAAAgAAAAgAAAAAA=</HashCode>
       <FileName>ExceptionManager\ErrorHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ExceptionManager.HandleExceptions" Collapsed="true">
-    <Position X="6" Y="5.5" Width="1.5" />
+    <Position X="5.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAACAAIAAgAAAEAQAAAAAAEAAAA=</HashCode>
       <FileName>ExceptionManager\HandleExceptions.cs</FileName>
@@ -59,7 +59,7 @@
     <Lollipop Orientation="Bottom" Position="0.127" />
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.ErrorUniqueCollection" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="2.5" Width="1.5" />
+    <Position X="8.75" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AEIAAEBIAChAQACQCAAABQRAAAAAAAAECAEAAABUIBA=</HashCode>
       <FileName>ModelObjecting\ErrorUniqueCollection.cs</FileName>
@@ -67,7 +67,7 @@
     <Lollipop Orientation="Bottom" Position="0.19" />
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.HResults" Collapsed="true">
-    <Position X="6" Y="7.5" Width="1.25" />
+    <Position X="7.5" Y="5.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>j0qAcY9Tgg0EjAbGUgEBw1AywVBAQEiIni4BADIgrBA=</HashCode>
       <FileName>ModelObjecting\HResults.cs</FileName>
@@ -88,34 +88,40 @@
     <Lollipop Orientation="Bottom" Position="0.1" />
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.LazyErrorEventArgs" Collapsed="true">
-    <Position X="2" Y="5.5" Width="1.5" />
+    <Position X="2" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="System.EventArgs" FixedToPoint="true">
+      <Path>
+        <Point X="2.75" Y="5.062" />
+        <Point X="2.75" Y="5.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelObjecting\LazyErrorEventArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.NetworkHelper" Collapsed="true">
-    <Position X="4.25" Y="6.5" Width="1.5" />
+    <Position X="4" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAEAAA=</HashCode>
       <FileName>ModelObjecting\NetworkHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.OperationSystem" Collapsed="true">
-    <Position X="6" Y="6.5" Width="1.5" />
+    <Position X="5.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IYyISw2LNIUAUALilIACcAwDSFJEDHIlQQIIUkO5QGo=</HashCode>
       <FileName>ModelObjecting\OperationSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.OperationSystemInfo" Collapsed="true">
-    <Position X="4.25" Y="2.5" Width="1.5" />
+    <Position X="4.25" Y="2.5" Width="1.75" />
     <InheritanceLine Type="System.Object" FixedFromPoint="true">
       <Path>
         <Point X="7.25" Y="1.812" />
         <Point X="7.25" Y="2.125" />
-        <Point X="5" Y="2.125" />
-        <Point X="5" Y="2.5" />
+        <Point X="5.125" Y="2.125" />
+        <Point X="5.125" Y="2.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -124,7 +130,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.ScreenCapture" Collapsed="true">
-    <Position X="8.5" Y="4.5" Width="1.5" />
+    <Position X="9.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAACAAQAAAAAAAABAAAAAAAAAAAAEAAAAAAABBAA=</HashCode>
       <FileName>ModelObjecting\ScreenCapture.cs</FileName>
@@ -138,23 +144,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ServerUploader.DynamicStoredProcedures" Collapsed="true">
-    <Position X="7.75" Y="5.5" Width="1.5" />
+    <Position X="10.75" Y="6.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAIAA=</HashCode>
       <FileName>ServerUploader\DynamicStoredProcedures.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorHandlerEngine.ServerUploader.UploadController" Collapsed="true">
-    <Position X="4.25" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
-      <FileName>ServerUploader\UploadController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ErrorHandlerEngine.ServerUploader.Uploader" Collapsed="true">
-    <Position X="7.5" Y="7.5" Width="1.25" />
+    <Position X="11.25" Y="5.5" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAEAAAAgAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>ServerUploader\Uploader.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -174,14 +173,14 @@
     </TypeIdentifier>
   </Struct>
   <Interface Name="ErrorHandlerEngine.ModelObjecting.IError" Collapsed="true">
-    <Position X="2" Y="7.5" Width="1.5" />
+    <Position X="6" Y="4.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>ACADAgAAAiAAUgCAQAAgAAACAAECKCADAAACIAAAAIE=</HashCode>
       <FileName>ModelObjecting\IError.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ErrorHandlerEngine.ModelObjecting.ErrorHandlingOption" Collapsed="true">
-    <Position X="4.25" Y="4.5" Width="1.75" />
+    <Position X="4" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgIAAAAEAAAA=</HashCode>
       <FileName>ModelObjecting\ErrorHandlingOption.cs</FileName>

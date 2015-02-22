@@ -26,6 +26,7 @@ This is initializer codes of the module by `C# language`:
 
 using System;
 using System.Windows.Forms;
+using ConnectionsManager;
 using ErrorControlSystem.ErrorHandlerEngine;
 
 namespace TestApplication
@@ -35,8 +36,8 @@ namespace TestApplication
         [STAThread]
         private static void Main()
         {
-               HandleExceptions.Start(new Connection("localhost", "UsersManagements"), 
-                ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+               ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"), 
+                                ExceptionHandlerOption.All & ~ExceptionHandlerOption.ReSizeSnapshots);
 
                Application.Run(new Form1());
         }
@@ -44,21 +45,22 @@ namespace TestApplication
 }
 ```
 
-In the above code snippet you've seen that, for the `HandleExceptions` method should be an option. This option is used to specify the error data, which includes the following values:
+In the above code snippet you've seen that, for the `ExpHandlerEngine` method should be an option. This option is used to specify the error data, which includes the following values:
 
 -  All
 -  AlertUnHandledError
--  Default (AlertUnHandledError + FetchServerDateTime + Snapshot)
+-  Default (AlertUnHandledError + FetchServerDateTime + Snapshot + SendCacheToServer)
 -  FetchServerDateTime
 -  IsHandled
 -  None
 -  ReSizeSnapshots
+-  SendCacheToServer
 -  Snapshot
 
 For example in above codes, this code means is:
 ```csharp
-HandleExceptions.Start(new Connection("localhost", "UsersManagements"), 
-                ErrorHandlingOption.All & ~ErrorHandlingOption.ReSizeSnapshots);
+ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"), 
+                ExceptionHandlerOption.All & ~ExceptionHandlerOption.ReSizeSnapshots);
 ```
 Select all options by excepted `ReSizeSnapshots`
 

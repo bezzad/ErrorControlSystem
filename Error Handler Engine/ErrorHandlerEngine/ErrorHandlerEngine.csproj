@@ -52,19 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheHandledErrors\AcknowledgeController.cs" />
+    <Compile Include="CacheHandledErrors\SendAcknowledgeController.cs" />
     <Compile Include="CacheHandledErrors\CacheController.cs" />
-    <Compile Include="CacheHandledErrors\FetchErrorsToDisk.cs" />
-    <Compile Include="CacheHandledErrors\RoutingDataStoragePath.cs" />
-    <Compile Include="ExceptionManager\HandleExceptions.cs" />
+    <Compile Include="CacheHandledErrors\ErrorsReceiver.cs" />
+    <Compile Include="CacheHandledErrors\StorageRouter.cs" />
+    <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="ModelObjecting\CodeLocation.cs" />
     <Compile Include="ModelObjecting\Error.cs" />
     <Compile Include="ModelObjecting\ErrorUniqueCollection.cs" />
-    <Compile Include="ModelObjecting\ErrorHandlingOption.cs" />
+    <Compile Include="ModelObjecting\ExceptionHandlerOption.cs" />
     <Compile Include="ModelObjecting\IError.cs" />
-    <Compile Include="ExceptionManager\ErrorHandler.cs" />
+    <Compile Include="ExceptionManager\ExceptionHandler.cs" />
     <Compile Include="ModelObjecting\HResults.cs" />
-    <Compile Include="ModelObjecting\LazyError.cs" />
+    <Compile Include="ModelObjecting\ProxyError.cs" />
     <Compile Include="ModelObjecting\LazyErrorEventArgs.cs" />
     <Compile Include="ModelObjecting\NetworkHelper.cs" />
     <Compile Include="ModelObjecting\OperationSystem.cs" />

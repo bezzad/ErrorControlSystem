@@ -32,11 +32,11 @@ namespace ErrorHandlerEngine.ExceptionManager
     /// <summary>
     /// Additional Data attached to exception object.
     /// </summary>
-    public static class ErrorHandler
+    public static class ExceptionHandler
     {
         #region Events
 
-        public static EventHandler OnErrorRaised = FetchErrorsToDisk.OnErrorHandled;
+        public static EventHandler OnErrorRaised = ErrorsReceiver.OnErrorHandled;
 
         #endregion
 
@@ -57,18 +57,18 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns></returns>
-        public static Error RaiseLog(this Exception exp, ErrorHandlingOption option = ErrorHandlingOption.Default, String errorTitle = "UnHandled Exception")
+        public static Error RaiseLog(this Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default, String errorTitle = "UnHandled Exception")
         {
-            if (HandleExceptions.IsSelfException)
+            if (ExpHandlerEngine.IsSelfException)
             {
-                HandleExceptions.IsSelfException = false;
+                ExpHandlerEngine.IsSelfException = false;
                 return null;
             }
 
             // initial the error object by additional data 
             var error = exp.CreateError(option);
 
-            if (option.HasFlag(ErrorHandlingOption.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOption.IsHandled)) // Alert Unhandled Error 
+            if (option.HasFlag(ExceptionHandlerOption.AlertUnHandledError) && !option.HasFlag(ExceptionHandlerOption.IsHandled)) // Alert Unhandled Error 
             {
                 MessageBox.Show(exp.Message,
                     errorTitle,
@@ -89,7 +89,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="exception">The occurrence raw error.</param>
         /// <param name="option">What preprocess must be doing on that exception's ?</param>
         /// <returns>The ripe error object's.</returns>
-        private static Error CreateError(this Exception exception, ErrorHandlingOption option = ErrorHandlingOption.Default)
+        private static Error CreateError(this Exception exception, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
         {
             // Create Empty Error object
             var error = new Error();
@@ -115,10 +115,10 @@ namespace ErrorHandlerEngine.ExceptionManager
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!CacheReader.ErrorHistory.Contains(error.Id) && option.HasFlag(ErrorHandlingOption.Snapshot))
+            if (!CacheReader.ErrorHistory.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
             {
                 error.SetSnapshot( 
-                    option.HasFlag(ErrorHandlingOption.ReSizeSnapshots)
+                    option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
                         ? ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
                         : ScreenCapture.CaptureScreen());
             }
@@ -141,7 +141,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Server Date Time
 
-            error.ServerDateTime = option.HasFlag(ErrorHandlingOption.FetchServerDateTime)
+            error.ServerDateTime = option.HasFlag(ExceptionHandlerOption.FetchServerDateTime)
                 ? NetworkHelper.GetServerDateTime()
                 : DateTime.Now;
 
@@ -217,7 +217,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Is Handled Error or UnHandled?
 
-            error.IsHandled = option.HasFlag(ErrorHandlingOption.IsHandled);
+            error.IsHandled = option.HasFlag(ExceptionHandlerOption.IsHandled);
 
             #endregion
 
@@ -256,8 +256,6 @@ namespace ErrorHandlerEngine.ExceptionManager
             error.Source = exception.Source;
 
             #endregion
-
-            
 
             #endregion
 

@@ -14,10 +14,10 @@ namespace ErrorHandlerEngine
 
         public void Raise(Exception exp, bool isHandled = true, bool alertError = false, bool screenCapture = true)
         {
-            var option = ErrorHandlingOption.None;
-            if (isHandled) option |= ErrorHandlingOption.IsHandled;
-            if(alertError) option|= ErrorHandlingOption.AlertUnHandledError;
-            if (screenCapture) option |= ErrorHandlingOption.Snapshot;
+            var option = ExceptionHandlerOption.None;
+            if (isHandled) option |= ExceptionHandlerOption.IsHandled;
+            if(alertError) option|= ExceptionHandlerOption.AlertUnHandledError;
+            if (screenCapture) option |= ExceptionHandlerOption.Snapshot;
 
             exp.RaiseLog(option);
         }

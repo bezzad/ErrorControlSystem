@@ -23,14 +23,14 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             if (AreErrorsInSendState) return;
 
-            HandleExceptions.IsSelfException = true;
+            ExpHandlerEngine.IsSelfException = true;
             try
             {
                 AreErrorsInSendState = true;
 
                 // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
                 // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\TestErrorHandlerBySelf v1
-                var rootDir = RoutingDataStoragePath.ErrorLogFilePath.Substring(0, RoutingDataStoragePath.ErrorLogFilePath.LastIndexOf('\\'));
+                var rootDir = StorageRouter.ErrorLogFilePath.Substring(0, StorageRouter.ErrorLogFilePath.LastIndexOf('\\'));
 
                 long errorDataSize = new DirectoryInfo(rootDir).GetDirectorySize();
 
@@ -46,7 +46,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
             finally
             {
-                HandleExceptions.IsSelfException = false;
+                ExpHandlerEngine.IsSelfException = false;
                 AreErrorsInSendState = false;
             }
         }

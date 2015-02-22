@@ -26,7 +26,7 @@ namespace TestErrorHandlerBySelf
                 () => { throw new SystemException(); }
             };
 
-            dataGridView1.CreateColumns(typeof(LazyError));
+            dataGridView1.CreateColumns(typeof(ProxyError));
         }
 
         private void btnQuit_Click(object sender, EventArgs e)

@@ -11,7 +11,7 @@ namespace ErrorHandlerEngine.ModelObjecting
     [ComVisible(true)]
     [Flags]
     [Serializable]
-    public enum ErrorHandlingOption
+    public enum ExceptionHandlerOption
     {
         None = 0,
 

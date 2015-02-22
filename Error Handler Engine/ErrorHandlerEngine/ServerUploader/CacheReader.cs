@@ -34,7 +34,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 foreach (var error in ErrorHistory)
                 {
-                    await Uploader.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
+                    await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
                 }
             });
 
@@ -44,12 +44,12 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public static async Task<Error[]> ReadLogToErros()
         {
-            HandleExceptions.IsSelfException = true;
+            ExpHandlerEngine.IsSelfException = true;
             try
             {
                 //
                 // Read Error Log Json File
-                var allJsonString = await RoutingDataStoragePath.ReadLogAsync();
+                var allJsonString = await StorageRouter.ReadLogAsync();
                 //
                 // Check file is not empty ?
                 if (String.IsNullOrEmpty(allJsonString)) return null;
@@ -60,7 +60,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
             finally
             {
-                HandleExceptions.IsSelfException = false;
+                ExpHandlerEngine.IsSelfException = false;
             }
 
         }

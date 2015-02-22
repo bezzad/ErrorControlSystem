@@ -168,7 +168,7 @@ namespace ErrorHandlerEngine.ServerUploader
          */
         #endregion
 
-        public static void InsertErrorStoredProcedure(LazyError error)
+        public static void InsertErrorStoredProcedure(ProxyError error)
         {
             try
             {
@@ -220,7 +220,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static async Task InsertErrorStoredProcedureAsync(LazyError error)
+        public static async Task InsertErrorStoredProcedureAsync(ProxyError error)
         {
             await Task.Run(async () =>
             {

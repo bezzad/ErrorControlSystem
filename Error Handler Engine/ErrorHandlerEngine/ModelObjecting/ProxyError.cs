@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace ErrorHandlerEngine.ModelObjecting
 {
     [Serializable]
-    public class LazyError : IError, IDisposable, ICloneable, IEquatable<LazyError>, ISerializable
+    public class ProxyError : IError, IDisposable, ICloneable, IEquatable<ProxyError>, ISerializable
     {
         #region Properties
 
@@ -54,9 +54,9 @@ namespace ErrorHandlerEngine.ModelObjecting
         #endregion
 
         #region Constructor
-        public LazyError() { }
+        public ProxyError() { }
 
-        public LazyError(Error error)
+        public ProxyError(Error error)
         {
             #region Initialize IError Properties
 
@@ -94,7 +94,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             #endregion
         }
 
-        public LazyError(SerializationInfo info, StreamingContext ctxt)
+        public ProxyError(SerializationInfo info, StreamingContext ctxt)
         {
             //Get the values from info and assign them to the appropriate properties
             Id = (int)info.GetValue("Id", typeof(int));
@@ -210,7 +210,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         #region IEquatable<LazyError> Implement
 
-        public bool Equals(LazyError other)
+        public bool Equals(ProxyError other)
         {
             if (other == null) return false;
 
@@ -219,7 +219,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                    this.HResult == other.HResult;
         }
 
-        public bool Equals(LazyError x, LazyError y)
+        public bool Equals(ProxyError x, ProxyError y)
         {
             if (x == null) return false;
             if (y == null) return false;
@@ -231,14 +231,14 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         /// <devdoc>
         ///    <para>
-        ///       Specifies whether this <see cref='LazyError'/> contains
+        ///       Specifies whether this <see cref='ProxyError'/> contains
         ///       the same coordinates as the specified <see cref='System.Object'/>.
         ///    </para>
         /// </devdoc>
         public override bool Equals(object obj)
         {
-            if (!(obj is LazyError)) return false;
-            var comp = (LazyError)obj;
+            if (!(obj is ProxyError)) return false;
+            var comp = (ProxyError)obj;
             // Note value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
             return comp.ErrorLineColumn == this.ErrorLineColumn &&

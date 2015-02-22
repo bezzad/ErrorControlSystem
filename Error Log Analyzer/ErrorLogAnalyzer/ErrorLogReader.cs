@@ -8,7 +8,7 @@ namespace ErrorLogAnalyzer
 {
     public static class ErrorLogReader
     {
-        public static EventHandler<ProxyErrorEventArgs> OnReadLazyError = delegate { };
+        //public static EventHandler<ProxyErrorEventArgs> OnReadLazyError = delegate { };
 
         #region Action Block Fetch Errors By Event-Driven System
 
@@ -20,7 +20,7 @@ namespace ErrorLogAnalyzer
 
             foreach (var error in errors)
             {
-                OnReadLazyError(error, new ProxyErrorEventArgs(error));
+               // OnReadLazyError(error, new ProxyErrorEventArgs(error));
             }
         },
             new ExecutionDataflowBlockOptions

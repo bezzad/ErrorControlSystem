@@ -89,7 +89,6 @@ D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\Exc
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.dll
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.xml
-D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.Properties.Resources.resources
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csproj.GenerateResource.Cache
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll

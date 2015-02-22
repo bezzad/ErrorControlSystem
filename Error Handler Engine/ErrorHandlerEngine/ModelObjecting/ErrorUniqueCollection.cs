@@ -183,6 +183,11 @@ namespace ErrorHandlerEngine.ModelObjecting
             return _errors.ContainsKey(item.Id);
         }
 
+        public bool Contains(int errorId)
+        {
+            return _errors.ContainsKey(errorId);
+        }
+
         public void CopyTo(Error[] array, int arrayIndex)
         {
             _errors.Values.CopyTo(array, arrayIndex);

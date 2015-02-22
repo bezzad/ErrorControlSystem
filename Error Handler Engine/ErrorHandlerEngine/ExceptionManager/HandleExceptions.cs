@@ -58,6 +58,9 @@ namespace ErrorHandlerEngine.ExceptionManager
         public static void Start(ErrorHandlingOption option = ErrorHandlingOption.Default)
         {
             _option = option & ~ErrorHandlingOption.SendCacheToServer;
+
+            // Set Up loader to run static constructor
+            Uploader.CanToSent = true;
         }
 
 

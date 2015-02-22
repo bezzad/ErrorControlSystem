@@ -85,11 +85,11 @@
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="ServerUploader\CacheReader.cs" />
     <Compile Include="ServerUploader\DynamicStoredProcedures.cs" />
-    <Compile Include="ServerUploader\UploadController.cs" />
     <Compile Include="ServerUploader\Uploader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="EHEClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

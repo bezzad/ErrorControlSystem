@@ -68,6 +68,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         #endregion
 
         #region Methods
+
         public static async void OnErrorHandled(object sender, EventArgs e)
         {
             var error = sender as Error;

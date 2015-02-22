@@ -258,11 +258,8 @@ namespace ErrorHandlerEngine.ServerUploader
                         cmd.Parameters.AddWithValue("@LineCol", error.ErrorLineColumn.ToString());
                         cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                         //
-                        // Open a connection object
-                        await ConnectionManager.GetDefaultConnection().OpenAsync(new CancellationToken());
-                        //
                         // execute the command
-                        await cmd.ExecuteNonQueryAsync();
+                        await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
                     }
                 }
                 finally
@@ -275,69 +272,47 @@ namespace ErrorHandlerEngine.ServerUploader
             });
         }
 
-        public static DateTime FetchServerDataTimeTsql(ConnectionManager conn)
+        public static DateTime FetchServerDataTimeTsql()
         {
             var serverDateTime = DateTime.Now;
 
             try
             {
                 // Create a command object identifying the stored procedure
-                using (var cmd = new SqlCommand())
+                using (var cmd = ConnectionManager.GetDefaultConnection().CreateSqlCommand())
                 {
-                    //
-                    // Set SqlConn
-                    cmd.Connection = conn.SqlConn;
                     //
                     // Set the command object so it knows to execute a stored procedure
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandText = "SELECT GETDATE()";
                     //
-                    // Open a connection object
-                    conn.Open();
-                    //
                     // execute the command
-                    serverDateTime = (DateTime)cmd.ExecuteScalar();
+                    serverDateTime = ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>(cmd);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (conn.SqlConn != null)
-                {
-                    conn.Close();
-                }
-            }
+            catch { }
 
             return serverDateTime;
         }
 
         public static async Task<DateTime> FetchServerDataTimeTsqlAsync(ConnectionManager conn)
         {
-            return await Task.Run<DateTime>(async () =>
+            return await Task.Run(async () =>
             {
                 DateTime serverDateTime;
 
                 try
                 {
                     // Create a command object identifying the stored procedure
-                    using (var cmd = new SqlCommand())
+                    using (var cmd = ConnectionManager.GetDefaultConnection().CreateSqlCommand())
                     {
-                        //
-                        // Set SqlConn
-                        cmd.Connection = conn.SqlConn;
                         //
                         // Set the command object so it knows to execute a stored procedure
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = "SELECT GETDATE()";
                         //
-                        // Open a connection object
-                        await conn.OpenAsync(new CancellationToken());
-                        //
                         // execute the command
-                        serverDateTime = (DateTime)await cmd.ExecuteScalarAsync();
+                        serverDateTime = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>(cmd);
                     }
                 }
                 finally

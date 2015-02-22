@@ -25,6 +25,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
@@ -95,14 +96,32 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Initialize Exception Additional Data
 
+            #region HResult [Exception Type Code]
+
+            error.HResult = exception.HResult;
+
+            #endregion
+
+            #region Error Line Column
+
+            error.ErrorLineColumn = new CodeLocation(exception);
+
+            #endregion
+
+            #region Id = HashCode
+            error.Id = error.GetHashCode();
+            #endregion
 
             #region Screen Capture
+
             // First initialize Snapshot of Error, because that's speed is important!
-            error.SetSnapshot(option.HasFlag(ErrorHandlingOption.Snapshot) ?
-                    (option.HasFlag(ErrorHandlingOption.ReSizeSnapshots) ? // Resize and reduce size of screen shot image file
-                     ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
-                     : ScreenCapture.CaptureScreen())
-                : null);
+            if (!CacheReader.ErrorHistory.Contains(error.Id) && option.HasFlag(ErrorHandlingOption.Snapshot))
+            {
+                error.SetSnapshot( 
+                    option.HasFlag(ErrorHandlingOption.ReSizeSnapshots)
+                        ? ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
+                        : ScreenCapture.CaptureScreen());
+            }
 
             #endregion
 
@@ -220,7 +239,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #endregion
 
-            #region Common Language Runtime Version [Major.Minor.Build.Revison.]
+            #region Common Language Runtime Version [Major.Minor.Build.Revison]
 
             error.ClrVersion = Environment.Version.ToString();
 
@@ -238,20 +257,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #endregion
 
-            #region HResult [Exception Type Code]
-
-            error.HResult = exception.HResult;
-
-            #endregion
-
-            #region Error Line Column
-
-            error.ErrorLineColumn = new CodeLocation(exception);
-            #endregion
-
-            #region Id = HashCode
-            error.Id = error.GetHashCode();
-            #endregion
+            
 
             #endregion
 

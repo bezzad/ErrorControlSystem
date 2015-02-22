@@ -34,7 +34,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 foreach (var error in ErrorHistory)
                 {
-                    await UploadController.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
+                    await Uploader.ErrorListenerTransformBlock.SendAsync(new LazyError(error));
                 }
             });
 

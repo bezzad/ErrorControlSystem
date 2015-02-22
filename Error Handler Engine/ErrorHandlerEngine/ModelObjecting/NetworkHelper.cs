@@ -88,7 +88,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public static DateTime GetServerDateTime()
         {
             return ConnectionManager.GetDefaultConnection().IsReady
-                ? DynamicStoredProcedures.FetchServerDataTimeTsql(ConnectionManager.GetDefaultConnection()) 
+                ? DynamicStoredProcedures.FetchServerDataTimeTsql()
                 : DateTime.Now;
         }
 

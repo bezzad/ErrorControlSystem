@@ -44,6 +44,7 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestHandledFirstExp_Click(object sender, EventArgs e)
         {
+
             foreach (var item in Exps)
             {
                 try
@@ -60,17 +61,24 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestUnHandledUIExp_Click(object sender, EventArgs e)
         {
+
             Program.TestUiException();
         }
 
         private void btnTestUnHandledThreadExp_Click(object sender, EventArgs e)
         {
+
             int a = 0, b = 10, c = b / a;
         }
 
         private void btnTestUnhandledTaskExp_Click(object sender, EventArgs e)
         {
-            Task.Run(() => { int a = 0, b = 10, c = b / a; });
+
+            Task.Run(() =>
+            { int a = 0, b = 10, c = b / a; });
+
+            Task.Run(() =>
+            { int a = 0, b = 8, c = b / a; });
         }
 
         private void btnRefreshGridView_Click(object sender, EventArgs e)

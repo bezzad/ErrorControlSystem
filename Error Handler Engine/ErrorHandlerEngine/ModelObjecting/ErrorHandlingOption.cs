@@ -22,7 +22,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         ReSizeSnapshots = 16,
         SendCacheToServer = 32,
 
-        Default = Snapshot | ReSizeSnapshots | FetchServerDateTime | AlertUnHandledError | SendCacheToServer,
+        Default = Snapshot | FetchServerDateTime | AlertUnHandledError | SendCacheToServer,
         All = 0xFFFF // Combined value of all
     }
 

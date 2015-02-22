@@ -44,10 +44,6 @@ D:\Programming\Shoniz\Error Control System\Documentation Project\DatabaseModelin
 D:\Programming\Shoniz\Error Control System\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
 D:\Programming\Shoniz\Error Control System\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb
 D:\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll
 D:\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
 D:\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
@@ -56,3 +52,7 @@ D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\Dat
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb

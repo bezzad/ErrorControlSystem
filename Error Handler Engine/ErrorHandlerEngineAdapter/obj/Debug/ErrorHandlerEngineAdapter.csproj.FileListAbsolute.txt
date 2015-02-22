@@ -75,15 +75,6 @@ D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngi
 D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
 D:\Programming\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
 D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
 D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
 D:\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
@@ -104,4 +95,13 @@ D:\Programming\Error Control System\ErrorControlSystem\Error Handler Engine\Erro
 D:\Programming\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
 D:\Programming\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
 D:\Programming\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb

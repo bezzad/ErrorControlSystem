@@ -20,10 +20,5 @@ namespace TestErrorHandlerBySelf
 
             Application.Run(new Form1());
         }
-
-        public static void TestUiException()
-        {
-            int a = 10, v = 0, c = a / v;
-        }
     }
 }

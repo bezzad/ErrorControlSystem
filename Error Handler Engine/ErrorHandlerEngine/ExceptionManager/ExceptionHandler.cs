@@ -115,7 +115,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!CacheReader.ErrorHistory.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
+            if (!CacheController.ErrorHistory.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
             {
                 error.SetSnapshot( 
                     option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)

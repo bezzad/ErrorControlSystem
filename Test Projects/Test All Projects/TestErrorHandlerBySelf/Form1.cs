@@ -61,8 +61,7 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestUnHandledUIExp_Click(object sender, EventArgs e)
         {
-
-            Program.TestUiException();
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
         }
 
         private void btnTestUnHandledThreadExp_Click(object sender, EventArgs e)

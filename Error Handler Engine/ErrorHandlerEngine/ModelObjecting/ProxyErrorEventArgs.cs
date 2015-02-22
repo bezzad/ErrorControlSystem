@@ -2,11 +2,11 @@
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
-    public class LazyErrorEventArgs : EventArgs
+    public class ProxyErrorEventArgs : EventArgs
     {
         public ProxyError Error { get; private set; }
 
-        public LazyErrorEventArgs(Error error)
+        public ProxyErrorEventArgs(Error error)
         {
             Error = new ProxyError(error);
         }

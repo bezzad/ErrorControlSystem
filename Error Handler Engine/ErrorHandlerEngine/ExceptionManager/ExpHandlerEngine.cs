@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionsManager;
+using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.ServerUploader;
 
@@ -52,8 +53,8 @@ namespace ErrorHandlerEngine.ExceptionManager
             // First time create history of errors to buffer any occurrence error
             //
             // Load error log data to history of errors without snapshot images
-            if (CacheReader.ErrorHistory.Count <= 0)
-                CacheReader.ReadCacheToHistory();
+            if (CacheController.ErrorHistory.Count <= 0)
+                CacheController.ReadCacheFromDiskAsync();
         }
 
         #endregion

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks.Dataflow;
-using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.ServerUploader;
 
@@ -26,7 +25,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             abErrorSaver = new ActionBlock<Error>(async error =>
             {
-                await CacheReader.ErrorHistory.AddByConcurrencyToFileAsync(error);
+                await CacheController.ErrorHistory.AddByConcurrencyToFileAsync(error);
 
                 CacheController.CheckState();
             },
@@ -73,7 +72,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             var error = sender as Error;
 
-            if (CacheReader.ErrorHistory.Contains(error))
+            if (CacheController.ErrorHistory.Contains(error) && error.GetSnapshot() != null)
                 // Don't Save Snapshot because that error is duplicate and not need to image 
                 await abErrorSaver.SendAsync(error);
 

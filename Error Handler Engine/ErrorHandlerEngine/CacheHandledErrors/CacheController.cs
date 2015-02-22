@@ -3,16 +3,21 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.Properties;
 using ErrorHandlerEngine.ServerUploader;
+using Newtonsoft.Json;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {
     internal static class CacheController
     {
         public static bool AreErrorsInSendState = false;
+
+        public static ErrorUniqueCollection ErrorHistory = new ErrorUniqueCollection();
 
         #region Methods
 
@@ -41,7 +46,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 // and if successful sent then clear them...
                 if (errorDataSize >= maxSize && ConnectionManager.GetDefaultConnection().IsReady)
                 {
-                    CacheReader.ReadCacheToServerUploader();
+                    UploadCacheAsync();
                 }
             }
             finally
@@ -49,6 +54,59 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 ExpHandlerEngine.IsSelfException = false;
                 AreErrorsInSendState = false;
             }
+        }
+
+        #region Read Cache to Error History
+
+        /// <summary>
+        /// Read cache and fill ErrorHistory array
+        /// </summary>
+        public static async void ReadCacheFromDiskAsync()
+        {
+            var errors = await GetErrosFromLogAsync();
+            //
+            // Read any error in errors array to sent it to ServerUploader
+            ErrorHistory.AddRange(errors);
+        }
+
+        #endregion
+
+        #region Error Read from Json Log file
+
+        private static async Task<Error[]> GetErrosFromLogAsync()
+        {
+            ExpHandlerEngine.IsSelfException = true;
+            try
+            {
+                //
+                // Read Error Log Json File
+                var allJsonString = await StorageRouter.ReadLogAsync();
+                //
+                // Check file is not empty ?
+                if (String.IsNullOrEmpty(allJsonString)) return null;
+
+                //
+                // Convert json string to Error array's.
+                return await JsonConvert.DeserializeObjectAsync<Error[]>(allJsonString);
+            }
+            finally
+            {
+                ExpHandlerEngine.IsSelfException = false;
+            }
+
+        }
+        #endregion
+
+        public static async void UploadCacheAsync()
+        {
+            await Task.Run(async () =>
+            {
+                foreach (var error in ErrorHistory)
+                {
+                    await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
+                }
+            });
+
         }
 
         /// <summary>

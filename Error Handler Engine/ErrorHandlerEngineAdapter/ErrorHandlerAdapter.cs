@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using ErrorHandlerEngine;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 

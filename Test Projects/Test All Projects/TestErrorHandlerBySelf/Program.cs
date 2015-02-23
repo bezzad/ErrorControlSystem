@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.ModelObjecting;
 
 namespace TestErrorHandlerBySelf
 {
@@ -16,7 +17,8 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"));
+            ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"),
+                ExceptionHandlerOption.Default | ExceptionHandlerOption.ReSizeSnapshots);
 
             Application.Run(new Form1());
         }

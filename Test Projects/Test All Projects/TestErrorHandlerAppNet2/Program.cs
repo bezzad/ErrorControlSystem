@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using ErrorHandlerEngine;
@@ -25,9 +24,17 @@ namespace TestErrorHandlerAppNet2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
+            // Catch all unhandled exceptions.
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            
+            // Catch all unhandled exceptions in all threads.
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
+            // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
+            // AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+            
 
             Application.Run(new Form1());
         }
@@ -40,6 +47,7 @@ namespace TestErrorHandlerAppNet2
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.ExceptionObject.ToString());
+            iErrorHandler.Raise((Exception)e.ExceptionObject);
         }
     }
 }

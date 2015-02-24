@@ -178,9 +178,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             return await Task.Run(() =>
             {
-                var path = Path.Combine(SnapshotImagesPath, string.Format("ScreenCapture_{0}.png", error.Id));
+                var path = Path.Combine(SnapshotImagesPath, string.Format("ScreenCapture {0}.png", error.Id));
 
-                if (!File.Exists(path))
+                if (!File.Exists(path) && error.GetSnapshot() != null)
                 {
                     using (var img = error.GetSnapshot())
                     {

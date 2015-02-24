@@ -74,14 +74,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         /// <param name="e"></param>
         public static async void OnErrorHandled(object sender, EventArgs e)
         {
-            var error = sender as Error;
-
-            if (CacheController.ErrorHistory.Contains(error) && error.GetSnapshot() != null)
-                // Don't Save Snapshot because that error is duplicate and not need to image 
-                await ErrorSaverActionBlock.SendAsync(error);
-
-            else
-                await ErrorSnapshotSaverTransformBlock.SendAsync(error);
+            await ErrorSnapshotSaverTransformBlock.SendAsync(sender as Error);
         }
 
         #endregion

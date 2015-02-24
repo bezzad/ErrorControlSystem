@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks.Dataflow;
 using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {
@@ -12,9 +11,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
     {
         #region Data-Flow Blocks
 
-        private static TransformBlock<Error, Error> tbErrorSnapshotSaver;
+        private static readonly TransformBlock<Error, Error> ErrorSnapshotSaverTransformBlock;
 
-        private static ActionBlock<Error> abErrorSaver;
+        private static readonly ActionBlock<Error> ErrorSaverActionBlock;
 
         #endregion
 
@@ -23,7 +22,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             #region Initialize Add Error to History [Action Block]
 
-            abErrorSaver = new ActionBlock<Error>(async error =>
+            ErrorSaverActionBlock = new ActionBlock<Error>(async error =>
             {
                 await CacheController.ErrorHistory.AddByConcurrencyToFileAsync(error);
 
@@ -37,7 +36,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             #region Initialize Error Snapshot Saver on Disk [Transform Block]
 
-            tbErrorSnapshotSaver = new TransformBlock<Error, Error>(async error =>
+            ErrorSnapshotSaverTransformBlock = new TransformBlock<Error, Error>(async error =>
             {
                 // Save error.Snapshot image file on Disk and set that's address
                 error.SnapshotAddress = await StorageRouter.SaveSnapshotImageOnDiskAsync(error);
@@ -59,7 +58,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             #region Error Snapshot Transform Block Linked to Add Error to History
 
-            tbErrorSnapshotSaver.LinkTo(abErrorSaver);
+            ErrorSnapshotSaverTransformBlock.LinkTo(ErrorSaverActionBlock);
 
             #endregion
         }
@@ -68,16 +67,21 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         #region Methods
 
+        /// <summary>
+        /// Exception Handler occurrance event listener.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static async void OnErrorHandled(object sender, EventArgs e)
         {
             var error = sender as Error;
 
             if (CacheController.ErrorHistory.Contains(error) && error.GetSnapshot() != null)
                 // Don't Save Snapshot because that error is duplicate and not need to image 
-                await abErrorSaver.SendAsync(error);
+                await ErrorSaverActionBlock.SendAsync(error);
 
             else
-                await tbErrorSnapshotSaver.SendAsync(error);
+                await ErrorSnapshotSaverTransformBlock.SendAsync(error);
         }
 
         #endregion

@@ -110,7 +110,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                 {
                     try
                     {
-                        StorageRouter.WriteTextToLog(json);
+                        StorageRouter.WriteLog(json);
                     }
                     finally { ExpHandlerEngine.IsSelfException = false; }
                 }

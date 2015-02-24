@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheHandledErrors\SendAcknowledgeController.cs" />
     <Compile Include="CacheHandledErrors\CacheController.cs" />
     <Compile Include="CacheHandledErrors\ErrorsReceiver.cs" />
     <Compile Include="CacheHandledErrors\StorageRouter.cs" />

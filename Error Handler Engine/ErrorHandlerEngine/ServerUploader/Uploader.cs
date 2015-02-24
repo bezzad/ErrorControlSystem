@@ -81,7 +81,7 @@ namespace ErrorHandlerEngine.ServerUploader
                     MaxDegreeOfParallelism = 1
                 });
 
-            ErrorListenerTransformBlock.LinkTo(SendAcknowledgeController.AcknowledgeActionBlock);
+            ErrorListenerTransformBlock.LinkTo(CacheController.AcknowledgeActionBlock);
         }
     }
 }

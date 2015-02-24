@@ -111,3 +111,4 @@ D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Pr
 D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.csproj.GenerateResource.Cache
 D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.exe
 D:\Programming\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.csprojResolveAssemblyReference.cache

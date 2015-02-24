@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using ConnectionsManager;
 using ErrorHandlerEngine.ModelObjecting;
 
@@ -170,161 +168,94 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public static void InsertErrorStoredProcedure(ProxyError error)
         {
-            try
+            // Create a command object identifying the stored procedure
+            using (var cmd = new SqlCommand("sp_InsertErrorLog"))
             {
-                // Create a command object identifying the stored procedure
-                using (var cmd = new SqlCommand("sp_InsertErrorLog", ConnectionManager.GetDefaultConnection().SqlConn))
-                {
-                    //
-                    // Set the command object so it knows to execute a stored procedure
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    //
-                    // Add parameters to command, which will be passed to the stored procedure
-                    cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
-                    cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
-                    cmd.Parameters.AddWithValue("@Host", error.Host);
-                    cmd.Parameters.AddWithValue("@User", error.User);
-                    cmd.Parameters.AddWithValue("@IsHandled", error.IsHandled);
-                    cmd.Parameters.AddWithValue("@Type", error.ErrorType);
-                    cmd.Parameters.AddWithValue("@AppName", error.AppName);
-                    cmd.Parameters.AddWithValue("@CurrentCulture", error.CurrentCulture);
-                    cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
-                    cmd.Parameters.AddWithValue("@Message", error.Message);
-                    cmd.Parameters.AddWithValue("@Source", error.Source);
-                    cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace);
-                    cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
-                    cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
-                    cmd.Parameters.AddWithValue("@Method", error.Method);
-                    cmd.Parameters.AddWithValue("@Processes", error.Processes);
-                    cmd.Parameters.AddWithValue("@ErrorDateTime", error.ErrorDateTime);
-                    cmd.Parameters.AddWithValue("@OS", error.OS);
-                    cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
-                    cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
-                    cmd.Parameters.AddWithValue("@HResult", error.HResult);
-                    cmd.Parameters.AddWithValue("@LineCol", error.ErrorLineColumn.ToString());
-                    cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
-                    //
-                    // Open a connection object
-                    ConnectionManager.GetDefaultConnection().Open();
-                    //
-                    // execute the command
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            finally
-            {
-                if (ConnectionManager.GetDefaultConnection().SqlConn != null)
-                {
-                    ConnectionManager.GetDefaultConnection().Close();
-                }
+                //
+                // Set the command object so it knows to execute a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
+                //
+                // Add parameters to command, which will be passed to the stored procedure
+                cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
+                cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
+                cmd.Parameters.AddWithValue("@Host", error.Host);
+                cmd.Parameters.AddWithValue("@User", error.User);
+                cmd.Parameters.AddWithValue("@IsHandled", error.IsHandled);
+                cmd.Parameters.AddWithValue("@Type", error.ErrorType);
+                cmd.Parameters.AddWithValue("@AppName", error.AppName);
+                cmd.Parameters.AddWithValue("@CurrentCulture", error.CurrentCulture);
+                cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
+                cmd.Parameters.AddWithValue("@Message", error.Message);
+                cmd.Parameters.AddWithValue("@Source", error.Source);
+                cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace);
+                cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
+                cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
+                cmd.Parameters.AddWithValue("@Method", error.Method);
+                cmd.Parameters.AddWithValue("@Processes", error.Processes);
+                cmd.Parameters.AddWithValue("@ErrorDateTime", error.ErrorDateTime);
+                cmd.Parameters.AddWithValue("@OS", error.OS);
+                cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
+                cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
+                cmd.Parameters.AddWithValue("@HResult", error.HResult);
+                cmd.Parameters.AddWithValue("@LineCol", error.ErrorLineColumn.ToString());
+                cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
+                //
+                // execute the command
+                ConnectionManager.GetDefaultConnection().ExecuteNonQuery(cmd);
             }
         }
 
         public static async Task InsertErrorStoredProcedureAsync(ProxyError error)
         {
-            await Task.Run(async () =>
+            // Create a command object identifying the stored procedure
+            using (var cmd = new SqlCommand("sp_InsertErrorLog"))
             {
-                try
-                {
-                    // Create a command object identifying the stored procedure
-                    using (var cmd = new SqlCommand("sp_InsertErrorLog", ConnectionManager.GetDefaultConnection().SqlConn))
-                    {
-                        //
-                        // Set the command object so it knows to execute a stored procedure
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        //
-                        // Add parameters to command, which will be passed to the stored procedure
-                        cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
-                        cmd.Parameters.AddWithValue("@Host", error.Host);
-                        cmd.Parameters.AddWithValue("@User", error.User);
-                        cmd.Parameters.AddWithValue("@IsHandled", error.IsHandled);
-                        cmd.Parameters.AddWithValue("@Type", error.ErrorType);
-                        cmd.Parameters.AddWithValue("@AppName", error.AppName);
-                        cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
-                        cmd.Parameters.AddWithValue("@CurrentCulture", error.CurrentCulture);
-                        cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
-                        cmd.Parameters.AddWithValue("@Message", error.Message);
-                        cmd.Parameters.AddWithValue("@Source", error.Source ?? "");
-                        cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace);
-                        cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
-                        cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
-                        cmd.Parameters.AddWithValue("@Method", error.Method);
-                        cmd.Parameters.AddWithValue("@Processes", error.Processes);
-                        cmd.Parameters.AddWithValue("@ErrorDateTime", error.ErrorDateTime);
-                        cmd.Parameters.AddWithValue("@OS", error.OS);
-                        cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
-                        cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
-                        cmd.Parameters.AddWithValue("@HResult", error.HResult);
-                        cmd.Parameters.AddWithValue("@LineCol", error.ErrorLineColumn.ToString());
-                        cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
-                        //
-                        // execute the command
-                        await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
-                    }
-                }
-                finally
-                {
-                    if (ConnectionManager.GetDefaultConnection().SqlConn != null)
-                    {
-                        ConnectionManager.GetDefaultConnection().Close();
-                    }
-                }
-            });
+                //
+                // Set the command object so it knows to execute a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
+                //
+                // Add parameters to command, which will be passed to the stored procedure
+                cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
+                cmd.Parameters.AddWithValue("@Host", error.Host);
+                cmd.Parameters.AddWithValue("@User", error.User);
+                cmd.Parameters.AddWithValue("@IsHandled", error.IsHandled);
+                cmd.Parameters.AddWithValue("@Type", error.ErrorType);
+                cmd.Parameters.AddWithValue("@AppName", error.AppName);
+                cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
+                cmd.Parameters.AddWithValue("@CurrentCulture", error.CurrentCulture);
+                cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
+                cmd.Parameters.AddWithValue("@Message", error.Message);
+                cmd.Parameters.AddWithValue("@Source", error.Source ?? "");
+                cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace);
+                cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
+                cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
+                cmd.Parameters.AddWithValue("@Method", error.Method);
+                cmd.Parameters.AddWithValue("@Processes", error.Processes);
+                cmd.Parameters.AddWithValue("@ErrorDateTime", error.ErrorDateTime);
+                cmd.Parameters.AddWithValue("@OS", error.OS);
+                cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
+                cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
+                cmd.Parameters.AddWithValue("@HResult", error.HResult);
+                cmd.Parameters.AddWithValue("@LineCol", error.ErrorLineColumn.ToString());
+                cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
+                //
+                // execute the command
+                await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
+            }
         }
 
         public static DateTime FetchServerDataTimeTsql()
         {
-            var serverDateTime = DateTime.Now;
-
-            try
-            {
-                // Create a command object identifying the stored procedure
-                using (var cmd = ConnectionManager.GetDefaultConnection().CreateSqlCommand())
-                {
-                    //
-                    // Set the command object so it knows to execute a stored procedure
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT GETDATE()";
-                    //
-                    // execute the command
-                    serverDateTime = ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>(cmd);
-                }
-            }
-            catch { }
-
-            return serverDateTime;
+            //
+            // execute the command
+            return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
         }
 
         public static async Task<DateTime> FetchServerDataTimeTsqlAsync(ConnectionManager conn)
         {
-            return await Task.Run(async () =>
-            {
-                DateTime serverDateTime;
-
-                try
-                {
-                    // Create a command object identifying the stored procedure
-                    using (var cmd = ConnectionManager.GetDefaultConnection().CreateSqlCommand())
-                    {
-                        //
-                        // Set the command object so it knows to execute a stored procedure
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = "SELECT GETDATE()";
-                        //
-                        // execute the command
-                        serverDateTime = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>(cmd);
-                    }
-                }
-                finally
-                {
-                    if (conn.SqlConn != null)
-                    {
-                        conn.Close();
-                    }
-                }
-
-                return serverDateTime;
-            });
+            //
+            // execute the command
+            return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
         }
     }
 }

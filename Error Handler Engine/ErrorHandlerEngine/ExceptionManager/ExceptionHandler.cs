@@ -25,7 +25,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {

@@ -260,11 +260,6 @@ namespace ConnectionsManager
             }
         }
 
-        public DataSet ExecuteDataSet(string commandText, CommandType commandType = CommandType.StoredProcedure)
-        {
-            return ExecuteDataSet(commandText, commandType, null);
-        }
-
         public T ExecuteScalar<T>(string commandText, CommandType commandType = CommandType.StoredProcedure, params SqlParameter[] Params)
         {
             try
@@ -338,7 +333,40 @@ namespace ConnectionsManager
 
         }
 
-        public T ExecuteScalar<T>(string commandText, CommandType commandType = CommandType.StoredProcedure)
+        public async Task<T> ExecuteScalarAsync<T>(SqlCommand cmd, params SqlParameter[] Params)
+        {
+            try
+            {
+                if (Transaction != null && Transaction != default(SqlTransaction))
+                    cmd.Transaction = Transaction;
+                else
+                    cmd.Connection = SqlConn;
+
+                if (Params != null && Params.Length > 0)
+                {
+                    foreach (var param in Params)
+                        cmd.Parameters.Add(param);
+                }
+
+                await OpenAsync();
+
+                var retVal = await cmd.ExecuteScalarAsync();
+
+                if (retVal is T)
+                    return (T)retVal;
+                else if (retVal == DBNull.Value)
+                    return default(T);
+                else
+                    throw new Exception("Object returned was of the wrong type.");
+
+            }
+            finally
+            {
+                Close();
+            }
+        }
+
+        public async Task<T> ExecuteScalarAsync<T>(string commandText, CommandType commandType = CommandType.StoredProcedure, params SqlParameter[] Params)
         {
             try
             {
@@ -352,10 +380,22 @@ namespace ConnectionsManager
                 else
                     cmd.Connection = SqlConn;
 
+                if (Params != null && Params.Length > 0)
+                {
+                    foreach (var param in Params)
+                        cmd.Parameters.Add(param);
+                }
+
                 Open();
 
+                var retVal = await cmd.ExecuteScalarAsync();
 
-                return (T)cmd.ExecuteScalar();
+                if (retVal is T)
+                    return (T)retVal;
+                else if (retVal == DBNull.Value)
+                    return default(T);
+                else
+                    throw new Exception("Object returned was of the wrong type.");
             }
             finally
             {
@@ -443,12 +483,6 @@ namespace ConnectionsManager
             }
         }
 
-        public int ExecuteNonQuery(string commandText, CommandType commandType = CommandType.StoredProcedure)
-        {
-            return ExecuteNonQuery(commandText, commandType, null);
-        }
-
-
         public SqlDataReader ExecuteReader(string commandText, CommandType commandType = CommandType.StoredProcedure, params SqlParameter[] Params)
         {
             try
@@ -480,10 +514,6 @@ namespace ConnectionsManager
             }
         }
 
-        public SqlDataReader ExecuteReader(string commandText, CommandType commandType = CommandType.StoredProcedure)
-        {
-            return ExecuteReader(commandText, commandType, null);
-        }
 
         public bool BeginTransaction()
         {
@@ -634,7 +664,6 @@ namespace ConnectionsManager
             get { return Connection.Items.Count; }
         }
 
-
         public static ConnectionManager Factory(Connection conn)
         {
             return new ConnectionManager(conn);
@@ -643,6 +672,16 @@ namespace ConnectionsManager
         public static IEnumerable<Connection> GetConnections()
         {
             return Connection.Items;
+        }
+
+        public static ConnectionManager GetDefaultConnection()
+        {
+            return Find(DefaultConnectionName);
+        }
+
+        public static void SetToDefaultConnection(string name)
+        {
+            DefaultConnectionName = name;
         }
 
         #endregion
@@ -676,49 +715,5 @@ namespace ConnectionsManager
         }
 
         #endregion
-
-        public static ConnectionManager GetDefaultConnection()
-        {
-            return Find(DefaultConnectionName);
-        }
-
-
-        public static void SetToDefaultConnection(string name)
-        {
-            DefaultConnectionName = name;
-        }
-
-        public async Task<T> ExecuteScalarAsync<T>(SqlCommand cmd, params SqlParameter[] Params)
-        {
-            try
-            {
-                if (Transaction != null && Transaction != default(SqlTransaction))
-                    cmd.Transaction = Transaction;
-                else
-                    cmd.Connection = SqlConn;
-
-                if (Params != null && Params.Length > 0)
-                {
-                    foreach (var param in Params)
-                        cmd.Parameters.Add(param);
-                }
-
-                await OpenAsync();
-
-                var retVal = await cmd.ExecuteScalarAsync();
-
-                if (retVal is T)
-                    return (T)retVal;
-                else if (retVal == DBNull.Value)
-                    return default(T);
-                else
-                    throw new Exception("Object returned was of the wrong type.");
-
-            }
-            finally
-            {
-                Close();
-            }
-        }
     }
 }

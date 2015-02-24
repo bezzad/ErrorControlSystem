@@ -19,7 +19,39 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         public static ErrorUniqueCollection ErrorHistory = new ErrorUniqueCollection();
 
+        public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
+
         #region Methods
+
+
+        static CacheController()
+        {
+            #region Acknowledge Action Block
+
+            AcknowledgeActionBlock = new ActionBlock<Tuple<ProxyError, bool>>(
+                async ack =>
+                {
+                    if (ack.Item2) // Error Successful sent to server database
+                    {
+                        //
+                        // Remove Error Snapshot from Snapshots Folder's:
+                        await StorageRouter.DeleteSnapshotImageOnDiskAsync(ack.Item1.SnapshotAddress);
+                        //
+                        // Remove Error from Log file:
+                        await ErrorHistory.RemoveByConcurrencyAsync(ack.Item1.GetErrorObject);
+                        //
+                        // De-story error from Memory (RAM):
+                        if (ack.Item1 != null) ack.Item1.Dispose();
+                    }
+                },
+                new ExecutionDataflowBlockOptions
+                {
+                    MaxMessagesPerTask = 1
+                });
+
+            #endregion
+        }
+
 
         /// <summary>
         /// Check Cache State to Send Data to Server or Not ?
@@ -56,7 +88,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
         }
 
-        #region Read Cache to Error History
 
         /// <summary>
         /// Read cache and fill ErrorHistory array
@@ -69,10 +100,11 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             ErrorHistory.AddRange(errors);
         }
 
-        #endregion
 
-        #region Error Read from Json Log file
-
+        /// <summary>
+        /// Read log file's to fetch errors history.
+        /// </summary>
+        /// <returns>Error Array's.</returns>
         private static async Task<Error[]> GetErrosFromLogAsync()
         {
             ExpHandlerEngine.IsSelfException = true;
@@ -95,7 +127,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
 
         }
-        #endregion
+
 
         public static async void UploadCacheAsync()
         {
@@ -108,6 +140,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             });
 
         }
+
 
         /// <summary>
         /// Get Size of directory by all sub directory and files.
@@ -138,6 +171,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             return sum;
         }
+
 
         #endregion
     }

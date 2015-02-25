@@ -251,11 +251,12 @@ namespace ErrorHandlerEngine.ServerUploader
             return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
         }
 
-        public static async Task<DateTime> FetchServerDataTimeTsqlAsync(ConnectionManager conn)
+        public static async Task<DateTime> FetchServerDataTimeTsqlAsync()
         {
             //
             // execute the command
             return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
         }
+
     }
 }

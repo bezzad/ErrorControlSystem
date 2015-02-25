@@ -44,18 +44,15 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestHandledFirstExp_Click(object sender, EventArgs e)
         {
-
-            foreach (var item in Exps)
+            var item = Exps[new Random().Next(0, Exps.Count - 1)];
+            try
             {
-                try
-                {
-                    item();
-                }
-                catch (Exception ex)
-                {
-                    ex.Data.Add("test1", "1");
-                    ex.Data.Add("test2", new Random().Next());
-                }
+                item();
+            }
+            catch (Exception ex)
+            {
+                ex.Data.Add("test1", "1");
+                ex.Data.Add("test2", new Random().Next());
             }
         }
 
@@ -82,7 +79,7 @@ namespace TestErrorHandlerBySelf
 
         private void btnRefreshGridView_Click(object sender, EventArgs e)
         {
-           //ErrorLogReader.ReadAsync();
+            //ErrorLogReader.ReadAsync();
         }
     }
 }

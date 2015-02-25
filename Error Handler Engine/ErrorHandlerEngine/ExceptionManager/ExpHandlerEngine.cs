@@ -59,8 +59,8 @@ namespace ErrorHandlerEngine.ExceptionManager
         {
             _option = option & ~ExceptionHandlerOption.SendCacheToServer;
 
-            // Set Up loader to run static constructor
-            Uploader.CanToSent = true;
+            if(string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath)) 
+                Application.Exit();
         }
 
 

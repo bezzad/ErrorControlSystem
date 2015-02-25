@@ -26,22 +26,6 @@ namespace ErrorHandlerEngine.ServerUploader
             return CanToSent;
         }
 
-        public static bool SentOneErrorToDb(ProxyError error)
-        {
-            if (CanToSent)
-            {
-                try
-                {
-                    DynamicStoredProcedures.InsertErrorStoredProcedure(error);
-                }
-                catch
-                {
-                    CanToSent = false;
-                }
-            }
-            return CanToSent;
-        }
-
         // maybe the network have exception then dead loop occurred,
         // so this variable closed that
         public static volatile bool CanToSent = true;

@@ -16,7 +16,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public static async Task CreateSdfAsync(string filePath)
         {
-            ConnectionString = string.Format("DataSource=\"{0}.sdf\"; Encrypt Database=True;", filePath);
+            ConnectionString = string.Format("DataSource=\"{0}\"; Persist Security Info = false;", filePath);
 
             if (File.Exists(filePath)) return;
 
@@ -73,7 +73,8 @@ namespace ErrorHandlerEngine.ServerUploader
             using (var cmd = sqlConn.CreateCommand())
             {
                 cmd.CommandText = @"INSERT  INTO [ErrorLog]
-					   ([ServerDateTime]
+					   ([ErrorId]
+                       ,[ServerDateTime]
 					   ,[Host]
 					   ,[User]
 					   ,[IsHandled]
@@ -97,7 +98,8 @@ namespace ErrorHandlerEngine.ServerUploader
                        ,[ScreenCapture]
 					   ,[DuplicateNo])
             VALUES  ( 
-`                       @ServerDateTime
+                        @Id
+                       ,@ServerDateTime
 					   ,@Host
 					   ,@User
 					   ,@IsHandled
@@ -124,6 +126,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
                 //
                 // Add parameters to command, which will be passed to the stored procedure
+                cmd.Parameters.AddWithValue("@Id", error.Id);
                 cmd.Parameters.AddWithValue("@ServerDateTime", error.ServerDateTime);
                 cmd.Parameters.AddWithValue("@Host", error.Host);
                 cmd.Parameters.AddWithValue("@User", error.User);

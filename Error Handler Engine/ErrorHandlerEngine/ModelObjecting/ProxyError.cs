@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Runtime.Serialization;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -10,53 +10,13 @@ namespace ErrorHandlerEngine.ModelObjecting
     {
         #region Properties
 
-        #region Snapshot Image Object
         public Lazy<System.Drawing.Image> Snapshot { get; set; }
-        #endregion
-
-        #region Get Error
-
-        public Error GetErrorObject
-        {
-            get
-            {
-                return new Error()
-                    {
-                        Id = this.Id,
-                        IsHandled = this.IsHandled,
-                        ErrorDateTime = this.ErrorDateTime,
-                        ServerDateTime = this.ServerDateTime,
-                        HResult = this.HResult,
-                        AppName = this.AppName,
-                        ClrVersion = this.ClrVersion,
-                        CurrentCulture = this.CurrentCulture,
-                        ErrorType = this.ErrorType,
-                        Host = this.Host,
-                        IPv4Address = this.IPv4Address,
-                        MacAddress = this.MacAddress,
-                        MemberType = this.MemberType,
-                        Message = this.Message,
-                        Method = this.Method,
-                        ModuleName = this.ModuleName,
-                        OS = this.OS,
-                        Processes = this.Processes,
-                        SnapshotAddress = this.SnapshotAddress,
-                        Source = this.Source,
-                        StackTrace = this.StackTrace,
-                        User = this.User,
-                        ErrorLineColumn = this.ErrorLineColumn,
-                        Duplicate = this.Duplicate
-                    };
-            }
-        }
-        #endregion
 
         #endregion
 
         #region Constructor
-        public ProxyError() { }
 
-        public ProxyError(Error error)
+        public ProxyError(IError error)
         {
             #region Initialize IError Properties
 
@@ -78,19 +38,17 @@ namespace ErrorHandlerEngine.ModelObjecting
             ModuleName = error.ModuleName;
             OS = error.OS;
             Processes = error.Processes;
-            SnapshotAddress = error.SnapshotAddress;
             Source = error.Source;
             StackTrace = error.StackTrace;
             User = error.User;
-            ErrorLineColumn = error.ErrorLineColumn;
+            LineColumn = error.LineColumn;
             Duplicate = error.Duplicate;
+
             #endregion
 
             #region Initialize Lazy<Image> Snapshot
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => string.IsNullOrEmpty(SnapshotAddress) || !File.Exists(SnapshotAddress)
-                ? null
-                : ScreenCapture.FromFile(SnapshotAddress));
+            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshotById(Id));
             #endregion
         }
 
@@ -115,11 +73,10 @@ namespace ErrorHandlerEngine.ModelObjecting
             ModuleName = (string)info.GetValue("ModuleName", typeof(string));
             OS = (string)info.GetValue("OS", typeof(string));
             Processes = (string)info.GetValue("Processes", typeof(string));
-            SnapshotAddress = (string)info.GetValue("SnapshotAddress", typeof(string));
             Source = (string)info.GetValue("Source", typeof(string));
             StackTrace = (string)info.GetValue("StackTrace", typeof(string));
             User = (string)info.GetValue("User", typeof(string));
-            ErrorLineColumn = (CodeLocation)info.GetValue("ErrorLineColumn", typeof(CodeLocation));
+            LineColumn = (CodeLocation)info.GetValue("LineColumn", typeof(CodeLocation));
             Duplicate = (int)info.GetValue("Duplicate", typeof(int));
         }
 
@@ -144,11 +101,10 @@ namespace ErrorHandlerEngine.ModelObjecting
         public string ModuleName { get; set; }
         public string OS { get; set; }
         public string Processes { get; set; }
-        public string SnapshotAddress { get; set; }
         public string Source { get; set; }
         public string StackTrace { get; set; }
         public string User { get; set; }
-        public CodeLocation ErrorLineColumn { get; set; }
+        public CodeLocation LineColumn { get; set; }
         public int Duplicate { get; set; }
         #endregion
 
@@ -178,7 +134,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;
-            ErrorLineColumn = CodeLocation.Empty;
+            LineColumn = CodeLocation.Empty;
             Duplicate = 0;
         }
         #endregion
@@ -215,7 +171,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (other == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return this.ErrorLineColumn == other.ErrorLineColumn &&
+            return this.LineColumn == other.LineColumn &&
                    this.HResult == other.HResult;
         }
 
@@ -225,7 +181,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (y == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return x.ErrorLineColumn == y.ErrorLineColumn &&
+            return x.LineColumn == y.LineColumn &&
                    x.HResult == y.HResult;
         }
 
@@ -241,7 +197,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             var comp = (ProxyError)obj;
             // Note value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
-            return comp.ErrorLineColumn == this.ErrorLineColumn &&
+            return comp.LineColumn == this.LineColumn &&
                    comp.HResult == this.HResult;
         }
 
@@ -253,7 +209,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public override int GetHashCode()
         {
             // Unique ID  =  Line×1000   XOR   Column   XOR   |HResult|
-            return unchecked(this.ErrorLineColumn.Line * 1000 ^ this.ErrorLineColumn.Column ^ Math.Abs(this.HResult));
+            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult));
         }
 
         #endregion
@@ -280,12 +236,51 @@ namespace ErrorHandlerEngine.ModelObjecting
             info.AddValue("ModuleName", this.ModuleName);
             info.AddValue("OS", this.OS);
             info.AddValue("Processes", this.Processes);
-            info.AddValue("SnapshotAddress", this.SnapshotAddress);
             info.AddValue("Source", this.Source);
             info.AddValue("StackTrace", this.StackTrace);
             info.AddValue("User", this.User);
-            info.AddValue("ErrorLineColumn", this.ErrorLineColumn);
+            info.AddValue("LineColumn", this.LineColumn);
             info.AddValue("Duplicate", this.Duplicate);
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        public static implicit operator Error(ProxyError proxyError)
+        {
+            return new Error()
+            {
+                Id = proxyError.Id,
+                IsHandled = proxyError.IsHandled,
+                ErrorDateTime = proxyError.ErrorDateTime,
+                ServerDateTime = proxyError.ServerDateTime,
+                HResult = proxyError.HResult,
+                AppName = proxyError.AppName,
+                ClrVersion = proxyError.ClrVersion,
+                CurrentCulture = proxyError.CurrentCulture,
+                ErrorType = proxyError.ErrorType,
+                Host = proxyError.Host,
+                IPv4Address = proxyError.IPv4Address,
+                MacAddress = proxyError.MacAddress,
+                MemberType = proxyError.MemberType,
+                Message = proxyError.Message,
+                Method = proxyError.Method,
+                ModuleName = proxyError.ModuleName,
+                OS = proxyError.OS,
+                Processes = proxyError.Processes,
+                Source = proxyError.Source,
+                StackTrace = proxyError.StackTrace,
+                User = proxyError.User,
+                LineColumn = proxyError.LineColumn,
+                Duplicate = proxyError.Duplicate,
+                Snapshot = proxyError.Snapshot.Value
+            };
+        }
+
+        public static explicit operator ProxyError(Error error)
+        {
+            return new ProxyError(error);
         }
 
         #endregion

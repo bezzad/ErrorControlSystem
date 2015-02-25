@@ -54,7 +54,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             //
             // Load error log data to history of errors without snapshot images
             if (CacheController.ErrorHistory.Count <= 0)
-                CacheController.ReadCacheFromDiskAsync();
+                CacheController.ReadCacheAsync();
         }
 
         #endregion

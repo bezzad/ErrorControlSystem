@@ -42,8 +42,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 error.SnapshotAddress = await StorageRouter.SaveSnapshotImageOnDiskAsync(error);
 
                 // Dispose Image of Error On Memory 
-                if (error.GetSnapshot() != null)
-                    error.GetSnapshot().Dispose();
+                if (error.Snapshot() != null)
+                    error.Snapshot().Dispose();
 
                 // send to error saver action block
                 return error;

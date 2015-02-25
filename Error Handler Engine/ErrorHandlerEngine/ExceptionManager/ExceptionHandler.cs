@@ -103,7 +103,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Error Line Column
 
-            error.ErrorLineColumn = new CodeLocation(exception);
+            error.LineColumn = new CodeLocation(exception);
 
             #endregion
 
@@ -116,7 +116,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             // First initialize Snapshot of Error, because that's speed is important!
             if (!CacheController.ErrorHistory.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
             {
-                error.SetSnapshot( 
+                error.Snapshot( 
                     option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
                         ? ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
                         : ScreenCapture.CaptureScreen());

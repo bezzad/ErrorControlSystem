@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,17 +11,19 @@ using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ServerUploader
 {
-    class SdfFileManager
+    public static class SdfFileManager
     {
-        private static string _connString;
+        public static string ConnectionString { get; set; }
+
+
 
         public static void CreateSdf(string filePath)
         {
-            _connString = string.Format("DataSource=\"{0}.sdf\"; Encrypt Database=True;", filePath);
+            ConnectionString = string.Format("DataSource=\"{0}.sdf\"; Encrypt Database=True;", filePath);
 
             if (File.Exists(filePath)) return;
 
-            new SqlCeEngine(_connString).CreateDatabase();
+            new SqlCeEngine(ConnectionString).CreateDatabase();
 
             const string createErrorLogTable = @"CREATE TABLE [ErrorLog](
 	                                [ErrorId] [bigint] NOT NULL CONSTRAINT PK_ErrorLog PRIMARY KEY,
@@ -49,7 +52,7 @@ namespace ErrorHandlerEngine.ServerUploader
 	                                [DuplicateNo] [int] NULL ) ";
 
 
-            using (var sqlCon = new SqlCeConnection(_connString))
+            using (var sqlCon = new SqlCeConnection(ConnectionString))
             using (var comError = new SqlCeCommand(createErrorLogTable))
             using (comError.Connection = sqlCon)
             {
@@ -66,9 +69,9 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static void InsertToSdf(Error error)
+        public static void Insert(Error error)
         {
-            using (var sqlConn = new SqlCeConnection(_connString))
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
                 cmd.CommandText = @"INSERT  INTO [ErrorLog]
@@ -143,8 +146,8 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
                 cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
-                cmd.Parameters.AddWithValue("@LineCol", error.ErrorLineColumn.ToString());
-                cmd.Parameters.AddWithValue("@Snapshot", error.GetSnapshot().ToBytes());
+                cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
+                cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot().ToBytes());
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
 
                 try
@@ -159,9 +162,46 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static Error GetFromSdf(int id)
+        public static void Update(Error error)
         {
-            using (var sqlConn = new SqlCeConnection(_connString))
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                cmd.CommandText = @"UPDATE [ErrorLog]
+                                    SET [DuplicateNo] +=1,
+                                        [IsHandled] = @isHandled,
+                                        [StackTrace] = @stackTrace
+                                    WHERE ErrorId = @id";
+
+                //
+                // Add parameters to command, which will be passed to the stored procedure
+                cmd.Parameters.AddWithValue("@id", error.Id);
+                cmd.Parameters.AddWithValue("@isHandled", error.IsHandled);
+                cmd.Parameters.AddWithValue("@stackTrace", error.StackTrace);
+
+                try
+                {
+                    sqlConn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+            }
+        }
+
+        public static void InsertOrUpdate(Error error)
+        {
+            if (Contains(error.Id))
+                UpdateSdf(error);
+            else
+                InsertToSdf(error);
+        }
+
+        public static ProxyError GetErrorById(int id)
+        {
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
                 try
@@ -181,7 +221,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
         public static bool Contains(int id)
         {
-            using (var sqlConn = new SqlCeConnection(_connString))
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
                 try
@@ -199,18 +239,101 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static Error[] GetErrorsFromSdf()
+        public static ProxyError[] GetErrors()
         {
-            using (var sqlConn = new SqlCeConnection(_connString))
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
                 try
                 {
-                    cmd.CommandText = string.Format("Select * From ErrorLog");
+                    cmd.CommandText = string.Format(@"SELECT [ErrorId]
+                                                            ,[ServerDateTime]
+                                                            ,[Host]
+                                                            ,[User]
+                                                            ,[IsHandled]
+                                                            ,[Type]
+                                                            ,[AppName]
+                                                            ,[CurrentCulture]
+                                                            ,[CLRVersion]
+                                                            ,[Message]
+                                                            ,[Source]
+                                                            ,[StackTrace]
+                                                            ,[ModuleName]
+                                                            ,[MemberType]
+                                                            ,[Method]
+                                                            ,[Processes]
+                                                            ,[ErrorDateTime]
+                                                            ,[OS]
+                                                            ,[IPv4Address]
+                                                            ,[MACAddress]
+                                                            ,[HResult]
+                                                            ,[LineColumn]
+                                                            ,[DuplicateNo]
+                                                        FROM ErrorLog");
 
                     sqlConn.Open();
 
-                    return (Error[])cmd.ExecuteScalar();
+                    return (ProxyError[])cmd.ExecuteScalar();
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+            }
+        }
+
+        public static Image GetSnapshotById(int id)
+        {
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                try
+                {
+                    cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
+
+                    sqlConn.Open();
+
+                    return (Image)cmd.ExecuteScalar();
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+            }
+        }
+
+        public static void Delete(int id)
+        {
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                try
+                {
+                    cmd.CommandText = string.Format("Delete From ErrorLog Where ErrorId = {0}", id);
+
+                    sqlConn.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+            }
+        }
+
+        public static int Count()
+        {
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                try
+                {
+                    cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog");
+
+                    sqlConn.Open();
+
+                    return (Int32)cmd.ExecuteScalar();
                 }
                 finally
                 {

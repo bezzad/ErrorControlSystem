@@ -6,18 +6,7 @@ namespace ErrorHandlerEngine.ModelObjecting
     {
         #region Properties
 
-        #region Snapshot Image Object
-        private System.Drawing.Image _snapshot;
-
-        public System.Drawing.Image GetSnapshot()
-        {
-            return _snapshot;
-        }
-        public void SetSnapshot(System.Drawing.Image screenCapture)
-        {
-            _snapshot = screenCapture;
-        }
-        #endregion
+        public System.Drawing.Image Snapshot { get; set; }
 
         #endregion
 
@@ -41,11 +30,10 @@ namespace ErrorHandlerEngine.ModelObjecting
         public string ModuleName { get; set; }
         public string OS { get; set; }
         public string Processes { get; set; }
-        public string SnapshotAddress { get; set; }
         public string Source { get; set; }
         public string StackTrace { get; set; }
         public string User { get; set; }
-        public CodeLocation ErrorLineColumn { get; set; }
+        public CodeLocation LineColumn { get; set; }
         public int Duplicate { get; set; }
         #endregion
 
@@ -70,12 +58,11 @@ namespace ErrorHandlerEngine.ModelObjecting
             OS = null;
             Processes = null;
             ServerDateTime = DateTime.MinValue;
-            _snapshot.Dispose();
-            SnapshotAddress = String.Empty;
+            Snapshot.Dispose();
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;
-            ErrorLineColumn = CodeLocation.Empty;
+            LineColumn = CodeLocation.Empty;
             Duplicate = 0;
         }
         #endregion
@@ -112,7 +99,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (other == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return this.ErrorLineColumn == other.ErrorLineColumn &&
+            return this.LineColumn == other.LineColumn &&
                    this.HResult == other.HResult;
         }
 
@@ -122,7 +109,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (y == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return x.ErrorLineColumn == y.ErrorLineColumn &&
+            return x.LineColumn == y.LineColumn &&
                    x.HResult == y.HResult;
         }
 
@@ -138,7 +125,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             var comp = (Error)obj;
             // Note value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
-            return comp.ErrorLineColumn == this.ErrorLineColumn &&
+            return comp.LineColumn == this.LineColumn &&
                    comp.HResult == this.HResult;
         }
 
@@ -150,7 +137,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public override int GetHashCode()
         {
             // Unique ID  =  Line×1000   XOR   Column   XOR   |HResult|
-            return unchecked(this.ErrorLineColumn.Line * 1000 ^ this.ErrorLineColumn.Column ^ Math.Abs(this.HResult));
+            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult));
         }
 
         #endregion

@@ -59,7 +59,6 @@
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="ModelObjecting\CodeLocation.cs" />
     <Compile Include="ModelObjecting\Error.cs" />
-    <Compile Include="ModelObjecting\ErrorUniqueCollection.cs" />
     <Compile Include="ModelObjecting\ExceptionHandlerOption.cs" />
     <Compile Include="ModelObjecting\IError.cs" />
     <Compile Include="ExceptionManager\ExceptionHandler.cs" />

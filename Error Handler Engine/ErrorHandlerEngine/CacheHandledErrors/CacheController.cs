@@ -17,8 +17,6 @@ namespace ErrorHandlerEngine.CacheHandledErrors
     {
         public static bool AreErrorsInSendState = false;
 
-        public static ErrorUniqueCollection ErrorHistory = new ErrorUniqueCollection();
-
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
 
         #region Methods
@@ -88,52 +86,11 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
         }
 
-
-        /// <summary>
-        /// Read cache and fill ErrorHistory array
-        /// </summary>
-        public static async void ReadCacheFromDiskAsync()
-        {
-            var errors = await GetErrosFromLogAsync();
-            //
-            // Read any error in errors array to sent it to ServerUploader
-            ErrorHistory.AddRange(errors);
-        }
-
-
-        /// <summary>
-        /// Read log file's to fetch errors history.
-        /// </summary>
-        /// <returns>Error Array's.</returns>
-        private static async Task<Error[]> GetErrosFromLogAsync()
-        {
-            ExpHandlerEngine.IsSelfException = true;
-            try
-            {
-                //
-                // Read Error Log Json File
-                var allJsonString = await StorageRouter.ReadLogAsync();
-                //
-                // Check file is not empty ?
-                if (String.IsNullOrEmpty(allJsonString)) return null;
-
-                //
-                // Convert json string to Error array's.
-                return await JsonConvert.DeserializeObjectAsync<Error[]>(allJsonString);
-            }
-            finally
-            {
-                ExpHandlerEngine.IsSelfException = false;
-            }
-
-        }
-
-
         public static async void UploadCacheAsync()
         {
             await Task.Run(async () =>
             {
-                foreach (var error in ErrorHistory)
+                foreach (var error in SdfFileManager.GetErrors())
                 {
                     await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
                 }

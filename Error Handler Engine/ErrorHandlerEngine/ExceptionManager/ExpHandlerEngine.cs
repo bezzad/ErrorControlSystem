@@ -49,12 +49,6 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             // Catch all unhandled exceptions.
             Application.ThreadException += ThreadExceptionHandler;
-
-            // First time create history of errors to buffer any occurrence error
-            //
-            // Load error log data to history of errors without snapshot images
-            if (CacheController.ErrorHistory.Count <= 0)
-                CacheController.ReadCacheAsync();
         }
 
         #endregion

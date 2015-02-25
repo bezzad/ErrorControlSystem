@@ -10,7 +10,7 @@ namespace ErrorHandlerEngine.ModelObjecting
     {
         #region Properties
 
-        public Lazy<System.Drawing.Image> Snapshot { get; set; }
+        public AsyncLazy<System.Drawing.Image> Snapshot { get; set; }
 
         #endregion
 
@@ -47,8 +47,10 @@ namespace ErrorHandlerEngine.ModelObjecting
             #endregion
 
             #region Initialize Lazy<Image> Snapshot
+
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshotById(Id));
+            Snapshot = new AsyncLazy<Image>(async () => await SdfFileManager.GetSnapshotAsync(Id));
+
             #endregion
         }
 
@@ -130,7 +132,6 @@ namespace ErrorHandlerEngine.ModelObjecting
             Processes = null;
             ServerDateTime = DateTime.MinValue;
             Snapshot = null;
-            SnapshotAddress = String.Empty;
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;
@@ -274,7 +275,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                 User = proxyError.User,
                 LineColumn = proxyError.LineColumn,
                 Duplicate = proxyError.Duplicate,
-                Snapshot = proxyError.Snapshot.Value
+                Snapshot = proxyError.Snapshot.GetAwaiter().GetResult()
             };
         }
 

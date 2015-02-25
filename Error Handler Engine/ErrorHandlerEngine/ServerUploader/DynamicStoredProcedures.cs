@@ -176,7 +176,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.CommandType = CommandType.StoredProcedure;
                 //
                 // Add parameters to command, which will be passed to the stored procedure
-                cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
+                cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.GetAwaiter().GetResult().ToBytes());
                 cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
                 cmd.Parameters.AddWithValue("@Host", error.Host);
                 cmd.Parameters.AddWithValue("@User", error.User);
@@ -221,7 +221,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@IsHandled", error.IsHandled);
                 cmd.Parameters.AddWithValue("@Type", error.ErrorType);
                 cmd.Parameters.AddWithValue("@AppName", error.AppName);
-                cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
+                cmd.Parameters.AddWithValue("@ScreenCapture", (await error.Snapshot).ToBytes());
                 cmd.Parameters.AddWithValue("@CurrentCulture", error.CurrentCulture);
                 cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
                 cmd.Parameters.AddWithValue("@Message", error.Message);

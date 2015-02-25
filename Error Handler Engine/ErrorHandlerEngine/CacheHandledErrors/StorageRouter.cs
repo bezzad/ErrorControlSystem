@@ -33,13 +33,13 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         #region Methods
 
-        private static void LoadLogPath()
+        private static async void LoadLogPath()
         {
             ErrorLogFilePath = ReadSetting("ErrorLogPath");
 
             CheckLogPath();
 
-            SdfFileManager.CreateSdf(ErrorLogFilePath);
+            await SdfFileManager.CreateSdfAsync(ErrorLogFilePath);
         }
 
         private static void CheckLogPath()
@@ -93,7 +93,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             try { return (string)Settings.Default[key]; }
             catch { return ""; }
         }
-        
+
         #endregion
 
     }

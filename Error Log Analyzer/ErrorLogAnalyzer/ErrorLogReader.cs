@@ -20,7 +20,7 @@ namespace ErrorLogAnalyzer
 
             foreach (var error in errors)
             {
-               // OnReadLazyError(error, new ProxyErrorEventArgs(error));
+                // OnReadLazyError(error, new ProxyErrorEventArgs(error));
             }
         },
             new ExecutionDataflowBlockOptions
@@ -30,17 +30,7 @@ namespace ErrorLogAnalyzer
 
         #endregion
 
-        public static async void ReadAsync()
-        {
-            var allJsonString = await StorageRouter.ReadLogAsync();
 
-            if (!string.IsNullOrEmpty(allJsonString))
-            {
-                allJsonString = string.Format("{0} {1} {2}", @"[", allJsonString.Substring(0, allJsonString.Length - 3), "]");
-
-                await abFetchByEventDriven.SendAsync(allJsonString);
-            }
-        }
 
 
     }

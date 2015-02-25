@@ -25,6 +25,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
@@ -33,13 +34,6 @@ namespace ErrorHandlerEngine.ExceptionManager
     /// </summary>
     public static class ExceptionHandler
     {
-        #region Events
-
-        public static EventHandler OnErrorRaised = ErrorsReceiver.OnErrorHandled;
-
-        #endregion
-
-
         #region Properties
 
         public static Size ScreenShotReSizeAspectRatio = new Size(1024, 768); // set to aspect 1024×768
@@ -76,8 +70,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             }
 
 
-            if (OnErrorRaised != null)
-                OnErrorRaised(error, new EventArgs());
+            CacheController.ErrorSaverActionBlock.Post(error);
 
             return error;
         }
@@ -114,12 +107,11 @@ namespace ErrorHandlerEngine.ExceptionManager
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!CacheController.ErrorHistory.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
+            if (!SdfFileManager.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
             {
-                error.Snapshot( 
-                    option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
+                error.Snapshot = option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
                         ? ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
-                        : ScreenCapture.CaptureScreen());
+                        : ScreenCapture.CaptureScreen();
             }
 
             #endregion
@@ -217,12 +209,6 @@ namespace ErrorHandlerEngine.ExceptionManager
             #region Is Handled Error or UnHandled?
 
             error.IsHandled = option.HasFlag(ExceptionHandlerOption.IsHandled);
-
-            #endregion
-
-            #region Screen Capture Address
-
-            error.SnapshotAddress = "";
 
             #endregion
 

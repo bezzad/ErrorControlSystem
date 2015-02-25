@@ -54,9 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheHandledErrors\CacheController.cs" />
-    <Compile Include="CacheHandledErrors\ErrorsReceiver.cs" />
     <Compile Include="CacheHandledErrors\StorageRouter.cs" />
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
+    <Compile Include="ModelObjecting\AsyncLazy.cs" />
     <Compile Include="ModelObjecting\CodeLocation.cs" />
     <Compile Include="ModelObjecting\Error.cs" />
     <Compile Include="ModelObjecting\ExceptionHandlerOption.cs" />

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.SqlServerCe;
@@ -13,11 +10,11 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class SdfFileManager
     {
-        public static string ConnectionString { get; set; }
+        public static volatile string ConnectionString;
 
 
 
-        public static void CreateSdf(string filePath)
+        public static async Task CreateSdfAsync(string filePath)
         {
             ConnectionString = string.Format("DataSource=\"{0}.sdf\"; Encrypt Database=True;", filePath);
 
@@ -53,14 +50,15 @@ namespace ErrorHandlerEngine.ServerUploader
 
 
             using (var sqlCon = new SqlCeConnection(ConnectionString))
-            using (var comError = new SqlCeCommand(createErrorLogTable))
-            using (comError.Connection = sqlCon)
+            using (var cmd = sqlCon.CreateCommand())
             {
                 try
                 {
-                    sqlCon.Open();
+                    cmd.CommandText = createErrorLogTable;
 
-                    comError.ExecuteNonQuery();
+                    await sqlCon.OpenAsync();
+
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
@@ -69,7 +67,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static void Insert(Error error)
+        public static async Task InsertAsync(Error error)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -147,13 +145,13 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
                 cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
-                cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot().ToBytes());
+                cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot.ToBytes());
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
 
                 try
                 {
-                    sqlConn.Open();
-                    cmd.ExecuteNonQuery();
+                    await sqlConn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
@@ -162,7 +160,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static void Update(Error error)
+        public static async Task UpdateAsync(Error error)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -181,8 +179,8 @@ namespace ErrorHandlerEngine.ServerUploader
 
                 try
                 {
-                    sqlConn.Open();
-                    cmd.ExecuteNonQuery();
+                    await sqlConn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
@@ -191,15 +189,15 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static void InsertOrUpdate(Error error)
+        public static async Task InsertOrUpdateAsync(Error error)
         {
             if (Contains(error.Id))
-                UpdateSdf(error);
+                await UpdateAsync(error);
             else
-                InsertToSdf(error);
+                await InsertAsync(error);
         }
 
-        public static ProxyError GetErrorById(int id)
+        public static async Task<ProxyError> GetErrorAsync(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -208,9 +206,9 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     cmd.CommandText = string.Format("Select * From ErrorLog Where ErrorId = {0}", id);
 
-                    sqlConn.Open();
+                    await sqlConn.OpenAsync();
 
-                    return (Error)cmd.ExecuteScalar();
+                    return await cmd.ExecuteScalarAsync() as ProxyError;
                 }
                 finally
                 {
@@ -230,7 +228,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
                     sqlConn.Open();
 
-                    return (Int32)cmd.ExecuteScalar() > 0;
+                    return cmd.ExecuteScalar() as int? > 0;
                 }
                 finally
                 {
@@ -239,7 +237,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static ProxyError[] GetErrors()
+        public static async Task<ProxyError[]> GetErrorsAsync()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -271,9 +269,9 @@ namespace ErrorHandlerEngine.ServerUploader
                                                             ,[DuplicateNo]
                                                         FROM ErrorLog");
 
-                    sqlConn.Open();
+                    await sqlConn.OpenAsync();
 
-                    return (ProxyError[])cmd.ExecuteScalar();
+                    return await cmd.ExecuteScalarAsync() as ProxyError[];
                 }
                 finally
                 {
@@ -282,7 +280,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static Image GetSnapshotById(int id)
+        public static async Task<Image> GetSnapshotAsync(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -291,9 +289,9 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
 
-                    sqlConn.Open();
+                    await sqlConn.OpenAsync();
 
-                    return (Image)cmd.ExecuteScalar();
+                    return await cmd.ExecuteScalarAsync() as Image;
                 }
                 finally
                 {
@@ -302,7 +300,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static void Delete(int id)
+        public static async Task DeleteAsync(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -311,9 +309,9 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     cmd.CommandText = string.Format("Delete From ErrorLog Where ErrorId = {0}", id);
 
-                    sqlConn.Open();
+                    await sqlConn.OpenAsync();
 
-                    cmd.ExecuteNonQuery();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
@@ -322,7 +320,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static int Count()
+        public static async Task<int> CountAsync()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -331,9 +329,9 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog");
 
-                    sqlConn.Open();
+                    await sqlConn.OpenAsync();
 
-                    return (Int32)cmd.ExecuteScalar();
+                    return await cmd.ExecuteScalarAsync() as int? ?? 0;
                 }
                 finally
                 {

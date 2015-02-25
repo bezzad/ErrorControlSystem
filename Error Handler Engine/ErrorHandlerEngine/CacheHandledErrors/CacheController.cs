@@ -9,7 +9,6 @@ using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.Properties;
 using ErrorHandlerEngine.ServerUploader;
-using Newtonsoft.Json;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {
@@ -19,11 +18,28 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
 
+        public static ActionBlock<Error> ErrorSaverActionBlock;
+
         #region Methods
 
 
         static CacheController()
         {
+            #region Save Error object in Error.Log (SQL SDF) file's [Action Block]
+
+            ErrorSaverActionBlock = new ActionBlock<Error>(async error =>
+            {
+                await SdfFileManager.InsertOrUpdateAsync(error);
+
+                await CheckStateAsync();
+            },
+                new ExecutionDataflowBlockOptions
+                {
+                    MaxMessagesPerTask = 1
+                });
+
+            #endregion
+
             #region Acknowledge Action Block
 
             AcknowledgeActionBlock = new ActionBlock<Tuple<ProxyError, bool>>(
@@ -32,11 +48,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                     if (ack.Item2) // Error Successful sent to server database
                     {
                         //
-                        // Remove Error Snapshot from Snapshots Folder's:
-                        await StorageRouter.DeleteSnapshotImageOnDiskAsync(ack.Item1.SnapshotAddress);
-                        //
                         // Remove Error from Log file:
-                        await ErrorHistory.RemoveByConcurrencyAsync(ack.Item1.GetErrorObject);
+                        await SdfFileManager.DeleteAsync(ack.Item1.Id);
                         //
                         // De-story error from Memory (RAM):
                         if (ack.Item1 != null) ack.Item1.Dispose();
@@ -54,7 +67,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         /// <summary>
         /// Check Cache State to Send Data to Server or Not ?
         /// </summary>
-        public static void CheckState()
+        public static async Task CheckStateAsync()
         {
             if (AreErrorsInSendState) return;
 
@@ -76,7 +89,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 // and if successful sent then clear them...
                 if (errorDataSize >= maxSize && ConnectionManager.GetDefaultConnection().IsReady)
                 {
-                    UploadCacheAsync();
+                    await UploadCacheAsync();
                 }
             }
             finally
@@ -86,16 +99,12 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
         }
 
-        public static async void UploadCacheAsync()
+        public static async Task UploadCacheAsync()
         {
-            await Task.Run(async () =>
+            foreach (var error in await SdfFileManager.GetErrorsAsync())
             {
-                foreach (var error in SdfFileManager.GetErrors())
-                {
-                    await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
-                }
-            });
-
+                await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
+            }
         }
 
 

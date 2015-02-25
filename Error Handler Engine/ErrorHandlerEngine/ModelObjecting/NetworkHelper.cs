@@ -41,20 +41,11 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// <returns></returns>
         public static string GetIpAddress()
         {
-            if (IsNetworkAvailable())
-            {
-                var host = Dns.GetHostEntry(Dns.GetHostName());
+            if (!IsNetworkAvailable()) return "Network Not Available";
 
-                foreach (var ip in host.AddressList)
-                {
-                    if (ip.AddressFamily.ToString() == "InterNetwork")
-                    {
-                        return ip.ToString();
-                    }
-                }
-            }
+            var host = Dns.GetHostEntry(Dns.GetHostName());
 
-            return "Network Not Available";
+            return host.AddressList.Last(ip => ip.AddressFamily.ToString() == "InterNetwork").ToString();
         }
         #endregion
 

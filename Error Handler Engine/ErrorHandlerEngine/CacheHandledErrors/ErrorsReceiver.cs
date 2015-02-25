@@ -42,7 +42,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 error.SnapshotAddress = await StorageRouter.SaveSnapshotImageOnDiskAsync(error);
 
                 // Dispose Image of Error On Memory 
-                error.GetSnapshot().Dispose();
+                if (error.GetSnapshot() != null)
+                    error.GetSnapshot().Dispose();
 
                 // send to error saver action block
                 return error;
@@ -72,9 +73,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static async void OnErrorHandled(object sender, EventArgs e)
+        public static void OnErrorHandled(object sender, EventArgs e)
         {
-            await ErrorSnapshotSaverTransformBlock.SendAsync(sender as Error);
+            ErrorSnapshotSaverTransformBlock.Post(sender as Error);
         }
 
         #endregion

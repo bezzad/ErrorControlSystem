@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 using System.Data.SqlServerCe;
@@ -23,7 +26,7 @@ namespace ErrorHandlerEngine.ServerUploader
             new SqlCeEngine(ConnectionString).CreateDatabase();
 
             const string createErrorLogTable = @"CREATE TABLE [ErrorLog](
-	                                [ErrorId] [bigint] NOT NULL CONSTRAINT PK_ErrorLog PRIMARY KEY,
+	                                [ErrorId] [int] NOT NULL CONSTRAINT PK_ErrorLog PRIMARY KEY,
 	                                [ServerDateTime] [datetime] NULL,
 	                                [Host] [nvarchar](200) NULL,
 	                                [User] [nvarchar](200) NULL,
@@ -169,7 +172,7 @@ namespace ErrorHandlerEngine.ServerUploader
             using (var cmd = sqlConn.CreateCommand())
             {
                 cmd.CommandText = @"UPDATE [ErrorLog]
-                                    SET [DuplicateNo] +=1,
+                                    SET [DuplicateNo] = [DuplicateNo] + 1,
                                         [IsHandled] = @isHandled,
                                         [StackTrace] = @stackTrace
                                     WHERE ErrorId = @id";
@@ -240,7 +243,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static async Task<ProxyError[]> GetErrorsAsync()
+        public static IEnumerable<ProxyError> GetErrors()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -272,9 +275,39 @@ namespace ErrorHandlerEngine.ServerUploader
                                                             ,[DuplicateNo]
                                                         FROM ErrorLog");
 
-                    await sqlConn.OpenAsync();
+                    sqlConn.Open();
 
-                    return await cmd.ExecuteScalarAsync() as ProxyError[];
+                    var adapter = new SqlCeDataAdapter(cmd);
+                    var dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    return (from DataRow error in dt.Rows
+                            select new ProxyError
+                            {
+                                Id = unchecked((int)error["ErrorId"]),
+                                ServerDateTime = (DateTime)error["ServerDateTime"],
+                                Host = (string)error["Host"],
+                                User = (string)error["User"],
+                                IsHandled = (bool)error["IsHandled"],
+                                ErrorType = (string)error["Type"],
+                                AppName = (string)error["AppName"],
+                                CurrentCulture = (string)error["CurrentCulture"],
+                                ClrVersion = (string)error["CLRVersion"],
+                                Message = (string)error["Message"],
+                                Source = (string)error["Source"],
+                                StackTrace = (string)error["StackTrace"],
+                                ModuleName = (string)error["ModuleName"],
+                                MemberType = (string)error["MemberType"],
+                                Method = (string)error["Method"],
+                                Processes = (string)error["Processes"],
+                                ErrorDateTime = (DateTime)error["ErrorDateTime"],
+                                OS = (string)error["OS"],
+                                IPv4Address = (string)error["IPv4Address"],
+                                MacAddress = (string)error["MACAddress"],
+                                HResult = (int)error["HResult"],
+                                LineColumn = CodeLocation.Parse(error["LineColumn"] as string),
+                                Duplicate = (int)error["DuplicateNo"]
+                            });
                 }
                 finally
                 {
@@ -283,7 +316,7 @@ namespace ErrorHandlerEngine.ServerUploader
             }
         }
 
-        public static async Task<Image> GetSnapshotAsync(int id)
+        public static Image GetSnapshot(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -292,9 +325,9 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
 
-                    await sqlConn.OpenAsync();
+                    sqlConn.Open();
 
-                    return await cmd.ExecuteScalarAsync() as Image;
+                    return ((byte[])cmd.ExecuteScalar()).ToImage();
                 }
                 finally
                 {

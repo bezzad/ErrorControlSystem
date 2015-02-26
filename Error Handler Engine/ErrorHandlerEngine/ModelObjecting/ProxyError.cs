@@ -10,11 +10,21 @@ namespace ErrorHandlerEngine.ModelObjecting
     {
         #region Properties
 
-        public AsyncLazy<System.Drawing.Image> Snapshot { get; set; }
+        public Lazy<System.Drawing.Image> Snapshot { get; set; }
 
         #endregion
 
         #region Constructor
+
+        public ProxyError()
+        {
+            #region Initialize Lazy<Image> Snapshot
+
+            // Initialize by invoking a specific constructor on Order when Value property is accessed
+            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
+
+            #endregion
+        }
 
         public ProxyError(IError error)
         {
@@ -49,7 +59,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             #region Initialize Lazy<Image> Snapshot
 
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new AsyncLazy<Image>(async () => await SdfFileManager.GetSnapshotAsync(Id));
+            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
 
             #endregion
         }
@@ -80,6 +90,8 @@ namespace ErrorHandlerEngine.ModelObjecting
             User = (string)info.GetValue("User", typeof(string));
             LineColumn = (CodeLocation)info.GetValue("LineColumn", typeof(CodeLocation));
             Duplicate = (int)info.GetValue("Duplicate", typeof(int));
+            // Initialize by invoking a specific constructor on Order when Value property is accessed
+            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
         }
 
         #endregion
@@ -275,7 +287,7 @@ namespace ErrorHandlerEngine.ModelObjecting
                 User = proxyError.User,
                 LineColumn = proxyError.LineColumn,
                 Duplicate = proxyError.Duplicate,
-                Snapshot = proxyError.Snapshot.GetAwaiter().GetResult()
+                Snapshot = proxyError.Snapshot.Value
             };
         }
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ErrorHandlerEngine.ModelObjecting;
 //using ErrorLogAnalyzer;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace TestErrorHandlerBySelf
 {
@@ -58,7 +60,11 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestUnHandledUIExp_Click(object sender, EventArgs e)
         {
-            //Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            var errors = SdfFileManager.GetErrors();
+          
+            var a = errors.ToArray()[0].Snapshot.Value;
+
+            var length = errors.Count();
         }
 
         private void btnTestUnHandledThreadExp_Click(object sender, EventArgs e)

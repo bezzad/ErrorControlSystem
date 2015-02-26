@@ -29,9 +29,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             ErrorSaverActionBlock = new ActionBlock<Error>(async error =>
             {
-                await SdfFileManager.InsertOrUpdateAsync(error);
+                 await SdfFileManager.InsertOrUpdateAsync(error);
 
-                await CheckStateAsync();
+                 await CheckStateAsync();
             },
                 new ExecutionDataflowBlockOptions
                 {
@@ -101,7 +101,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         public static async Task UploadCacheAsync()
         {
-            foreach (var error in await SdfFileManager.GetErrorsAsync())
+            foreach (var error in SdfFileManager.GetErrors())
             {
                 await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
             }

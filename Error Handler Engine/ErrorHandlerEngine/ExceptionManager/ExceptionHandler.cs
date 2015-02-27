@@ -110,8 +110,8 @@ namespace ErrorHandlerEngine.ExceptionManager
             if (!SdfFileManager.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
             {
                 error.Snapshot = option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
-                        ? ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
-                        : ScreenCapture.CaptureScreen();
+                        ? ScreenCapture.Capture().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
+                        : ScreenCapture.Capture();
             }
 
             #endregion

@@ -25,7 +25,6 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// <summary>
         /// Creates an Image object containing a screen shot of the entire desktop
         /// </summary>
-        /// <param name="totalSize">The total size.</param>
         /// <returns>Screen Captured Image</returns>
         public static Image Capture()
         {

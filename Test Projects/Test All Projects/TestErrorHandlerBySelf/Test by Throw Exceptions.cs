@@ -10,11 +10,11 @@ using ErrorHandlerEngine.ServerUploader;
 
 namespace TestErrorHandlerBySelf
 {
-    public partial class Form1 : Form
+    public partial class FormTest : Form
     {
         private List<Action> Exps;
 
-        public Form1()
+        public FormTest()
         {
             InitializeComponent();
 
@@ -28,7 +28,6 @@ namespace TestErrorHandlerBySelf
                 () => { throw new SystemException(); }
             };
 
-            dataGridView1.CreateColumns(typeof(ProxyError));
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -37,12 +36,6 @@ namespace TestErrorHandlerBySelf
             Close();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            //int index = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.Index : 0;
-            //if (index < errors.Count && index >= 0)
-            //    pictureBox1.Image = errors[index].Snapshot.Value;
-        }
 
         private void btnTestHandledFirstExp_Click(object sender, EventArgs e)
         {
@@ -60,11 +53,7 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestUnHandledUIExp_Click(object sender, EventArgs e)
         {
-            var errors = SdfFileManager.GetErrors();
-          
-            var a = errors.ToArray()[0].Snapshot.Value;
-
-            var length = errors.Count();
+            Program.UIExp();
         }
 
         private void btnTestUnHandledThreadExp_Click(object sender, EventArgs e)
@@ -83,9 +72,5 @@ namespace TestErrorHandlerBySelf
             { int a = 0, b = 8, c = b / a; });
         }
 
-        private void btnRefreshGridView_Click(object sender, EventArgs e)
-        {
-            //ErrorLogReader.ReadAsync();
-        }
     }
 }

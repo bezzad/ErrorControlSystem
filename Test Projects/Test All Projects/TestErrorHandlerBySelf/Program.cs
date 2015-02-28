@@ -20,7 +20,12 @@ namespace TestErrorHandlerBySelf
             ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"),
                 ExceptionHandlerOption.Default | ExceptionHandlerOption.ReSizeSnapshots);
 
-            Application.Run(new Form1());
+            Application.Run(new FormTest());
+        }
+
+        public static void UIExp()
+        {
+            throw new Exception("My UI Unhandled Exception");
         }
     }
 }

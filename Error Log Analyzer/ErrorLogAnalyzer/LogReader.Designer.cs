@@ -1,6 +1,6 @@
-﻿namespace TestErrorHandlerBySelf
+﻿namespace ErrorLogAnalyzer
 {
-    partial class Form1
+    partial class LogReader
     {
         /// <summary>
         /// Required designer variable.
@@ -32,10 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnTestHandledFirstExp = new System.Windows.Forms.Button();
-            this.btnTestUnHandledUIExp = new System.Windows.Forms.Button();
-            this.btnTestUnHandledThreadExp = new System.Windows.Forms.Button();
-            this.btnTestUnhandledTaskExp = new System.Windows.Forms.Button();
             this.btnRefreshGridView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -91,54 +87,10 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1020, 411);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // btnTestHandledFirstExp
-            // 
-            this.btnTestHandledFirstExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestHandledFirstExp.Location = new System.Drawing.Point(12, 12);
-            this.btnTestHandledFirstExp.Name = "btnTestHandledFirstExp";
-            this.btnTestHandledFirstExp.Size = new System.Drawing.Size(172, 23);
-            this.btnTestHandledFirstExp.TabIndex = 6;
-            this.btnTestHandledFirstExp.Text = "ThrowTry/Catch Exception";
-            this.btnTestHandledFirstExp.UseVisualStyleBackColor = true;
-            this.btnTestHandledFirstExp.Click += new System.EventHandler(this.btnTestHandledFirstExp_Click);
-            // 
-            // btnTestUnHandledUIExp
-            // 
-            this.btnTestUnHandledUIExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestUnHandledUIExp.Location = new System.Drawing.Point(190, 12);
-            this.btnTestUnHandledUIExp.Name = "btnTestUnHandledUIExp";
-            this.btnTestUnHandledUIExp.Size = new System.Drawing.Size(172, 23);
-            this.btnTestUnHandledUIExp.TabIndex = 6;
-            this.btnTestUnHandledUIExp.Text = "Throw UnHandled UI Exception";
-            this.btnTestUnHandledUIExp.UseVisualStyleBackColor = true;
-            this.btnTestUnHandledUIExp.Click += new System.EventHandler(this.btnTestUnHandledUIExp_Click);
-            // 
-            // btnTestUnHandledThreadExp
-            // 
-            this.btnTestUnHandledThreadExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestUnHandledThreadExp.Location = new System.Drawing.Point(368, 12);
-            this.btnTestUnHandledThreadExp.Name = "btnTestUnHandledThreadExp";
-            this.btnTestUnHandledThreadExp.Size = new System.Drawing.Size(172, 23);
-            this.btnTestUnHandledThreadExp.TabIndex = 7;
-            this.btnTestUnHandledThreadExp.Text = "Throw UnHandled Thread Exception";
-            this.btnTestUnHandledThreadExp.UseVisualStyleBackColor = true;
-            this.btnTestUnHandledThreadExp.Click += new System.EventHandler(this.btnTestUnHandledThreadExp_Click);
-            // 
-            // btnTestUnhandledTaskExp
-            // 
-            this.btnTestUnhandledTaskExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestUnhandledTaskExp.Location = new System.Drawing.Point(546, 12);
-            this.btnTestUnhandledTaskExp.Name = "btnTestUnhandledTaskExp";
-            this.btnTestUnhandledTaskExp.Size = new System.Drawing.Size(172, 23);
-            this.btnTestUnhandledTaskExp.TabIndex = 8;
-            this.btnTestUnhandledTaskExp.Text = "Throw UnHandled Task Exception";
-            this.btnTestUnhandledTaskExp.UseVisualStyleBackColor = true;
-            this.btnTestUnhandledTaskExp.Click += new System.EventHandler(this.btnTestUnhandledTaskExp_Click);
-            // 
             // btnRefreshGridView
             // 
             this.btnRefreshGridView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefreshGridView.Location = new System.Drawing.Point(724, 12);
+            this.btnRefreshGridView.Location = new System.Drawing.Point(15, 12);
             this.btnRefreshGridView.Name = "btnRefreshGridView";
             this.btnRefreshGridView.Size = new System.Drawing.Size(132, 23);
             this.btnRefreshGridView.TabIndex = 9;
@@ -146,20 +98,16 @@
             this.btnRefreshGridView.UseVisualStyleBackColor = true;
             this.btnRefreshGridView.Click += new System.EventHandler(this.btnRefreshGridView_Click);
             // 
-            // Form1
+            // LogReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 464);
             this.Controls.Add(this.btnRefreshGridView);
-            this.Controls.Add(this.btnTestUnhandledTaskExp);
-            this.Controls.Add(this.btnTestUnHandledThreadExp);
-            this.Controls.Add(this.btnTestUnHandledUIExp);
-            this.Controls.Add(this.btnTestHandledFirstExp);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnQuit);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "LogReader";
+            this.Text = "Error Log Analyzer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -173,10 +121,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnTestHandledFirstExp;
-        private System.Windows.Forms.Button btnTestUnHandledUIExp;
-        private System.Windows.Forms.Button btnTestUnHandledThreadExp;
-        private System.Windows.Forms.Button btnTestUnhandledTaskExp;
         private System.Windows.Forms.Button btnRefreshGridView;
     }
 }

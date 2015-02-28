@@ -49,7 +49,7 @@ In the above code snippet you've seen that, for the `ExpHandlerEngine` method sh
 
 -  All
 -  AlertUnHandledError
--  Default (AlertUnHandledError + FetchServerDateTime + Snapshot + SendCacheToServer)
+-  Default (AlertUnHandledError + FetchServerDateTime + Snapshot + ReSizeSnapshots + SendCacheToServer)
 -  FetchServerDateTime
 -  IsHandled
 -  None

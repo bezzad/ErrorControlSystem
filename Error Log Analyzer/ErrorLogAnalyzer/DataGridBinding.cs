@@ -3,32 +3,34 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-
-public static class DataGridBinding
+namespace ErrorLogAnalyzer
 {
-    static Dictionary<DataGridView, List<Object>> History = new Dictionary<DataGridView, List<object>>();
-
-    public static void CreateColumns(this DataGridView dataGrid, Type propertyType)
+    public static class DataGridBinding
     {
-        if(!History.ContainsKey(dataGrid)) 
-            History.Add(dataGrid, new List<object>());
+        static readonly Dictionary<DataGridView, List<Object>> History = new Dictionary<DataGridView, List<object>>();
 
-        foreach (var property in propertyType.GetProperties())
+        public static void CreateColumns(this DataGridView dataGrid, Type propertyType)
         {
-            dataGrid.Columns.Add(property.Name, GetHeaderNameFromColName(property.Name));
-        }
-    }
+            if (!History.ContainsKey(dataGrid))
+                History.Add(dataGrid, new List<object>());
 
-    public static void AddRow(this DataGridView dataGrid, Object obj)
-    {
-        if (History.ContainsKey(dataGrid))
-        {
-            History[dataGrid].Add(obj);
-
-            dataGrid.Rows.Clear();
-
-            foreach (var row in History[dataGrid])
+            foreach (var property in propertyType.GetProperties())
             {
+                dataGrid.Columns.Add(property.Name, GetHeaderNameFromColName(property.Name));
+            }
+        }
+
+        public static void AddRow(this DataGridView dataGrid, Object obj)
+        {
+            if (History.ContainsKey(dataGrid))
+            {
+                History[dataGrid].Add(obj);
+
+                //dataGrid.Rows.Clear();
+
+                //foreach (var row in History[dataGrid])
+                //{
+                var row = obj;
                 dataGrid.Rows.Add();
 
                 foreach (var property in row.GetType().GetProperties())
@@ -36,18 +38,16 @@ public static class DataGridBinding
                     dataGrid.Rows[dataGrid.Rows.Count - 2].Cells[property.Name].Value =
                         row.GetType().GetProperty(property.Name).GetValue(row) ?? "";
                 }
+                //}
             }
-
         }
-    }
 
-    internal static string GetHeaderNameFromColName(string ColumnName)
-    {
-        var _Header = "";
+        internal static string GetHeaderNameFromColName(string columnName)
+        {
+            var header = Regex.Replace(columnName, "([a-z])([A-Z])", "$1 $2");
 
-        _Header = Regex.Replace(ColumnName, "([a-z])([A-Z])", "$1 $2");
-
-        return _Header;
+            return header;
+        }
     }
 }
 

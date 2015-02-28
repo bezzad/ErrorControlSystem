@@ -13,13 +13,16 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class SdfFileManager
     {
-        public static volatile string ConnectionString;
+        public static string ConnectionString { get; private set; }
 
-
+        public static void SetConnectionString(string filePath)
+        {
+            ConnectionString = string.Format("DataSource=\"{0}\"; Persist Security Info = false;", filePath);
+        }
 
         public static async Task CreateSdfAsync(string filePath)
         {
-            ConnectionString = string.Format("DataSource=\"{0}\"; Persist Security Info = false;", filePath);
+            SetConnectionString(filePath);
 
             if (File.Exists(filePath)) return;
 

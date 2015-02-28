@@ -59,8 +59,10 @@ namespace ErrorHandlerEngine.ExceptionManager
         {
             _option = option & ~ExceptionHandlerOption.SendCacheToServer;
 
-            if(string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath)) 
+            if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
                 Application.Exit();
+
+            Uploader.CanToSent = true;
         }
 
 

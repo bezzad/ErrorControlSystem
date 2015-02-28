@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ErrorHandlerEngine.ExceptionManager
 {
 
     /// <summary>
@@ -22,7 +22,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         ReSizeSnapshots = 16,
         SendCacheToServer = 32,
 
-        Default = Snapshot | FetchServerDateTime | AlertUnHandledError | SendCacheToServer,
+        Default = Snapshot | FetchServerDateTime | AlertUnHandledError | SendCacheToServer | ReSizeSnapshots,
         All = 0xFFFF // Combined value of all
     }
 

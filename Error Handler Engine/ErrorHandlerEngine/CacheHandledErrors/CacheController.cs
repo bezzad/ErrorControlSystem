@@ -71,7 +71,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             if (AreErrorsInSendState) return;
 
-            ExpHandlerEngine.IsSelfException = true;
+            ExceptionHandler.IsSelfException = true;
             try
             {
                 AreErrorsInSendState = true;
@@ -94,7 +94,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             }
             finally
             {
-                ExpHandlerEngine.IsSelfException = false;
+                ExceptionHandler.IsSelfException = false;
                 AreErrorsInSendState = false;
             }
         }

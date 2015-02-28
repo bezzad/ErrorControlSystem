@@ -38,6 +38,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static Size ScreenShotReSizeAspectRatio = new Size(1024, 768); // set to aspect 1024×768
 
+        public static volatile bool IsSelfException = false;
+
         #endregion
 
 
@@ -52,9 +54,9 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <returns></returns>
         public static Error RaiseLog(this Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default, String errorTitle = "UnHandled Exception")
         {
-            if (ExpHandlerEngine.IsSelfException)
+            if (IsSelfException)
             {
-                ExpHandlerEngine.IsSelfException = false;
+                IsSelfException = false;
                 return null;
             }
 
@@ -139,7 +141,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Current Culture
 
-            error.CurrentCulture = string.Format("{0} ({1})",
+            error.CurrentCulture = String.Format("{0} ({1})",
                     CultureInfo.CurrentCulture.NativeName,
                     CultureInfo.CurrentCulture.Name);
 
@@ -193,7 +195,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             #region Application Name [Name  v#####]
 
-            error.AppName = string.Format("{0}  v{1}",
+            error.AppName = String.Format("{0}  v{1}",
                     AppDomain.CurrentDomain.FriendlyName.Replace(".vshost", ""),
                     Application.ProductVersion);
 

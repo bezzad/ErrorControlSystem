@@ -204,12 +204,12 @@ namespace ErrorHandlerEngine.ServerUploader
                 // execute the command
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
                     ConnectionManager.GetDefaultConnection().ExecuteNonQuery(cmd);
                 }
                 finally
                 {
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -251,12 +251,12 @@ namespace ErrorHandlerEngine.ServerUploader
                 // execute the command
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
                     await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
                 }
                 finally
                 {
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -267,12 +267,12 @@ namespace ErrorHandlerEngine.ServerUploader
             // execute the command
             try
             {
-                ExpHandlerEngine.IsSelfException = true;
+                ExceptionHandler.IsSelfException = true;
                 return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
             }
             finally
             {
-                ExpHandlerEngine.IsSelfException = false;
+                ExceptionHandler.IsSelfException = false;
             }
         }
 
@@ -282,12 +282,12 @@ namespace ErrorHandlerEngine.ServerUploader
             // execute the command
             try
             {
-                ExpHandlerEngine.IsSelfException = true;
+                ExceptionHandler.IsSelfException = true;
                 return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
             }
             finally
             {
-                ExpHandlerEngine.IsSelfException = false;
+                ExceptionHandler.IsSelfException = false;
             }
         }
 

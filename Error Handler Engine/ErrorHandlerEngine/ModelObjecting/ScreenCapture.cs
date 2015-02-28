@@ -59,6 +59,8 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// <returns>Converted image in frame of bytes array.</returns>
         public static byte[] ToBytes(this Image img)
         {
+            if (img == null) return null;
+
             using (var ms = new MemoryStream())
             {
                 img.Save(ms, ImageFormat.Png);

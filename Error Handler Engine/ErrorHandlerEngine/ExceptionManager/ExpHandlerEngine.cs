@@ -26,8 +26,6 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         private static ExceptionHandlerOption _option;
 
-        public static volatile bool IsSelfException = false;
-
         #endregion
 
         #region Static Constructors

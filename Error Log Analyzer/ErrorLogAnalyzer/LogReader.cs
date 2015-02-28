@@ -18,7 +18,7 @@ namespace ErrorLogAnalyzer
         {
             InitializeComponent();
 
-            dataGridView1.CreateColumns(typeof(ProxyError));
+            dataGridView1.CreateColumns(typeof(IError));
 
             errors = new List<ProxyError>();
 
@@ -32,7 +32,7 @@ namespace ErrorLogAnalyzer
                 CheckPathExists = true,
                 DefaultExt = "Log Files  |*.Log",
                 FileName = "Error.Log",
-                Title="Path of local cache file",
+                Title = "Path of local cache file",
                 InitialDirectory = appDataDir,
                 Multiselect = false
             };
@@ -52,9 +52,10 @@ namespace ErrorLogAnalyzer
 
         private void dataGridView1_SelectionChanged()
         {
-            int index = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.Index : 0;
+            var index = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.Index : 0;
+
             if (index < errors.Count && index >= 0)
-                pictureBox1.Image = errors[index].Snapshot.Value;
+                pictureBox1.Image = errors[index].Snapshot.Value ?? Properties.Resources._null;
         }
 
 

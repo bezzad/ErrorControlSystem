@@ -60,7 +60,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = createErrorLogTable;
 
@@ -72,7 +72,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlCon.Close();
 
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -158,19 +158,20 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
                 cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
-                cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot.ToBytes());
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
+                if (error.Snapshot == null) cmd.Parameters.AddWithValue("@Snapshot", DBNull.Value);
+                else cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot.ToBytes());
 
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
                     await sqlConn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
                     sqlConn.Close();
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -194,7 +195,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     await sqlConn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
@@ -203,7 +204,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -223,7 +224,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = string.Format("Select * From ErrorLog Where ErrorId = {0}", id);
 
@@ -235,7 +236,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -247,7 +248,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog Where ErrorId = {0}", id);
 
@@ -259,7 +260,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -296,7 +297,7 @@ namespace ErrorHandlerEngine.ServerUploader
                                                             ,[DuplicateNo]
                                                         FROM ErrorLog");
 
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     sqlConn.Open();
 
@@ -336,7 +337,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -348,19 +349,21 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
 
                     sqlConn.Open();
 
-                    return ((byte[])cmd.ExecuteScalar()).ToImage();
+                    var result = cmd.ExecuteScalar();
+
+                    return result is DBNull ? null : ((byte[])result).ToImage();
                 }
                 finally
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
                 }
             }
         }
@@ -372,7 +375,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = string.Format("Delete From ErrorLog Where ErrorId = {0}", id);
 
@@ -384,7 +387,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException = false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -396,7 +399,7 @@ namespace ErrorHandlerEngine.ServerUploader
             {
                 try
                 {
-                    ExpHandlerEngine.IsSelfException = true;
+                    ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog");
 
@@ -408,7 +411,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 {
                     sqlConn.Close();
 
-                    ExpHandlerEngine.IsSelfException =false;
+                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }

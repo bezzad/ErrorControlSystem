@@ -12,13 +12,6 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Data
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.pdb
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\TestConnectionManager.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\TestConnectionManager.pdb
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\ConnectionsManager.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\ConnectionsManager.pdb
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.csprojResolveAssemblyReference.cache
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\TestConnectionManager.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\TestConnectionManager.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\ConnectionsManager.dll
@@ -26,3 +19,10 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Pro
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\TestConnectionManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\TestConnectionManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\ConnectionsManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Database Connection Manager\TestConnectionManager\obj\Debug\TestConnectionManager.pdb

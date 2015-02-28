@@ -107,20 +107,6 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Proj
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.pdb
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll.manifest
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.vsto
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.xls
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.xml
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.Properties.Resources.resources
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csproj.GenerateResource.Cache
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
-D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll.manifest
@@ -135,3 +121,17 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Document
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csproj.GenerateResource.Cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.dll.manifest
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.vsto
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\ExceptionDetails.xls
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\bin\Debug\Microsoft.Office.Tools.Excel.v4.0.Utilities.xml
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.Properties.Resources.resources
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csproj.GenerateResource.Cache
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb

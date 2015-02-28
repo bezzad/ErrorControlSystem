@@ -30,8 +30,10 @@ namespace ErrorLogAnalyzer
                 AutoUpgradeEnabled = true,
                 CheckFileExists = true,
                 CheckPathExists = true,
-                DefaultExt = "Log Files *.Log",
+                DefaultExt = "Log Files  |*.Log",
                 FileName = "Error.Log",
+                Title="Path of local cache file",
+                InitialDirectory = appDataDir,
                 Multiselect = false
             };
             ofd.CustomPlaces.Add(appDataDir);

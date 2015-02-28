@@ -141,7 +141,12 @@ namespace ConnectionsManager
         {
             using (var dataSources = SqlDataSourceEnumerator.Instance.GetDataSources())
             {
-                var serverName = this.SqlConn.DataSource == "localhost" ? Environment.MachineName : SqlConn.DataSource;
+                var serverName = this.SqlConn.DataSource == "localhost"
+                    ? Environment.MachineName
+                    : SqlConn.DataSource.Contains(@"\")
+                        ? SqlConn.DataSource.Substring(0, SqlConn.DataSource.IndexOf(@"\", System.StringComparison.Ordinal))
+                        : SqlConn.DataSource;
+
                 var isOn = dataSources.Rows.Cast<DataRow>().Any(row =>
                     string.Equals(row["ServerName"].ToString(), serverName, StringComparison.OrdinalIgnoreCase));
 

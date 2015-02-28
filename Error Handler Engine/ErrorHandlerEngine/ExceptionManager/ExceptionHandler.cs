@@ -69,7 +69,6 @@ namespace ErrorHandlerEngine.ExceptionManager
                     MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
-
             CacheController.ErrorSaverActionBlock.Post(error);
 
             return error;

@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using ConnectionsManager;
+using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ServerUploader
@@ -201,7 +202,15 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                 //
                 // execute the command
-                ConnectionManager.GetDefaultConnection().ExecuteNonQuery(cmd);
+                try
+                {
+                    ExpHandlerEngine.IsSelfException = true;
+                    ConnectionManager.GetDefaultConnection().ExecuteNonQuery(cmd);
+                }
+                finally
+                {
+                    ExpHandlerEngine.IsSelfException = false;
+                }
             }
         }
 
@@ -240,7 +249,15 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                 //
                 // execute the command
-                await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
+                try
+                {
+                    ExpHandlerEngine.IsSelfException = true;
+                    await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
+                }
+                finally
+                {
+                    ExpHandlerEngine.IsSelfException = false;
+                }
             }
         }
 
@@ -248,14 +265,30 @@ namespace ErrorHandlerEngine.ServerUploader
         {
             //
             // execute the command
-            return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
+            try
+            {
+                ExpHandlerEngine.IsSelfException = true;
+                return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
+            }
+            finally
+            {
+                ExpHandlerEngine.IsSelfException = false;
+            }
         }
 
         public static async Task<DateTime> FetchServerDataTimeTsqlAsync()
         {
             //
             // execute the command
-            return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
+            try
+            {
+                ExpHandlerEngine.IsSelfException = true;
+                return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
+            }
+            finally
+            {
+                ExpHandlerEngine.IsSelfException = false;
+            }
         }
 
     }

@@ -16,8 +16,8 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ExpHandlerEngine.Start(new Connection(@".", "UsersManagements")/*, 
-                ExceptionHandlerOption.Default & ~ExceptionHandlerOption.Snapshot*/);
+            ExpHandlerEngine.Start(new Connection(@"dc\develop", "UsersManagements"), 
+                ExceptionHandlerOption.Default & ~ExceptionHandlerOption.ReSizeSnapshots);
 
             Application.Run(new FormTest());
         }

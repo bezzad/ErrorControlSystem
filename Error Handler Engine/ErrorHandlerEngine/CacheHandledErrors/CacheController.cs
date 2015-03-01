@@ -29,9 +29,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
             ErrorSaverActionBlock = new ActionBlock<Error>(async error =>
             {
-                 await SdfFileManager.InsertOrUpdateAsync(error);
+                await SdfFileManager.InsertOrUpdateAsync(error);
 
-                 await CheckStateAsync();
+                await CheckStateAsync();
             },
                 new ExecutionDataflowBlockOptions
                 {
@@ -138,6 +138,11 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             return sum;
         }
 
+
+        public static async void CacheTheError(Error error)
+        {
+            await ErrorSaverActionBlock.SendAsync(error);
+        }
 
         #endregion
     }

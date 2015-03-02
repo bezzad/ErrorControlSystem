@@ -10,18 +10,6 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class Uploader
     {
-        public static async Task<bool> SentOneErrorToDbAsync(ProxyError error)
-        {
-            try
-            {
-                await DynamicStoredProcedures.InsertErrorStoredProcedureAsync(error);
-            }
-            catch
-            {
-                CanToSent = false;
-            }
-            return CanToSent;
-        }
 
         // maybe the network have exception then dead loop occurred,
         // so this variable closed that
@@ -37,11 +25,11 @@ namespace ErrorHandlerEngine.ServerUploader
             ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
                 async (e) =>
                 {
-                    if (ConnectionManager.GetDefaultConnection().IsReady && CanToSent) // Server Connector to online or offline ?
+                    if (CanToSent) // Server Connector to online or offline ?
                     {
                         try
                         {
-                            CanToSent = await SentOneErrorToDbAsync(e);
+                            await DynamicStoredProcedures.InsertErrorStoredProcedureAsync(e);
                         }
                         catch (Exception)
                         {
@@ -52,6 +40,7 @@ namespace ErrorHandlerEngine.ServerUploader
                             CacheController.AreErrorsInSendState = false;
                         }
                     }
+                    else ErrorListenerTransformBlock.Complete();
                     //
                     // Post to Acknowledge Action Block:
                     return new Tuple<ProxyError, bool>(e, CanToSent);

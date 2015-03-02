@@ -234,8 +234,8 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.CommandType = CommandType.StoredProcedure;
                 //
                 // Add parameters to command, which will be passed to the stored procedure
-                if (error.Snapshot == null) cmd.Parameters.AddWithValue("@ScreenCapture", DBNull.Value);
-                else cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
+                if (error.Snapshot.Value != null)
+                    cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
 
                 cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
                 cmd.Parameters.AddWithValue("@Host", error.Host);

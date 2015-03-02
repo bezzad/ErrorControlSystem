@@ -12,16 +12,13 @@ namespace ErrorHandlerEngine.ServerUploader
     {
         public static async Task<bool> SentOneErrorToDbAsync(ProxyError error)
         {
-            if (CanToSent)
+            try
             {
-                try
-                {
-                    await DynamicStoredProcedures.InsertErrorStoredProcedureAsync(error);
-                }
-                catch
-                {
-                    CanToSent = false;
-                }
+                await DynamicStoredProcedures.InsertErrorStoredProcedureAsync(error);
+            }
+            catch
+            {
+                CanToSent = false;
             }
             return CanToSent;
         }

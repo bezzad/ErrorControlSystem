@@ -104,15 +104,6 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engi
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
@@ -122,3 +113,12 @@ D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler E
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngineAdapter.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Handler Engine\ErrorHandlerEngineAdapter\obj\Debug\ErrorHandlerEngineAdapter.pdb

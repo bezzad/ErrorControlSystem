@@ -16,15 +16,15 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ExpHandlerEngine.Start(new Connection(@"dc\develop", "UsersManagements"), 
-                ExceptionHandlerOption.Default & ~ExceptionHandlerOption.ReSizeSnapshots);
+            ExpHandlerEngine.Start(new Connection(@"dc\develop", "UsersManagements")/*, 
+                ExceptionHandlerOption.Default & ~ExceptionHandlerOption.Snapshot*/);
 
             Application.Run(new FormTest());
         }
 
-        public static void UIExp()
+        public static void Exp()
         {
-            throw new Exception("My UI Unhandled Exception");
+            throw new Exception("Test UnHandled MainThread Exception");
         }
     }
 }

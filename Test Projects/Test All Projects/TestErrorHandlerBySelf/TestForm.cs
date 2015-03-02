@@ -8,20 +8,39 @@ namespace TestErrorHandlerBySelf
 {
     public partial class FormTest : Form
     {
-        private List<Action> Exps;
+        private readonly List<Action> _exps;
 
         public FormTest()
         {
             InitializeComponent();
 
-            Exps = new List<Action>
+            _exps = new List<Action>
             {
-                () => { int a = 0, b = 10, c = b/a; },
-                () => { throw new ArithmeticException(); },
-                () => { throw new Exception("TEst"); },
-                () => { throw new InvalidExpressionException(); },
-                () => { throw new ApplicationException(); },
-                () => { throw new SystemException(); }
+                () => { throw new ArithmeticException("Test"); },
+                () => { throw new Exception("Test"); },
+                () => { throw new InvalidExpressionException("Test"); },
+                () => { throw new ApplicationException("Test"); },
+                () => { throw new SystemException("Test"); },
+                () => { throw new Exception("Test"); },
+                () => { throw new InvalidExpressionException("Test"); },
+                () => { throw new ApplicationException("Test"); },
+                () => { throw new SystemException("Test"); },
+                () => { throw new Exception("Test"); },
+                () => { throw new InvalidExpressionException("Test"); },
+                () => { throw new ApplicationException("Test"); },
+                () => { throw new SystemException("Test"); },
+                () => { throw new Exception("Test"); },
+                () => { throw new InvalidExpressionException("Test"); },
+                () => { throw new ApplicationException("Test"); },
+                () => { throw new SystemException("Test"); },
+                () => { throw new Exception("Test"); },
+                () => { throw new InvalidExpressionException("Test"); },
+                () => { throw new ApplicationException("Test"); },
+                () => { throw new SystemException("Test"); },
+                () => { throw new Exception("Test"); },
+                () => { throw new InvalidExpressionException("Test"); },
+                () => { throw new ApplicationException("Test"); },
+                () => { throw new SystemException("Test"); }
             };
 
         }
@@ -35,7 +54,7 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestHandledFirstExp_Click(object sender, EventArgs e)
         {
-            var item = Exps[new Random().Next(0, Exps.Count - 1)];
+            var item = _exps[new Random().Next(0, _exps.Count - 1)];
             try
             {
                 item();
@@ -49,23 +68,22 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestUnHandledUIExp_Click(object sender, EventArgs e)
         {
-            Program.UIExp();
+            Program.Exp();
         }
 
         private void btnTestUnHandledThreadExp_Click(object sender, EventArgs e)
         {
-
-            int a = 0, b = 10, c = b / a;
+            throw new Exception("Test UnHandled Thread Exception");
         }
 
         private void btnTestUnhandledTaskExp_Click(object sender, EventArgs e)
         {
 
             Task.Run(() =>
-            { int a = 0, b = 10, c = b / a; });
+            { throw new Exception("Test1 UnHandled Task Exception"); });
 
             Task.Run(() =>
-            { int a = 0, b = 8, c = b / a; });
+            { throw new Exception("Test2 UnHandled Task Exception"); });
         }
 
     }

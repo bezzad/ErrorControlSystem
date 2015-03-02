@@ -87,17 +87,8 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.exe
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.LogReader.resources
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csproj.GenerateResource.Cache
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.exe
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.exe
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
@@ -110,4 +101,13 @@ D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analy
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csproj.GenerateResource.Cache
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.exe
 D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.LogReader.resources
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.Properties.Resources.resources
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csproj.GenerateResource.Cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.exe
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.exe

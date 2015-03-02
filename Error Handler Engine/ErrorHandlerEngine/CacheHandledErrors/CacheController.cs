@@ -14,32 +14,17 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 {
     internal static class CacheController
     {
-        public static bool AreErrorsInSendState = false;
+        public static volatile bool AreErrorsInSendState = false;
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
 
-        public static ActionBlock<Error> ErrorSaverActionBlock;
+        private static ActionBlock<Error> _errorSaverActionBlock;
 
         #region Methods
 
 
         static CacheController()
         {
-            #region Save Error object in Error.Log (SQL SDF) file's [Action Block]
-
-            ErrorSaverActionBlock = new ActionBlock<Error>(async error =>
-            {
-                await SdfFileManager.InsertOrUpdateAsync(error);
-
-                await CheckStateAsync();
-            },
-                new ExecutionDataflowBlockOptions
-                {
-                    MaxMessagesPerTask = 1
-                });
-
-            #endregion
-
             #region Acknowledge Action Block
 
             AcknowledgeActionBlock = new ActionBlock<Tuple<ProxyError, bool>>(
@@ -71,10 +56,10 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             if (AreErrorsInSendState) return;
 
-            ExceptionHandler.IsSelfException = true;
             try
             {
                 AreErrorsInSendState = true;
+                ExceptionHandler.IsSelfException = true;
 
                 // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
                 // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\TestErrorHandlerBySelf v1
@@ -141,7 +126,26 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         public static async void CacheTheError(Error error)
         {
-            await ErrorSaverActionBlock.SendAsync(error);
+            if (_errorSaverActionBlock == null ||
+                _errorSaverActionBlock.Completion.IsFaulted)
+            {
+                #region Initile Action Block Again
+
+                _errorSaverActionBlock = new ActionBlock<Error>(async e =>
+                {
+                    await SdfFileManager.InsertOrUpdateAsync(e);
+
+                    await CheckStateAsync();
+                },
+                    new ExecutionDataflowBlockOptions
+                    {
+                        MaxMessagesPerTask = 1
+                    });
+
+                #endregion
+            }
+
+            await _errorSaverActionBlock.SendAsync(error);
         }
 
         #endregion

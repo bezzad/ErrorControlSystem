@@ -24,7 +24,11 @@ namespace ErrorHandlerEngine.ServerUploader
         {
             SetConnectionString(filePath);
 
-            if (File.Exists(filePath)) return;
+            if (File.Exists(filePath))
+            {
+                CheckSdfAsync(filePath);
+                return;
+            }
 
             new SqlCeEngine(ConnectionString).CreateDatabase();
 
@@ -74,6 +78,29 @@ namespace ErrorHandlerEngine.ServerUploader
 
                     ExceptionHandler.IsSelfException = false;
                 }
+            }
+        }
+
+        public static void CheckSdfAsync(string filePath)
+        {
+            ExceptionHandler.IsSelfException = true;
+
+            try
+            {
+                var testConn = new SqlCeConnection(ConnectionString);
+                testConn.Open();
+
+                testConn.Close();
+            }
+            catch (SqlCeException exp)
+            {
+                // fix the SDF file
+                File.Delete(filePath);
+                CreateSdfAsync(filePath).GetAwaiter().GetResult();
+            }
+            finally
+            {
+                ExceptionHandler.IsSelfException = false;
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace ErrorLogAnalyzer
+﻿using System.Windows.Forms;
+
+namespace ErrorLogAnalyzer
 {
     partial class LogReader
     {
@@ -29,54 +31,47 @@
         private void InitializeComponent()
         {
             this.btnQuit = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRefreshGridView = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox_viewer = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_viewer)).BeginInit();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
             this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuit.Location = new System.Drawing.Point(954, 12);
+            this.btnQuit.Location = new System.Drawing.Point(1272, 15);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(75, 23);
+            this.btnQuit.Size = new System.Drawing.Size(100, 28);
             this.btnQuit.TabIndex = 1;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(384, 627);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(632, 627);
+            this.dataGridView1.Size = new System.Drawing.Size(842, 772);
             this.dataGridView1.TabIndex = 4;
             // 
             // btnRefreshGridView
             // 
             this.btnRefreshGridView.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefreshGridView.Location = new System.Drawing.Point(15, 12);
+            this.btnRefreshGridView.Location = new System.Drawing.Point(20, 15);
+            this.btnRefreshGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRefreshGridView.Name = "btnRefreshGridView";
-            this.btnRefreshGridView.Size = new System.Drawing.Size(132, 23);
+            this.btnRefreshGridView.Size = new System.Drawing.Size(176, 28);
             this.btnRefreshGridView.TabIndex = 9;
             this.btnRefreshGridView.Text = "Refresh Grid View";
             this.btnRefreshGridView.UseVisualStyleBackColor = true;
@@ -87,7 +82,8 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 41);
+            this.splitContainer1.Location = new System.Drawing.Point(16, 50);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -96,27 +92,40 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1020, 627);
-            this.splitContainer1.SplitterDistance = 632;
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBox_viewer);
+            this.splitContainer1.Size = new System.Drawing.Size(1360, 772);
+            this.splitContainer1.SplitterDistance = 842;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 10;
+            // 
+            // pictureBox_viewer
+            // 
+            this.pictureBox_viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_viewer.Image = null;
+            this.pictureBox_viewer.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox_viewer.Name = "pictureBox_viewer";
+            this.pictureBox_viewer.Size = new System.Drawing.Size(513, 772);
+            this.pictureBox_viewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_viewer.TabIndex = 0;
+            this.pictureBox_viewer.TabStop = false;
             // 
             // LogReader
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 680);
+            this.ClientSize = new System.Drawing.Size(1392, 837);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnRefreshGridView);
             this.Controls.Add(this.btnQuit);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LogReader";
             this.Text = "Error Log Analyzer";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_viewer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -124,10 +133,10 @@
         #endregion
 
         private System.Windows.Forms.Button btnQuit;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnRefreshGridView;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private PictureBox pictureBox_viewer;
     }
 }
 

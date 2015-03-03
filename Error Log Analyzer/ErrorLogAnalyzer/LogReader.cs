@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using ErrorHandlerEngine.ServerUploader;
 using System;
 using System.Windows.Forms;
@@ -55,7 +54,7 @@ namespace ErrorLogAnalyzer
             var index = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.Index : 0;
 
             if (index < errors.Count && index >= 0)
-                pictureBox1.Image = errors[index].Snapshot.Value ?? Properties.Resources._null;
+                pictureBox_viewer.Image = errors[index].Snapshot.Value ?? Properties.Resources._null;
         }
 
 

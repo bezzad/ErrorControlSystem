@@ -14,6 +14,7 @@ namespace ErrorHandlerEngine.ServerUploader
         /*
             USE [Usersmanagements]
             GO
+            -- Object:  StoredProcedure [dbo].[sp_InsertErrorLog]    Script Date: 03/02/2015 16:58:16 
             SET ANSI_NULLS ON
             GO
             SET QUOTED_IDENTIFIER ON
@@ -31,7 +32,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 @IsHandled BIT ,
                 @Type VARCHAR(100) ,
                 @AppName VARCHAR(100) ,
-                @ScreenCapture IMAGE ,
+                @ScreenCapture IMAGE = NULL,
                 @CurrentCulture NVARCHAR(100) ,
                 @CLRVersion VARCHAR(20) ,
                 @Message NVARCHAR(MAX) ,
@@ -125,16 +126,15 @@ namespace ErrorHandlerEngine.ServerUploader
 						            Select @MyDrive = SUBSTRING(physical_name,1,1) from sys.database_files
 						            Select @FreeSpace = MBfree from @TempTable where Drive = @MyDrive
 						            If @FreeSpace > 10240 -- If grater than 10GB
-							            Begin	-- Save snapshot image		
-								            -- Insert into error image into Snapshot								
-								            if @ScreenCapture is not null
-									            INSERT INTO [Snapshots]
-										               ([ErrorLogID]
-										               ,[ScreenCapture])
-										            VALUES
-										               (@ErrorLogID
-										               ,@ScreenCapture)
-							            End            
+							            -- Save snapshot image		
+							            -- Insert into error image into Snapshot								
+							            if @ScreenCapture is not null
+								            INSERT INTO [Snapshots]
+									               ([ErrorLogID]
+									               ,[ScreenCapture])
+									            VALUES
+									               (@ErrorLogID
+									               ,@ScreenCapture)
 					            END	
                         COMMIT TRANSACTION
                     END TRY

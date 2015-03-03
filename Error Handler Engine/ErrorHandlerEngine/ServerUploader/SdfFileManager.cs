@@ -173,7 +173,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@CurrentCulture", error.CurrentCulture);
                 cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
                 cmd.Parameters.AddWithValue("@Message", error.Message);
-                cmd.Parameters.AddWithValue("@Source", error.Source);
+                cmd.Parameters.AddWithValue("@Source", error.Source ?? "Source Not Found");
                 cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace);
                 cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
                 cmd.Parameters.AddWithValue("@MemberType", error.MemberType);

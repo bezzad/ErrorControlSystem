@@ -16,6 +16,8 @@ namespace ErrorHandlerEngine.ModelObjecting
     {
         public static Rectangle AllScreenSize;
 
+        public static Size ReSizeAspectRatio = new Size(1024, 768); // set to aspect 1024×768
+
         static ScreenCapture()
         {
             AllScreenSize = Screen.AllScreens.Aggregate(Rectangle.Empty, (current, s) => Rectangle.Union(current, s.Bounds));
@@ -42,9 +44,9 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         public static Image FromFile(string path)
         {
-            using (var fs = new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                Image result = System.Drawing.Image.FromStream(fs);
+                Image result = Image.FromStream(fs);
                 fs.Close();
                 // We MUST call the constructor here, 
                 // otherwise the bitmap will still be linked to the original file 

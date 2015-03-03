@@ -78,12 +78,8 @@ namespace TestErrorHandlerBySelf
 
         private void btnTestUnhandledTaskExp_Click(object sender, EventArgs e)
         {
-
             Task.Run(() =>
-            { throw new Exception("Test1 UnHandled Task Exception"); });
-
-            Task.Run(() =>
-            { throw new Exception("Test2 UnHandled Task Exception"); });
+            { throw new Exception("Test UnHandled Task Exception"); });
         }
 
     }

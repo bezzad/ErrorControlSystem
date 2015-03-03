@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Globalization;
+using System.Windows.Forms;
+using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -7,6 +11,175 @@ namespace ErrorHandlerEngine.ModelObjecting
         #region Properties
 
         public System.Drawing.Image Snapshot { get; set; }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Get handled exception's by additional data.
+        /// </summary>
+        /// <param name="exception">>The occurrence raw error.</param>
+        /// <param name="option">What preprocess must be doing on that exception's ?</param>
+        public Error(Exception exception, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        {
+            #region HResult [Exception Type Code]
+
+            HResult = exception.HResult;
+
+            #endregion
+
+            #region Error Line Column
+
+            LineColumn = new CodeLocation(exception);
+
+            #endregion
+
+            #region Id = HashCode
+            Id = GetHashCode();
+            #endregion
+
+            #region Screen Capture
+
+            // First initialize Snapshot of Error, because that's speed is important!
+            if (!SdfFileManager.Contains(Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
+            {
+                Snapshot = option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
+                        ? ScreenCapture.Capture().ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height)
+                        : ScreenCapture.Capture();
+            }
+
+            #endregion
+
+            #region StackTrace
+
+            StackTrace = exception.InnerException != null
+                ? exception.InnerException.StackTrace ?? ""
+                : exception.StackTrace ?? "";
+
+            #endregion
+
+            #region Error Date Time
+
+            ErrorDateTime = DateTime.Now;
+
+            #endregion
+
+            #region Server Date Time
+
+            ServerDateTime = option.HasFlag(ExceptionHandlerOption.FetchServerDateTime)
+                ? NetworkHelper.GetServerDateTime()
+                : DateTime.Now;
+
+            #endregion
+
+            #region Current Culture
+
+            CurrentCulture = String.Format("{0} ({1})",
+                    CultureInfo.CurrentCulture.NativeName,
+                    CultureInfo.CurrentCulture.Name);
+
+            #endregion
+
+            #region Message
+
+            Message = exception.Message;
+
+            #endregion
+
+            #region Method
+
+            Method = (exception.TargetSite != null && exception.TargetSite.ReflectedType != null) ?
+                    exception.TargetSite.ReflectedType.FullName + "." + exception.TargetSite : "";
+
+            #endregion
+
+            #region Member Type
+
+            MemberType = (exception.TargetSite != null)
+                    ? exception.TargetSite.MemberType.ToString()
+                    : "";
+
+            #endregion
+
+            #region Module Name
+
+            ModuleName =
+                    (exception.TargetSite != null) ? exception.TargetSite.Module.Name : "";
+
+            #endregion
+
+            #region User [Domain.UserName]
+
+            User = Environment.UserDomainName + "\\" + Environment.UserName;
+
+            #endregion
+
+            #region Host [Machine Name]
+
+            Host = Environment.MachineName;
+
+            #endregion
+
+            #region Operation System Information
+
+            OS = new OperationSystemInfo(true).ToString();
+
+            #endregion
+
+            #region Application Name [Name  v#####]
+
+            AppName = String.Format("{0}  v{1}",
+                    AppDomain.CurrentDomain.FriendlyName.Replace(".vshost", ""),
+                    Application.ProductVersion);
+
+            #endregion
+
+            #region Process Name String List
+
+            Processes = new CurrentProcesses().ToString();
+
+            #endregion
+
+            #region Is Handled Error or UnHandled?
+
+            IsHandled = option.HasFlag(ExceptionHandlerOption.IsHandled);
+
+            #endregion
+
+            #region Current Static Valid IPv4 Address
+
+            IPv4Address = NetworkHelper.GetIpAddress();
+
+            #endregion
+
+            #region Network Physical Address [MAC HEX]
+
+            MacAddress = NetworkHelper.GetMacAddress();
+
+            #endregion
+
+            #region Common Language Runtime Version [Major.Minor.Build.Revison]
+
+            ClrVersion = Environment.Version.ToString();
+
+            #endregion
+
+            #region Error Type
+
+            ErrorType = exception.GetType().Name;
+
+            #endregion
+
+            #region Source
+
+            Source = exception.Source;
+
+            #endregion
+        }
+
+
+        public Error() { }
 
         #endregion
 

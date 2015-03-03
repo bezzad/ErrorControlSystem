@@ -3,7 +3,7 @@
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.CacheController" Collapsed="true">
     <Position X="7" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAIAAAAAAAAAgCIAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAQAIAAAAAAAAAACIAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>CacheHandledErrors\CacheController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -15,16 +15,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ExceptionManager.ExceptionHandler" Collapsed="true">
-    <Position X="10.25" Y="5.5" Width="1.5" />
+    <Position X="10.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAABAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ExceptionManager\ExceptionHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ExceptionManager.ExpHandlerEngine" Collapsed="true">
     <Position X="3.75" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAACAAIAAgAAAEAQAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAIAAgAAAEAQAAAAAAEAAAA=</HashCode>
       <FileName>ExceptionManager\ExpHandlerEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
     <Lollipop Orientation="Bottom" Position="0.127" />
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.HResults" Collapsed="true">
-    <Position X="8.75" Y="4.5" Width="1.25" />
+    <Position X="10.25" Y="5.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>j0qAcY9Tgg0EjAbGUgEBw1AywVBAQEiIni4BADIgrBA=</HashCode>
       <FileName>ModelObjecting\HResults.cs</FileName>
@@ -95,9 +95,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.ScreenCapture" Collapsed="true">
-    <Position X="7" Y="4.5" Width="1.5" />
+    <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAQAAAAAAAABAAAAAAAAAAAAEABAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAACAIQAAAAAAAABAAAAAAAAAAAAEABAAQAAAAAA=</HashCode>
       <FileName>ModelObjecting\ScreenCapture.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -111,7 +111,7 @@
   <Class Name="ErrorHandlerEngine.ServerUploader.Uploader" Collapsed="true">
     <Position X="8.75" Y="6.5" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>ServerUploader\Uploader.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -132,14 +132,14 @@
   <Class Name="ErrorHandlerEngine.Properties.Settings" Collapsed="true">
     <Position X="1.75" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AEAAAAAAAAAAAAIEAAAAIAAAAAABAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIEAAAAIAAAAAABAAAAAAAAAAAACAA=</HashCode>
       <FileName>Properties\Settings.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ServerUploader.SdfFileManager" Collapsed="true">
-    <Position X="10.25" Y="4.5" Width="1.5" />
+    <Position X="9" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAACAAAAAABAIAACAAAAAAAAAgIAKAAAAAYAIA=</HashCode>
+      <HashCode>AAAEAAAACAAAAAABAIAECAAAAAAAAAgIAKAAAAAYAIA=</HashCode>
       <FileName>ServerUploader\SdfFileManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -151,17 +151,17 @@
     </TypeIdentifier>
   </Struct>
   <Interface Name="ErrorHandlerEngine.ModelObjecting.IError" Collapsed="true">
-    <Position X="5.5" Y="4.5" Width="1.25" />
+    <Position X="5.75" Y="4.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>ACADAgAAAgAAUgCAQAAgAAACAAECKCEDAAAAIAAAAIE=</HashCode>
       <FileName>ModelObjecting\IError.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="ErrorHandlerEngine.ModelObjecting.ExceptionHandlerOption" Collapsed="true">
-    <Position X="3.5" Y="4.5" Width="1.75" />
+  <Enum Name="ErrorHandlerEngine.ExceptionManager.ExceptionHandlerOption" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgIAAAAEAAAA=</HashCode>
-      <FileName>ModelObjecting\ExceptionHandlerOption.cs</FileName>
+      <FileName>ExceptionManager\ExceptionHandlerOption.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

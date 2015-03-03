@@ -144,7 +144,7 @@ __Snapshots Table:__
 | ErrorLogId            |   `int`                     ||
 | ScreenCapture     |   `image`               ||
 
-For create easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git/wiki) to use SQL Queries.
+For easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git/wiki) to use SQL Queries.
 There are __SQL Scripts__ to create tables and queries.
 
 --------------------------

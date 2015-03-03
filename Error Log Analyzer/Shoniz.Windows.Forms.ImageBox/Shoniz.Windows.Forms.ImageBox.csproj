@@ -1,25 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C31AB6D-3745-4501-A293-5E29EBDBD833}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorLogAnalyzer</RootNamespace>
-    <AssemblyName>ErrorLogAnalyzer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Shoniz.Windows.Forms</RootNamespace>
+    <AssemblyName>Shoniz.Windows.Forms.ImageBox</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,56 +30,58 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Shoniz.Windows.Forms.ImageBox.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ErrorLogAnalyzer.Program</StartupObject>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>BehzadPublic.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Shoniz.Windows.Forms.ImageBox">
-      <HintPath>..\Shoniz.Windows.Forms.ImageBox\obj\Debug\Shoniz.Windows.Forms.ImageBox.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataGridBinding.cs" />
-    <Compile Include="LogReader.cs">
-      <SubType>Form</SubType>
+    <Compile Include="ImageBox.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LogReader.Designer.cs">
-      <DependentUpon>LogReader.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="ImageBoxZoomActions.cs" />
+    <Compile Include="ImageBoxActionSources.cs" />
+    <Compile Include="ImageBoxBorderStyle.cs" />
+    <Compile Include="ImageBoxCancelEventArgs.cs" />
+    <Compile Include="ImageBoxZoomEventArgs.cs" />
+    <Compile Include="ImageBoxGridDisplayMode.cs" />
+    <Compile Include="ImageBoxGridScale.cs" />
+    <Compile Include="ImageBoxSelectionMode.cs" />
+    <Compile Include="ImageBoxNativeMethods.cs" />
+    <Compile Include="ImageBoxSizeMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+    <Compile Include="ScrollControl.cs">
+      <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ScrollProperties.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VirtualScrollableControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ZoomLevelCollection.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LogReader.resx">
-      <DependentUpon>LogReader.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <None Include="BehzadPublic.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine.csproj">
-      <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
-      <Name>ErrorHandlerEngine</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="ImageBox.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\null.gif" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

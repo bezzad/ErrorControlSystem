@@ -76,8 +76,8 @@ namespace ErrorHandlerEngine.ModelObjecting
             #region Current Culture
 
             CurrentCulture = String.Format("{0} ({1})",
-                    CultureInfo.CurrentCulture.NativeName,
-                    CultureInfo.CurrentCulture.Name);
+                    InputLanguage.CurrentInputLanguage.Culture.NativeName,
+                    InputLanguage.CurrentInputLanguage.Culture.Name);
 
             #endregion
 

@@ -70,8 +70,12 @@ By adding the our module starter code to the beginning of your program code, you
 --------------------------
 ### How To Install The Modules ###
 
-1. Install Examples for Developers (unpacking it to your disk, and get to
+1. Install Examples for Developers (unpacking it to your disk, and go to
 \ErrorControlSystem\Error Handler Engine\ErrorHandlerEngine\bin\Release directory if you're installing by hand, for example).
+
+  __Note:__
+> If there is not any file in the Release folders, please open project .sln file on Visual Studio 2013 and debug/release that to compile native files.
+
 
 2. In your project reference add this module dll file:  References > Add Reference... > Browse to above path > Select ErrorHandlerEngine.dll
 
@@ -84,6 +88,64 @@ If you find a problem, incorrect comment, obsolete or improper code or such,
 please search for an issue about it at [ECS Issue](https://bitbucket.org/BehzadKhosravifar/error-control-system/issues)
 If there isn't already an issue for it, please create a new one.
 
+
+--------------------------
+### Creating SQL Server Database ###
+
+The `ErrorHandlerEngine` project used from __UsersManagements __ database. So that is necessary for run this application.
+For Creating __UsersManagements__ database on your server or pc do below steps:
+
+First open `SQL Server Management Studio` then connect to your Server instance.
+Next step's, Create New Database by name __UsersManagements__ or any name of your choice.
+
+> Only be carefully, in order to launch the program, enter the database name. For example: 
+
+```
+#!c#
+
+ExpHandlerEngine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
+```
+
+Now, we need to create two table by names __ErrorLog__ and __Snapshots__ to save exceptions by screen captures.
+
+__ErrorLog Table:__
+
+| Column Name      | Data Type             || 
+|:----------------------- |:------------------------ ||
+| ErrorId                  |   `bigint`                ||
+| DateTime             |   `datetime`            ||
+| Host                     |  `varchar(200)`       ||
+| [User]                   | `varchar(200)`       ||
+| IsHandled            |  `bit`                       ||
+| Type                    |  `varchar(100)`       ||
+| AppName            |  `varchar(100)`      ||
+| Data                    |  `xml`                      ||
+| CurrentCulture    |  `nvarchar(100)`     ||
+| CLRVersion        |  `varchar(20)`         ||
+| Message             |  `nvarchar(MAX)`   ||
+| Source                |  `nvarchar(Max)`   ||
+| StackTrace          |  `nvarchar(Max)`   ||
+| ModuleName      |  `varchar(200)`       ||
+| MemberType       |  `varchar(50)`        ||
+| Method                |  `nvarchar(500)`    ||
+| Processes            |  `varchar(Max)`     ||
+| ErrorDateTime     |  `datetime`            ||
+| OS                       |  `varchar(1000)`    ||
+| IPv4Address        |  `varchar(15)`        ||
+| MACAddress       |  `varchar(50)`        ||
+| HResult               |  `int`                       ||
+| LineColumn         |  `varchar(50)`        ||
+| DuplicateNo        |  `int`                       ||
+
+__Snapshots Table:__
+
+| Column Name      | Data Type             || 
+|:----------------------- |:------------------------ ||
+| ErrorLogId            |   `int`                     ||
+| ScreenCapture     |   `image`               ||
+
+For create easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git/wiki) to use SQL Queries.
+There are __SQL Scripts__ to create tables and queries.
 
 --------------------------
 ### LICENSE INFORMATION ###

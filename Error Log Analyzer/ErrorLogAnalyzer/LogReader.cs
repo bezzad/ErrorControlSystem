@@ -1,8 +1,9 @@
 ﻿
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO;
 using System.Linq;
+using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ServerUploader;
 using System;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace ErrorLogAnalyzer
     public partial class LogReader : Form
     {
         private List<ProxyError> _errors;
+        private DirectoryInfo cacheDir;
 
         public LogReader()
         {
@@ -41,8 +43,11 @@ namespace ErrorLogAnalyzer
             ofd.CustomPlaces.Add(appDataDir);
 
             if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 SdfFileManager.SetConnectionString(ofd.FileName);
 
+                cacheDir = new DirectoryInfo(Path.GetDirectoryName(ofd.FileName));
+            }
             dgv_ErrorsViewer.SelectionChanged += (sender, args) => JustRunEventByUser(dgvErrorsViewer_SelectionChanged);
         }
 
@@ -73,6 +78,17 @@ namespace ErrorLogAnalyzer
             }
 
             refreshAlert.Clear();
+
+            SetCacheSizeViewer();
+        }
+
+        private void SetCacheSizeViewer()
+        {
+            var dirSize = cacheDir.GetDirectorySize();
+            var limitSize = DiskHelper.CacheLimitSize;
+
+            var percent = checked((int)(dirSize * 100 / limitSize));
+            prgCacheSize.Value = percent > 100 ? 100 : percent;
         }
 
         public void JustRunEventByUser(Action method)
@@ -84,10 +100,9 @@ namespace ErrorLogAnalyzer
         private void LogReader_Load(object sender, EventArgs e)
         {
             refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data");
-
         }
 
 
-        
+
     }
 }

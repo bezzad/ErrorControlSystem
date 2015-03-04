@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheHandledErrors\CacheController.cs" />
+    <Compile Include="ModelObjecting\DiskHelper.cs" />
     <Compile Include="CacheHandledErrors\StorageRouter.cs" />
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="ModelObjecting\CodeLocation.cs" />
@@ -67,11 +68,6 @@
     <Compile Include="ModelObjecting\CurrentProcesses.cs" />
     <Compile Include="ModelObjecting\ScreenCapture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -95,13 +91,6 @@
       <Project>{d1479d81-3aa1-461d-8801-7dc23a5e7b15}</Project>
       <Name>ConnectionsManager</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

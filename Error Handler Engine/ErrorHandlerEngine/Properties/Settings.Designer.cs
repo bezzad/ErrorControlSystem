@@ -34,5 +34,17 @@ namespace ErrorHandlerEngine.Properties {
                 this["ErrorLogPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4194304")]
+        public long CacheLimitSize {
+            get {
+                return ((long)(this["CacheLimitSize"]));
+            }
+            set {
+                this["CacheLimitSize"] = value;
+            }
+        }
     }
 }

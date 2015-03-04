@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ErrorHandlerEngine.Properties;
+using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
@@ -15,7 +14,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         #region Properties
 
         public static string ErrorLogFilePath;
-
+        
         #endregion
 
         #region Constructor
@@ -35,7 +34,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
         private static async void LoadLogPath()
         {
-            ErrorLogFilePath = ReadSetting("ErrorLogPath");
+            ErrorLogFilePath = DiskHelper.ReadSetting("ErrorLogPath");
 
             CheckLogPath();
 
@@ -66,34 +65,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         private static async void RegisterErrorPathsAsync()
         {
             // Add Error data path to [ErrorLogPath] of setting file:
-            await WriteSettingAsync("ErrorLogPath", ErrorLogFilePath);
+            await DiskHelper.WriteSettingAsync("ErrorLogPath", ErrorLogFilePath);
         }
-
-        public static async Task<bool> WriteSettingAsync(string key, string value, bool attach = false)
-        {
-            return await Task.Run(() =>
-            {
-                try
-                {
-                    Settings.Default[key] = (attach ? (ReadSetting(key) ?? "") : "") + value;
-
-                    Settings.Default.Save();
-
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            });
-        }
-
-        public static string ReadSetting(string key)
-        {
-            try { return (string)Settings.Default[key]; }
-            catch { return ""; }
-        }
-
+        
         #endregion
 
     }

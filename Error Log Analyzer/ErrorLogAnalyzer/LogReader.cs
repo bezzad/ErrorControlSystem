@@ -17,7 +17,9 @@ namespace ErrorLogAnalyzer
         {
             InitializeComponent();
 
-            dataGridView1.CreateColumns(typeof(IError));
+            pictureBox_viewer.MouseEnter += (s, ea) => pictureBox_viewer.Focus();
+
+            dgv_ErrorsViewer.CreateColumns(typeof(IError));
 
             errors = new List<ProxyError>();
 
@@ -40,7 +42,7 @@ namespace ErrorLogAnalyzer
             if (ofd.ShowDialog() == DialogResult.OK)
                 SdfFileManager.SetConnectionString(ofd.FileName);
 
-            dataGridView1.SelectionChanged += (sender, args) => JustRunEventByUser(dataGridView1_SelectionChanged);
+            dgv_ErrorsViewer.SelectionChanged += (sender, args) => JustRunEventByUser(dgvErrorsViewer_SelectionChanged);
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -49,9 +51,9 @@ namespace ErrorLogAnalyzer
             Close();
         }
 
-        private void dataGridView1_SelectionChanged()
+        private void dgvErrorsViewer_SelectionChanged()
         {
-            var index = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.Index : 0;
+            var index = dgv_ErrorsViewer.CurrentRow != null ? dgv_ErrorsViewer.CurrentRow.Index : 0;
 
             if (index < errors.Count && index >= 0)
                 pictureBox_viewer.Image = errors[index].Snapshot.Value ?? Properties.Resources._null;
@@ -63,10 +65,10 @@ namespace ErrorLogAnalyzer
         {
             errors = SdfFileManager.GetErrors().ToList();
 
-            dataGridView1.Rows.Clear();
+            dgv_ErrorsViewer.Rows.Clear();
             foreach (var item in errors)
             {
-                dataGridView1.AddRow(item);
+                dgv_ErrorsViewer.AddRow(item);
             }
         }
 
@@ -75,5 +77,6 @@ namespace ErrorLogAnalyzer
             if (!new StackTrace().GetFrames().Skip(3).Any(x => x.GetMethod().DeclaringType.Name == this.Name))
                 method();
         }
+
     }
 }

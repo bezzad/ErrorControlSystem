@@ -33,9 +33,6 @@
     <StartupObject>ErrorLogAnalyzer.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Shoniz.Windows.Forms.ImageBox">
-      <HintPath>..\Shoniz.Windows.Forms.ImageBox\obj\Debug\Shoniz.Windows.Forms.ImageBox.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -72,6 +69,10 @@
     <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine.csproj">
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
       <Name>ErrorHandlerEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shoniz.Windows.Forms.ImageBox\Shoniz.Windows.Forms.ImageBox.csproj">
+      <Project>{4159c8d3-c18d-4bed-8be6-9bad1b0ca4f6}</Project>
+      <Name>Shoniz.Windows.Forms.ImageBox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

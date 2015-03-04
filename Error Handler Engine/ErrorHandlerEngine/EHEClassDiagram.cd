@@ -3,14 +3,14 @@
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.CacheController" Collapsed="true">
     <Position X="7" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAQAIAAAAAAAAAACIAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAQAIAAAAAAAAAACIAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CacheHandledErrors\CacheController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.CacheHandledErrors.StorageRouter" Collapsed="true">
     <Position X="5.75" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACACAAAAAAABAAAAAAEAAAAAACAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACAAAAAAAAABA=</HashCode>
       <FileName>CacheHandledErrors\StorageRouter.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.CurrentProcesses" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="9.75" Y="2.5" Width="1.5" />
+    <Position X="8" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AOIgAEAAAAAAABAUCAAABAQCAAAAAAEAKAgAAIBUIBA=</HashCode>
       <FileName>ModelObjecting\CurrentProcesses.cs</FileName>
@@ -43,13 +43,6 @@
       <FileName>ModelObjecting\Error.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Bottom" Position="0.127" />
-  </Class>
-  <Class Name="ErrorHandlerEngine.ModelObjecting.HResults" Collapsed="true">
-    <Position X="10.25" Y="5.5" Width="1.25" />
-    <TypeIdentifier>
-      <HashCode>j0qAcY9Tgg0EjAbGUgEBw1AywVBAQEiIni4BADIgrBA=</HashCode>
-      <FileName>ModelObjecting\HResults.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.ProxyError" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="6" Y="2.5" Width="1.5" />
@@ -123,16 +116,10 @@
     <Position X="6" Y="1.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
-  <Class Name="ErrorHandlerEngine.Properties.Resources" Collapsed="true">
-    <Position X="7.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQEAAAAAAAAAAQAAAIA=</HashCode>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ErrorHandlerEngine.Properties.Settings" Collapsed="true">
     <Position X="1.75" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIEAAAAIAAAAAABAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIEAAAAIAAAAAABAAAAAAgAAAAACAA=</HashCode>
       <FileName>Properties\Settings.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -141,6 +128,13 @@
     <TypeIdentifier>
       <HashCode>AAAEAAAACAAAAAABAIAECAAAAAAAAAgIAKAAAAAYAIA=</HashCode>
       <FileName>ServerUploader\SdfFileManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorHandlerEngine.ModelObjecting.DiskHelper" Collapsed="true">
+    <Position X="10.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACACAAAAAAAAAAAAAAAAAAgAAAAAgAAAAAAAA=</HashCode>
+      <FileName>ModelObjecting\DiskHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="ErrorHandlerEngine.ModelObjecting.CodeLocation" Collapsed="true">
@@ -162,6 +156,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgIAAAAEAAAA=</HashCode>
       <FileName>ExceptionManager\ExceptionHandlerOption.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ErrorHandlerEngine.ModelObjecting.ErrorType" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DACwuYvKAw0hHABAEIBuVS61AJGDAIZAIUGwWVAwKO4=</HashCode>
+      <FileName>ModelObjecting\ErrorType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

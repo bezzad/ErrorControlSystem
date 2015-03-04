@@ -103,10 +103,17 @@ namespace ErrorLogAnalyzer
 
         private void CountDatabaseRecords()
         {
-            //var num = ConnectionManager.GetDefaultConnection()
-            //    .ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
+            try
+            {
+            var num = ConnectionManager.GetDefaultConnection()
+                .ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
 
-            //lblRecordsNum.Text = num.ToString(CultureInfo.InvariantCulture);
+            lblRecordsNum.Text = num.ToString(CultureInfo.InvariantCulture);
+            }
+            catch (Exception)
+            {
+                lblRecordsNum.Text = "Database Connection Corrupted";
+            }
         }
 
         private void SetCacheSizeViewer()

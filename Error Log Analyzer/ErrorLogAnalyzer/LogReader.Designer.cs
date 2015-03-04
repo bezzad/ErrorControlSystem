@@ -30,22 +30,26 @@ namespace ErrorLogAnalyzer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnQuit = new System.Windows.Forms.Button();
             this.dgv_ErrorsViewer = new System.Windows.Forms.DataGridView();
             this.btnRefreshGridView = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.refreshAlert = new System.Windows.Forms.ErrorProvider(this.components);
             this.pictureBox_viewer = new Shoniz.Windows.Forms.ImageBox();
+            this.prgCacheSize = new Shoniz.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ErrorsViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshAlert)).BeginInit();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnQuit.Location = new System.Drawing.Point(153, 12);
+            this.btnQuit.Location = new System.Drawing.Point(12, 12);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(112, 39);
             this.btnQuit.TabIndex = 1;
@@ -66,9 +70,9 @@ namespace ErrorLogAnalyzer
             // 
             this.btnRefreshGridView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefreshGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnRefreshGridView.Location = new System.Drawing.Point(15, 12);
+            this.btnRefreshGridView.Location = new System.Drawing.Point(130, 12);
             this.btnRefreshGridView.Name = "btnRefreshGridView";
-            this.btnRefreshGridView.Size = new System.Drawing.Size(132, 39);
+            this.btnRefreshGridView.Size = new System.Drawing.Size(112, 39);
             this.btnRefreshGridView.TabIndex = 9;
             this.btnRefreshGridView.Text = "&Refresh";
             this.btnRefreshGridView.UseVisualStyleBackColor = true;
@@ -93,6 +97,10 @@ namespace ErrorLogAnalyzer
             this.splitContainer1.SplitterDistance = 631;
             this.splitContainer1.TabIndex = 10;
             // 
+            // refreshAlert
+            // 
+            this.refreshAlert.ContainerControl = this;
+            // 
             // pictureBox_viewer
             // 
             this.pictureBox_viewer.AllowDoubleClick = true;
@@ -109,21 +117,37 @@ namespace ErrorLogAnalyzer
             this.pictureBox_viewer.Size = new System.Drawing.Size(385, 611);
             this.pictureBox_viewer.TabIndex = 0;
             // 
+            // prgCacheSize
+            // 
+            this.prgCacheSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.prgCacheSize.CustomText = null;
+            this.prgCacheSize.DisplayStyle = Shoniz.Windows.Forms.ProgressBarDisplayText.Percentage;
+            this.prgCacheSize.Location = new System.Drawing.Point(647, 11);
+            this.prgCacheSize.Name = "prgCacheSize";
+            this.prgCacheSize.Size = new System.Drawing.Size(385, 40);
+            this.prgCacheSize.TabIndex = 11;
+            this.prgCacheSize.TextColor = System.Drawing.Color.Tan;
+            this.prgCacheSize.TextFont = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
             // LogReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 680);
+            this.Controls.Add(this.prgCacheSize);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnRefreshGridView);
             this.Controls.Add(this.btnQuit);
             this.Name = "LogReader";
             this.Text = "Error Log Analyzer";
+            this.Load += new System.EventHandler(this.LogReader_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ErrorsViewer)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.refreshAlert)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -135,6 +159,8 @@ namespace ErrorLogAnalyzer
         private System.Windows.Forms.Button btnRefreshGridView;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Shoniz.Windows.Forms.ImageBox pictureBox_viewer;
+        private ErrorProvider refreshAlert;
+        private Shoniz.Windows.Forms.ProgressBar prgCacheSize;
     }
 }
 

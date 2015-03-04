@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using ErrorHandlerEngine.ServerUploader;
 using System;
@@ -11,7 +12,7 @@ namespace ErrorLogAnalyzer
 {
     public partial class LogReader : Form
     {
-        private List<ProxyError> errors;
+        private List<ProxyError> _errors;
 
         public LogReader()
         {
@@ -21,7 +22,7 @@ namespace ErrorLogAnalyzer
 
             dgv_ErrorsViewer.CreateColumns(typeof(IError));
 
-            errors = new List<ProxyError>();
+            _errors = new List<ProxyError>();
 
             // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -55,21 +56,23 @@ namespace ErrorLogAnalyzer
         {
             var index = dgv_ErrorsViewer.CurrentRow != null ? dgv_ErrorsViewer.CurrentRow.Index : 0;
 
-            if (index < errors.Count && index >= 0)
-                pictureBox_viewer.Image = errors[index].Snapshot.Value ?? Properties.Resources._null;
+            if (index < _errors.Count && index >= 0)
+                pictureBox_viewer.Image = _errors[index].Snapshot.Value ?? Properties.Resources._null;
         }
 
 
 
         private void btnRefreshGridView_Click(object sender, EventArgs e)
         {
-            errors = SdfFileManager.GetErrors().ToList();
+            _errors = SdfFileManager.GetErrors().ToList();
 
             dgv_ErrorsViewer.Rows.Clear();
-            foreach (var item in errors)
+            foreach (var item in _errors)
             {
                 dgv_ErrorsViewer.AddRow(item);
             }
+
+            refreshAlert.Clear();
         }
 
         public void JustRunEventByUser(Action method)
@@ -78,5 +81,13 @@ namespace ErrorLogAnalyzer
                 method();
         }
 
+        private void LogReader_Load(object sender, EventArgs e)
+        {
+            refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data");
+
+        }
+
+
+        
     }
 }

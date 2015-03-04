@@ -20,6 +20,8 @@
 //**********************************************************************************//
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
@@ -35,6 +37,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static volatile bool IsSelfException = false;
 
+        public static List<Type> ExceptedExceptionTypes = new List<Type>();
+
         #endregion
 
 
@@ -49,12 +53,20 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <returns></returns>
         public static Error RaiseLog(this Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default, String errorTitle = "UnHandled Exception")
         {
-            if (IsSelfException && option.HasFlag(ExceptionHandlerOption.IsHandled)) // Self exceptions just run in Handled Mode!
+            //
+            // Self exceptions just run in Handled Mode!
+            if (IsSelfException && option.HasFlag(ExceptionHandlerOption.IsHandled))
             {
                 IsSelfException = false;
                 return null;
             }
+            //
+            // Is exception in except list?
+            var exceptionType = exp.GetType();
 
+            if (ExceptedExceptionTypes.Any(x => x == exceptionType)) return null;
+
+            //
             // initial the error object by additional data 
             var error = new Error(exp, option);
 

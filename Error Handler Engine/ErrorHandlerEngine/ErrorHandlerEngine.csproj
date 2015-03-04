@@ -58,7 +58,6 @@
     <Compile Include="ModelObjecting\CodeLocation.cs" />
     <Compile Include="ModelObjecting\Error.cs" />
     <Compile Include="ExceptionManager\ExceptionHandlerOption.cs" />
-    <Compile Include="ModelObjecting\ExceptionTypes.cs" />
     <Compile Include="ModelObjecting\IError.cs" />
     <Compile Include="ExceptionManager\ExceptionHandler.cs" />
     <Compile Include="ModelObjecting\ProxyError.cs" />

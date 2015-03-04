@@ -82,5 +82,10 @@ namespace TestErrorHandlerBySelf
             { throw new Exception("Test UnHandled Task Exception"); });
         }
 
+        private void btnThrowExceptExceptions_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException("Test Except Exceptions");
+        }
+
     }
 }

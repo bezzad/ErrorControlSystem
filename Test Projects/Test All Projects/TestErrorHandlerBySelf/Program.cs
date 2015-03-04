@@ -19,6 +19,8 @@ namespace TestErrorHandlerBySelf
             ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
                 ExceptionHandlerOption.Default & ~ExceptionHandlerOption.ReSizeSnapshots);
 
+            ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));
+
             Application.Run(new FormTest());
         }
 

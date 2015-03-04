@@ -33,11 +33,12 @@
             this.btnTestUnHandledUIExp = new System.Windows.Forms.Button();
             this.btnTestUnHandledThreadExp = new System.Windows.Forms.Button();
             this.btnTestUnhandledTaskExp = new System.Windows.Forms.Button();
+            this.btnThrowExceptExceptions = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(51, 222);
+            this.btnQuit.Location = new System.Drawing.Point(51, 357);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(238, 38);
             this.btnQuit.TabIndex = 1;
@@ -89,11 +90,23 @@
             this.btnTestUnhandledTaskExp.UseVisualStyleBackColor = true;
             this.btnTestUnhandledTaskExp.Click += new System.EventHandler(this.btnTestUnhandledTaskExp_Click);
             // 
+            // btnThrowExceptExceptions
+            // 
+            this.btnThrowExceptExceptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnThrowExceptExceptions.Location = new System.Drawing.Point(51, 204);
+            this.btnThrowExceptExceptions.Name = "btnThrowExceptExceptions";
+            this.btnThrowExceptExceptions.Size = new System.Drawing.Size(238, 42);
+            this.btnThrowExceptExceptions.TabIndex = 9;
+            this.btnThrowExceptExceptions.Text = "Throw Except Exception";
+            this.btnThrowExceptExceptions.UseVisualStyleBackColor = true;
+            this.btnThrowExceptExceptions.Click += new System.EventHandler(this.btnThrowExceptExceptions_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 272);
+            this.ClientSize = new System.Drawing.Size(335, 407);
+            this.Controls.Add(this.btnThrowExceptExceptions);
             this.Controls.Add(this.btnTestUnhandledTaskExp);
             this.Controls.Add(this.btnTestUnHandledThreadExp);
             this.Controls.Add(this.btnTestUnHandledUIExp);
@@ -112,6 +125,7 @@
         private System.Windows.Forms.Button btnTestUnHandledUIExp;
         private System.Windows.Forms.Button btnTestUnHandledThreadExp;
         private System.Windows.Forms.Button btnTestUnhandledTaskExp;
+        private System.Windows.Forms.Button btnThrowExceptExceptions;
     }
 }
 

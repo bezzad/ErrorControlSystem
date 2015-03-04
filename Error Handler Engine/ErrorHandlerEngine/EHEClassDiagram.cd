@@ -123,18 +123,18 @@
       <FileName>Properties\Settings.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorHandlerEngine.ServerUploader.SdfFileManager" Collapsed="true">
-    <Position X="9" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAEAAAACAAAAAABAIAECAAAAAAAAAgIAKAAAAAYAIA=</HashCode>
-      <FileName>ServerUploader\SdfFileManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ErrorHandlerEngine.ModelObjecting.DiskHelper" Collapsed="true">
     <Position X="10.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACACAAAAAAAAAAAAAAAAAAgAAAAAgAAAAAAAA=</HashCode>
       <FileName>ModelObjecting\DiskHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorHandlerEngine.CacheHandledErrors.SdfFileManager" Collapsed="true">
+    <Position X="9" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAACAAAAAABAIAECAAAAAAAAAgIAKAAAAAYAIA=</HashCode>
+      <FileName>CacheHandledErrors\SdfFileManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="ErrorHandlerEngine.ModelObjecting.CodeLocation" Collapsed="true">
@@ -158,11 +158,11 @@
       <FileName>ExceptionManager\ExceptionHandlerOption.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="ErrorHandlerEngine.ModelObjecting.ErrorType" Collapsed="true">
-    <Position X="10" Y="3.5" Width="1.5" />
+  <Enum Name="ErrorHandlerEngine.ModelObjecting.ExceptionTypes" Collapsed="true">
+    <Position X="10.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>DACwuYvKAw0hHABAEIBuVS61AJGDAIZAIUGwWVAwKO4=</HashCode>
-      <FileName>ModelObjecting\ErrorType.cs</FileName>
+      <HashCode>PYCy+YvKA40jHABiUJBuVW69wNGTIcZQJ2HwfXgyK+8=</HashCode>
+      <FileName>ModelObjecting\ExceptionTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

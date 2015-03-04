@@ -77,6 +77,8 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// <returns>Converted Image Object's.</returns>
         public static Image ToImage(this byte[] imgBytes)
         {
+            if (imgBytes == null) return null;
+
             using (var ms = new MemoryStream(imgBytes))
             {
                 return Image.FromStream(ms);

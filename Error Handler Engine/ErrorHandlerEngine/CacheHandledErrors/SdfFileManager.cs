@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlServerCe;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.SqlServerCe;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 
-namespace ErrorHandlerEngine.ServerUploader
+namespace ErrorHandlerEngine.CacheHandledErrors
 {
     public static class SdfFileManager
     {
@@ -44,11 +44,11 @@ namespace ErrorHandlerEngine.ServerUploader
 	                                [CLRVersion] [nvarchar](50) NULL,
 	                                [Message] [nvarchar](1000) NULL,
 	                                [Source] [nvarchar](200) NULL,
-	                                [StackTrace] [nvarchar](2000) NULL,
+	                                [StackTrace] [nvarchar](4000) NULL,
 	                                [ModuleName] [nvarchar](200) NULL,
 	                                [MemberType] [nvarchar](50) NULL,
 	                                [Method] [nvarchar](200) NULL,
-	                                [Processes] [nvarchar](3000) NULL,
+	                                [Processes] [nvarchar](4000) NULL,
 	                                [ErrorDateTime] [datetime] NULL,
 	                                [OS] [nvarchar](100) NULL,
 	                                [IPv4Address] [nvarchar](20) NULL,

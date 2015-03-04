@@ -63,14 +63,12 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\TestErrorHandlerBySelf v1
                 var rootDir = StorageRouter.ErrorLogFilePath.Substring(0, StorageRouter.ErrorLogFilePath.LastIndexOf('\\'));
 
-                long errorDataSize = new DirectoryInfo(rootDir).GetDirectorySize();
-
                 var maxSize = Settings.Default.CacheLimitSize;
 
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if (errorDataSize >= maxSize && ConnectionManager.GetDefaultConnection().IsReady && Uploader.CanToSent)
+                if (ConnectionManager.GetDefaultConnection().IsReady && Uploader.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
                 {
                     await UploadCacheAsync();
                 }

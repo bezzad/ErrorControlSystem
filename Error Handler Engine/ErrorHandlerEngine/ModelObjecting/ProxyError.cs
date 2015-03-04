@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.Serialization;
+using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting

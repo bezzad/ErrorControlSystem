@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -40,7 +42,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (/*!SdfFileManager.Contains(Id) && */ option.HasFlag(ExceptionHandlerOption.Snapshot))
+            if (!SdfFileManager.Contains(Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
             {
                 Snapshot = option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
                         ? ScreenCapture.Capture().ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height)

@@ -75,7 +75,7 @@
     </Compile>
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="ServerUploader\DynamicStoredProcedures.cs" />
-    <Compile Include="ServerUploader\SdfFileManager.cs" />
+    <Compile Include="CacheHandledErrors\SdfFileManager.cs" />
     <Compile Include="ServerUploader\Uploader.cs" />
   </ItemGroup>
   <ItemGroup>

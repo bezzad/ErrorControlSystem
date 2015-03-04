@@ -1,9 +1,11 @@
 ﻿
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using ErrorHandlerEngine.CacheHandledErrors;
+using ConnectionsManager;
 using ErrorHandlerEngine.ServerUploader;
 using System;
 using System.Windows.Forms;
@@ -14,7 +16,7 @@ namespace ErrorLogAnalyzer
     public partial class LogReader : Form
     {
         private List<ProxyError> _errors;
-        private DirectoryInfo cacheDir;
+        private DirectoryInfo _cacheDir;
 
         public LogReader()
         {
@@ -22,9 +24,21 @@ namespace ErrorLogAnalyzer
 
             pictureBox_viewer.MouseEnter += (s, ea) => pictureBox_viewer.Focus();
 
+            dgv_ErrorsViewer.SelectionChanged += (sender, args) => JustRunEventByUser(dgvErrorsViewer_SelectionChanged);
+
             dgv_ErrorsViewer.CreateColumns(typeof(IError));
 
             _errors = new List<ProxyError>();
+
+            ConnectionManager.Add(new Connection("localhost", "UsersManagements"), "UM");
+            ConnectionManager.SetToDefaultConnection("um");
+
+            Application.Idle += Application_Idle;
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            Application.Idle -= Application_Idle;
 
             // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -42,13 +56,16 @@ namespace ErrorLogAnalyzer
             };
             ofd.CustomPlaces.Add(appDataDir);
 
-            if (ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() != DialogResult.OK)
+                this.Close();
+            else
             {
                 SdfFileManager.SetConnectionString(ofd.FileName);
 
-                cacheDir = new DirectoryInfo(Path.GetDirectoryName(ofd.FileName));
+                _cacheDir = new DirectoryInfo(Path.GetDirectoryName(ofd.FileName));
+
+                refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data");
             }
-            dgv_ErrorsViewer.SelectionChanged += (sender, args) => JustRunEventByUser(dgvErrorsViewer_SelectionChanged);
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -80,11 +97,21 @@ namespace ErrorLogAnalyzer
             refreshAlert.Clear();
 
             SetCacheSizeViewer();
+
+            CountDatabaseRecords();
+        }
+
+        private void CountDatabaseRecords()
+        {
+            //var num = ConnectionManager.GetDefaultConnection()
+            //    .ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
+
+            //lblRecordsNum.Text = num.ToString(CultureInfo.InvariantCulture);
         }
 
         private void SetCacheSizeViewer()
         {
-            var dirSize = cacheDir.GetDirectorySize();
+            var dirSize = _cacheDir.GetDirectorySize();
             var limitSize = DiskHelper.CacheLimitSize;
 
             var percent = checked((int)(dirSize * 100 / limitSize));
@@ -96,13 +123,5 @@ namespace ErrorLogAnalyzer
             if (!new StackTrace().GetFrames().Skip(3).Any(x => x.GetMethod().DeclaringType.Name == this.Name))
                 method();
         }
-
-        private void LogReader_Load(object sender, EventArgs e)
-        {
-            refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data");
-        }
-
-
-
     }
 }

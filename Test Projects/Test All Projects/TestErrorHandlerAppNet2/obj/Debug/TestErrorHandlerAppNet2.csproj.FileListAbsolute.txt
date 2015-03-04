@@ -124,3 +124,4 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Pro
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.csproj.GenerateResource.Cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.exe
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerAppNet2\obj\Debug\TestErrorHandlerAppNet2.csprojResolveAssemblyReference.cache

@@ -384,7 +384,7 @@ namespace ErrorHandlerEngine.ServerUploader
 
                     var result = cmd.ExecuteScalar();
 
-                    return result is DBNull ? null : ((byte[])result).ToImage();
+                    return (result is DBNull) ? null : ((byte[])result).ToImage();
                 }
                 finally
                 {

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ExceptionManager

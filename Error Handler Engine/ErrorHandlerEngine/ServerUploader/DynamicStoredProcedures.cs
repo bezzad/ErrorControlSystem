@@ -359,7 +359,8 @@ namespace ErrorHandlerEngine.ServerUploader
                                                                @ERROR_LINE,
                                                                @ERROR_MESSAGE,
                                                                @ERROR_NUMBER,
-                                                               ( SELECT @ERROR_PROCEDURE [Procedure]
+                                                               ( SELECT @ERROR_PROCEDURE [Procedure] ,
+                                                                        @ERROR_STATE [State]
                                                               FOR
                                                                 XML PATH('') ,
                                                                     ROOT('Error')

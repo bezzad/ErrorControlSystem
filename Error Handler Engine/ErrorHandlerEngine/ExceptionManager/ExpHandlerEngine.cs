@@ -65,10 +65,15 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static void Start(Connection conn, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
         {
+            _option = option;
+
             ConnectionManager.Add(conn, "ErrorHandlerServer");
             ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
 
-            Start(option);
+            if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
+                Application.Exit();
+
+            Uploader.CanToSent = true;
         }
 
 

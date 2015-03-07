@@ -87,8 +87,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
             }
         }
-        
-        public static async void CacheTheError(Error error)
+
+        public static async void CacheTheError(Error error, ExceptionHandlerOption option)
         {
             if (_errorSaverActionBlock == null ||
                 _errorSaverActionBlock.Completion.IsFaulted)
@@ -99,7 +99,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 {
                     await SdfFileManager.InsertOrUpdateAsync(e);
 
-                    await CheckStateAsync();
+                    if (option.HasFlag(ExceptionHandlerOption.SendCacheToServer))
+                        await CheckStateAsync();
                 },
                     new ExecutionDataflowBlockOptions
                     {

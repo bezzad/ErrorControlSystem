@@ -117,3 +117,5 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Lo
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ProcessBar.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.exe
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ProcessBar.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ProcessBar.pdb

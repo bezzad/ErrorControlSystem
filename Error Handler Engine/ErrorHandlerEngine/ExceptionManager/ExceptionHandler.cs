@@ -71,7 +71,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             //
             // Is exception in non snapshot list? (yes => remove snapshot option)
             if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
-                option = option & ~ ExceptionHandlerOption.Snapshot;
+                option = option & ~ExceptionHandlerOption.Snapshot;
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);
@@ -84,7 +84,7 @@ namespace ErrorHandlerEngine.ExceptionManager
                     MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
-            CacheController.CacheTheError(error);
+            CacheController.CacheTheError(error, option);
 
             return error;
         }

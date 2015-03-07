@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ExceptionManager;
-using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -19,19 +22,26 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// <summary>
         /// Get handled exception's by additional data.
         /// </summary>
-        /// <param name="exception">>The occurrence raw error.</param>
+        /// <param name="exp">>The occurrence raw error.</param>
         /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        public Error(Exception exception, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        public Error(Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
         {
             #region HResult [Exception Type Code]
 
-            HResult = exception.HResult;
+            HResult = exp.HResult;
 
             #endregion
 
             #region Error Line Column
 
-            LineColumn = new CodeLocation(exception);
+            LineColumn = new CodeLocation(exp);
+
+            #endregion
+
+            #region Method
+
+            Method = (exp.TargetSite != null && exp.TargetSite.ReflectedType != null) ?
+                    exp.TargetSite.ReflectedType.FullName + "." + exp.TargetSite : "";
 
             #endregion
 
@@ -53,9 +63,9 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region StackTrace
 
-            StackTrace = exception.InnerException != null
-                ? exception.InnerException.StackTrace ?? ""
-                : exception.StackTrace ?? "";
+            StackTrace = exp.InnerException != null
+                ? exp.InnerException.StackTrace ?? ""
+                : exp.StackTrace ?? "";
 
             #endregion
 
@@ -83,21 +93,14 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Message
 
-            Message = exception.Message;
-
-            #endregion
-
-            #region Method
-
-            Method = (exception.TargetSite != null && exception.TargetSite.ReflectedType != null) ?
-                    exception.TargetSite.ReflectedType.FullName + "." + exception.TargetSite : "";
+            Message = exp.Message;
 
             #endregion
 
             #region Member Type
 
-            MemberType = (exception.TargetSite != null)
-                    ? exception.TargetSite.MemberType.ToString()
+            MemberType = (exp.TargetSite != null)
+                    ? exp.TargetSite.MemberType.ToString()
                     : "";
 
             #endregion
@@ -105,7 +108,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             #region Module Name
 
             ModuleName =
-                    (exception.TargetSite != null) ? exception.TargetSite.Module.Name : "";
+                    (exp.TargetSite != null) ? exp.TargetSite.Module.Name : "";
 
             #endregion
 
@@ -167,13 +170,19 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Error Type
 
-            ErrorType = exception.GetType().Name;
+            ErrorType = exp.GetType().Name;
 
             #endregion
 
             #region Source
 
-            Source = exception.Source;
+            Source = exp.Source;
+
+            #endregion
+
+            #region Data
+
+            Data = DictionaryToXml(GetAdditionalData(exp), "ExtraProperties");
 
             #endregion
         }
@@ -208,6 +217,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public string User { get; set; }
         public CodeLocation LineColumn { get; set; }
         public int Duplicate { get; set; }
+        public string Data { get; set; }
         #endregion
 
         #region IDisposable Implement
@@ -237,6 +247,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             User = String.Empty;
             LineColumn = CodeLocation.Empty;
             Duplicate = 0;
+            Data = string.Empty;
         }
         #endregion
 
@@ -246,7 +257,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             return Clone(false);
         }
 
-        public object Clone(bool lightCopy = true)
+        public object Clone(bool lightCopy)
         {
             return lightCopy ? GetLightCopy() : this.MemberwiseClone();
         }
@@ -272,18 +283,13 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (other == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return this.LineColumn == other.LineColumn &&
-                   this.HResult == other.HResult;
+            return Id == other.Id;
         }
 
         public bool Equals(Error x, Error y)
         {
-            if (x == null) return false;
-            if (y == null) return false;
-
-            // Note value types can't have derived classes, so we don't need 
-            return x.LineColumn == y.LineColumn &&
-                   x.HResult == y.HResult;
+            // Note: value types can't have derived classes, so we don't need 
+            return x != null && y != null && x.Equals(y);
         }
 
         /// <devdoc>
@@ -296,10 +302,9 @@ namespace ErrorHandlerEngine.ModelObjecting
         {
             if (!(obj is Error)) return false;
             var comp = (Error)obj;
-            // Note value types can't have derived classes, so we don't need 
+            // Note: value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
-            return comp.LineColumn == this.LineColumn &&
-                   comp.HResult == this.HResult;
+            return Equals(comp);
         }
 
         /// <devdoc>
@@ -307,12 +312,48 @@ namespace ErrorHandlerEngine.ModelObjecting
         ///       Returns a hash code.
         ///    </para>
         /// </devdoc>
-        public override int GetHashCode()
+        public override sealed int GetHashCode()
         {
             // Unique ID  =  Line×1000   XOR   Column   XOR   |HResult|
-            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult));
+            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult) ^ Method.GetHashCode());
         }
 
         #endregion
+
+        #region Methods
+
+        public Dictionary<string, object> GetAdditionalData(Exception exp)
+        {
+            // Read any declaring properties from custom exception object
+            var data =
+                (from property in exp.GetType().GetProperties()
+                 where property.DeclaringType != null &&
+                       property.DeclaringType != typeof(Exception) &&
+                       property.DeclaringType == exp.GetType()
+                 select property).ToDictionary(p => p.Name, p => p.GetValue(exp));
+            //
+            // Read Data dictionary of exception object
+            foreach (DictionaryEntry item in exp.Data)
+            {
+                data.Add((string)item.Key, item.Value);
+            }
+
+            return data;
+        }
+
+
+        public string DictionaryToXml(Dictionary<string, object> data, string rootName)
+        {
+            var root = new XElement(rootName);
+            foreach (var pair in data)
+            {
+                root.Add(new XElement(pair.Key.Trim().Replace(' ', '_'), pair.Value));
+            }
+
+            return root.ToString(SaveOptions.None);
+        }
+
+        #endregion
+
     }
 }

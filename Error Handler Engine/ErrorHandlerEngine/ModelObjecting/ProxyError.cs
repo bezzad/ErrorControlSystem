@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Runtime.Serialization;
 using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ServerUploader;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -54,6 +53,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             User = error.User;
             LineColumn = error.LineColumn;
             Duplicate = error.Duplicate;
+            Data = error.Data;
 
             #endregion
 
@@ -91,6 +91,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             User = (string)info.GetValue("User", typeof(string));
             LineColumn = (CodeLocation)info.GetValue("LineColumn", typeof(CodeLocation));
             Duplicate = (int)info.GetValue("Duplicate", typeof(int));
+            Data = (string)info.GetValue("Data", typeof(string));
             // Initialize by invoking a specific constructor on Order when Value property is accessed
             Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
         }
@@ -121,6 +122,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public string User { get; set; }
         public CodeLocation LineColumn { get; set; }
         public int Duplicate { get; set; }
+        public string Data { get; set; }
         #endregion
 
         #region IDisposable Implement
@@ -150,6 +152,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             User = String.Empty;
             LineColumn = CodeLocation.Empty;
             Duplicate = 0;
+            Data = string.Empty;
         }
         #endregion
 
@@ -159,7 +162,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             return Clone(false);
         }
 
-        public object Clone(bool lightCopy = true)
+        public object Clone(bool lightCopy)
         {
             return lightCopy ? GetLightCopy() : this.MemberwiseClone();
         }
@@ -185,18 +188,13 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (other == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return this.LineColumn == other.LineColumn &&
-                   this.HResult == other.HResult;
+            return Id == other.Id;
         }
 
         public bool Equals(ProxyError x, ProxyError y)
         {
-            if (x == null) return false;
-            if (y == null) return false;
-
-            // Note value types can't have derived classes, so we don't need 
-            return x.LineColumn == y.LineColumn &&
-                   x.HResult == y.HResult;
+            // Note: value types can't have derived classes, so we don't need 
+            return x != null && y != null && x.Equals(y);
         }
 
         /// <devdoc>
@@ -207,12 +205,11 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// </devdoc>
         public override bool Equals(object obj)
         {
-            if (!(obj is ProxyError)) return false;
-            var comp = (ProxyError)obj;
-            // Note value types can't have derived classes, so we don't need 
+            if (!(obj is Error)) return false;
+            var comp = (Error)obj;
+            // Note: value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
-            return comp.LineColumn == this.LineColumn &&
-                   comp.HResult == this.HResult;
+            return Equals(comp);
         }
 
         /// <devdoc>
@@ -223,7 +220,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public override int GetHashCode()
         {
             // Unique ID  =  Line×1000   XOR   Column   XOR   |HResult|
-            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult));
+            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult) ^ Method.GetHashCode());
         }
 
         #endregion
@@ -255,6 +252,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             info.AddValue("User", this.User);
             info.AddValue("LineColumn", this.LineColumn);
             info.AddValue("Duplicate", this.Duplicate);
+            info.AddValue("Data", this.Data);
         }
 
         #endregion
@@ -288,7 +286,8 @@ namespace ErrorHandlerEngine.ModelObjecting
                 User = proxyError.User,
                 LineColumn = proxyError.LineColumn,
                 Duplicate = proxyError.Duplicate,
-                Snapshot = proxyError.Snapshot.Value
+                Snapshot = proxyError.Snapshot.Value,
+                Data = proxyError.Data
             };
         }
 

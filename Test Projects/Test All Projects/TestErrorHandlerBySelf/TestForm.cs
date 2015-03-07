@@ -87,5 +87,43 @@ namespace TestErrorHandlerBySelf
             throw new NotImplementedException("Test Except Exceptions");
         }
 
+        private void btnDataException_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var exp = new XExp();
+                exp.Data.Add("test data Key", "string Value");
+                exp.Data.Add("test data Key2", 25156);
+                throw exp;
+            }
+            catch { }
+        }
+
+    }
+
+    class XExp : Exception
+    {
+        public string MyPublicData1 { get; set; }
+
+
+        public string MyPublicData2 { get; set; }
+
+        public string MyPublicData3 { get; set; }
+
+        public string MyPublicData4 { get; set; }
+
+        public string MyPublicData5 { get; set; }
+
+
+
+        public XExp()
+        {
+            MyPublicData1 = "I am Public Property 1";
+            MyPublicData2 = "I am Public Property 2";
+            MyPublicData3 = "I am Public Property 3";
+            MyPublicData4 = "I am Public Property 4";
+            MyPublicData5 = "I am Public Property 5";
+
+        }
     }
 }

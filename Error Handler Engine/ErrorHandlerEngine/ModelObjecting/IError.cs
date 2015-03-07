@@ -27,5 +27,6 @@ namespace ErrorHandlerEngine.ModelObjecting
         String User { get; set; }
         CodeLocation LineColumn { get; set; }
         int Duplicate { get; set; }
+        string Data { get; set; }
     }
 }

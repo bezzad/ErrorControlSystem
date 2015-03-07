@@ -187,7 +187,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 //
                 // Set the command object so it knows to execute a stored procedure
                 cmd.CommandType = CommandType.Text;
-                
+
                 #region Command Text
                 cmd.CommandText = @"-- Object:  StoredProcedure [dbo].[sp_InsertErrorLog]    Script Date: 03/05/2015 16:39:51 
                                     IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_InsertErrorLog]') AND type in (N'P', N'PC'))
@@ -212,29 +212,30 @@ namespace ErrorHandlerEngine.ServerUploader
                                     -- Description:	<Description: Error Control System Stored Procedure>
                                     -- =============================================
                                     CREATE PROCEDURE [dbo].[sp_InsertErrorLog]
-                                        @DateTime DATETIME ,
-                                        @Host VARCHAR(200) ,
-                                        @User VARCHAR(200) ,
-                                        @IsHandled BIT ,
-                                        @Type VARCHAR(100) ,
-                                        @AppName VARCHAR(100) ,
+                                        @DateTime DATETIME,
+                                        @Host VARCHAR(200)  = NULL,
+                                        @User VARCHAR(200) = NULL ,
+                                        @IsHandled BIT = 0,
+                                        @Type VARCHAR(100)  = NULL,
+                                        @AppName VARCHAR(100)  = NULL,
                                         @ScreenCapture IMAGE = NULL,
-                                        @CurrentCulture NVARCHAR(100) ,
-                                        @CLRVersion VARCHAR(20) ,
-                                        @Message NVARCHAR(MAX) ,
-                                        @Source NVARCHAR(MAX) ,
-                                        @StackTrace NVARCHAR(MAX) ,
-                                        @ModuleName VARCHAR(200) ,
-                                        @MemberType VARCHAR(50) ,
-                                        @Method VARCHAR(500) ,
-                                        @Processes VARCHAR(MAX) ,
-                                        @ErrorDateTime DATETIME ,
-                                        @OS VARCHAR(1000) ,
-                                        @IPv4Address VARCHAR(15) ,
-                                        @MACAddress VARCHAR(50) ,
-                                        @HResult INT ,
-                                        @LineCol VARCHAR(50) ,
-                                        @Duplicate INT
+                                        @CurrentCulture NVARCHAR(100)  = NULL,
+                                        @CLRVersion VARCHAR(20) = NULL,
+                                        @Message NVARCHAR(MAX)  = NULL,
+                                        @Source NVARCHAR(MAX)  = NULL,
+                                        @StackTrace NVARCHAR(MAX)  = NULL,
+                                        @ModuleName VARCHAR(200)  = NULL,
+                                        @MemberType VARCHAR(50)  = NULL,
+                                        @Method VARCHAR(500)  = NULL,
+                                        @Processes VARCHAR(MAX)  = NULL,
+                                        @ErrorDateTime DATETIME,
+                                        @OS VARCHAR(1000)  = NULL,
+                                        @IPv4Address VARCHAR(15)  = NULL,
+                                        @MACAddress VARCHAR(50)  = NULL,
+                                        @HResult INT,
+                                        @LineCol VARCHAR(50)  = NULL,
+                                        @Duplicate INT,
+                                        @Data XML = NULL
                                     AS
                                         DECLARE @ErrorLogID INT = 0
 	                                    Declare @TempTable table
@@ -284,7 +285,8 @@ namespace ErrorHandlerEngine.ServerUploader
 								                                       ,[MACAddress]
 								                                       ,[HResult]
 								                                       ,[LineColumn]
-								                                       ,[DuplicateNo])
+								                                       ,[DuplicateNo]
+                                                                       ,[Data])
 						                                    VALUES  ( @DateTime
 								                                       ,@Host
 								                                       ,@User
@@ -307,6 +309,7 @@ namespace ErrorHandlerEngine.ServerUploader
 								                                       ,@HResult
 								                                       ,@LineCol
 								                                       ,@Duplicate
+                                                                       ,@Data
 								                                    )
 						                                    -- Set AutoId of ErrorLog table to @ErrorLogID for use in Snapshots table        
 						                                    SELECT @ErrorLogID = SCOPE_IDENTITY()	
@@ -397,6 +400,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 if (error.Snapshot.Value != null)
                     cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
 
+
                 cmd.Parameters.AddWithValue("@DateTime", error.ServerDateTime);
                 cmd.Parameters.AddWithValue("@Host", error.Host);
                 cmd.Parameters.AddWithValue("@User", error.User);
@@ -419,6 +423,7 @@ namespace ErrorHandlerEngine.ServerUploader
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
                 cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
+                cmd.Parameters.AddWithValue("@Data", error.Data);
                 //
                 // execute the command
                 try

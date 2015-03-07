@@ -56,7 +56,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 	                                [HResult] [int] NULL,
 	                                [LineColumn] [nvarchar](40) NULL,
                                     [ScreenCapture] [image] NULL,
-	                                [DuplicateNo] [int] NULL ) ";
+	                                [DuplicateNo] [int] NULL, 
+                                    [Data] [nvarchar] (4000) NULL) ";
 
 
             using (var sqlCon = new SqlCeConnection(ConnectionString))
@@ -133,7 +134,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 					   ,[HResult]
 					   ,[LineColumn]
                        ,[ScreenCapture]
-					   ,[DuplicateNo])
+					   ,[DuplicateNo]
+                       ,[Data])
             VALUES  ( 
                         @Id
                        ,@ServerDateTime
@@ -159,6 +161,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 					   ,@LineCol
                        ,@Snapshot
 					   ,@Duplicate
+                       ,@Data
                     )";
 
                 //
@@ -186,6 +189,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
                 cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
+                cmd.Parameters.AddWithValue("@Data", error.Data);
                 if (error.Snapshot == null) cmd.Parameters.AddWithValue("@Snapshot", DBNull.Value);
                 else cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot.ToBytes());
 
@@ -322,6 +326,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                                                             ,[HResult]
                                                             ,[LineColumn]
                                                             ,[DuplicateNo]
+                                                            ,[Data]
                                                         FROM ErrorLog");
 
                     ExceptionHandler.IsSelfException = true;
@@ -357,7 +362,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                                 MacAddress = (string)error["MACAddress"],
                                 HResult = (int)error["HResult"],
                                 LineColumn = CodeLocation.Parse(error["LineColumn"] as string),
-                                Duplicate = (int)error["DuplicateNo"]
+                                Duplicate = (int)error["DuplicateNo"],
+                                Data = (string)error["Data"]
                             });
                 }
                 finally

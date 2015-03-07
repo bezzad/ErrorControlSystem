@@ -34,6 +34,7 @@
             this.btnTestUnHandledThreadExp = new System.Windows.Forms.Button();
             this.btnTestUnhandledTaskExp = new System.Windows.Forms.Button();
             this.btnThrowExceptExceptions = new System.Windows.Forms.Button();
+            this.btnDataException = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnQuit
@@ -101,11 +102,23 @@
             this.btnThrowExceptExceptions.UseVisualStyleBackColor = true;
             this.btnThrowExceptExceptions.Click += new System.EventHandler(this.btnThrowExceptExceptions_Click);
             // 
+            // btnDataException
+            // 
+            this.btnDataException.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDataException.Location = new System.Drawing.Point(51, 252);
+            this.btnDataException.Name = "btnDataException";
+            this.btnDataException.Size = new System.Drawing.Size(238, 42);
+            this.btnDataException.TabIndex = 10;
+            this.btnDataException.Text = "Throw Data Exception";
+            this.btnDataException.UseVisualStyleBackColor = true;
+            this.btnDataException.Click += new System.EventHandler(this.btnDataException_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 407);
+            this.Controls.Add(this.btnDataException);
             this.Controls.Add(this.btnThrowExceptExceptions);
             this.Controls.Add(this.btnTestUnhandledTaskExp);
             this.Controls.Add(this.btnTestUnHandledThreadExp);
@@ -126,6 +139,7 @@
         private System.Windows.Forms.Button btnTestUnHandledThreadExp;
         private System.Windows.Forms.Button btnTestUnhandledTaskExp;
         private System.Windows.Forms.Button btnThrowExceptExceptions;
+        private System.Windows.Forms.Button btnDataException;
     }
 }
 

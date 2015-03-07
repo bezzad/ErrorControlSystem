@@ -39,6 +39,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         public static List<Type> ExceptedExceptionTypes = new List<Type>();
 
+        public static List<Type> NonSnapshotExceptionTypes = new List<Type>();
+
         #endregion
 
 
@@ -61,11 +63,15 @@ namespace ErrorHandlerEngine.ExceptionManager
                 return null;
             }
             //
-            // Is exception in except list?
+            // Find exception type:
             var exceptionType = exp.GetType();
-
+            //
+            // Is exception in except list?
             if (ExceptedExceptionTypes.Any(x => x == exceptionType)) return null;
-
+            //
+            // Is exception in non snapshot list? (yes => remove snapshot option)
+            if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
+                option = option & ~ ExceptionHandlerOption.Snapshot;
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);

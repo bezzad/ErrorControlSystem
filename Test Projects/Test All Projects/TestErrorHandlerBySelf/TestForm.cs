@@ -101,6 +101,7 @@ namespace TestErrorHandlerBySelf
 
     }
 
+
     class XExp : Exception
     {
         public string MyPublicData1 { get; set; }

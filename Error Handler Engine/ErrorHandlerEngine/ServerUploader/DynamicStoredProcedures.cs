@@ -349,14 +349,17 @@ namespace ErrorHandlerEngine.ServerUploader
 		
                                                 IF @ERROR_NUMBER <> 50000
                                                     INSERT  INTO UsersManagements.dbo.ErrorLog
-                                                            ( [Type] ,
+                                                            ( [Type],
+                                                              [LineColumn],
+                                                              [Message],
+                                                              [HResult],
                                                               [Data]
 		                                                    )
                                                     VALUES  ( 'SqlException' ,
-                                                              ( SELECT  @ERROR_LINE LineNumber ,
-                                                                        @ERROR_MESSAGE [Message] ,
-                                                                        @ERROR_NUMBER Number ,
-                                                                        @ERROR_PROCEDURE [Procedure]
+                                                               @ERROR_LINE,
+                                                               @ERROR_MESSAGE,
+                                                               @ERROR_NUMBER,
+                                                               ( SELECT @ERROR_PROCEDURE [Procedure]
                                                               FOR
                                                                 XML PATH('') ,
                                                                     ROOT('Error')

@@ -10,6 +10,36 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class DynamicStoredProcedures
     {
+        public void test()
+        {
+            /*
+            Declare @logpath nvarchar(256),
+        @datapath nvarchar(256),
+        @filenameLog nvarchar(256),
+        @filenamedata nvarchar(256);
+
+SET @logpath = (select 
+                   LEFT(physical_name, LEN(physical_name) - CHARINDEX('\', REVERSE(physical_name)) + 1) 
+                from sys.master_files 
+                where name = 'modeldev')
+
+SET @datapath = (select 
+                    LEFT(physical_name, LEN(physical_name)  - CHARINDEX('\', REVERSE(physical_name)) + 1) 
+                 from sys.master_files 
+                 where name = 'modellog')
+
+set @filenamelog = @logpath + 'test2.ldf'
+set @filenamedata = @datapath + 'test2.mdf'
+
+DECLARE @createDatabase NVARCHAR(MAX)
+SET @createDatabase = 'CREATE DATABASE [test] ON  PRIMARY 
+  ( NAME = ''' + @filenamedata + ''', FILENAME = ''' + @filenamedata + ''', SIZE = 51200KB , FILEGROWTH = 10240KB )
+ LOG ON 
+  ( NAME = ''' + @filenamedata + ''', FILENAME = ''' + @filenamelog + ''' , SIZE = 5120KB , FILEGROWTH = 5120KB )'
+  
+EXEC sp_executesql @createDatabase
+             */
+        }
         public static void CreateDatabase()
         {
             var conn = ConnectionManager.GetDefaultConnection();

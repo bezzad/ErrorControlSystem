@@ -73,7 +73,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="ServerUploader\DatabaseValidation.cs" />
     <Compile Include="ServerUploader\DynamicStoredProcedures.cs" />
     <Compile Include="CacheHandledErrors\SdfFileManager.cs" />
     <Compile Include="ServerUploader\Uploader.cs" />

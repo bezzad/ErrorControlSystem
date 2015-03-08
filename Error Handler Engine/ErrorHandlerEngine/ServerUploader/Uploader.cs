@@ -19,7 +19,16 @@ namespace ErrorHandlerEngine.ServerUploader
 
         static Uploader()
         {
-            Task.Run(async () => await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync());
+            Task.Run(async () =>
+            {
+                await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync();
+
+                var cm = ConnectionManager.GetDefaultConnection();
+                
+                if(cm.IsReady)
+                    DynamicStoredProcedures.CreateDatabase();
+            });
+
 
 
             ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(

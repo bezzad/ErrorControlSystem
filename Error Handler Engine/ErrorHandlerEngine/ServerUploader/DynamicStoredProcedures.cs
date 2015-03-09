@@ -10,42 +10,78 @@ namespace ErrorHandlerEngine.ServerUploader
 {
     public static class DynamicStoredProcedures
     {
-        public void test()
+        public static async Task CreateDatabaseAsync()
         {
-            /*
-            Declare @logpath nvarchar(256),
-        @datapath nvarchar(256),
-        @filenameLog nvarchar(256),
-        @filenamedata nvarchar(256);
+            var conn = ConnectionManager.GetDefaultConnection();
 
-SET @logpath = (select 
-                   LEFT(physical_name, LEN(physical_name) - CHARINDEX('\', REVERSE(physical_name)) + 1) 
-                from sys.master_files 
-                where name = 'modeldev')
+            var databaseName = conn.Connection.DatabaseName;
+            var masterConn = conn.Connection.Clone() as Connection;
+            masterConn.DatabaseName = "master";
 
-SET @datapath = (select 
-                    LEFT(physical_name, LEN(physical_name)  - CHARINDEX('\', REVERSE(physical_name)) + 1) 
-                 from sys.master_files 
-                 where name = 'modellog')
+            var sqlConn = new SqlConnection(masterConn.ConnectionString);
 
-set @filenamelog = @logpath + 'test2.ldf'
-set @filenamedata = @datapath + 'test2.mdf'
+            // Create a command object identifying the stored procedure
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                //
+                // Set the command object so it knows to execute a stored procedure
+                cmd.CommandType = CommandType.Text;
 
-DECLARE @createDatabase NVARCHAR(MAX)
-SET @createDatabase = 'CREATE DATABASE [test] ON  PRIMARY 
-  ( NAME = ''' + @filenamedata + ''', FILENAME = ''' + @filenamedata + ''', SIZE = 51200KB , FILEGROWTH = 10240KB )
- LOG ON 
-  ( NAME = ''' + @filenamedata + ''', FILENAME = ''' + @filenamelog + ''' , SIZE = 5120KB , FILEGROWTH = 5120KB )'
-  
-EXEC sp_executesql @createDatabase
-             */
+                #region Command Text
+                cmd.CommandText =
+                    @"Declare @logpath nvarchar(256),
+                              @datapath nvarchar(256),
+                              @name nvarchar(256),
+                              @namelog nvarchar(256);
+                     
+                      set @name = '" + databaseName + @"'
+                     
+                      SET @logpath = (select 
+                                          LEFT(physical_name, LEN(physical_name) - CHARINDEX('\', REVERSE(physical_name)) + 1) 
+                                      from sys.master_files 
+                                      where name = 'modellog') + @name + '.ldf'
+                     
+                      SET @datapath = (select 
+                                          LEFT(physical_name, LEN(physical_name)  - CHARINDEX('\', REVERSE(physical_name)) + 1) 
+                                          from sys.master_files 
+                                          where name = 'modeldev') + @name + '_log.mdf'
+                     
+                     
+                      IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = @name)
+                      BEGIN
+	                      DECLARE @createDatabase NVARCHAR(MAX)
+	                      SET @createDatabase = 'CREATE DATABASE [' + @name + '] ON  PRIMARY 
+	                          ( NAME = N''' + @name + ''', FILENAME = N''' + @datapath + ''', SIZE = 51200KB , FILEGROWTH = 10240KB )
+	                          LOG ON 
+	                          ( NAME = N''' + @name + '' + '_log'' , FILENAME = N''' + @logpath + ''' , SIZE = 5120KB , FILEGROWTH = 5120KB )'
+	                 
+	                      EXEC sp_executesql @createDatabase
+                      END";
+
+                #endregion
+                //
+                // execute the command
+                try
+                {
+                    ExceptionHandler.IsSelfException = true;
+                    await sqlConn.OpenAsync();
+
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                finally
+                {
+                    sqlConn.Close();
+                    ExceptionHandler.IsSelfException = false;
+                }
+            }
         }
-        public static void CreateDatabase()
+
+        public static async Task CreateTablesAndStoredProceduresAsync()
         {
             var conn = ConnectionManager.GetDefaultConnection();
 
             // Create a command object identifying the stored procedure
-            using (var cmd = conn.CreateSqlCommand())
+            using (var cmd = conn.CreateCommand())
             {
                 //
                 // Set the command object so it knows to execute a stored procedure
@@ -327,9 +363,9 @@ EXEC sp_executesql @createDatabase
                 try
                 {
                     ExceptionHandler.IsSelfException = true;
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    cmd.ExecuteNonQuery();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {

@@ -221,7 +221,7 @@ namespace ConnectionsManager
             SqlConn.Close();
         }
 
-        public SqlCommand CreateSqlCommand()
+        public SqlCommand CreateCommand()
         {
             return SqlConn.CreateCommand();
         }
@@ -234,7 +234,7 @@ namespace ConnectionsManager
 
                 using (var da = new SqlDataAdapter())
                 {
-                    var cmd = CreateSqlCommand();
+                    var cmd = CreateCommand();
 
                     cmd.CommandType = commandType;
                     cmd.CommandText = commandText;
@@ -269,7 +269,7 @@ namespace ConnectionsManager
         {
             try
             {
-                var cmd = CreateSqlCommand();
+                var cmd = CreateCommand();
 
                 cmd.CommandType = commandType;
                 cmd.CommandText = commandText;
@@ -375,7 +375,7 @@ namespace ConnectionsManager
         {
             try
             {
-                var cmd = CreateSqlCommand();
+                var cmd = CreateCommand();
 
                 cmd.CommandType = commandType;
                 cmd.CommandText = commandText;
@@ -412,7 +412,7 @@ namespace ConnectionsManager
         {
             try
             {
-                var cmd = CreateSqlCommand();
+                var cmd = CreateCommand();
 
                 cmd.CommandType = commandType;
                 cmd.CommandText = commandText;
@@ -492,7 +492,7 @@ namespace ConnectionsManager
         {
             try
             {
-                var cmd = CreateSqlCommand();
+                var cmd = CreateCommand();
 
                 cmd.CommandType = commandType;
                 cmd.CommandText = commandText;

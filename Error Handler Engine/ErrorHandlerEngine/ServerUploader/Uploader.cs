@@ -21,12 +21,21 @@ namespace ErrorHandlerEngine.ServerUploader
         {
             Task.Run(async () =>
             {
+            CheckDatabase:
                 await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync();
 
                 var cm = ConnectionManager.GetDefaultConnection();
-                
-                if(cm.IsReady)
-                    DynamicStoredProcedures.CreateDatabase();
+
+                if (cm.IsReady)
+                {
+                    await DynamicStoredProcedures.CreateTablesAndStoredProceduresAsync();
+                }
+                else if (await cm.IsServerOnlineAsync())
+                {
+                    await DynamicStoredProcedures.CreateDatabaseAsync();
+
+                    goto CheckDatabase;
+                }
             });
 
 

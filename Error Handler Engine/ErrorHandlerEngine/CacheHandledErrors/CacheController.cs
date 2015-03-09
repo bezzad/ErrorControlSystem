@@ -85,6 +85,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             foreach (var error in SdfFileManager.GetErrors())
             {
                 await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
+
+                if (!Uploader.CanToSent) break;
             }
         }
 

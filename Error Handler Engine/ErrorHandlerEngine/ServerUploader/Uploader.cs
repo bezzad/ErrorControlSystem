@@ -28,11 +28,11 @@ namespace ErrorHandlerEngine.ServerUploader
 
                 if (cm.IsReady)
                 {
-                    await DynamicAccessLayer.CreateTablesAndStoredProceduresAsync();
+                    await DataAccessLayer.CreateTablesAndStoredProceduresAsync();
                 }
                 else if (await cm.IsServerOnlineAsync())
                 {
-                    await DynamicAccessLayer.CreateDatabaseAsync();
+                    await DataAccessLayer.CreateDatabaseAsync();
 
                     goto CheckDatabase;
                 }
@@ -47,7 +47,7 @@ namespace ErrorHandlerEngine.ServerUploader
                     {
                         try
                         {
-                            await DynamicAccessLayer.InsertErrorAsync(e);
+                            await DataAccessLayer.InsertErrorAsync(e);
                         }
                         catch (Exception)
                         {

@@ -79,7 +79,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public static DateTime GetServerDateTime()
         {
             return ConnectionManager.GetDefaultConnection().IsReady
-                ? DynamicAccessLayer.FetchServerDataTimeTsql()
+                ? DataAccessLayer.FetchServerDataTimeTsql()
                 : DateTime.Now;
         }
 

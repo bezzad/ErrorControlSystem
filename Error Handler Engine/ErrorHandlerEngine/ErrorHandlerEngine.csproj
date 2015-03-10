@@ -73,7 +73,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="ServerUploader\DynamicAccessLayer.cs" />
+    <Compile Include="ServerUploader\DataAccessLayer.cs" />
     <Compile Include="CacheHandledErrors\SdfFileManager.cs" />
     <Compile Include="ServerUploader\Uploader.cs" />
   </ItemGroup>
@@ -90,6 +90,10 @@
       <Project>{d1479d81-3aa1-461d-8801-7dc23a5e7b15}</Project>
       <Name>ConnectionsManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ServerUploader\DatabaseCreatoQuery.sql" />
+    <Content Include="ServerUploader\TablesAndSPsCreatorQuery.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

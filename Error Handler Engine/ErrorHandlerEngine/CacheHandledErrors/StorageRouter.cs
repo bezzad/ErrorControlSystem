@@ -50,7 +50,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             // Application Name and Major Version 
             var appNameVer = String.Format("{0} v{1}",
                 AppDomain.CurrentDomain.FriendlyName.Substring(0, AppDomain.CurrentDomain.FriendlyName.IndexOf('.')),
-                Version.Parse(Application.ProductVersion).Major);
+                Application.ProductVersion); // for shown just Major ver.:   Version.Parse(Application.ProductVersion).Major
 
             // Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
             var storageDirPath = Path.Combine(appDataDir, appNameVer);

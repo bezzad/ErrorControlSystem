@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -139,11 +140,15 @@ namespace ConnectionsManager
         /// <returns>If find serverName in network then return True, otherwise return False.</returns>
         public bool IsServerOnline()
         {
+            if (SqlConn.DataSource == null) return false;
+
+            if (SqlConn.DataSource.Equals("localhost", StringComparison.OrdinalIgnoreCase)) return true;
+
+            if (!IsNetworkAvailable()) return false;
+
             using (var dataSources = SqlDataSourceEnumerator.Instance.GetDataSources())
             {
-                var serverName = this.SqlConn.DataSource == "localhost"
-                    ? Environment.MachineName
-                    : SqlConn.DataSource.Contains(@"\")
+                var serverName = SqlConn.DataSource.Contains(@"\")
                         ? SqlConn.DataSource.Substring(0, SqlConn.DataSource.IndexOf(@"\", System.StringComparison.Ordinal))
                         : SqlConn.DataSource;
 
@@ -155,6 +160,31 @@ namespace ConnectionsManager
                 return isOn;
             }
         }
+
+        #region Check Network Availability
+        /// <summary>
+        /// Indicates whether any network connection is available
+        /// </summary>
+        /// <returns>
+        ///     <c>true</c> if a network connection is available; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsNetworkAvailable()
+        {
+            // only recognizes changes related to Internet adapters
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                // however, this will include all adapters
+                return
+                    NetworkInterface.GetAllNetworkInterfaces().
+                    Where(face => face.OperationalStatus == OperationalStatus.Up).
+                    Any(face =>
+                        (face.NetworkInterfaceType != NetworkInterfaceType.Tunnel) &&
+                        (face.NetworkInterfaceType != NetworkInterfaceType.Loopback));
+            }
+
+            return false;
+        }
+        #endregion
 
         /// <summary>
         ///     Check giver server name by all connected server on the this network and find that.

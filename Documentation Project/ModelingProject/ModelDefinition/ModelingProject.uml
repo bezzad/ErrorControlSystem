@@ -647,7 +647,7 @@
           </callOperationAction>
           <opaqueAction
             Id="d4e19884-b68e-4a26-8872-4449074ddac8"
-            name="Server Manager"
+            name="Server Controller"
             isLeaf="false">
             <flowNodeTargets>
               <controlFlow

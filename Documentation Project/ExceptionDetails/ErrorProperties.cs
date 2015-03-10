@@ -9,10 +9,12 @@ using Office = Microsoft.Office.Core;
 
 namespace ExceptionDetails
 {
-    public partial class Sheet1
+    public partial class ErrorProperties
     {
         private void Sheet1_Startup(object sender, System.EventArgs e)
         {
+            MessageBox.Show("This excel file is information of Error object properties in project and database",
+                "About this Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Sheet1_Shutdown(object sender, System.EventArgs e)

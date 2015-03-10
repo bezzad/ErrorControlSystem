@@ -404,7 +404,7 @@
               </controlFlow>
             </flowNodeTargets>
           </callOperationAction>
-          <opaqueAction Id="38a5f3ff-f9b9-4a56-95cd-f76f5dfaef22" name="Server Manager" isLeaf="false">
+          <opaqueAction Id="38a5f3ff-f9b9-4a56-95cd-f76f5dfaef22" name="Server Controller" isLeaf="false">
             <elementDefinition Id="d4e19884-b68e-4a26-8872-4449074ddac8" />
             <flowNodeTargets>
               <controlFlow Id="1ad83a65-e5f1-4045-ae0d-3679f8e23af1" isLeaf="false">

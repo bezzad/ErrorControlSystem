@@ -98,7 +98,6 @@ namespace TestErrorHandlerBySelf
             }
             catch { }
         }
-
     }
 
 

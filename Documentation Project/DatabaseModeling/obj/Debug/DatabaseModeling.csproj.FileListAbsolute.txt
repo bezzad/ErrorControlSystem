@@ -64,3 +64,4 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Document
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.csprojResolveAssemblyReference.cache

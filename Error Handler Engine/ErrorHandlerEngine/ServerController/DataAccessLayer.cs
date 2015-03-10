@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,7 +9,7 @@ using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 
-namespace ErrorHandlerEngine.ServerUploader
+namespace ErrorHandlerEngine.ServerController
 {
     public static class DataAccessLayer
     {

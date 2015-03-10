@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ServerUploader;
+using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {

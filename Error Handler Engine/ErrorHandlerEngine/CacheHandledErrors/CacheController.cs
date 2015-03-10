@@ -6,7 +6,7 @@ using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.Properties;
-using ErrorHandlerEngine.ServerUploader;
+using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {

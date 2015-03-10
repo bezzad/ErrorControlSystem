@@ -6,7 +6,7 @@ using ConnectionsManager;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
 
-namespace ErrorHandlerEngine.ServerUploader
+namespace ErrorHandlerEngine.ServerController
 {
     public static class Uploader
     {

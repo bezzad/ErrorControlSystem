@@ -73,9 +73,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="ServerUploader\DataAccessLayer.cs" />
+    <Compile Include="ServerController\DataAccessLayer.cs" />
     <Compile Include="CacheHandledErrors\SdfFileManager.cs" />
-    <Compile Include="ServerUploader\Uploader.cs" />
+    <Compile Include="ServerController\Uploader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -92,8 +92,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ServerUploader\DatabaseCreatorQuery.sql" />
-    <EmbeddedResource Include="ServerUploader\TablesAndSPsCreatorQuery.sql" />
+    <EmbeddedResource Include="ServerController\DatabaseCreatorQuery.sql" />
+    <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

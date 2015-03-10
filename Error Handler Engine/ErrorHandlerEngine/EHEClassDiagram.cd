@@ -94,11 +94,11 @@
       <FileName>ModelObjecting\ScreenCapture.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorHandlerEngine.ServerUploader.Uploader" Collapsed="true">
+  <Class Name="ErrorHandlerEngine.ServerController.Uploader" Collapsed="true">
     <Position X="8.75" Y="6.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
-      <FileName>ServerUploader\Uploader.cs</FileName>
+      <FileName>ServerController\Uploader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="System.EventArgs" Collapsed="true">
@@ -130,11 +130,11 @@
       <FileName>CacheHandledErrors\SdfFileManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorHandlerEngine.ServerUploader.DataAccessLayer" Collapsed="true">
+  <Class Name="ErrorHandlerEngine.ServerController.DataAccessLayer" Collapsed="true">
     <Position X="8" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAgCAAAAAAAAAIAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>ServerUploader\DataAccessLayer.cs</FileName>
+      <FileName>ServerController\DataAccessLayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="ErrorHandlerEngine.ModelObjecting.CodeLocation" Collapsed="true">

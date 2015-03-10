@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.ServerUploader;
+using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {

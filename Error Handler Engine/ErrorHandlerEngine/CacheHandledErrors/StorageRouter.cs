@@ -2,7 +2,6 @@
 using System.IO;
 using System.Windows.Forms;
 using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {

@@ -16,21 +16,21 @@ BEGIN
 		[Host] [varchar](200) NULL, 
 		[User] [varchar](200) NULL, 
 		[IsHandled] [bit] NULL, 
-		[Type] [varchar](100) NULL, 
-		[AppName] [varchar](100) NULL, 
+		[Type] [varchar](200) NULL, 
+		[AppName] [varchar](200) NULL, 
 		[Data] [xml] NULL, 
-		[CurrentCulture] [nvarchar](100) NULL, 
-		[CLRVersion] [varchar](20) NULL, 
+		[CurrentCulture] [nvarchar](200) NULL, 
+		[CLRVersion] [varchar](100) NULL, 
 		[Message] [nvarchar](max) NULL, 
 		[Source] [nvarchar](max) NULL, 
 		[StackTrace] [nvarchar](max) NULL, 
 		[ModuleName] [varchar](200) NULL, 
-		[MemberType] [varchar](50) NULL, 
+		[MemberType] [varchar](200) NULL, 
 		[Method] [varchar](500) NULL, 
 		[Processes] [varchar](max) NULL, 
 		[ErrorDateTime] [datetime] NULL, 
 		[OS] [varchar](1000) NULL, 
-		[IPv4Address] [varchar](15) NULL, 
+		[IPv4Address] [varchar](50) NULL, 
 		[MACAddress] [varchar](50) NULL, 
 		[HResult] [int] NULL, 
 		[LineColumn] [varchar](50) NULL, 
@@ -58,8 +58,14 @@ BEGIN
 		ALTER TABLE [dbo].[ErrorLog] ADD  CONSTRAINT [DF_ErrorLog_Type]  DEFAULT (''Exception'') FOR [Type] 
     	 
 		-- Object:  Default [DF_ErrorLog_AppName]    Script Date: 03/08/2015 12:22:27 
-		ALTER TABLE [dbo].[ErrorLog] ADD  CONSTRAINT [DF_ErrorLog_AppName]  DEFAULT (app_name()) FOR [AppName]' 
+		ALTER TABLE [dbo].[ErrorLog] ADD  CONSTRAINT [DF_ErrorLog_AppName]  DEFAULT (app_name()) FOR [AppName]
 	             	
+		-- Object:  Default [DF_ErrorLog_IPv4Address]    Script Date: 03/10/2015 12:44:27 
+		ALTER TABLE [dbo].[ErrorLog] ADD  CONSTRAINT [DF_ErrorLog_IPv4Address]  DEFAULT (''Network Not Available'') FOR [IPv4Address]
+
+		-- Object:  Default [DF_ErrorLog_MACAddress]    Script Date: 03/10/2015 12:45:27
+		ALTER TABLE [dbo].[ErrorLog] ADD  CONSTRAINT [DF_ErrorLog_MACAddress]  DEFAULT (''Network Not Available'') FOR [MACAddress] '
+
 	 EXEC (@ErrorLogTable)			 
 END 
 
@@ -98,24 +104,24 @@ BEGIN
 		@Host VARCHAR(200), 
 		@User VARCHAR(200), 
 		@IsHandled BIT, 
-		@Type VARCHAR(100), 
-		@AppName VARCHAR(100), 
+		@Type VARCHAR(200), 
+		@AppName VARCHAR(200), 
 		@ScreenCapture IMAGE = NULL, 
-		@CurrentCulture NVARCHAR(100)  = NULL, 
-		@CLRVersion VARCHAR(20) = NULL, 
-		@Message NVARCHAR(MAX)  = NULL, 
-		@Source NVARCHAR(MAX)  = NULL, 
-		@StackTrace NVARCHAR(MAX)  = NULL, 
-		@ModuleName VARCHAR(200)  = NULL, 
-		@MemberType VARCHAR(50)  = NULL, 
-		@Method VARCHAR(500)  = NULL, 
-		@Processes VARCHAR(MAX)  = NULL, 
+		@CurrentCulture NVARCHAR(100) = NULL, 
+		@CLRVersion VARCHAR(100) = NULL, 
+		@Message NVARCHAR(MAX) = NULL, 
+		@Source NVARCHAR(MAX) = NULL, 
+		@StackTrace NVARCHAR(MAX) = NULL, 
+		@ModuleName VARCHAR(200) = NULL, 
+		@MemberType VARCHAR(200) = NULL, 
+		@Method VARCHAR(500) = NULL, 
+		@Processes VARCHAR(MAX) = NULL, 
 		@ErrorDateTime DATETIME, 
 		@OS VARCHAR(1000)  = NULL, 
-		@IPv4Address VARCHAR(15)  = NULL, 
-		@MACAddress VARCHAR(50)  = NULL, 
+		@IPv4Address VARCHAR(50) = NULL, 
+		@MACAddress VARCHAR(50) = NULL, 
 		@HResult INT, 
-		@LineCol VARCHAR(50)  = NULL, 
+		@LineCol VARCHAR(50) = NULL, 
 		@Duplicate INT, 
 		@Data XML = NULL 
 		AS 

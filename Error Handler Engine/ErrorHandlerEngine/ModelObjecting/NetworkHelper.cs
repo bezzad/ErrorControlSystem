@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.NetworkInformation;
 using ConnectionsManager;
 using ErrorHandlerEngine.ServerController;
-using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {

@@ -37,7 +37,7 @@ namespace TestApplication
         private static void Main()
         {
                ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"), 
-                                ExceptionHandlerOption.All & ~ExceptionHandlerOption.ReSizeSnapshots);
+                                ErrorHandlerOption.All & ~ErrorHandlerOption.ReSizeSnapshots);
 
                Application.Run(new Form1());
         }
@@ -60,7 +60,7 @@ In the above code snippet you've seen that, for the `ExpHandlerEngine` method sh
 For example in above codes, this code means is:
 ```csharp
 ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"), 
-                ExceptionHandlerOption.All & ~ExceptionHandlerOption.ReSizeSnapshots);
+                ErrorHandlerOption.All & ~ErrorHandlerOption.ReSizeSnapshots);
 ```
 Select all options by excepted `ReSizeSnapshots`
 
@@ -94,6 +94,10 @@ If there isn't already an issue for it, please create a new one.
 
 The `ErrorHandlerEngine` project used from __UsersManagements __ database. So that is necessary for run this application.
 For Creating __UsersManagements__ database on your server or pc do below steps:
+
+Note:
+> In the new version database and tables automatically created by __ErrorHandlerEngine__
+
 
 First open `SQL Server Management Studio` then connect to your Server instance.
 Next step's, Create New Database by name __UsersManagements__ or any name of your choice.

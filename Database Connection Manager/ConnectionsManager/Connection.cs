@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Deployment.Application;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
@@ -163,9 +164,7 @@ namespace ConnectionsManager
 
             Id = GetUniqueId();
 
-            AppName = String.Format("{0} v{1}",
-                Assembly.GetCallingAssembly().GetName().Name,
-                 Assembly.GetCallingAssembly().GetName().Version);
+            AppName = GetRunningAppNameVersion();
 
             #endregion
         }
@@ -417,6 +416,10 @@ namespace ConnectionsManager
             return conn.ToXml();
         }
 
+        public static string GetRunningAppNameVersion()
+        {
+            return Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version;
+        }
 
         #endregion
 

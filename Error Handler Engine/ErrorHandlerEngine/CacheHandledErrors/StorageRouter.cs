@@ -47,9 +47,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
             // Application Name and Major Version 
-            var appNameVer = String.Format("{0} v{1}",
-                AppDomain.CurrentDomain.FriendlyName.Substring(0, AppDomain.CurrentDomain.FriendlyName.IndexOf('.')),
-                System.Windows.Forms.Application.ProductVersion); // for shown just Major ver.:   Version.Parse(Application.ProductVersion).Major
+            var appNameVer = String.Format(ConnectionsManager.Connection.GetRunningAppNameVersion());
 
             // Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
             var storageDirPath = Path.Combine(appDataDir, appNameVer);

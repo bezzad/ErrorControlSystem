@@ -17,13 +17,12 @@ namespace ErrorHandlerEngine.ExceptionManager
     /// Exceptions Handler Engine Class
     /// for handling any exception from your attachment applications. 
     /// </summary>
-    [SecurityCritical]
     [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
     public static class ExpHandlerEngine
     {
         #region Properties
 
-        private static ExceptionHandlerOption _option;
+        private static ErrorHandlerOption _option;
 
         #endregion
 
@@ -52,9 +51,9 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Methods
 
-        public static void Start(ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        public static void Start(ErrorHandlerOption option = ErrorHandlerOption.Default)
         {
-            _option = option & ~ExceptionHandlerOption.SendCacheToServer;
+            _option = option & ~ErrorHandlerOption.SendCacheToServer;
 
             if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
                 Application.Exit();
@@ -63,7 +62,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         }
 
 
-        public static void Start(Connection conn, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        public static async void Start(Connection conn, ErrorHandlerOption option = ErrorHandlerOption.Default)
         {
             _option = option;
 
@@ -74,6 +73,10 @@ namespace ErrorHandlerEngine.ExceptionManager
                 Application.Exit();
 
             Uploader.CanToSent = true;
+
+            var publicSetting = await DataAccessLayer.GetErrorHandlerOptionAsync();
+            if (publicSetting != 0)
+                _option = publicSetting;
         }
 
 
@@ -88,7 +91,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option | ExceptionHandlerOption.IsHandled);
+            e.Exception.RaiseLog(_option | ErrorHandlerOption.IsHandled);
         }
 
         /// <summary>
@@ -100,7 +103,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option & ~ExceptionHandlerOption.IsHandled, "Unobserved Task Exception");
+            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unobserved Task Exception");
         }
 
         /// <summary>
@@ -112,7 +115,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option & ~ExceptionHandlerOption.IsHandled, "Unhandled Thread Exception");
+            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled Thread Exception");
         }
 
         /// <summary>
@@ -126,7 +129,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
-            (e.ExceptionObject as Exception).RaiseLog(_option & ~ExceptionHandlerOption.IsHandled, "Unhandled UI Exception");
+            (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled UI Exception");
 
             Application.Exit();
         }

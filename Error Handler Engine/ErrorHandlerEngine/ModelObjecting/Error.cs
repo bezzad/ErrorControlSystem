@@ -24,7 +24,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         /// </summary>
         /// <param name="exp">>The occurrence raw error.</param>
         /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        public Error(Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        public Error(Exception exp, ErrorHandlerOption option = ErrorHandlerOption.Default)
         {
             #region HResult [Exception Type Code]
 
@@ -52,9 +52,9 @@ namespace ErrorHandlerEngine.ModelObjecting
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!SdfFileManager.Contains(Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
+            if (!SdfFileManager.Contains(Id) && option.HasFlag(ErrorHandlerOption.Snapshot))
             {
-                Snapshot = option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
+                Snapshot = option.HasFlag(ErrorHandlerOption.ReSizeSnapshots)
                         ? ScreenCapture.Capture().ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height)
                         : ScreenCapture.Capture();
             }
@@ -77,7 +77,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Server Date Time
 
-            ServerDateTime = option.HasFlag(ExceptionHandlerOption.FetchServerDateTime)
+            ServerDateTime = option.HasFlag(ErrorHandlerOption.FetchServerDateTime)
                 ? NetworkHelper.GetServerDateTime()
                 : DateTime.Now;
 
@@ -146,7 +146,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Is Handled Error or UnHandled?
 
-            IsHandled = option.HasFlag(ExceptionHandlerOption.IsHandled);
+            IsHandled = option.HasFlag(ErrorHandlerOption.IsHandled);
 
             #endregion
 

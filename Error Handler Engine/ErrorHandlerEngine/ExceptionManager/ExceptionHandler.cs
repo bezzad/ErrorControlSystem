@@ -53,11 +53,11 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns></returns>
-        public static Error RaiseLog(this Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default, String errorTitle = "UnHandled Exception")
+        public static Error RaiseLog(this Exception exp, ErrorHandlerOption option = ErrorHandlerOption.Default, String errorTitle = "UnHandled Exception")
         {
             //
             // Self exceptions just run in Handled Mode!
-            if (IsSelfException && option.HasFlag(ExceptionHandlerOption.IsHandled))
+            if (IsSelfException && option.HasFlag(ErrorHandlerOption.IsHandled))
             {
                 IsSelfException = false;
                 return null;
@@ -71,12 +71,12 @@ namespace ErrorHandlerEngine.ExceptionManager
             //
             // Is exception in non snapshot list? (yes => remove snapshot option)
             if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
-                option = option & ~ExceptionHandlerOption.Snapshot;
+                option = option & ~ErrorHandlerOption.Snapshot;
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);
 
-            if (option.HasFlag(ExceptionHandlerOption.AlertUnHandledError) && !option.HasFlag(ExceptionHandlerOption.IsHandled)) // Alert Unhandled Error 
+            if (option.HasFlag(ErrorHandlerOption.AlertUnHandledError) && !option.HasFlag(ErrorHandlerOption.IsHandled)) // Alert Unhandled Error 
             {
                 MessageBox.Show(exp.Message,
                     errorTitle,

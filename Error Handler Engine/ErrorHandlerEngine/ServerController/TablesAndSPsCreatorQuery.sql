@@ -276,6 +276,7 @@ BEGIN
 		BEGIN
 			DECLARE @AppName NVARCHAR(200) = APP_NAME();
 			DECLARE @UserName NVARCHAR(200) = SYSTEM_USER;
+
 			DECLARE @None INT = 0,
 					@IsHandled INT = 1,
 					@AlertUnHandledError INT = 2,
@@ -283,15 +284,15 @@ BEGIN
 					@FetchServerDateTime INT = 8,
 					@ReSizeSnapshots INT = 16,
 					@SendCacheToServer INT = 32,
-					@Default INT = @Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots,
+					@Default INT,
 					@All INT = 0xFFFF;
 					
-			DECLARE @Result INT = @Default;
-			
+			SET @Default =  (@Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots);
+
 			IF(@AppName = ''TestErrorHandlerBySelf v2.1.1.1'' AND @UserName = ''DBITABRIZ\khosravifar.b'')
-				SET @Result = @Default - @ReSizeSnapshots
+				RETURN (@Default - @ReSizeSnapshots)
 				
-			RETURN @Result
+			RETURN @None
 		END'
 	EXEC (@fnCreator);
 END

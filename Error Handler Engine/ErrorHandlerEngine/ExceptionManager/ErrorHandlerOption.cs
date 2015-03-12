@@ -11,7 +11,7 @@ namespace ErrorHandlerEngine.ExceptionManager
     [ComVisible(true)]
     [Flags]
     [Serializable]
-    public enum ExceptionHandlerOption
+    public enum ErrorHandlerOption
     {
         None = 0,
 

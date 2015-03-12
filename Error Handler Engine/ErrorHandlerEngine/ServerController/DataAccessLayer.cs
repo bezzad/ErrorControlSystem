@@ -158,6 +158,22 @@ namespace ErrorHandlerEngine.ServerController
             }
         }
 
+        public static async Task<ErrorHandlerOption> GetErrorHandlerOptionAsync()
+        {
+            //
+            // execute the command
+            try
+            {
+                ExceptionHandler.IsSelfException = true;
+                var optInt = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<int>("SELECT dbo.GetErrorHandlerOption()", CommandType.Text);
+                return (ErrorHandlerOption) optInt;
+            }
+            finally
+            {
+                ExceptionHandler.IsSelfException = false;
+            }
+        }
+
         internal static string GetFromResources(string resourceName)
         {
             var asm = Assembly.GetExecutingAssembly();

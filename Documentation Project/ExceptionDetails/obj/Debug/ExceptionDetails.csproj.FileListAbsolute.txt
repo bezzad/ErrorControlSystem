@@ -135,3 +135,4 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Document
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csproj.GenerateResource.Cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.ErrorProperties.resources

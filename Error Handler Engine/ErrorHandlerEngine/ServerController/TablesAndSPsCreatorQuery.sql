@@ -14,11 +14,11 @@ BEGIN
 		'CREATE TABLE [dbo].[ErrorLog]( 
 		[ErrorId] [bigint] IDENTITY(1,1) NOT NULL, 
 		[ServerDateTime] [datetime] NULL, 
-		[Host] [varchar](200) NULL, 
-		[User] [varchar](200) NULL, 
+		[Host] [nvarchar](200) NULL, 
+		[User] [nvarchar](200) NULL, 
 		[IsHandled] [bit] NULL, 
 		[Type] [varchar](200) NULL, 
-		[AppName] [varchar](200) NULL, 
+		[AppName] [nvarchar](200) NULL, 
 		[Data] [xml] NULL, 
 		[CurrentCulture] [nvarchar](200) NULL, 
 		[CLRVersion] [varchar](100) NULL, 
@@ -28,7 +28,7 @@ BEGIN
 		[ModuleName] [varchar](200) NULL, 
 		[MemberType] [varchar](200) NULL, 
 		[Method] [varchar](500) NULL, 
-		[Processes] [varchar](max) NULL, 
+		[Processes] [nvarchar](max) NULL, 
 		[ErrorDateTime] [datetime] NULL, 
 		[OS] [varchar](1000) NULL, 
 		[IPv4Address] [varchar](50) NULL, 
@@ -276,21 +276,19 @@ BEGIN
 		BEGIN
 			DECLARE @AppName NVARCHAR(200) = APP_NAME();
 			DECLARE @UserName NVARCHAR(200) = SYSTEM_USER;
-			DECLARE @None int = 0,
+			DECLARE @None INT = 0,
 					@IsHandled INT = 1,
 					@AlertUnHandledError INT = 2,
 					@Snapshot INT = 4,
 					@FetchServerDateTime INT = 8,
 					@ReSizeSnapshots INT = 16,
 					@SendCacheToServer INT = 32,
-					@Default INT,
+					@Default INT = @Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots,
 					@All INT = 0xFFFF;
-
-			SET @Default  = @Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots;
-
+					
 			DECLARE @Result INT = @Default;
 			
-			IF(@AppName = ''TestSqlEnum v1.1.1.0'' AND @UserName = ''DBITABRIZ\khosravifar.b'')
+			IF(@AppName = ''TestErrorHandlerBySelf v2.1.1.1'' AND @UserName = ''DBITABRIZ\khosravifar.b'')
 				SET @Result = @Default - @ReSizeSnapshots
 				
 			RETURN @Result

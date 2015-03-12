@@ -95,13 +95,14 @@ If there isn't already an issue for it, please create a new one.
 The `ErrorHandlerEngine` project used from __UsersManagements __ database. So that is necessary for run this application.
 For Creating __UsersManagements__ database on your server or pc do below steps:
 
+Note:
+> In the new version database and tables automatically created by __ErrorHandlerEngine__
+
+
 First open `SQL Server Management Studio` then connect to your Server instance.
 Next step's, Create New Database by name __UsersManagements__ or any name of your choice.
 
 > Only be carefully, in order to launch the program, enter the database name. For example: 
-
-Note:
-> In the new version database and tables automatically created by __ErrorHandlerEngine__
 
 ```
 #!c#

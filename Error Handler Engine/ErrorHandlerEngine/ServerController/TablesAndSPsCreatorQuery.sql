@@ -1,4 +1,5 @@
-﻿-- ==================================================================================
+﻿
+-- ==================================================================================
 -- Author:		<Author: Behzad Khosravifar> 
 -- Create date: <Create Date: 1393-08-29> 
 -- Description:	<Description: Error Control System Tables and Stored Procedures>
@@ -259,4 +260,40 @@ BEGIN
 		END'
 		
 	Exec (@sp_InsertErrorLog) 
+END
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------- 
+-- Create UserDefinedFunction [dbo].[GetErrorHandlerOption]      Script Date: 03/12/2015 17:25:26 
+---------------------------------------------------------------------------------------------------------------------------------------------------
+IF Not EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GetErrorHandlerOption]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+BEGIN
+	DECLARE @fnCreator nvarchar(MAX) =
+		'CREATE	FUNCTION [dbo].[GetErrorHandlerOption] ( )
+		RETURNS INT As
+
+		BEGIN
+			DECLARE @AppName NVARCHAR(200) = APP_NAME();
+			DECLARE @UserName NVARCHAR(200) = SYSTEM_USER;
+			DECLARE @None int = 0,
+					@IsHandled INT = 1,
+					@AlertUnHandledError INT = 2,
+					@Snapshot INT = 4,
+					@FetchServerDateTime INT = 8,
+					@ReSizeSnapshots INT = 16,
+					@SendCacheToServer INT = 32,
+					@Default INT,
+					@All INT = 0xFFFF;
+
+			SET @Default  = @Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots;
+
+			DECLARE @Result INT = @Default;
+			
+			IF(@AppName = ''TestSqlEnum v1.1.1.0'' AND @UserName = ''DBITABRIZ\khosravifar.b'')
+				SET @Result = @Default - @ReSizeSnapshots
+				
+			RETURN @Result
+		END'
+	EXEC (@fnCreator);
 END

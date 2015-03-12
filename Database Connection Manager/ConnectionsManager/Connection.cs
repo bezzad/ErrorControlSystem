@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Deployment.Application;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;

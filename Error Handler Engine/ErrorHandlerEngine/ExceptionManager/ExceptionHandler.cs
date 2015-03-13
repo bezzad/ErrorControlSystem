@@ -35,11 +35,22 @@ namespace ErrorHandlerEngine.ExceptionManager
     {
         #region Properties
 
-        public static volatile bool IsSelfException = false;
+        internal static volatile bool IsSelfException = false;
 
+        /// <summary>
+        /// List of exceptions that happen, not logs.
+        /// </summary>
         public static List<Type> ExceptedExceptionTypes = new List<Type>();
 
+        /// <summary>
+        /// List of the exception types that do not have a screen capture.
+        /// </summary>
         public static List<Type> NonSnapshotExceptionTypes = new List<Type>();
+
+        /// <summary>
+        /// Dictionary of key/value data that will be stored in exceptions as additional data.
+        /// </summary>
+        public static Dictionary<string, string> AttachExtraData = new Dictionary<string, string>();
 
         #endregion
 
@@ -72,6 +83,10 @@ namespace ErrorHandlerEngine.ExceptionManager
             // Is exception in non snapshot list? (yes => remove snapshot option)
             if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
                 option = option & ~ErrorHandlerOption.Snapshot;
+            //
+            // Attach extra data to error object
+            foreach (var item in AttachExtraData)
+                exp.Data.Add(item.Key, item.Value);
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);

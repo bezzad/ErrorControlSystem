@@ -16,11 +16,23 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //
+            //  ------------------ Initial Error Handler Engine --------------------------------
+            //
             ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
-                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+            ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 
-            ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException)); // Except NotImplementedException from raise log
-            ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(Exception)); // Filter Exception type from Snapshot capturing 
+            // Except 'NotImplementedException' from raise log
+            ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));
+
+            // Filter 'Exception' type from Snapshot capturing 
+            ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(Exception));
+            
+            // Add extra data for labeling exceptions
+            ExceptionHandler.AttachExtraData.Add("TestErrorHandlerBySelf v2.1.1.0", "beta version");
+            //
+            // ---------------------------------------------------------------------------------
+            //
 
             Application.Run(new FormTest());
         }

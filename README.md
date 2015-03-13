@@ -22,7 +22,8 @@ user codes, enter the following command to invoke and run the module.
 
 This is initializer codes of the module by `C# language`:
  
-```csharp
+```
+#!csharp
 
 using System;
 using System.Windows.Forms;
@@ -121,7 +122,7 @@ Next step's, Create New Database by name __UsersManagements__ or any name of you
 > Only be carefully, in order to launch the program, enter the database name. For example: 
 
 ```
-#!c#
+#!csharp
 
 ExpHandlerEngine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
 ```

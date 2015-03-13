@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -37,11 +36,11 @@ namespace ErrorHandlerEngine.ServerController
 
             if (cm.IsReady)
             {
-                await ServerTransmitter.CreateTablesAndStoredProceduresAsync();
+                await CreateTablesAndStoredProceduresAsync();
             }
             else if (await cm.IsServerOnlineAsync())
             {
-                await ServerTransmitter.CreateDatabaseAsync();
+                await CreateDatabaseAsync();
 
                 goto CheckDatabase;
             }

@@ -73,9 +73,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.cs" />
-    <Compile Include="ServerController\DataAccessLayer.cs" />
     <Compile Include="CacheHandledErrors\SdfFileManager.cs" />
-    <Compile Include="ServerController\Uploader.cs" />
+    <Compile Include="ServerController\ServerTransmitter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -68,7 +68,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if (ConnectionManager.GetDefaultConnection().IsReady && Uploader.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
+                if (ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
                 {
                     await UploadCacheAsync();
                 }
@@ -84,9 +84,9 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         {
             foreach (var error in SdfFileManager.GetErrors())
             {
-                await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
+                await ServerTransmitter.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
 
-                if (!Uploader.CanToSent) break;
+                if (!ServerTransmitter.CanToSent) break;
             }
         }
 

@@ -51,14 +51,14 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Methods
 
-        public static void Start(ErrorHandlerOption option = ErrorHandlerOption.Default)
+        public static async void Start(ErrorHandlerOption option = ErrorHandlerOption.Default)
         {
             _option = option & ~ErrorHandlerOption.SendCacheToServer;
 
             if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
                 Application.Exit();
 
-            Uploader.CanToSent = true;
+            await ServerTransmitter.InitialTransmitterAsync();
         }
 
 
@@ -72,9 +72,9 @@ namespace ErrorHandlerEngine.ExceptionManager
             if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
                 Application.Exit();
 
-            Uploader.CanToSent = true;
+            await ServerTransmitter.InitialTransmitterAsync();
 
-            var publicSetting = await DataAccessLayer.GetErrorHandlerOptionAsync();
+            var publicSetting = await ServerTransmitter.GetErrorHandlerOptionAsync();
             if (publicSetting != 0)
                 _option = publicSetting;
         }

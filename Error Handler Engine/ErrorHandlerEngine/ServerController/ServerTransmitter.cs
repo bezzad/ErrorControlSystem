@@ -1,18 +1,90 @@
-﻿using System;
+﻿
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using ConnectionsManager;
+using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine.ServerController
 {
-    public static class DataAccessLayer
+    public static class ServerTransmitter
     {
+        #region Properties
+
+        // maybe the network have exception then dead loop occurred,
+        // so this variable closed that
+        public static volatile bool CanToSent = true;
+
+        public static TransformBlock<ProxyError, Tuple<ProxyError, bool>> ErrorListenerTransformBlock;
+
+        #endregion
+
+        #region Constructor
+        
+        public static async Task InitialTransmitterAsync()
+        {
+        CheckDatabase:
+            await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync();
+
+            var cm = ConnectionManager.GetDefaultConnection();
+
+            if (cm.IsReady)
+            {
+                await ServerTransmitter.CreateTablesAndStoredProceduresAsync();
+            }
+            else if (await cm.IsServerOnlineAsync())
+            {
+                await ServerTransmitter.CreateDatabaseAsync();
+
+                goto CheckDatabase;
+            }
+
+
+
+
+            ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
+                async (e) =>
+                {
+                    if (CanToSent) // Server Connector to online or offline ?
+                    {
+                        try
+                        {
+                            await ServerTransmitter.InsertErrorAsync(e);
+                        }
+                        catch (Exception)
+                        {
+                            CanToSent = false;
+                        }
+                        finally
+                        {
+                            CacheController.AreErrorsInSendState = false;
+                        }
+                    }
+                    else ErrorListenerTransformBlock.Complete();
+                    //
+                    // Post to Acknowledge Action Block:
+                    return new Tuple<ProxyError, bool>(e, CanToSent);
+                },
+                new ExecutionDataflowBlockOptions()
+                {
+                    MaxMessagesPerTask = 1,
+                    MaxDegreeOfParallelism = 1
+                });
+
+            ErrorListenerTransformBlock.LinkTo(CacheController.AcknowledgeActionBlock);
+        }
+
+        #endregion
+
+        #region Methods
+
         public static async Task CreateDatabaseAsync()
         {
             var conn = ConnectionManager.GetDefaultConnection();
@@ -128,7 +200,7 @@ namespace ErrorHandlerEngine.ServerController
             }
         }
 
-        public static DateTime FetchServerDataTimeTsql()
+        public static DateTime FetchServerDataTime()
         {
             //
             // execute the command
@@ -143,7 +215,7 @@ namespace ErrorHandlerEngine.ServerController
             }
         }
 
-        public static async Task<DateTime> FetchServerDataTimeTsqlAsync()
+        public static async Task<DateTime> FetchServerDataTimeAsync()
         {
             //
             // execute the command
@@ -166,7 +238,7 @@ namespace ErrorHandlerEngine.ServerController
             {
                 ExceptionHandler.IsSelfException = true;
                 var optInt = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<int>("SELECT dbo.GetErrorHandlerOption()", CommandType.Text);
-                return (ErrorHandlerOption) optInt;
+                return (ErrorHandlerOption)optInt;
             }
             finally
             {
@@ -190,5 +262,7 @@ namespace ErrorHandlerEngine.ServerController
                 }
             }
         }
+
+        #endregion
     }
 }

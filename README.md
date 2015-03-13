@@ -48,6 +48,9 @@ namespace TestApplication
 
 			// Filter Exception type from Snapshot capturing 
 			ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(Exception)); 
+
+			// Add extra data for labeling exceptions
+            ExceptionHandler.AttachExtraData.Add("TestKey", "beta version");
 			//
 			// ---------------------------------------------------------------------------------
 			//

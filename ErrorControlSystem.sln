@@ -13,6 +13,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Connection Manager", "Database Connection Manager", "{851B2D60-FD93-4E13-BBAE-2D6738984174}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation Project", "Documentation Project", "{21D0B50A-5F2C-4664-BDBA-A54DB9887B37}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Handler Engine", "Error Handler Engine", "{F1970199-8158-4ACE-A735-B034144C045B}"
 EndProject

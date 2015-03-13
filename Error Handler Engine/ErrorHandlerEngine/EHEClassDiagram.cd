@@ -94,13 +94,6 @@
       <FileName>ModelObjecting\ScreenCapture.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorHandlerEngine.ServerController.Uploader" Collapsed="true">
-    <Position X="10.5" Y="5.5" Width="1.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
-      <FileName>ServerController\Uploader.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="System.Object" Collapsed="true">
     <Position X="6" Y="1.25" Width="1.5" />
     <TypeIdentifier />
@@ -126,11 +119,11 @@
       <FileName>CacheHandledErrors\SdfFileManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorHandlerEngine.ServerController.DataAccessLayer" Collapsed="true">
+  <Class Name="ErrorHandlerEngine.ServerController.ServerTransmitter" Collapsed="true">
     <Position X="5.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAgCAAAAAAAAAIAAAQAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>ServerController\DataAccessLayer.cs</FileName>
+      <HashCode>AAAIAAAgCAIAAAEAAAIAAAAAAAAAAgEAAQgAAAAAAAA=</HashCode>
+      <FileName>ServerController\ServerTransmitter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="ErrorHandlerEngine.ModelObjecting.CodeLocation" Collapsed="true">
@@ -147,11 +140,11 @@
       <FileName>ModelObjecting\IError.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="ErrorHandlerEngine.ExceptionManager.ExceptionHandlerOption" Collapsed="true">
+  <Enum Name="ErrorHandlerEngine.ExceptionManager.ErrorHandlerOption" Collapsed="true">
     <Position X="3.5" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgIAAAAEAAAA=</HashCode>
-      <FileName>ExceptionManager\ExceptionHandlerOption.cs</FileName>
+      <FileName>ExceptionManager\ErrorHandlerOption.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

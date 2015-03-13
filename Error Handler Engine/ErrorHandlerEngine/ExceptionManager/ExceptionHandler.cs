@@ -50,7 +50,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <summary>
         /// Dictionary of key/value data that will be stored in exceptions as additional data.
         /// </summary>
-        public static Dictionary<string, string> AttachExtraData = new Dictionary<string, string>();
+        public static Dictionary<string, string> AttachExtraData = Error.DicExtraData;
 
         #endregion
 
@@ -84,13 +84,9 @@ namespace ErrorHandlerEngine.ExceptionManager
             if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
                 option = option & ~ErrorHandlerOption.Snapshot;
             //
-            // Attach extra data to error object
-            foreach (var item in AttachExtraData)
-                exp.Data.Add(item.Key, item.Value);
-            //
             // initial the error object by additional data 
             var error = new Error(exp, option);
-
+            
             if (option.HasFlag(ErrorHandlerOption.AlertUnHandledError) && !option.HasFlag(ErrorHandlerOption.IsHandled)) // Alert Unhandled Error 
             {
                 MessageBox.Show(exp.Message,

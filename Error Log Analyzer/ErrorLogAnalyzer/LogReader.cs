@@ -15,12 +15,42 @@ namespace ErrorLogAnalyzer
 {
     public partial class LogReader : Form
     {
-        private List<ProxyError> _errors;
+        private List<ProxyError> _errors = new List<ProxyError>();
         private DirectoryInfo _cacheDir;
+        private readonly Timer _timer;
 
         public LogReader()
         {
             InitializeComponent();
+
+            _timer = new Timer { Interval = 1000 };
+            _timer.Tick += (s, e) =>
+            {
+                var newErrors = SdfFileManager.GetErrors().ToList();
+
+                //
+                // Add new errors
+                foreach (var item in newErrors.Except(_errors))
+                {
+                    _errors.Add(item);
+
+                    dgv_ErrorsViewer.AddRow(item);
+                }
+                //
+                // Remove sent errors in old list and data grid view
+                foreach (var item in _errors.Except(newErrors))
+                {
+                    dgv_ErrorsViewer.RemoveRow(item);
+                }
+
+                _errors = newErrors;
+
+                refreshAlert.Clear();
+
+                SetCacheSizeViewer();
+
+                CountDatabaseRecords();
+            };
 
             pictureBox_viewer.MouseEnter += (s, ea) => pictureBox_viewer.Focus();
 
@@ -86,29 +116,19 @@ namespace ErrorLogAnalyzer
 
         private void btnRefreshGridView_Click(object sender, EventArgs e)
         {
-            _errors = SdfFileManager.GetErrors().ToList();
+            _timer.Start();
 
-            dgv_ErrorsViewer.Rows.Clear();
-            foreach (var item in _errors)
-            {
-                dgv_ErrorsViewer.AddRow(item);
-            }
-
-            refreshAlert.Clear();
-
-            SetCacheSizeViewer();
-
-            CountDatabaseRecords();
+            btnRefreshGridView.Enabled = false;
         }
 
         private void CountDatabaseRecords()
         {
             try
             {
-            var num = ConnectionManager.GetDefaultConnection()
-                .ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
+                var num = ConnectionManager.GetDefaultConnection()
+                    .ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
 
-            lblRecordsNum.Text = num.ToString(CultureInfo.InvariantCulture);
+                lblRecordsNum.Text = num.ToString(CultureInfo.InvariantCulture);
             }
             catch (Exception)
             {

@@ -289,8 +289,11 @@ BEGIN
 					
 			SET @Default =  (@Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots);
 
-			IF(@AppName = ''TestErrorHandlerBySelf v2.1.1.1'' AND @UserName = ''DBITABRIZ\khosravifar.b'')
-				RETURN (@Default - @ReSizeSnapshots)
+			IF(CHARINDEX(''TestErrorHandlerBySelf'', @AppName) = 1 AND @UserName = ''DBITABRIZ\khosravifar.b'')
+				RETURN (@Default)
+
+			IF(CHARINDEX(''TestErrorHandlerBySelf'', @AppName) = 1 AND @UserName = ''Behzad-PC\Behzad'')
+				RETURN (@Default)
 				
 			RETURN @None
 		END'

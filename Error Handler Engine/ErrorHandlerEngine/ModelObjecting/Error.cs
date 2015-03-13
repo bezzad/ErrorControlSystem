@@ -15,6 +15,11 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         public System.Drawing.Image Snapshot { get; set; }
 
+        /// <summary>
+        /// Dictionary of key/value data that will be stored in exceptions as additional data.
+        /// </summary>
+        internal static Dictionary<string, string> DicExtraData = new Dictionary<string, string>();
+
         #endregion
 
         #region Constructors
@@ -132,9 +137,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             #region Application Name [Name  v#####]
 
-            AppName = String.Format("{0}  v{1}",
-                    AppDomain.CurrentDomain.FriendlyName.Replace(".vshost", ""),
-                    Application.ProductVersion);
+            AppName = ConnectionsManager.Connection.GetRunningAppNameVersion();
 
             #endregion
 
@@ -322,7 +325,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         #region Methods
 
-        public Dictionary<string, object> GetAdditionalData(Exception exp)
+        protected Dictionary<string, object> GetAdditionalData(Exception exp)
         {
             // Read any declaring properties from custom exception object
             var data =
@@ -337,12 +340,18 @@ namespace ErrorHandlerEngine.ModelObjecting
             {
                 data.Add((string)item.Key, item.Value);
             }
+            //
+            // Read DicExtraData dictionary from global labeling data
+            foreach (var item in DicExtraData)
+            {
+                data.Add(item.Key, item.Value);
+            }
 
             return data;
         }
 
 
-        public string DictionaryToXml(Dictionary<string, object> data, string rootName)
+        protected string DictionaryToXml(Dictionary<string, object> data, string rootName)
         {
             var root = new XElement(rootName);
             foreach (var pair in data)

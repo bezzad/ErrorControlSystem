@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.ServerUploader;
+using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
@@ -18,15 +17,12 @@ namespace ErrorHandlerEngine.ExceptionManager
     /// Exceptions Handler Engine Class
     /// for handling any exception from your attachment applications. 
     /// </summary>
-    [SecurityCritical]
     [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
     public static class ExpHandlerEngine
     {
         #region Properties
 
-        private static ExceptionHandlerOption _option;
-
-        public static volatile bool IsSelfException = false;
+        private static ErrorHandlerOption _option;
 
         #endregion
 
@@ -49,33 +45,38 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             // Catch all unhandled exceptions.
             Application.ThreadException += ThreadExceptionHandler;
-
-            // First time create history of errors to buffer any occurrence error
-            //
-            // Load error log data to history of errors without snapshot images
-            if (CacheController.ErrorHistory.Count <= 0)
-                CacheController.ReadCacheFromDiskAsync();
         }
 
         #endregion
 
         #region Methods
 
-        public static void Start(ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        public static void Start(ErrorHandlerOption option = ErrorHandlerOption.Default)
         {
-            _option = option & ~ExceptionHandlerOption.SendCacheToServer;
+            _option = option & ~ErrorHandlerOption.SendCacheToServer;
 
-            // Set Up loader to run static constructor
+            if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
+                Application.Exit();
+
             Uploader.CanToSent = true;
         }
 
 
-        public static void Start(Connection conn, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
+        public static async void Start(Connection conn, ErrorHandlerOption option = ErrorHandlerOption.Default)
         {
+            _option = option;
+
             ConnectionManager.Add(conn, "ErrorHandlerServer");
             ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
 
-            Start(option);
+            if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
+                Application.Exit();
+
+            Uploader.CanToSent = true;
+
+            var publicSetting = await DataAccessLayer.GetErrorHandlerOptionAsync();
+            if (publicSetting != 0)
+                _option = publicSetting;
         }
 
 
@@ -90,7 +91,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option | ExceptionHandlerOption.IsHandled);
+            e.Exception.RaiseLog(_option | ErrorHandlerOption.IsHandled);
         }
 
         /// <summary>
@@ -102,7 +103,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option & ~ExceptionHandlerOption.IsHandled, "Unobserved Task Exception");
+            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unobserved Task Exception");
         }
 
         /// <summary>
@@ -114,7 +115,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option & ~ExceptionHandlerOption.IsHandled, "Unhandled Thread Exception");
+            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled Thread Exception");
         }
 
         /// <summary>
@@ -128,7 +129,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
-            (e.ExceptionObject as Exception).RaiseLog(_option & ~ExceptionHandlerOption.IsHandled, "Unhandled UI Exception");
+            (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled UI Exception");
 
             Application.Exit();
         }

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using ConnectionsManager;
-using ErrorHandlerEngine.ServerUploader;
+using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -79,7 +79,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         public static DateTime GetServerDateTime()
         {
             return ConnectionManager.GetDefaultConnection().IsReady
-                ? DynamicStoredProcedures.FetchServerDataTimeTsql()
+                ? DataAccessLayer.FetchServerDataTimeTsql()
                 : DateTime.Now;
         }
 

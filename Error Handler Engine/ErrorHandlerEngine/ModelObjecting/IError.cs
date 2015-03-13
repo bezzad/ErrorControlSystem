@@ -22,11 +22,11 @@ namespace ErrorHandlerEngine.ModelObjecting
         String ModuleName { get; set; }
         string OS { get; set; }
         string Processes { get; set; }
-        String SnapshotAddress { get; set; }
         String Source { get; set; }
         String StackTrace { get; set; }
         String User { get; set; }
-        CodeLocation ErrorLineColumn { get; set; }
+        CodeLocation LineColumn { get; set; }
         int Duplicate { get; set; }
+        string Data { get; set; }
     }
 }

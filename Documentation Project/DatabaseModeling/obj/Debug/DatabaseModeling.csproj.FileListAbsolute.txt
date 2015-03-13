@@ -56,3 +56,11 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Proj
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\bin\Debug\DatabaseModeling.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Documentation Project\DatabaseModeling\obj\Debug\DatabaseModeling.pdb

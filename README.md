@@ -27,7 +27,7 @@ This is initializer codes of the module by `C# language`:
 using System;
 using System.Windows.Forms;
 using ConnectionsManager;
-using ErrorControlSystem.ErrorHandlerEngine;
+using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestApplication
 {
@@ -36,10 +36,23 @@ namespace TestApplication
         [STAThread]
         private static void Main()
         {
-               ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"), 
-                                ErrorHandlerOption.All & ~ErrorHandlerOption.ReSizeSnapshots);
+			//
+			//  ------------------ Initial Error Handler Engine --------------------------------
+			//
+            ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
+            ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 
-               Application.Run(new Form1());
+			// Except NotImplementedException from raise log
+			ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException)); 
+
+			// Filter Exception type from Snapshot capturing 
+			ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(Exception)); 
+			//
+			// ---------------------------------------------------------------------------------
+			//
+
+
+            Application.Run(new Form1());
         }
     }
 }
@@ -65,6 +78,9 @@ ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"),
 Select all options by excepted `ReSizeSnapshots`
 
 By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including __Handled__ or __UnHandled__ exceptions on the your database.
+
+Note:
+>	In the new version 2.1.1.0, the option setting from database in runtime. and not necessary to set that from initial `Start` method
 
 
 --------------------------

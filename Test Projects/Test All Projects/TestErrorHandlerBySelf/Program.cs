@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
-using ErrorHandlerEngine.ModelObjecting;
 
 namespace TestErrorHandlerBySelf
 {
@@ -17,10 +16,18 @@ namespace TestErrorHandlerBySelf
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"),
-                ExceptionHandlerOption.Default | ExceptionHandlerOption.ReSizeSnapshots);
+            ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
+                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 
-            Application.Run(new Form1());
+            ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException)); // Except NotImplementedException from raise log
+            ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(Exception)); // Filter Exception type from Snapshot capturing 
+
+            Application.Run(new FormTest());
+        }
+
+        public static void Exp()
+        {
+            throw new Exception("Test UnHandled MainThread Exception");
         }
     }
 }

@@ -1,25 +1,22 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.ModelObjecting;
 using ErrorHandlerEngine.Properties;
-using ErrorHandlerEngine.ServerUploader;
-using Newtonsoft.Json;
+using ErrorHandlerEngine.ServerController;
 
 namespace ErrorHandlerEngine.CacheHandledErrors
 {
     internal static class CacheController
     {
-        public static bool AreErrorsInSendState = false;
-
-        public static ErrorUniqueCollection ErrorHistory = new ErrorUniqueCollection();
+        public static volatile bool AreErrorsInSendState = false;
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
+
+        private static ActionBlock<Error> _errorSaverActionBlock;
 
         #region Methods
 
@@ -34,11 +31,8 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                     if (ack.Item2) // Error Successful sent to server database
                     {
                         //
-                        // Remove Error Snapshot from Snapshots Folder's:
-                        await StorageRouter.DeleteSnapshotImageOnDiskAsync(ack.Item1.SnapshotAddress);
-                        //
                         // Remove Error from Log file:
-                        await ErrorHistory.RemoveByConcurrencyAsync(ack.Item1.GetErrorObject);
+                        await SdfFileManager.DeleteAsync(ack.Item1.Id);
                         //
                         // De-story error from Memory (RAM):
                         if (ack.Item1 != null) ack.Item1.Dispose();
@@ -56,122 +50,70 @@ namespace ErrorHandlerEngine.CacheHandledErrors
         /// <summary>
         /// Check Cache State to Send Data to Server or Not ?
         /// </summary>
-        public static void CheckState()
+        public static async Task CheckStateAsync()
         {
             if (AreErrorsInSendState) return;
 
-            ExpHandlerEngine.IsSelfException = true;
             try
             {
                 AreErrorsInSendState = true;
+                ExceptionHandler.IsSelfException = true;
 
                 // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
                 // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\TestErrorHandlerBySelf v1
                 var rootDir = StorageRouter.ErrorLogFilePath.Substring(0, StorageRouter.ErrorLogFilePath.LastIndexOf('\\'));
 
-                long errorDataSize = new DirectoryInfo(rootDir).GetDirectorySize();
-
-                var maxSize = Int64.Parse(Resources.SizeLimitBytes);
+                var maxSize = Settings.Default.CacheLimitSize;
 
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if (errorDataSize >= maxSize && ConnectionManager.GetDefaultConnection().IsReady)
+                if (ConnectionManager.GetDefaultConnection().IsReady && Uploader.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
                 {
-                    UploadCacheAsync();
+                    await UploadCacheAsync();
                 }
             }
             finally
             {
-                ExpHandlerEngine.IsSelfException = false;
+                ExceptionHandler.IsSelfException = false;
                 AreErrorsInSendState = false;
             }
         }
 
-
-        /// <summary>
-        /// Read cache and fill ErrorHistory array
-        /// </summary>
-        public static async void ReadCacheFromDiskAsync()
+        public static async Task UploadCacheAsync()
         {
-            var errors = await GetErrosFromLogAsync();
-            //
-            // Read any error in errors array to sent it to ServerUploader
-            ErrorHistory.AddRange(errors);
+            foreach (var error in SdfFileManager.GetErrors())
+            {
+                await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
+
+                if (!Uploader.CanToSent) break;
+            }
         }
 
-
-        /// <summary>
-        /// Read log file's to fetch errors history.
-        /// </summary>
-        /// <returns>Error Array's.</returns>
-        private static async Task<Error[]> GetErrosFromLogAsync()
+        public static async void CacheTheError(Error error, ErrorHandlerOption option)
         {
-            ExpHandlerEngine.IsSelfException = true;
-            try
+            if (_errorSaverActionBlock == null ||
+                _errorSaverActionBlock.Completion.IsFaulted)
             {
-                //
-                // Read Error Log Json File
-                var allJsonString = await StorageRouter.ReadLogAsync();
-                //
-                // Check file is not empty ?
-                if (String.IsNullOrEmpty(allJsonString)) return null;
+                #region Initile Action Block Again
 
-                //
-                // Convert json string to Error array's.
-                return await JsonConvert.DeserializeObjectAsync<Error[]>(allJsonString);
-            }
-            finally
-            {
-                ExpHandlerEngine.IsSelfException = false;
-            }
-
-        }
-
-
-        public static async void UploadCacheAsync()
-        {
-            await Task.Run(async () =>
-            {
-                foreach (var error in ErrorHistory)
+                _errorSaverActionBlock = new ActionBlock<Error>(async e =>
                 {
-                    await Uploader.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
-                }
-            });
+                    await SdfFileManager.InsertOrUpdateAsync(e);
 
-        }
+                    if (option.HasFlag(ErrorHandlerOption.SendCacheToServer))
+                        await CheckStateAsync();
+                },
+                    new ExecutionDataflowBlockOptions
+                    {
+                        MaxMessagesPerTask = 1
+                    });
 
-
-        /// <summary>
-        /// Get Size of directory by all sub directory and files.
-        /// </summary>
-        /// <param name="dir">The Directory</param>
-        /// <returns>Size (bytes) of Directory</returns>
-        public static long GetDirectorySize(this DirectoryInfo dir)
-        {
-            long sum = 0;
-
-            // get IEnumerable from all files in the current directory and all sub directories
-            try
-            {
-                var subDirectories = dir.GetDirectories()
-                    .Where(d => (d.Attributes & FileAttributes.ReparsePoint) == 0).AsParallel();
-
-                Parallel.ForEach(subDirectories, d =>
-                {
-                    var value = d.GetDirectorySize();
-                    Interlocked.Add(ref sum, value);
-                });
-
-                // get the size of all files
-                sum += (from file in dir.GetFiles() select file.Length).Sum();
+                #endregion
             }
-            catch { }
 
-
-            return sum;
+            await _errorSaverActionBlock.SendAsync(error);
         }
-
 
         #endregion
     }

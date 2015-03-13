@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using ErrorHandlerEngine.ExceptionManager;
-using ErrorHandlerEngine.ModelObjecting;
 
 namespace ErrorHandlerEngine
 {
@@ -13,10 +12,10 @@ namespace ErrorHandlerEngine
 
         public void Raise(Exception exp, bool isHandled = true, bool alertError = false, bool screenCapture = true)
         {
-            var option = ExceptionHandlerOption.None;
-            if (isHandled) option |= ExceptionHandlerOption.IsHandled;
-            if(alertError) option|= ExceptionHandlerOption.AlertUnHandledError;
-            if (screenCapture) option |= ExceptionHandlerOption.Snapshot;
+            var option = ErrorHandlerOption.None;
+            if (isHandled) option |= ErrorHandlerOption.IsHandled;
+            if(alertError) option|= ErrorHandlerOption.AlertUnHandledError;
+            if (screenCapture) option |= ErrorHandlerOption.Snapshot;
 
             exp.RaiseLog(option);
         }

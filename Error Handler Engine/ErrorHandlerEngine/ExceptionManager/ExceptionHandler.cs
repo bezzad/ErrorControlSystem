@@ -20,8 +20,8 @@
 //**********************************************************************************//
 
 using System;
-using System.Drawing;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using ErrorHandlerEngine.CacheHandledErrors;
 using ErrorHandlerEngine.ModelObjecting;
@@ -33,16 +33,13 @@ namespace ErrorHandlerEngine.ExceptionManager
     /// </summary>
     public static class ExceptionHandler
     {
-        #region Events
-
-        public static EventHandler OnErrorRaised = ErrorsReceiver.OnErrorHandled;
-
-        #endregion
-
-
         #region Properties
 
-        public static Size ScreenShotReSizeAspectRatio = new Size(1024, 768); // set to aspect 1024×768
+        public static volatile bool IsSelfException = false;
+
+        public static List<Type> ExceptedExceptionTypes = new List<Type>();
+
+        public static List<Type> NonSnapshotExceptionTypes = new List<Type>();
 
         #endregion
 
@@ -56,18 +53,30 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns></returns>
-        public static Error RaiseLog(this Exception exp, ExceptionHandlerOption option = ExceptionHandlerOption.Default, String errorTitle = "UnHandled Exception")
+        public static Error RaiseLog(this Exception exp, ErrorHandlerOption option = ErrorHandlerOption.Default, String errorTitle = "UnHandled Exception")
         {
-            if (ExpHandlerEngine.IsSelfException)
+            //
+            // Self exceptions just run in Handled Mode!
+            if (IsSelfException && option.HasFlag(ErrorHandlerOption.IsHandled))
             {
-                ExpHandlerEngine.IsSelfException = false;
+                IsSelfException = false;
                 return null;
             }
-
+            //
+            // Find exception type:
+            var exceptionType = exp.GetType();
+            //
+            // Is exception in except list?
+            if (ExceptedExceptionTypes.Any(x => x == exceptionType)) return null;
+            //
+            // Is exception in non snapshot list? (yes => remove snapshot option)
+            if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
+                option = option & ~ErrorHandlerOption.Snapshot;
+            //
             // initial the error object by additional data 
-            var error = exp.CreateError(option);
+            var error = new Error(exp, option);
 
-            if (option.HasFlag(ExceptionHandlerOption.AlertUnHandledError) && !option.HasFlag(ExceptionHandlerOption.IsHandled)) // Alert Unhandled Error 
+            if (option.HasFlag(ErrorHandlerOption.AlertUnHandledError) && !option.HasFlag(ErrorHandlerOption.IsHandled)) // Alert Unhandled Error 
             {
                 MessageBox.Show(exp.Message,
                     errorTitle,
@@ -75,188 +84,7 @@ namespace ErrorHandlerEngine.ExceptionManager
                     MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
-
-            if (OnErrorRaised != null)
-                OnErrorRaised(error, new EventArgs());
-
-            return error;
-        }
-
-        /// <summary>
-        /// Get handled exception's by additional data.
-        /// </summary>
-        /// <param name="exception">The occurrence raw error.</param>
-        /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        /// <returns>The ripe error object's.</returns>
-        private static Error CreateError(this Exception exception, ExceptionHandlerOption option = ExceptionHandlerOption.Default)
-        {
-            // Create Empty Error object
-            var error = new Error();
-
-            #region Initialize Exception Additional Data
-
-            #region HResult [Exception Type Code]
-
-            error.HResult = exception.HResult;
-
-            #endregion
-
-            #region Error Line Column
-
-            error.ErrorLineColumn = new CodeLocation(exception);
-
-            #endregion
-
-            #region Id = HashCode
-            error.Id = error.GetHashCode();
-            #endregion
-
-            #region Screen Capture
-
-            // First initialize Snapshot of Error, because that's speed is important!
-            if (!CacheController.ErrorHistory.Contains(error.Id) && option.HasFlag(ExceptionHandlerOption.Snapshot))
-            {
-                error.SetSnapshot( 
-                    option.HasFlag(ExceptionHandlerOption.ReSizeSnapshots)
-                        ? ScreenCapture.CaptureScreen().ResizeImage(ScreenShotReSizeAspectRatio.Width, ScreenShotReSizeAspectRatio.Height)
-                        : ScreenCapture.CaptureScreen());
-            }
-
-            #endregion
-
-            #region StackTrace
-
-            error.StackTrace = exception.InnerException != null
-                ? exception.InnerException.StackTrace ?? ""
-                : exception.StackTrace ?? "";
-
-            #endregion
-
-            #region Error Date Time
-
-            error.ErrorDateTime = DateTime.Now;
-
-            #endregion
-
-            #region Server Date Time
-
-            error.ServerDateTime = option.HasFlag(ExceptionHandlerOption.FetchServerDateTime)
-                ? NetworkHelper.GetServerDateTime()
-                : DateTime.Now;
-
-            #endregion
-
-            #region Current Culture
-
-            error.CurrentCulture = string.Format("{0} ({1})",
-                    CultureInfo.CurrentCulture.NativeName,
-                    CultureInfo.CurrentCulture.Name);
-
-            #endregion
-
-            #region Message
-
-            error.Message = exception.Message;
-
-            #endregion
-
-            #region Method
-
-            error.Method = (exception.TargetSite != null && exception.TargetSite.ReflectedType != null) ?
-                    exception.TargetSite.ReflectedType.FullName + "." + exception.TargetSite : "";
-
-            #endregion
-
-            #region Member Type
-
-            error.MemberType = (exception.TargetSite != null)
-                    ? exception.TargetSite.MemberType.ToString()
-                    : "";
-
-            #endregion
-
-            #region Module Name
-
-            error.ModuleName =
-                    (exception.TargetSite != null) ? exception.TargetSite.Module.Name : "";
-
-            #endregion
-
-            #region User [Domain.UserName]
-
-            error.User = Environment.UserDomainName + "\\" + Environment.UserName;
-
-            #endregion
-
-            #region Host [Machine Name]
-
-            error.Host = Environment.MachineName;
-
-            #endregion
-
-            #region Operation System Information
-
-            error.OS = new OperationSystemInfo(true).ToString();
-
-            #endregion
-
-            #region Application Name [Name  v#####]
-
-            error.AppName = string.Format("{0}  v{1}",
-                    AppDomain.CurrentDomain.FriendlyName.Replace(".vshost", ""),
-                    Application.ProductVersion);
-
-            #endregion
-
-            #region Process Name String List
-
-            error.Processes = new CurrentProcesses().ToString();
-
-            #endregion
-
-            #region Is Handled Error or UnHandled?
-
-            error.IsHandled = option.HasFlag(ExceptionHandlerOption.IsHandled);
-
-            #endregion
-
-            #region Screen Capture Address
-
-            error.SnapshotAddress = "";
-
-            #endregion
-
-            #region Current Static Valid IPv4 Address
-
-            error.IPv4Address = NetworkHelper.GetIpAddress();
-
-            #endregion
-
-            #region Network Physical Address [MAC HEX]
-
-            error.MacAddress = NetworkHelper.GetMacAddress();
-
-            #endregion
-
-            #region Common Language Runtime Version [Major.Minor.Build.Revison]
-
-            error.ClrVersion = Environment.Version.ToString();
-
-            #endregion
-
-            #region Error Type
-
-            error.ErrorType = exception.GetType().Name;
-
-            #endregion
-
-            #region Source
-
-            error.Source = exception.Source;
-
-            #endregion
-
-            #endregion
+            CacheController.CacheTheError(error, option);
 
             return error;
         }

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Linq;
 
 namespace ConnectionsManager
@@ -67,6 +68,9 @@ namespace ConnectionsManager
         [DefaultValue(false)]
         public bool IsReady { get; set; }
 
+        [DefaultValue("")]
+        public string AppName { get; set; }
+
         #endregion
 
 
@@ -88,14 +92,15 @@ namespace ConnectionsManager
             {
                 // Create Connection String
                 return
-                        String.Format("Data Source={0}{1};{2}{3}{4}",
+                        String.Format("Data Source={0}{1};{2}{3}{4}{5}",
                             Server,
                             PortNumber == 1433 || PortNumber == 0 ? "" : String.Format(",{0}", PortNumber),
                             String.IsNullOrEmpty(DatabaseName) ? "" : String.Format("Initial Catalog={0};", DatabaseName),
                             String.IsNullOrEmpty(UserId) ?
                                 String.Format("Integrated Security={0};", IntegratedSecurity) :
                                 String.Format("Persist Security Info={0};User ID={1};Password={2};", PersistSecurityInfo, UserId, Password),
-                            TimeOut <= 0 ? "" : String.Format("Connection Timeout={0};", TimeOut));
+                            TimeOut <= 0 ? "" : String.Format("Connection Timeout={0};", TimeOut),
+                            string.IsNullOrEmpty(AppName) ? "" : String.Format("Application Name={0};", AppName));
             }
             set
             {
@@ -157,6 +162,8 @@ namespace ConnectionsManager
             PersistSecurityInfo = true;
 
             Id = GetUniqueId();
+
+            AppName = GetRunningAppNameVersion();
 
             #endregion
         }
@@ -408,6 +415,10 @@ namespace ConnectionsManager
             return conn.ToXml();
         }
 
+        public static string GetRunningAppNameVersion()
+        {
+            return Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version;
+        }
 
         #endregion
 

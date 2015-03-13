@@ -58,8 +58,8 @@ namespace ErrorHandlerEngine.ModelObjecting
 
             if (frame != null)
             {
-               Line = frame.GetFileLineNumber();
-               Column = frame.GetFileColumnNumber();
+                Line = frame.GetFileLineNumber();
+                Column = frame.GetFileColumnNumber();
             }
         }
 
@@ -67,6 +67,12 @@ namespace ErrorHandlerEngine.ModelObjecting
 
 
         #region Methods
+
+        public static explicit operator CodeLocation(string value)
+        {
+            return Parse(value);
+        }
+
 
         /// <devdoc>
         ///    <para>
@@ -189,7 +195,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         ///       string to this <see cref='CodeLocation'/>
         ///    </para>
         /// </devdoc>
-        public CodeLocation Parse(string value)
+        public static CodeLocation Parse(string value)
         {
             //
             // Example: {Line:177, Column:39}
@@ -228,7 +234,7 @@ namespace ErrorHandlerEngine.ModelObjecting
         ///       string to this <see cref='CodeLocation'/>
         ///    </para>
         /// </devdoc>
-        public bool TryParse(string value, out CodeLocation cl)
+        public static bool TryParse(string value, out CodeLocation cl)
         {
             //
             // Example: {Line:177, Column:39}

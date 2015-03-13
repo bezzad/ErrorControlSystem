@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using System.Xml.Linq;
+using ErrorHandlerEngine.CacheHandledErrors;
+using ErrorHandlerEngine.ExceptionManager;
 
 namespace ErrorHandlerEngine.ModelObjecting
 {
@@ -6,18 +13,182 @@ namespace ErrorHandlerEngine.ModelObjecting
     {
         #region Properties
 
-        #region Snapshot Image Object
-        private System.Drawing.Image _snapshot;
+        public System.Drawing.Image Snapshot { get; set; }
 
-        public System.Drawing.Image GetSnapshot()
-        {
-            return _snapshot;
-        }
-        public void SetSnapshot(System.Drawing.Image screenCapture)
-        {
-            _snapshot = screenCapture;
-        }
         #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Get handled exception's by additional data.
+        /// </summary>
+        /// <param name="exp">>The occurrence raw error.</param>
+        /// <param name="option">What preprocess must be doing on that exception's ?</param>
+        public Error(Exception exp, ErrorHandlerOption option = ErrorHandlerOption.Default)
+        {
+            #region HResult [Exception Type Code]
+
+            HResult = exp.HResult;
+
+            #endregion
+
+            #region Error Line Column
+
+            LineColumn = new CodeLocation(exp);
+
+            #endregion
+
+            #region Method
+
+            Method = (exp.TargetSite != null && exp.TargetSite.ReflectedType != null) ?
+                    exp.TargetSite.ReflectedType.FullName + "." + exp.TargetSite : "";
+
+            #endregion
+
+            #region Id = HashCode
+            Id = GetHashCode();
+            #endregion
+
+            #region Screen Capture
+
+            // First initialize Snapshot of Error, because that's speed is important!
+            if (!SdfFileManager.Contains(Id) && option.HasFlag(ErrorHandlerOption.Snapshot))
+            {
+                Snapshot = option.HasFlag(ErrorHandlerOption.ReSizeSnapshots)
+                        ? ScreenCapture.Capture().ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height)
+                        : ScreenCapture.Capture();
+            }
+
+            #endregion
+
+            #region StackTrace
+
+            StackTrace = exp.InnerException != null
+                ? exp.InnerException.StackTrace ?? ""
+                : exp.StackTrace ?? "";
+
+            #endregion
+
+            #region Error Date Time
+
+            ErrorDateTime = DateTime.Now;
+
+            #endregion
+
+            #region Server Date Time
+
+            ServerDateTime = option.HasFlag(ErrorHandlerOption.FetchServerDateTime)
+                ? NetworkHelper.GetServerDateTime()
+                : DateTime.Now;
+
+            #endregion
+
+            #region Current Culture
+
+            CurrentCulture = String.Format("{0} ({1})",
+                    InputLanguage.CurrentInputLanguage.Culture.NativeName,
+                    InputLanguage.CurrentInputLanguage.Culture.Name);
+
+            #endregion
+
+            #region Message
+
+            Message = exp.Message;
+
+            #endregion
+
+            #region Member Type
+
+            MemberType = (exp.TargetSite != null)
+                    ? exp.TargetSite.MemberType.ToString()
+                    : "";
+
+            #endregion
+
+            #region Module Name
+
+            ModuleName =
+                    (exp.TargetSite != null) ? exp.TargetSite.Module.Name : "";
+
+            #endregion
+
+            #region User [Domain.UserName]
+
+            User = Environment.UserDomainName + "\\" + Environment.UserName;
+
+            #endregion
+
+            #region Host [Machine Name]
+
+            Host = Environment.MachineName;
+
+            #endregion
+
+            #region Operation System Information
+
+            OS = new OperationSystemInfo(true).ToString();
+
+            #endregion
+
+            #region Application Name [Name  v#####]
+
+            AppName = String.Format("{0}  v{1}",
+                    AppDomain.CurrentDomain.FriendlyName.Replace(".vshost", ""),
+                    Application.ProductVersion);
+
+            #endregion
+
+            #region Process Name String List
+
+            Processes = new CurrentProcesses().ToString();
+
+            #endregion
+
+            #region Is Handled Error or UnHandled?
+
+            IsHandled = option.HasFlag(ErrorHandlerOption.IsHandled);
+
+            #endregion
+
+            #region Current Static Valid IPv4 Address
+
+            IPv4Address = NetworkHelper.GetIpAddress();
+
+            #endregion
+
+            #region Network Physical Address [MAC HEX]
+
+            MacAddress = NetworkHelper.GetMacAddress();
+
+            #endregion
+
+            #region Common Language Runtime Version [Major.Minor.Build.Revison]
+
+            ClrVersion = Environment.Version.ToString();
+
+            #endregion
+
+            #region Error Type
+
+            ErrorType = exp.GetType().Name;
+
+            #endregion
+
+            #region Source
+
+            Source = exp.Source;
+
+            #endregion
+
+            #region Data
+
+            Data = DictionaryToXml(GetAdditionalData(exp), "ExtraProperties");
+
+            #endregion
+        }
+
+
+        public Error() { }
 
         #endregion
 
@@ -41,12 +212,12 @@ namespace ErrorHandlerEngine.ModelObjecting
         public string ModuleName { get; set; }
         public string OS { get; set; }
         public string Processes { get; set; }
-        public string SnapshotAddress { get; set; }
         public string Source { get; set; }
         public string StackTrace { get; set; }
         public string User { get; set; }
-        public CodeLocation ErrorLineColumn { get; set; }
+        public CodeLocation LineColumn { get; set; }
         public int Duplicate { get; set; }
+        public string Data { get; set; }
         #endregion
 
         #region IDisposable Implement
@@ -70,13 +241,13 @@ namespace ErrorHandlerEngine.ModelObjecting
             OS = null;
             Processes = null;
             ServerDateTime = DateTime.MinValue;
-            _snapshot.Dispose();
-            SnapshotAddress = String.Empty;
+            Snapshot.Dispose();
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;
-            ErrorLineColumn = CodeLocation.Empty;
+            LineColumn = CodeLocation.Empty;
             Duplicate = 0;
+            Data = string.Empty;
         }
         #endregion
 
@@ -86,7 +257,7 @@ namespace ErrorHandlerEngine.ModelObjecting
             return Clone(false);
         }
 
-        public object Clone(bool lightCopy = true)
+        public object Clone(bool lightCopy)
         {
             return lightCopy ? GetLightCopy() : this.MemberwiseClone();
         }
@@ -112,18 +283,13 @@ namespace ErrorHandlerEngine.ModelObjecting
             if (other == null) return false;
 
             // Note value types can't have derived classes, so we don't need 
-            return this.ErrorLineColumn == other.ErrorLineColumn &&
-                   this.HResult == other.HResult;
+            return Id == other.Id;
         }
 
         public bool Equals(Error x, Error y)
         {
-            if (x == null) return false;
-            if (y == null) return false;
-
-            // Note value types can't have derived classes, so we don't need 
-            return x.ErrorLineColumn == y.ErrorLineColumn &&
-                   x.HResult == y.HResult;
+            // Note: value types can't have derived classes, so we don't need 
+            return x != null && y != null && x.Equals(y);
         }
 
         /// <devdoc>
@@ -136,10 +302,9 @@ namespace ErrorHandlerEngine.ModelObjecting
         {
             if (!(obj is Error)) return false;
             var comp = (Error)obj;
-            // Note value types can't have derived classes, so we don't need 
+            // Note: value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
-            return comp.ErrorLineColumn == this.ErrorLineColumn &&
-                   comp.HResult == this.HResult;
+            return Equals(comp);
         }
 
         /// <devdoc>
@@ -147,12 +312,48 @@ namespace ErrorHandlerEngine.ModelObjecting
         ///       Returns a hash code.
         ///    </para>
         /// </devdoc>
-        public override int GetHashCode()
+        public override sealed int GetHashCode()
         {
             // Unique ID  =  Line×1000   XOR   Column   XOR   |HResult|
-            return unchecked(this.ErrorLineColumn.Line * 1000 ^ this.ErrorLineColumn.Column ^ Math.Abs(this.HResult));
+            return unchecked(this.LineColumn.Line * 1000 ^ this.LineColumn.Column ^ Math.Abs(this.HResult) ^ Method.GetHashCode());
         }
 
         #endregion
+
+        #region Methods
+
+        public Dictionary<string, object> GetAdditionalData(Exception exp)
+        {
+            // Read any declaring properties from custom exception object
+            var data =
+                (from property in exp.GetType().GetProperties()
+                 where property.DeclaringType != null &&
+                       property.DeclaringType != typeof(Exception) &&
+                       property.DeclaringType == exp.GetType()
+                 select property).ToDictionary(p => p.Name, p => p.GetValue(exp));
+            //
+            // Read Data dictionary of exception object
+            foreach (DictionaryEntry item in exp.Data)
+            {
+                data.Add((string)item.Key, item.Value);
+            }
+
+            return data;
+        }
+
+
+        public string DictionaryToXml(Dictionary<string, object> data, string rootName)
+        {
+            var root = new XElement(rootName);
+            foreach (var pair in data)
+            {
+                root.Add(new XElement(pair.Key.Trim().Replace(' ', '_'), pair.Value));
+            }
+
+            return root.ToString(SaveOptions.None);
+        }
+
+        #endregion
+
     }
 }

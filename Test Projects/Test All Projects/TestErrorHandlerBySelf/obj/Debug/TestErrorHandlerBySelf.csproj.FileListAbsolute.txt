@@ -190,7 +190,6 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.dll
-D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\Newtonsoft.Json.dll
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csprojResolveAssemblyReference.cache
@@ -199,3 +198,27 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csproj.GenerateResource.Cache
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.exe
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.exe
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csprojResolveAssemblyReference.cache
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.FormTest.resources
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.Properties.Resources.resources
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csproj.GenerateResource.Cache
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.exe
+D:\Programming\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.exe
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\TestErrorHandlerBySelf.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.dll
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ConnectionsManager.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\bin\Debug\ErrorHandlerEngine.pdb
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csprojResolveAssemblyReference.cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.FormTest.resources
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.Properties.Resources.resources
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.csproj.GenerateResource.Cache
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.exe
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Version 2\Test Projects\Test All Projects\TestErrorHandlerBySelf\obj\Debug\TestErrorHandlerBySelf.pdb

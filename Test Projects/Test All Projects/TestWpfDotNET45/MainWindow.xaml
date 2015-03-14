@@ -1,7 +1,7 @@
-﻿<Window x:Class="TestErrorHandlerWpfDotNet45.MainWindow"
+﻿<Window x:Class="TestWpfDotNET45.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Test Error Handler by WPF .NET 4.5" Height="350" Width="386">
+       Title="Test Error Handler by WPF .NET 4.5" Height="350" Width="386">
     <Grid>
         <Button x:Name="btnThrowHandledException" Content="Throw Handled Exceptions" Margin="46,30,38,0" VerticalAlignment="Top" Height="44" Cursor="Hand" Click="btnThrowHandledException_Click" FontSize="18"/>
         <Button x:Name="btnThrowUnHandledExceptions" Content="Throw UnHandled Exceptions" Margin="46,101,38,0" VerticalAlignment="Top" Height="44" Cursor="Hand" Click="btnThrowUnHandledExceptions_Click" FontSize="18"/>

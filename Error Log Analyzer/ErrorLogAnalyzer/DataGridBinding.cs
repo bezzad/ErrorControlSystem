@@ -21,7 +21,7 @@ namespace ErrorLogAnalyzer
 
             foreach (DataGridViewColumn col in dataGrid.Columns)
             {
-                dataGrid.Rows[dataGrid.Rows.Count - 2].Cells[col.Name].Value =
+                dataGrid.Rows[dataGrid.Rows.Count - 1].Cells[col.Name].Value =
                      row.GetType().GetProperty(col.Name).GetValue(row) ?? "";
             }
         }
@@ -57,6 +57,33 @@ namespace ErrorLogAnalyzer
 
             dataGrid.Refresh();
         }
+
+        public static void RemoveRowByCondition(this DataGridView dataGrid, Object rowObj, Func<DataGridViewRow, object, bool> comparison)
+        {
+            foreach (var row in dataGrid.Rows.Cast<DataGridViewRow>())
+            {
+                if (comparison(row, rowObj))
+                {
+                    dataGrid.Rows.Remove(row);
+                }
+            }
+        }
+
+
+        public static void UpdateRow(this DataGridView dataGrid, Object rowObj, Func<DataGridViewRow, object, bool> comparison)
+        {
+            foreach (DataGridViewRow row in dataGrid.Rows)
+            {
+                if (comparison(row, rowObj))
+                {
+                    foreach (DataGridViewColumn col in dataGrid.Columns)
+                    {
+                        row.Cells[col.Name].Value = rowObj.GetType().GetProperty(col.Name).GetValue(rowObj) ?? "";
+                    }
+                }
+            }
+        }
+
 
         internal static string GetHeaderNameFromColName(string columnName)
         {

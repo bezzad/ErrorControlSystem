@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.Serialization;
 using ErrorHandlerEngine.CacheHandledErrors;
@@ -6,7 +7,7 @@ using ErrorHandlerEngine.CacheHandledErrors;
 namespace ErrorHandlerEngine.ModelObjecting
 {
     [Serializable]
-    public class ProxyError : IError, IDisposable, ICloneable, IEquatable<ProxyError>, ISerializable
+    public class ProxyError : IError, IDisposable, ICloneable, IEquatable<ProxyError>, ISerializable, IEqualityComparer<ProxyError>
     {
         #region Properties
 
@@ -97,6 +98,49 @@ namespace ErrorHandlerEngine.ModelObjecting
         }
 
         #endregion
+
+        #region Static Methods
+
+        public static implicit operator Error(ProxyError proxyError)
+        {
+            return new Error()
+            {
+                Id = proxyError.Id,
+                IsHandled = proxyError.IsHandled,
+                ErrorDateTime = proxyError.ErrorDateTime,
+                ServerDateTime = proxyError.ServerDateTime,
+                HResult = proxyError.HResult,
+                AppName = proxyError.AppName,
+                ClrVersion = proxyError.ClrVersion,
+                CurrentCulture = proxyError.CurrentCulture,
+                ErrorType = proxyError.ErrorType,
+                Host = proxyError.Host,
+                IPv4Address = proxyError.IPv4Address,
+                MacAddress = proxyError.MacAddress,
+                MemberType = proxyError.MemberType,
+                Message = proxyError.Message,
+                Method = proxyError.Method,
+                ModuleName = proxyError.ModuleName,
+                OS = proxyError.OS,
+                Processes = proxyError.Processes,
+                Source = proxyError.Source,
+                StackTrace = proxyError.StackTrace,
+                User = proxyError.User,
+                LineColumn = proxyError.LineColumn,
+                Duplicate = proxyError.Duplicate,
+                Snapshot = proxyError.Snapshot.Value,
+                Data = proxyError.Data
+            };
+        }
+
+        public static explicit operator ProxyError(Error error)
+        {
+            return new ProxyError(error);
+        }
+
+        #endregion
+
+
 
         #region IError Implement
         public int Id { get; set; }
@@ -225,7 +269,7 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         #endregion
 
-        #region Implement ISerializable
+        #region ISerializable Implement
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -257,43 +301,11 @@ namespace ErrorHandlerEngine.ModelObjecting
 
         #endregion
 
-        #region Static Methods
+        #region IEqualityComparer<ProxyError> Implement
 
-        public static implicit operator Error(ProxyError proxyError)
+        public int GetHashCode(ProxyError obj)
         {
-            return new Error()
-            {
-                Id = proxyError.Id,
-                IsHandled = proxyError.IsHandled,
-                ErrorDateTime = proxyError.ErrorDateTime,
-                ServerDateTime = proxyError.ServerDateTime,
-                HResult = proxyError.HResult,
-                AppName = proxyError.AppName,
-                ClrVersion = proxyError.ClrVersion,
-                CurrentCulture = proxyError.CurrentCulture,
-                ErrorType = proxyError.ErrorType,
-                Host = proxyError.Host,
-                IPv4Address = proxyError.IPv4Address,
-                MacAddress = proxyError.MacAddress,
-                MemberType = proxyError.MemberType,
-                Message = proxyError.Message,
-                Method = proxyError.Method,
-                ModuleName = proxyError.ModuleName,
-                OS = proxyError.OS,
-                Processes = proxyError.Processes,
-                Source = proxyError.Source,
-                StackTrace = proxyError.StackTrace,
-                User = proxyError.User,
-                LineColumn = proxyError.LineColumn,
-                Duplicate = proxyError.Duplicate,
-                Snapshot = proxyError.Snapshot.Value,
-                Data = proxyError.Data
-            };
-        }
-
-        public static explicit operator ProxyError(Error error)
-        {
-            return new ProxyError(error);
+            return obj.GetHashCode();
         }
 
         #endregion

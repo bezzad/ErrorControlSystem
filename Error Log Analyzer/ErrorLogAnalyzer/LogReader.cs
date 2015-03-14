@@ -29,6 +29,12 @@ namespace ErrorLogAnalyzer
                 var newErrors = SdfFileManager.GetErrors().ToList();
 
                 //
+                // Update old errors
+                foreach (var item in newErrors.Union(_errors))
+                {
+                    dgv_ErrorsViewer.UpdateRow(item, (row, o) => (int)row.Cells["Id"].Value == ((ProxyError)o).Id);
+                }
+                //
                 // Add new errors
                 foreach (var item in newErrors.Except(_errors))
                 {
@@ -40,7 +46,7 @@ namespace ErrorLogAnalyzer
                 // Remove sent errors in old list and data grid view
                 foreach (var item in _errors.Except(newErrors))
                 {
-                    dgv_ErrorsViewer.RemoveRow(item);
+                    dgv_ErrorsViewer.RemoveRowByCondition(item, (row, o) => (int)row.Cells["Id"].Value == ((ProxyError)o).Id);
                 }
 
                 _errors = newErrors;

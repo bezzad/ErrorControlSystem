@@ -32,6 +32,9 @@ EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject", "Documentation Project\ModelingProject\ModelingProject.modelproj", "{D5F7F6B8-B864-43DC-B13B-6BCC045BF37B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogAnalyzer", "Error Log Analyzer\ErrorLogAnalyzer\ErrorLogAnalyzer.csproj", "{5C31AB6D-3745-4501-A293-5E29EBDBD833}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1} = {EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database Connection Manager", "Database Connection Manager", "{D1ADDEDB-17C8-41B6-A1E6-DFF579D9402A}"
 EndProject
@@ -52,6 +55,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shoniz.Windows.Forms.ProcessBar", "Error Log Analyzer\Shoniz.Windows.Forms.ProcessBar\Shoniz.Windows.Forms.ProcessBar.csproj", "{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWpfDotNET45", "Test Projects\Test All Projects\TestWpfDotNET45\TestWpfDotNET45.csproj", "{63C5E107-6033-4749-9015-158C803E2415}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DF9E798A-6D3B-461E-8B74-BE0757FB3325} = {DF9E798A-6D3B-461E-8B74-BE0757FB3325}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineWPF", "Error Handler Engine\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.csproj", "{732A87F6-4CF3-4160-99D5-78B8B07D93C9}"
 EndProject

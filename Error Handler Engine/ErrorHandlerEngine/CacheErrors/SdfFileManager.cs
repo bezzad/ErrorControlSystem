@@ -458,7 +458,7 @@ namespace CacheErrors
                 {
                     ExceptionHandler.IsSelfException = true;
 
-                    cmd.CommandText = string.Format("SELECT abs(DATEDIFF(HH, Min([ErrorDateTime]), GETDATE())) FROM ErrorLog");
+                    cmd.CommandText = string.Format("SELECT ABS(DATEDIFF(HH, Min([ErrorDateTime]), GETDATE())) FROM ErrorLog");
 
                     await sqlConn.OpenAsync();
 

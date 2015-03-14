@@ -116,18 +116,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\ErrorHandlerEngine\ServerController\DatabaseCreatorQuery.sql">
-      <Link>ServerController\DatabaseCreatorQuery.sql</Link>
-    </Content>
-    <Content Include="..\ErrorHandlerEngine\ServerController\TablesAndSPsCreatorQuery.sql">
-      <Link>ServerController\TablesAndSPsCreatorQuery.sql</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Database Connection Manager\ConnectionsManager\ConnectionsManager.csproj">
       <Project>{d1479d81-3aa1-461d-8801-7dc23a5e7b15}</Project>
       <Name>ConnectionsManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ServerController\DatabaseCreatorQuery.sql" />
+    <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

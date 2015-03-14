@@ -43,8 +43,6 @@ namespace ExceptionManager
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
         }
 
-
-
         #endregion
 
         #region Methods

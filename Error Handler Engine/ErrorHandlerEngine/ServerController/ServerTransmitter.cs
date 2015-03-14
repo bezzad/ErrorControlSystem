@@ -55,7 +55,7 @@ namespace ServerController
                     {
                         try
                         {
-                            await ServerTransmitter.InsertErrorAsync(e);
+                            await InsertErrorAsync(e);
                         }
                         catch (Exception)
                         {

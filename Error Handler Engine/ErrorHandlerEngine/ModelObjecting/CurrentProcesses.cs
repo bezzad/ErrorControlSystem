@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime;
 using System.Text.RegularExpressions;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     public class CurrentProcesses : IList<String>, ICloneable
     {

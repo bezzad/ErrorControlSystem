@@ -3,9 +3,9 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using ConnectionsManager;
-using ErrorHandlerEngine.ServerController;
+using ServerController;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     public static class NetworkHelper
     {

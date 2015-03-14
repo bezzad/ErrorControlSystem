@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     /// <summary>
     /// Provides detailed information about the host operating system.

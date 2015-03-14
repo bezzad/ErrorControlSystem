@@ -3,12 +3,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ConnectionsManager;
-using ErrorHandlerEngine.ExceptionManager;
-using ErrorHandlerEngine.ModelObjecting;
-using ErrorHandlerEngine.Properties;
-using ErrorHandlerEngine.ServerController;
+using ExceptionManager;
+using ModelObjecting;
+using Properties;
+using ServerController;
 
-namespace ErrorHandlerEngine.CacheHandledErrors
+namespace CacheErrors
 {
     internal static class CacheController
     {
@@ -60,7 +60,7 @@ namespace ErrorHandlerEngine.CacheHandledErrors
                 ExceptionHandler.IsSelfException = true;
 
                 // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
-                // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\TestErrorHandlerBySelf v1
+                // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\AppName vAppVersion
                 var rootDir = StorageRouter.ErrorLogFilePath.Substring(0, StorageRouter.ErrorLogFilePath.LastIndexOf('\\'));
 
                 var maxSize = Settings.Default.CacheLimitSize;

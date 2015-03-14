@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     /// <summary>
     /// Provides functions to capture the entire screen, or a particular window.

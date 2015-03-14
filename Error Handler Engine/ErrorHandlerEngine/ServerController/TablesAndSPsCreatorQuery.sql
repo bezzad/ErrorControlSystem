@@ -289,10 +289,10 @@ BEGIN
 					
 			SET @Default =  (@Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots);
 
-			IF(CHARINDEX(''TestErrorHandlerBySelf'', @AppName) = 1 AND @UserName = ''DBITABRIZ\khosravifar.b'')
+			IF(CHARINDEX(''TestErrorHandlerDotNet45'', @AppName) = 1 AND @UserName = ''DBITABRIZ\khosravifar.b'')
 				RETURN (@Default)
 
-			IF(CHARINDEX(''TestErrorHandlerBySelf'', @AppName) = 1 AND @UserName = ''Behzad-PC\Behzad'')
+			IF(CHARINDEX(''TestErrorHandlerDotNet45'', @AppName) = 1 AND @UserName = ''Behzad-PC\Behzad'')
 				RETURN (@Default)
 				
 			RETURN @None

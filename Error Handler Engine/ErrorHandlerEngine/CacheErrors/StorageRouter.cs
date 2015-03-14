@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using ErrorHandlerEngine.ModelObjecting;
+using ModelObjecting;
 
-namespace ErrorHandlerEngine.CacheHandledErrors
+namespace CacheErrors
 {
     /// <summary>
     /// Routing Where the data must be saved

@@ -2,9 +2,9 @@
 using System.Drawing.Imaging;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ErrorHandlerEngine.ModelObjecting;
+using ModelObjecting;
 
-namespace TestErrorHandlerEngine.ModelObjecting
+namespace TestModelObjecting
 {
     /// <summary>
     /// Summary description for ScreenCaptureUnitTest

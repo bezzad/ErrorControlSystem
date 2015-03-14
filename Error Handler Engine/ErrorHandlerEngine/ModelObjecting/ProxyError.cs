@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.Serialization;
-using ErrorHandlerEngine.CacheHandledErrors;
+using CacheErrors;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     [Serializable]
     public class ProxyError : IError, IDisposable, ICloneable, IEquatable<ProxyError>, ISerializable, IEqualityComparer<ProxyError>

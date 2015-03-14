@@ -1,5 +1,5 @@
 ﻿
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     public class OperationSystemInfo
     {

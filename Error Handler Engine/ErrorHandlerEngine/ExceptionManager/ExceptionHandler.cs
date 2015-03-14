@@ -23,10 +23,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ModelObjecting;
+using CacheErrors;
+using ModelObjecting;
 
-namespace ErrorHandlerEngine.ExceptionManager
+namespace ExceptionManager
 {
     /// <summary>
     /// Additional Data attached to exception object.

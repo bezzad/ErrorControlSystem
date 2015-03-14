@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ConnectionsManager;
-using ErrorHandlerEngine.ExceptionManager;
+using ExceptionManager;
 using TestErrorHandlerDotNet45;
 
 namespace TestErrorHandlerBySelf
@@ -21,7 +21,7 @@ namespace TestErrorHandlerBySelf
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
             ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
-            ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 
             // Except 'NotImplementedException' from raise log
             ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));

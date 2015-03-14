@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ErrorHandlerEngine.Properties;
+using Properties;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     public static class DiskHelper
     {

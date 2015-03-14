@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using ErrorHandlerEngine.ExceptionManager;
+using ExceptionManager;
 
 namespace ErrorHandlerEngine
 {

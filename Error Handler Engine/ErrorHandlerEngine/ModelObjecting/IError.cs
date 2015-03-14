@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     public interface IError
     {

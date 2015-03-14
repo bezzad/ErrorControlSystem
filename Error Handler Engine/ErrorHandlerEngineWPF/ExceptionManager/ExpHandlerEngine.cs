@@ -2,12 +2,11 @@
 using System.Diagnostics;
 using System.Runtime.ExceptionServices;
 using System.Security.Permissions;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using ConnectionsManager;
 using CacheErrors;
 using ServerController;
+using System.Windows;
 
 namespace ExceptionManager
 {
@@ -31,8 +30,6 @@ namespace ExceptionManager
         {
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-
             // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
             AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
 
@@ -42,9 +39,11 @@ namespace ExceptionManager
             // Catch all unobserved task exceptions.
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
-            // Catch all unhandled exceptions.
-            Application.ThreadException += ThreadExceptionHandler;
+            // Catch all WPF unhandled exceptions.
+            Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
         }
+
+
 
         #endregion
 
@@ -55,7 +54,7 @@ namespace ExceptionManager
             _option = option & ~ErrorHandlerOption.SendCacheToServer;
 
             if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
-                Application.Exit();
+                Application.Current.Shutdown();
 
             await ServerTransmitter.InitialTransmitterAsync();
         }
@@ -69,7 +68,7 @@ namespace ExceptionManager
             ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
 
             if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
-                Application.Exit();
+                Application.Current.Shutdown();
 
             await ServerTransmitter.InitialTransmitterAsync();
 
@@ -106,18 +105,6 @@ namespace ExceptionManager
         }
 
         /// <summary>
-        /// If you are hosting any WinForm components in your WPF application, 
-        /// this final event is one to watch. There's no way to influence events thereafter, 
-        /// but at least you get to see what the problem was.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
-        {
-            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled Thread Exception");
-        }
-
-        /// <summary>
         /// Catch all unhandled exceptions in all threads.
         /// Although Application.DispatcherUnhandledException covers most issues in the current AppDomain, 
         /// in extremely rare circumstances, you may be running a thread on a second AppDomain. 
@@ -130,7 +117,15 @@ namespace ExceptionManager
         {
             (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled UI Exception");
 
-            Application.Exit();
+            Application.Current.Shutdown();
+        }
+
+        private static void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            // Prevent default unhandled exception processing
+            e.Handled = true;
+
+            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled Thread Exception");
         }
 
         #endregion

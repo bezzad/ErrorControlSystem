@@ -7,11 +7,11 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ConnectionsManager;
-using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ExceptionManager;
-using ErrorHandlerEngine.ModelObjecting;
+using CacheErrors;
+using ExceptionManager;
+using ModelObjecting;
 
-namespace ErrorHandlerEngine.ServerController
+namespace ServerController
 {
     public static class ServerTransmitter
     {

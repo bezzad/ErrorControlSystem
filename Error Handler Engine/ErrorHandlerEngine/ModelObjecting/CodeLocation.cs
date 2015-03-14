@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     [Serializable]
     [System.Runtime.InteropServices.ComVisible(true)]

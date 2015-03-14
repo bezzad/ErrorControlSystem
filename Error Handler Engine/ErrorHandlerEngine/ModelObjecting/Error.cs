@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using ErrorHandlerEngine.CacheHandledErrors;
-using ErrorHandlerEngine.ExceptionManager;
+using CacheErrors;
+using ExceptionManager;
 
-namespace ErrorHandlerEngine.ModelObjecting
+namespace ModelObjecting
 {
     public class Error : IError, IDisposable, ICloneable, IEquatable<Error>
     {
@@ -336,13 +336,13 @@ namespace ErrorHandlerEngine.ModelObjecting
                  select property).ToDictionary(p => p.Name, p => p.GetValue(exp));
             //
             // Read Data dictionary of exception object
-            foreach (DictionaryEntry item in exp.Data)
+            foreach (DictionaryEntry item in exp.Data.Cast<DictionaryEntry>().Where(item => item.Key != null && item.Value != null))
             {
-                data.Add((string)item.Key, item.Value);
+                data.Add(item.Key.ToString(), item.Value.ToString());
             }
             //
             // Read DicExtraData dictionary from global labeling data
-            foreach (var item in DicExtraData)
+            foreach (var item in DicExtraData.Where(item => item.Key != null && item.Value != null))
             {
                 data.Add(item.Key, item.Value);
             }

@@ -42,11 +42,11 @@ namespace CacheErrors
 	                                [AppName] [nvarchar](200) NULL,
 	                                [CurrentCulture] [nvarchar](200) NULL,
 	                                [CLRVersion] [nvarchar](100) NULL,
-	                                [Message] [nvarchar](1000) NULL,
+	                                [Message] [nvarchar](2000) NULL,
 	                                [Source] [nvarchar](200) NULL,
 	                                [StackTrace] [nvarchar](4000) NULL,
 	                                [ModuleName] [nvarchar](200) NULL,
-	                                [MemberType] [nvarchar](50) NULL,
+	                                [MemberType] [nvarchar](200) NULL,
 	                                [Method] [nvarchar](500) NULL,
 	                                [Processes] [nvarchar](4000) NULL,
 	                                [ErrorDateTime] [datetime] NULL,
@@ -435,6 +435,30 @@ namespace CacheErrors
                     ExceptionHandler.IsSelfException = true;
 
                     cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog");
+
+                    await sqlConn.OpenAsync();
+
+                    return await cmd.ExecuteScalarAsync() as int? ?? 0;
+                }
+                finally
+                {
+                    sqlConn.Close();
+
+                    ExceptionHandler.IsSelfException = false;
+                }
+            }
+        }
+
+        public static async Task<int> GetTheFirstErrorHoursAsync()
+        {
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                try
+                {
+                    ExceptionHandler.IsSelfException = true;
+
+                    cmd.CommandText = string.Format("SELECT abs(DATEDIFF(HH, Min([ErrorDateTime]), GETDATE())) FROM ErrorLog");
 
                     await sqlConn.OpenAsync();
 

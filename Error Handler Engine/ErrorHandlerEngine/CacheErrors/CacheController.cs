@@ -12,6 +12,8 @@ namespace CacheErrors
 {
     internal static class CacheController
     {
+        public static int ExpireHours = 100; // after 100H of first logged error time, all errors sent from cache to server
+
         public static volatile bool AreErrorsInSendState = false;
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
@@ -68,7 +70,8 @@ namespace CacheErrors
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if (ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
+                if ((ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
+                    || (await SdfFileManager.GetTheFirstErrorHoursAsync() >= ExpireHours))
                 {
                     await UploadCacheAsync();
                 }

@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ExceptionManager.ExpHandlerEngine" Collapsed="true">
-    <Position X="7" Y="6.75" Width="1.75" />
+    <Position X="8.75" Y="6.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAIAAgAAAEAQAAAAAAEAAAA=</HashCode>
       <FileName>ExceptionManager\ExpHandlerEngine.cs</FileName>
@@ -120,11 +120,30 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CacheErrors.StorageRouter" Collapsed="true">
-    <Position X="9" Y="6.75" Width="1.5" />
+    <Position X="7" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACAAAAAAAAABA=</HashCode>
       <FileName>CacheErrors\StorageRouter.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="ConnectionsManager.Connection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConnectionsManager.ConnectionCollection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConnectionsManager.ConnectionManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="3" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConnectionsManager.StringCipher" Collapsed="true">
+    <Position X="11.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
   </Class>
   <Struct Name="ModelObjecting.CodeLocation" Collapsed="true">
     <Position X="1.75" Y="4.75" Width="1.5" />

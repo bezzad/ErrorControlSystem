@@ -1,4 +1,4 @@
-﻿namespace TestErrorHandlerAppNet2
+﻿namespace TestErrorHandlerDotNet2
 {
     partial class Form1
     {

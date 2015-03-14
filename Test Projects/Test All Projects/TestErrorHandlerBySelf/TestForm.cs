@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestErrorHandlerBySelf;
 
-namespace TestErrorHandlerBySelf
+namespace TestErrorHandlerDotNet45
 {
     public partial class FormTest : Form
     {

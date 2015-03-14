@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using ErrorHandlerEngine;
 
-namespace TestErrorHandlerAppNet2
+namespace TestErrorHandlerDotNet2
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace TestErrorHandlerBySelf
+﻿namespace TestErrorHandlerDotNet45
 {
     partial class FormTest
     {

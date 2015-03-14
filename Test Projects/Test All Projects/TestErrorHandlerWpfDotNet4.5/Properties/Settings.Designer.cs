@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestErrorHandlerDotNet45.Properties {
+namespace TestErrorHandlerWpfDotNet45.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

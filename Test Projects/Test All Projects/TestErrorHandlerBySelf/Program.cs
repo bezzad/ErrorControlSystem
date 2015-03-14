@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using ConnectionsManager;
 using ErrorHandlerEngine.ExceptionManager;
+using TestErrorHandlerDotNet45;
 
 namespace TestErrorHandlerBySelf
 {

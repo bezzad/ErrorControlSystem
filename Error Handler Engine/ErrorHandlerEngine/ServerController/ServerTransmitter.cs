@@ -45,9 +45,6 @@ namespace ServerController
                 goto CheckDatabase;
             }
 
-
-
-
             ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
                 async (e) =>
                 {

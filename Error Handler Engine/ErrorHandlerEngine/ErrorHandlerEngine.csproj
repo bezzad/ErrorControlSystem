@@ -82,7 +82,6 @@
     </Compile>
     <Compile Include="Properties\Settings.cs" />
     <Compile Include="CacheErrors\SdfFileManager.cs" />
-    <Compile Include="Resources\ComponentController.cs" />
     <Compile Include="Resources\EmbeddedAssembly.cs" />
     <Compile Include="ServerController\ServerTransmitter.cs" />
   </ItemGroup>

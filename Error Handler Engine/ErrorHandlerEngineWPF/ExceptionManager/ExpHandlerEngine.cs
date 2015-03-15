@@ -55,9 +55,6 @@ namespace ExceptionManager
         {
             _option = option & ~ErrorHandlerOption.SendCacheToServer;
 
-            if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
-                Application.Current.Shutdown();
-
             await ServerTransmitter.InitialTransmitterAsync();
         }
 
@@ -69,14 +66,13 @@ namespace ExceptionManager
             ConnectionManager.Add(conn, "ErrorHandlerServer");
             ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
 
-            if (string.IsNullOrEmpty(StorageRouter.ErrorLogFilePath))
-                Application.Current.Shutdown();
-
             await ServerTransmitter.InitialTransmitterAsync();
 
             var publicSetting = await ServerTransmitter.GetErrorHandlerOptionAsync();
             if (publicSetting != 0)
                 _option = publicSetting;
+
+            await CacheController.CheckStateAsync();
         }
 
 

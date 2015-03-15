@@ -57,9 +57,11 @@ namespace ExceptionManager
 
         static ExceptionHandler()
         {
-            EmbeddedAssembly.Load("ErrorHandlerEngine.Resources.System.Data.SqlServerCe.dll", "System.Data.SqlServerCe.dll");
-            EmbeddedAssembly.Load("ErrorHandlerEngine.Resources.System.Threading.Tasks.Dataflow.dll", "System.Threading.Tasks.Dataflow.dll");
+            EmbeddedAssembly.Load("System.Data.SqlServerCe.dll");
+            EmbeddedAssembly.Load("System.Threading.Tasks.Dataflow.dll");
             AppDomain.CurrentDomain.AssemblyResolve += (s, e) => EmbeddedAssembly.Get(e.Name);
+
+            StorageRouter.ReadyCache();
         }
 
         #region Methods

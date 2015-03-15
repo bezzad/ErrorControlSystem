@@ -13,7 +13,8 @@ namespace CacheErrors
         #region Properties
 
         public static string ErrorLogFilePath;
-        
+
+
         #endregion
 
         #region Constructor
@@ -30,6 +31,18 @@ namespace CacheErrors
         #endregion
 
         #region Methods
+
+        public static async void ReadyCache()
+        {
+            if (File.Exists(ErrorLogFilePath))
+            {
+                SdfFileManager.CheckSdf(ErrorLogFilePath);
+            }
+            else
+            {
+                await SdfFileManager.CreateSdfAsync(ErrorLogFilePath);
+            }
+        }
 
         private static async void LoadLogPath()
         {
@@ -64,7 +77,7 @@ namespace CacheErrors
             // Add Error data path to [ErrorLogPath] of setting file:
             await DiskHelper.WriteSettingAsync("ErrorLogPath", ErrorLogFilePath);
         }
-        
+
         #endregion
 
     }

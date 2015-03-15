@@ -149,9 +149,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\System.Threading.Tasks.Dataflow.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\ConnectionsManager.dll" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

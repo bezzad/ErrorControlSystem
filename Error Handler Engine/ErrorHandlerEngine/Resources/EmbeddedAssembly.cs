@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -17,22 +17,22 @@ public class EmbeddedAssembly
     /// <summary>
     /// Load Assembly, DLL from Embedded Resources into memory.
     /// </summary>
-    /// <param name="embeddedResource">Embedded Resource string. Example: WindowsFormsApplication1.SomeTools.dll</param>
-    /// <param name="fileName">File Name. Example: SomeTools.dll</param>
-    public static void Load(string embeddedResource, string fileName)
+    /// <param name="embeddedResource">File Name. Example: SomeTools.dll</param>
+    public static void Load(string embeddedResource)
     {
-        if (dic == null)
-            dic = new Dictionary<string, Assembly>();
+        if (dic == null) dic = new Dictionary<string, Assembly>();
 
+        Assembly curAsm = Assembly.GetExecutingAssembly();
+        string embeddedResourceFullName =
+            curAsm.GetManifestResourceNames().First(res => res.EndsWith(embeddedResource, StringComparison.OrdinalIgnoreCase));
         byte[] ba = null;
         Assembly asm = null;
-        Assembly curAsm = Assembly.GetExecutingAssembly();
 
-        using (Stream stm = curAsm.GetManifestResourceStream(embeddedResource))
+        using (Stream stm = curAsm.GetManifestResourceStream(embeddedResourceFullName))
         {
             // Either the file is not existed or it is not mark as embedded resource
             if (stm == null)
-                throw new Exception(embeddedResource + " is not found in Embedded Resources.");
+                throw new Exception(embeddedResourceFullName + " is not found in Embedded Resources.");
 
             // Get byte[] from the file from embedded resource
             ba = new byte[(int)stm.Length];
@@ -62,7 +62,7 @@ public class EmbeddedAssembly
             string fileHash = BitConverter.ToString(sha1.ComputeHash(ba)).Replace("-", string.Empty);
 
             // Define the temporary storage location of the DLL/assembly
-            tempFile = Path.GetTempPath() + fileName;
+            tempFile = Path.GetTempPath() + embeddedResource;
 
             // Determines whether the DLL/assembly is existed or not
             if (File.Exists(tempFile))

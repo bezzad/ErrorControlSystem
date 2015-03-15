@@ -28,6 +28,8 @@ namespace ExceptionManager
 
         static ExpHandlerEngine()
         {
+            ExceptionHandler.IsSelfException = true;
+
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
             // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
@@ -41,6 +43,8 @@ namespace ExceptionManager
 
             // Catch all WPF unhandled exceptions.
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+
+            ExceptionHandler.IsSelfException = false;
         }
 
         #endregion

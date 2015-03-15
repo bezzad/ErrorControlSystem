@@ -18,6 +18,7 @@ namespace ErrorLogAnalyzer
         private List<ProxyError> _errors = new List<ProxyError>();
         private DirectoryInfo _cacheDir;
         private readonly Timer _timer;
+        private string _filePath;
 
         public LogReader()
         {
@@ -26,6 +27,9 @@ namespace ErrorLogAnalyzer
             _timer = new Timer { Interval = 1000 };
             _timer.Tick += (s, e) =>
             {
+
+                SdfFileManager.SetConnectionString(_filePath);
+
                 var newErrors = SdfFileManager.GetErrors().ToList();
 
                 //
@@ -96,8 +100,8 @@ namespace ErrorLogAnalyzer
                 this.Close();
             else
             {
-                SdfFileManager.SetConnectionString(ofd.FileName);
-
+                _filePath = ofd.FileName;
+                
                 _cacheDir = new DirectoryInfo(Path.GetDirectoryName(ofd.FileName));
 
                 refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data");

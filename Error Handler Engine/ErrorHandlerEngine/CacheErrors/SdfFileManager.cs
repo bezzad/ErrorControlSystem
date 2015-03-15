@@ -26,7 +26,7 @@ namespace CacheErrors
 
             if (File.Exists(filePath))
             {
-                CheckSdfAsync(filePath);
+                CheckSdf(filePath);
                 return;
             }
 
@@ -82,10 +82,10 @@ namespace CacheErrors
             }
         }
 
-        public static void CheckSdfAsync(string filePath)
+        public static void CheckSdf(string filePath)
         {
             ExceptionHandler.IsSelfException = true;
-
+            
             try
             {
                 var testConn = new SqlCeConnection(ConnectionString);

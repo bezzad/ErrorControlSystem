@@ -63,16 +63,6 @@ namespace ErrorHandlerEngineWPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ConnectionsManager {
-            get {
-                object obj = ResourceManager.GetObject("ConnectionsManager", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
         internal static byte[] System_Data_SqlServerCe {
             get {
                 object obj = ResourceManager.GetObject("System_Data_SqlServerCe", resourceCulture);

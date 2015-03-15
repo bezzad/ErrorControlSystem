@@ -417,7 +417,14 @@ namespace DbConnectionsManager
 
         public static string GetRunningAppNameVersion()
         {
-            return Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version;
+            try
+            {
+                return Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version;
+            }
+            catch
+            {
+                return Assembly.GetExecutingAssembly().GetName().Name + " v" + Assembly.GetExecutingAssembly().GetName().Version;
+            }
         }
 
         #endregion

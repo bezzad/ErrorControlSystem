@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ConnectionsManager;
+using DbConnectionsManager;
 using ExceptionManager;
 using TestErrorHandlerDotNet45;
 

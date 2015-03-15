@@ -5,8 +5,8 @@ using System.Security.Permissions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ConnectionsManager;
 using CacheErrors;
+using DbConnectionsManager;
 using ServerController;
 
 namespace ExceptionManager
@@ -30,6 +30,10 @@ namespace ExceptionManager
         static ExpHandlerEngine()
         {
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+
+            ComponentController.Resolver(null, new ResolveEventArgs("System.Threading.Tasks.Dataflow"));
+            ComponentController.Resolver(null, new ResolveEventArgs("System.Data.SqlServerCe"));
+
 
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 

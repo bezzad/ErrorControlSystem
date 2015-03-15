@@ -7,8 +7,8 @@
     <ProjectGuid>{D1479D81-3AA1-461D-8801-7DC23A5E7B15}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConnectionsManager</RootNamespace>
-    <AssemblyName>ConnectionsManager</AssemblyName>
+    <RootNamespace>DbConnectionsManager</RootNamespace>
+    <AssemblyName>DbConnectionsManager</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

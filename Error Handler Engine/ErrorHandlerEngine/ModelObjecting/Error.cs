@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using CacheErrors;
+using DbConnectionsManager;
 using ExceptionManager;
 
 namespace ModelObjecting
@@ -137,7 +138,7 @@ namespace ModelObjecting
 
             #region Application Name [Name  v#####]
 
-            AppName = ConnectionsManager.Connection.GetRunningAppNameVersion();
+            AppName = Connection.GetRunningAppNameVersion();
 
             #endregion
 

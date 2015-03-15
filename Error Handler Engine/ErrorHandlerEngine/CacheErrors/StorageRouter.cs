@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using DbConnectionsManager;
 using ModelObjecting;
 
 namespace CacheErrors
@@ -47,7 +48,7 @@ namespace CacheErrors
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
             // Application Name and Major Version 
-            var appNameVer = String.Format(ConnectionsManager.Connection.GetRunningAppNameVersion());
+            var appNameVer = String.Format(Connection.GetRunningAppNameVersion());
 
             // Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
             var storageDirPath = Path.Combine(appDataDir, appNameVer);

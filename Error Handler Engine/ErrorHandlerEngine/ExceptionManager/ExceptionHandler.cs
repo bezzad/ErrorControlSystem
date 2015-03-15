@@ -55,6 +55,12 @@ namespace ExceptionManager
         #endregion
 
 
+        static ExceptionHandler()
+        {
+            ComponentController.Resolver(null, new ResolveEventArgs("System.Threading.Tasks.Dataflow"));
+            ComponentController.Resolver(null, new ResolveEventArgs("System.Data.SqlServerCe"));
+        }
+
         #region Methods
 
         /// <summary>

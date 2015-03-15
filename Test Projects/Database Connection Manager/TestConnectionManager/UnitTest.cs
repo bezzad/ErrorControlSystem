@@ -5,8 +5,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using DbConnectionsManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ConnectionsManager;
 
 namespace TestConnectionManager
 {

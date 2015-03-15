@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ExceptionManager.ExceptionHandler" Collapsed="true">
-    <Position X="8.75" Y="5.75" Width="1.5" />
+    <Position X="9.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAgAAAAACEAAABAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ExceptionManager\ExceptionHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ExceptionManager.ExpHandlerEngine" Collapsed="true">
-    <Position X="8.75" Y="6.75" Width="1.75" />
+    <Position X="9.25" Y="7" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAIAAgAAAEAQAAAAAAEAAAA=</HashCode>
       <FileName>ExceptionManager\ExpHandlerEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ModelObjecting.CurrentProcesses" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8" Y="2.5" Width="1.5" />
+    <Position X="6.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AOIgAEAAAAAAABAUCAAABAQCAAAAAAEAKAgAAIBUIBA=</HashCode>
       <FileName>ModelObjecting\CurrentProcesses.cs</FileName>
@@ -31,41 +31,43 @@
     <Lollipop Orientation="Bottom" Position="0.127" />
   </Class>
   <Class Name="ModelObjecting.ProxyError" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="6" Y="2.5" Width="1.5" />
+    <Position X="4" Y="2.5" Width="1.5" />
     <InheritanceLine Type="System.Object" FixedToPoint="true">
       <Path>
         <Point X="6.75" Y="1.812" />
-        <Point X="6.75" Y="2.5" />
+        <Point X="6.75" Y="2.125" />
+        <Point X="4.75" Y="2.125" />
+        <Point X="4.75" Y="2.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AiADAgAEAiAgUgCIwAAgAAAiAAECKLEDAAAAIAAAAJE=</HashCode>
       <FileName>ModelObjecting\ProxyError.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Bottom" Position="0.1" />
+    <Lollipop Orientation="Bottom" Position="0.598" />
   </Class>
   <Class Name="ModelObjecting.NetworkHelper" Collapsed="true">
-    <Position X="1.75" Y="6.75" Width="1.5" />
+    <Position X="2.25" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAEAAA=</HashCode>
       <FileName>ModelObjecting\NetworkHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ModelObjecting.OperationSystem" Collapsed="true">
-    <Position X="3.5" Y="6.75" Width="1.5" />
+    <Position X="4" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IYyISw2LNIUAUALilIACcAwDSFJEDHIlQQIIUkO5QGo=</HashCode>
       <FileName>ModelObjecting\OperationSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ModelObjecting.OperationSystemInfo" Collapsed="true">
-    <Position X="3.75" Y="2.5" Width="1.75" />
+    <Position X="2.75" Y="4" Width="1.75" />
     <InheritanceLine Type="System.Object" FixedFromPoint="true">
       <Path>
         <Point X="6.75" Y="1.812" />
-        <Point X="6.75" Y="2.26" />
-        <Point X="4.625" Y="2.26" />
-        <Point X="4.625" Y="2.5" />
+        <Point X="6.75" Y="2.125" />
+        <Point X="3.625" Y="2.125" />
+        <Point X="3.625" Y="4" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -74,7 +76,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ModelObjecting.ScreenCapture" Collapsed="true">
-    <Position X="3.5" Y="5.75" Width="1.5" />
+    <Position X="4" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAIQAAAAAAAABAAAAAAAAAAAAEABAAQAAAAAA=</HashCode>
       <FileName>ModelObjecting\ScreenCapture.cs</FileName>
@@ -85,82 +87,107 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Properties.Settings" Collapsed="true">
-    <Position X="7.25" Y="4.75" Width="1.75" />
+    <Position X="7.75" Y="5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIEAAAAIAAAAAABAAAAAAgAAAAACAA=</HashCode>
       <FileName>Properties\Settings.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ModelObjecting.DiskHelper" Collapsed="true">
-    <Position X="7" Y="5.75" Width="1.5" />
+    <Position X="7.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAACACAAAAAAAAAAAAAAAAAAgAAAAAgAAAAAAAA=</HashCode>
       <FileName>ModelObjecting\DiskHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ServerController.ServerTransmitter" Collapsed="true">
-    <Position X="5.25" Y="5.75" Width="1.5" />
+    <Position X="5.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAgCAIAAAEAAAIAAAAAAAAAAgEAAQgAAAAAAAA=</HashCode>
       <FileName>ServerController\ServerTransmitter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CacheErrors.CacheController" Collapsed="true">
-    <Position X="1.75" Y="5.75" Width="1.5" />
+    <Position X="2.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAQAIAAAAAAAAAACIAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAQAIAAAAAQAAAACIAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CacheErrors\CacheController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CacheErrors.SdfFileManager" Collapsed="true">
-    <Position X="5.25" Y="6.75" Width="1.5" />
+    <Position X="5.75" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAACAAAAAABAIAECAAAAAAAAAgIAKAAAAAYAIA=</HashCode>
+      <HashCode>QAAEAAAACAAAAAABAIAACAAAAAAAAAgIAKAAgAAYAIA=</HashCode>
       <FileName>CacheErrors\SdfFileManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CacheErrors.StorageRouter" Collapsed="true">
-    <Position X="7" Y="6.75" Width="1.5" />
+    <Position X="7.5" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACgAAAAAAAABA=</HashCode>
       <FileName>CacheErrors\StorageRouter.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ConnectionsManager.Connection" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="6.75" Width="1.75" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
+  <Class Name="DbConnectionsManager.Connection" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAiAAAAAAAgGAYEQAQAAAwAAACACAAGCCEAohIVABA=</HashCode>
+      <FileName>DbConnectionManager\Connection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.127" />
   </Class>
-  <Class Name="ConnectionsManager.ConnectionCollection" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="4.75" Width="1.75" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
+  <Class Name="DbConnectionsManager.ConnectionCollection" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACIAAABAACAACgAACAAABAQAAAAIAAAAAAAAAABQIAA=</HashCode>
+      <FileName>DbConnectionManager\ConnectionCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.2" />
   </Class>
-  <Class Name="ConnectionsManager.ConnectionManager" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="3" Width="1.75" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
+  <Class Name="DbConnectionsManager.ConnectionManager" Collapsed="true">
+    <Position X="10.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKQAAAJACCAICFQYBAEBWQAAAAsAADTCCAAJACEASA=</HashCode>
+      <FileName>DbConnectionManager\ConnectionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.2" />
   </Class>
-  <Class Name="ConnectionsManager.StringCipher" Collapsed="true">
-    <Position X="11.25" Y="5.75" Width="1.5" />
-    <TypeIdentifier />
+  <Class Name="DbConnectionsManager.StringCipher" Collapsed="true">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAIAAAAAYACAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbConnectionManager\StringCipher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorHandlerEngine.Properties.Resources" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAEAAQAAAAAAEAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EmbeddedAssembly" Collapsed="true">
+    <Position X="9.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resources\EmbeddedAssembly.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Struct Name="ModelObjecting.CodeLocation" Collapsed="true">
-    <Position X="1.75" Y="4.75" Width="1.5" />
+    <Position X="2.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIIgAAAAAIAAAAAEwANCAAAAAABAAIAAAAAAAAABAiA=</HashCode>
       <FileName>ModelObjecting\CodeLocation.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Interface Name="ModelObjecting.IError" Collapsed="true">
-    <Position X="5.75" Y="4.75" Width="1.25" />
+    <Position X="6.25" Y="5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>ACADAgAAAgAAUgCAQAAgAAACAAECKDEDAAAAIAAAAIE=</HashCode>
       <FileName>ModelObjecting\IError.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="ExceptionManager.ErrorHandlerOption" Collapsed="true">
-    <Position X="3.5" Y="4.75" Width="2" />
+    <Position X="4" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgIAAAAEAAAA=</HashCode>
       <FileName>ExceptionManager\ErrorHandlerOption.cs</FileName>

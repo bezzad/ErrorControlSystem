@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 /// <summary>
 /// A class for loading Embedded Assembly
 /// </summary>
-public class EmbeddedAssembly
+public static class EmbeddedAssembly
 {
     // Version 1.3
 

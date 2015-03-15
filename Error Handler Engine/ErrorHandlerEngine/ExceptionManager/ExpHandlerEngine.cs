@@ -29,11 +29,9 @@ namespace ExceptionManager
 
         static ExpHandlerEngine()
         {
+            ExceptionHandler.IsSelfException = true;
+
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
-
-            ComponentController.Resolver(null, new ResolveEventArgs("System.Threading.Tasks.Dataflow"));
-            ComponentController.Resolver(null, new ResolveEventArgs("System.Data.SqlServerCe"));
-
 
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
@@ -48,6 +46,8 @@ namespace ExceptionManager
 
             // Catch all unhandled exceptions.
             Application.ThreadException += ThreadExceptionHandler;
+
+            ExceptionHandler.IsSelfException = false;
         }
 
         #endregion

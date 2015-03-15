@@ -24,8 +24,8 @@ namespace TestErrorHandlerEngine.DbConnectionManager
         public void UnitTestInitializer()
         {
             _conn = new Connection(".", "UsersManagements") { Name = "UM" };
-            _connHost = new Connection(Environment.MachineName, "UsersManagements") { Name = "UM" };
-            _connJustTrueServer = new Connection(Environment.MachineName, "TestNotExistDbName") { Name = "Test" };
+            _connHost = new Connection("localhost", "UsersManagements") { Name = "UM" };
+            _connJustTrueServer = new Connection("localhost", "TestNotExistDbName") { Name = "Test" };
             _connFalse = new Connection("TestNotExistServer", "TestNotExistDbName") { Name = "Test" };
         }
 
@@ -153,7 +153,7 @@ namespace TestErrorHandlerEngine.DbConnectionManager
             //
             // --------------- Constructor 1 Arguments ------------------------------------------
             //
-            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", "um");
+            var connFull = new Connection(".", "UsersManagements", "um");
             var conn = new Connection(connFull);
 
             Assert.AreEqual(conn.ToXml(false).ToString(SaveOptions.None), conn.ToString());
@@ -347,7 +347,6 @@ namespace TestErrorHandlerEngine.DbConnectionManager
             Assert.IsFalse(items.Contains("IM")); // IM is not exist
 
             Assert.IsTrue(items.Contains(_conn)); // UM is added
-            Assert.IsFalse(items.Contains(_connHost)); // UM is added but from '_conn' not '_connHost'
             Assert.IsFalse(items.Contains(_connJustTrueServer)); // Test is not exist
 
             var aryConn = new Connection[1];
@@ -736,8 +735,6 @@ namespace TestErrorHandlerEngine.DbConnectionManager
             Assert.IsFalse(ConnectionManager.Find("UM").IsReady);
             ConnectionManager.Edit(_connJustTrueServer, "uM");
             Assert.IsFalse(ConnectionManager.Find("UM").IsReady);
-            Assert.IsTrue(ConnectionManager.Find("UM").IsServerOnline());
-            Assert.IsFalse(ConnectionManager.Find("UM").IsReady); // server is trust but not sure do the DB correctly worked!?
             Assert.IsFalse(ConnectionManager.Find("UM").CheckDbConnection());
             ConnectionManager.Edit(_conn, "Um");
             Assert.IsTrue(ConnectionManager.Find("UM").CheckDbConnection()); // when add first time this is work correctly but now not work

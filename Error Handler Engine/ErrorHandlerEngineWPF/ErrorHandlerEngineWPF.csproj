@@ -108,8 +108,8 @@
     <Compile Include="..\ErrorHandlerEngine\ModelObjecting\ScreenCapture.cs">
       <Link>ModelObjecting\ScreenCapture.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Resources\ComponentController.cs">
-      <Link>Resources\ComponentController.cs</Link>
+    <Compile Include="..\ErrorHandlerEngine\Resources\EmbeddedAssembly.cs">
+      <Link>Resources\EmbeddedAssembly.cs</Link>
     </Compile>
     <Compile Include="..\ErrorHandlerEngine\ServerController\ServerTransmitter.cs">
       <Link>ServerController\ServerTransmitter.cs</Link>

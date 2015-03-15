@@ -23,7 +23,9 @@ internal static class ComponentController
     /// </summary>
     static ComponentController()
     {
-        AppDomain.CurrentDomain.AssemblyResolve += Resolver;
+        //AppDomain.CurrentDomain.AssemblyResolve += Resolver;
+
+
     }
 
 
@@ -49,13 +51,13 @@ internal static class ComponentController
         if (Libs.ContainsKey(libName)) return Libs[libName];
 
         string resourceFullName = DllResourceName(libName);
+
         if (!executingAssembly.GetManifestResourceNames().Contains(resourceFullName))
-            throw new ArgumentException("Resource name does not exist.");
+            throw new ArgumentException("Resource name does not exist!!!");
 
         Assembly resourceAssembly;
         using (Stream resourceStream = executingAssembly.GetManifestResourceStream(resourceFullName))
         {
-
             if (resourceStream == null)
                 throw new NullReferenceException("Resource stream is null.");
 

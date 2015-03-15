@@ -68,7 +68,7 @@ namespace DbConnectionsManager
         [DefaultValue(false)]
         public bool IsReady { get; set; }
 
-        [DefaultValue("")]
+        [DefaultValue(".Net SqlClient Data Provider")]
         public string AppName { get; set; }
 
         #endregion
@@ -349,6 +349,7 @@ namespace DbConnectionsManager
                 PortNumber = 1433,
                 AttachDbFilename = scsb.AttachDBFilename,
                 PersistSecurityInfo = scsb.PersistSecurityInfo,
+                AppName = scsb.ApplicationName,
                 IntegratedSecurity = scsb.IntegratedSecurity ?
                     connectionString.Substring(connectionString.IndexOf("Integrated Security=") +
                     "Integrated Security=".Length, 4) :

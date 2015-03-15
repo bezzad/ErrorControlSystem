@@ -8,7 +8,7 @@ namespace CacheErrors
     /// <summary>
     /// Routing Where the data must be saved
     /// </summary>
-    public static class StorageRouter
+    internal static class StorageRouter
     {
         #region Properties
 

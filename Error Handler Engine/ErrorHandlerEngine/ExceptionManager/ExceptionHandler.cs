@@ -57,8 +57,9 @@ namespace ExceptionManager
 
         static ExceptionHandler()
         {
-            ComponentController.Resolver(null, new ResolveEventArgs("System.Threading.Tasks.Dataflow"));
-            ComponentController.Resolver(null, new ResolveEventArgs("System.Data.SqlServerCe"));
+            EmbeddedAssembly.Load("ErrorHandlerEngine.Resources.System.Data.SqlServerCe.dll", "System.Data.SqlServerCe.dll");
+            EmbeddedAssembly.Load("ErrorHandlerEngine.Resources.System.Threading.Tasks.Dataflow.dll", "System.Threading.Tasks.Dataflow.dll");
+            AppDomain.CurrentDomain.AssemblyResolve += (s, e) => EmbeddedAssembly.Get(e.Name);
         }
 
         #region Methods

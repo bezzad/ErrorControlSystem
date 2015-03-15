@@ -36,8 +36,6 @@ namespace ModelObjecting
                 screenShotGraphics.CopyFromScreen(AllScreenSize.X, AllScreenSize.Y,
                     0, 0, AllScreenSize.Size, CopyPixelOperation.SourceCopy);
 
-                screenShotGraphics.Dispose();
-
                 return screenShotBmp;
             }
         }

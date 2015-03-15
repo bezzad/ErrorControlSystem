@@ -137,3 +137,4 @@ D:\Programming\Error Control System\ErrorControlSystem\Version 2\Documentation P
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache
 D:\Programming\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.ErrorProperties.resources
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.ErrorProperties.resources
+D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Documentation Project\ExceptionDetails\obj\Debug\ExceptionDetails.csprojResolveAssemblyReference.cache

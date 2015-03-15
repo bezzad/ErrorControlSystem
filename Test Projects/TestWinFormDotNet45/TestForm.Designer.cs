@@ -35,11 +35,12 @@
             this.btnTestUnhandledTaskExp = new System.Windows.Forms.Button();
             this.btnThrowExceptExceptions = new System.Windows.Forms.Button();
             this.btnDataException = new System.Windows.Forms.Button();
+            this.btnThrowMultiExps = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(51, 357);
+            this.btnQuit.Location = new System.Drawing.Point(51, 395);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(238, 38);
             this.btnQuit.TabIndex = 1;
@@ -113,11 +114,23 @@
             this.btnDataException.UseVisualStyleBackColor = true;
             this.btnDataException.Click += new System.EventHandler(this.btnDataException_Click);
             // 
+            // btnThrowMultiExps
+            // 
+            this.btnThrowMultiExps.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnThrowMultiExps.Location = new System.Drawing.Point(51, 300);
+            this.btnThrowMultiExps.Name = "btnThrowMultiExps";
+            this.btnThrowMultiExps.Size = new System.Drawing.Size(238, 42);
+            this.btnThrowMultiExps.TabIndex = 11;
+            this.btnThrowMultiExps.Text = "Throw Multiple Exceptions";
+            this.btnThrowMultiExps.UseVisualStyleBackColor = true;
+            this.btnThrowMultiExps.Click += new System.EventHandler(this.btnThrowMultiExps_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 407);
+            this.ClientSize = new System.Drawing.Size(335, 445);
+            this.Controls.Add(this.btnThrowMultiExps);
             this.Controls.Add(this.btnDataException);
             this.Controls.Add(this.btnThrowExceptExceptions);
             this.Controls.Add(this.btnTestUnhandledTaskExp);
@@ -140,6 +153,7 @@
         private System.Windows.Forms.Button btnTestUnhandledTaskExp;
         private System.Windows.Forms.Button btnThrowExceptExceptions;
         private System.Windows.Forms.Button btnDataException;
+        private System.Windows.Forms.Button btnThrowMultiExps;
     }
 }
 

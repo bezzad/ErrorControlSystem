@@ -104,7 +104,7 @@ namespace CacheErrors
                 {
                     await SdfFileManager.InsertOrUpdateAsync(e);
 
-                    if (option.HasFlag(ErrorHandlerOption.SendCacheToServer))
+                    if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlerOption.SendCacheToServer))
                         await CheckStateAsync();
                 },
                     new ExecutionDataflowBlockOptions

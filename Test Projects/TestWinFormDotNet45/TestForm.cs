@@ -123,6 +123,18 @@ namespace TestWinFormDotNet45
             }
             catch { }
         }
+
+        private void btnThrowMultiExps_Click(object sender, EventArgs e)
+        {
+            Parallel.For(0, 8, (i) =>
+            {
+                try
+                {
+                    _exps[new Random().Next(0, _exps.Count - 1)]();
+                }
+                catch { }
+            });
+        }
     }
 
 

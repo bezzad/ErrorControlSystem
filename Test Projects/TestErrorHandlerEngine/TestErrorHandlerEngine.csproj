@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConnectionsManager.Fakes">
-      <HintPath>FakesAssemblies\ConnectionsManager.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="ErrorHandlerEngine.Fakes">
       <HintPath>FakesAssemblies\ErrorHandlerEngine.Fakes.dll</HintPath>
     </Reference>
@@ -83,9 +80,6 @@
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
       <Name>ErrorHandlerEngine</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="Fakes\ConnectionsManager.fakes" />
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\System.Data.fakes" />

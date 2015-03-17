@@ -137,7 +137,7 @@ Note:
 1. Install examples for developers (unpacking it to your disk, and go to
 \ErrorControlSystem\Error Handler Engine\ErrorHandlerEngine\bin\Release directory if you're installing by hand, for example).
 
-  __Note:__
+ Note:
 >      If there is not any file in the Release folders, please open project .sln file on 
 >      Visual Studio 2013 and debug/release that to compile native files.
 
@@ -167,7 +167,7 @@ Note:
 First open `SQL Server Management Studio` then connect to your Server instance.
 Next step's, Create New Database by name __UsersManagements__ or any name of your choice.
 
->     Only be carefully, in order to launch the program, enter the database name. For example: 
+Only be carefully, in order to launch the program, enter the database name. For example: 
 
 ```
 #!csharp
@@ -219,7 +219,7 @@ There are __SQL Scripts__ to create tables and queries.
 --------------------------
 ### LICENSE INFORMATION ###
 
-Error Handler Engine 1.0.0.2
+Error Handler Engine 3.0.0.2
 This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to

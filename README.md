@@ -20,15 +20,14 @@ To interact with this project, at first find main class of your project to
 add this module. Then, at the beginning of the instructions before any other 
 user codes, enter the following command to invoke and run the module.
 
-This is initializer codes of the module by `C# language`:
+This is initialize codes of the module by `C# language`:
  
 ```
 #!csharp
 
 using System;
 using System.Windows.Forms;
-using ConnectionsManager;
-using ErrorHandlerEngine.ExceptionManager;
+using ExceptionManager;
 
 namespace TestApplication
 {
@@ -37,29 +36,63 @@ namespace TestApplication
         [STAThread]
         private static void Main()
         {
-			//
-			//  ------------------ Initial Error Handler Engine --------------------------------
-			//
-            ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
-            ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+			Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-			// Except NotImplementedException from raise log
-			ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException)); 
+            //
+            //  ------------------ Initial Error Handler Engine --------------------------------
+            //
+            ExpHandlerEngine.Start(new DbConnectionsManager.Connection("localhost", "UsersManagements"),
+                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 
-			// Filter Exception type from Snapshot capturing 
-			ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(Exception)); 
+            // Except 'NotImplementedException' from raise log
+            ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));
 
-			// Add extra data for labeling exceptions
-            ExceptionHandler.AttachExtraData.Add("TestKey", "beta version");
-			//
-			// ---------------------------------------------------------------------------------
-			//
+            // Filter 'Exception' type from Snapshot capturing 
+            ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(FormatException));
 
+            // Add extra data for labeling exceptions
+            ExceptionHandler.AttachExtraData.Add("TestWinFormDotNet45 v2.1.1.0", "beta version");
+            //
+            // ---------------------------------------------------------------------------------
+            //
 
-            Application.Run(new Form1());
+            Application.Run(new FormTest());
         }
     }
 }
+```
+
+This is initialize codes of the module by `C# language`:
+ 
+```
+#!vb
+
+Imports ExceptionManager
+
+Module MainModule
+    Sub Main()
+
+        ' ------------------ Initial Error Handler Engine --------------------------------
+
+        ExpHandlerEngine.Start(New DbConnectionsManager.Connection("localhost", "UsersManagements"),
+                ErrorHandlerOption.Default And Not ErrorHandlerOption.ReSizeSnapshots)
+
+        'Except 'NotImplementedException' from raise log
+        ExceptionHandler.ExceptedExceptionTypes.Add(GetType(NotImplementedException))
+
+        'Filter 'Exception' type from Snapshot capturing 
+        ExceptionHandler.NonSnapshotExceptionTypes.Add(GetType(FormatException))
+
+        'Add extra data for labeling exceptions
+        ExceptionHandler.AttachExtraData.Add("TestVBwinFormDotNet45 v2.1.1.0", "beta version")
+
+        ' ---------------------------------------------------------------------------------
+        
+        Application.Run(New Form1())
+    End Sub
+End Module
+
 ```
 
 In the above code snippet you've seen that, for the `ExpHandlerEngine` method should be an option. This option is used to specify the error data, which includes the following values:
@@ -76,15 +109,15 @@ In the above code snippet you've seen that, for the `ExpHandlerEngine` method sh
 
 For example in above codes, this code means is:
 ```csharp
-ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"), 
-                ErrorHandlerOption.All & ~ErrorHandlerOption.ReSizeSnapshots);
+ExpHandlerEngine.Start(new DbConnectionsManager.Connection(@"localhost", "UsersManagements"),
+                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 ```
 Select all options by excepted `ReSizeSnapshots`
 
 By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including __Handled__ or __UnHandled__ exceptions on the your database.
 
 Note:
->	In the new version 2.1.1.0, the option setting from database in runtime. and not necessary to set that from initial `Start` method
+>	In the new version 2.1.1.0 a later, the option set in from database at runtime, and not necessary to set that from initial `Start` method
 
 
 --------------------------

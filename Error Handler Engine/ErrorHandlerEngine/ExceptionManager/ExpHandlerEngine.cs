@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using CacheErrors;
 using DbConnectionsManager;
 using ServerController;
-using Microsoft.VisualBasic;
 
 namespace ExceptionManager
 {

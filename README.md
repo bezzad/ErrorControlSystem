@@ -105,7 +105,7 @@ After shown below form make uncheck the `Enable Application Framework` option on
 Change the __Startup object__ to `Sub Main`.
 
 
-In the above code snippet you've seen that, for the `ExpHandlerEngine` method should be an option. This option is used to specify the error data, which includes the following values:
+In the initialize code snippet you've seen that, for the `ExpHandlerEngine` method should be an option. This option is used to specify the error data, which includes the following values:
 
 -  All
 -  AlertUnHandledError
@@ -127,17 +127,19 @@ Select all options by excepted `ReSizeSnapshots`
 By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including __Handled__ or __UnHandled__ exceptions on the your database.
 
 Note:
->	In the new version 2.1.1.0 a later, the option set in from database at runtime, and not necessary to set that from initial `Start` method
+>     In the new version 2.1.1.0 a later, the option set in from database at runtime, 
+>     and not necessary to set that from initial  Start  method
 
 
 --------------------------
 ### How To Install The Modules ###
 
-1. Install Examples for Developers (unpacking it to your disk, and go to
+1. Install examples for developers (unpacking it to your disk, and go to
 \ErrorControlSystem\Error Handler Engine\ErrorHandlerEngine\bin\Release directory if you're installing by hand, for example).
 
   __Note:__
-> If there is not any file in the Release folders, please open project .sln file on Visual Studio 2013 and debug/release that to compile native files.
+>      If there is not any file in the Release folders, please open project .sln file on 
+>      Visual Studio 2013 and debug/release that to compile native files.
 
 
 2. In your project reference add this module dll file:  References > Add Reference... > Browse to above path > Select ErrorHandlerEngine.dll
@@ -226,7 +228,7 @@ Copyright (C) 2015  [Shoniz](http://shoniz.com/) corporation
 [Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,
-either version 2 of the License, or (at your option) any later version.
+either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of

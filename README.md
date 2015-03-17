@@ -2,15 +2,15 @@
 ---------------------
 ### What Is This? ###
 
-This is a C#.Net project's for manage __Exceptions__ of .Net applications by handling and 
-logging that. This is a dll modules to provide error handling worker on your app background's.
+This is a C#.Net project's for manage __Exceptions__ of your .Net applications by handling and 
+logging that. This is a .dll modules to provide error handling worker on your app background's.
 The modules strive to be simple, well documented and
 modification friendly, in order to help developers quickly learn their inner
 workings.
 
 NOTE: 
-> This program is only for exception handling of Windows-based applications 
-> that are written by .NET.
+>     This program is only for exception handling of Windows-based applications (WinForms, WPF)
+>     that are written by __.NET languages__ such as `C#`,  `VB`, `Visual F#`  and  `Visual C++`
 
 
 --------------------------------
@@ -94,6 +94,15 @@ Module MainModule
 End Module
 
 ```
+
+For create a Sub Main method of MainModule.vb in VB winform apps, go to the Project Designer (go to Project Properties or double-click the My Project node in Solution Explorer)
+![VB Solution.PNG](https://bitbucket.org/repo/7AAK6y/images/391053001-VB%20Solution.PNG)
+
+After shown below form make uncheck the `Enable Application Framework` option on the Application tab:
+![VB Application TAB.PNG](https://bitbucket.org/repo/7AAK6y/images/2287578620-VB%20Application%20TAB.PNG)
+
+Change the __Startup object__ to `Sub Main`.
+
 
 In the above code snippet you've seen that, for the `ExpHandlerEngine` method should be an option. This option is used to specify the error data, which includes the following values:
 

@@ -37,21 +37,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.4.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\System.Data.4.0.0.0.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.4.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\System.Drawing.4.0.0.0.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="System.XML" />
-    <Reference Include="System.XML.4.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\System.XML.4.0.0.0.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml.Linq.4.0.0.0.Fakes">
-      <HintPath>FakesAssemblies\System.Xml.Linq.4.0.0.0.Fakes.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -76,18 +64,6 @@
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
       <Name>ErrorHandlerEngine</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="Fakes\System.Data.fakes" />
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="Fakes\System.Drawing.fakes" />
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="Fakes\System.XML.fakes" />
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Include="Fakes\System.Xml.Linq.fakes" />
   </ItemGroup>
   <ItemGroup>
     <Fakes Include="Fakes\ErrorHandlerEngine.fakes" />

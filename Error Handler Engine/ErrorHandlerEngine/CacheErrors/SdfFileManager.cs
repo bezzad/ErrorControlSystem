@@ -93,7 +93,7 @@ namespace CacheErrors
 
                 testConn.Close();
             }
-            catch (SqlCeException exp)
+            catch (SqlCeException)
             {
                 // fix the SDF file
                 File.Delete(filePath);

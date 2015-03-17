@@ -15,7 +15,7 @@ namespace ExceptionManager
     /// Exceptions Handler Engine Class
     /// for handling any exception from your attachment applications. 
     /// </summary>
-    [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
+    [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
     public static class ExpHandlerEngine
     {
         #region Properties

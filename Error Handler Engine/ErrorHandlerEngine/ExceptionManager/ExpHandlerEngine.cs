@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using CacheErrors;
 using DbConnectionsManager;
 using ServerController;
+using Microsoft.VisualBasic;
 
 namespace ExceptionManager
 {
@@ -16,7 +17,7 @@ namespace ExceptionManager
     /// Exceptions Handler Engine Class
     /// for handling any exception from your attachment applications. 
     /// </summary>
-    [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.AllFlags)]
+    [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
     public static class ExpHandlerEngine
     {
         #region Properties
@@ -33,7 +34,7 @@ namespace ExceptionManager
 
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            //System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
             // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
             AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
@@ -45,8 +46,8 @@ namespace ExceptionManager
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
             // Catch all unhandled exceptions.
-            Application.ThreadException += ThreadExceptionHandler;
-
+            System.Windows.Forms.Application.ThreadException += ThreadExceptionHandler;
+            
             ExceptionHandler.IsSelfException = false;
         }
 

@@ -63,7 +63,7 @@ namespace TestApplication
 }
 ```
 
-This is initialize codes of the module by `C# language`:
+This is initialize codes of the module by `VB.NET language`:
  
 ```
 #!vb

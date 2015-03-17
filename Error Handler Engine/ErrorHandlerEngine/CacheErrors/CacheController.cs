@@ -70,11 +70,12 @@ namespace CacheErrors
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if ((ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent && new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize)
-                    || (await SdfFileManager.GetTheFirstErrorHoursAsync() >= ExpireHours))
-                {
-                    await UploadCacheAsync();
-                }
+                if (ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent)
+                    if (new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize
+                        || await SdfFileManager.GetTheFirstErrorHoursAsync() >= ExpireHours)
+                    {
+                        await UploadCacheAsync();
+                    }
             }
             finally
             {

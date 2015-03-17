@@ -10,7 +10,7 @@ workings.
 
 NOTE: 
 >     This program is only for exception handling of Windows-based applications (WinForms, WPF)
->     that are written by __.NET languages__ such as `C#`,  `VB`, `Visual F#`  and  `Visual C++`
+>     that are written by .NET languages such as C#,  VB, Visual F#  and  Visual C++
 
 
 --------------------------------
@@ -96,6 +96,7 @@ End Module
 ```
 
 For create a Sub Main method of MainModule.vb in VB winform apps, go to the Project Designer (go to Project Properties or double-click the My Project node in Solution Explorer)
+
 ![VB Solution.PNG](https://bitbucket.org/repo/7AAK6y/images/391053001-VB%20Solution.PNG)
 
 After shown below form make uncheck the `Enable Application Framework` option on the Application tab:
@@ -158,13 +159,13 @@ The `ErrorHandlerEngine` project used from __UsersManagements __ database. So th
 For Creating __UsersManagements__ database on your server or pc do below steps:
 
 Note:
-> In the new version database and tables automatically created by __ErrorHandlerEngine__
+>     In the new version database and tables automatically created by __ErrorHandlerEngine__
 
 
 First open `SQL Server Management Studio` then connect to your Server instance.
 Next step's, Create New Database by name __UsersManagements__ or any name of your choice.
 
-> Only be carefully, in order to launch the program, enter the database name. For example: 
+>     Only be carefully, in order to launch the program, enter the database name. For example: 
 
 ```
 #!csharp

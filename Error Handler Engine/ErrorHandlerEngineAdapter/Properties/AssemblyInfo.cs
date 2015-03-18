@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ErrorHandlerEngine")]
 [assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker  \n\rCreator Info:\n\r Mr.Behzad Khosravifar [mailto:Behzad.Khosravifar@gmail.com] \n\r Mr.Ayuob Amini  [mailto:Ayyub.Amini@gmail.com]")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shoniz")]
+[assembly: AssemblyCompany("Shoniz.co by Mr.Behzad Khosravifar")]
 [assembly: AssemblyProduct("ErrorHandlerEngine")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Shoniz Corporation.")]
 [assembly: AssemblyTrademark("Shoniz")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("3.0.0.2")]
+[assembly: AssemblyFileVersion("3.0.0.2")]

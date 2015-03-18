@@ -114,8 +114,8 @@
     <Compile Include="..\ErrorHandlerEngine\ServerController\ServerTransmitter.cs">
       <Link>ServerController\ServerTransmitter.cs</Link>
     </Compile>
-    <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

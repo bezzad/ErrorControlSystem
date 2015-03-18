@@ -34,18 +34,25 @@ namespace ErrorLogAnalyzer
             this.btnQuit = new System.Windows.Forms.Button();
             this.dgv_ErrorsViewer = new System.Windows.Forms.DataGridView();
             this.btnRefreshGridView = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.pictureBox_viewer = new Shoniz.Windows.Forms.ImageBox();
             this.refreshAlert = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.lblRecordsNum = new System.Windows.Forms.Label();
             this.prgCacheSize = new Shoniz.Windows.Forms.ProgressBar();
+            this.cmbServerName = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbDatabaseName = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.picServerState = new System.Windows.Forms.PictureBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ErrorsViewer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
+            this.splitContainerMain.Panel1.SuspendLayout();
+            this.splitContainerMain.Panel2.SuspendLayout();
+            this.splitContainerMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refreshAlert)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picServerState)).BeginInit();
             this.SuspendLayout();
             // 
             // btnQuit
@@ -70,7 +77,7 @@ namespace ErrorLogAnalyzer
             this.dgv_ErrorsViewer.ReadOnly = true;
             this.dgv_ErrorsViewer.RowHeadersVisible = false;
             this.dgv_ErrorsViewer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ErrorsViewer.Size = new System.Drawing.Size(580, 567);
+            this.dgv_ErrorsViewer.Size = new System.Drawing.Size(626, 530);
             this.dgv_ErrorsViewer.TabIndex = 4;
             // 
             // btnRefreshGridView
@@ -85,24 +92,24 @@ namespace ErrorLogAnalyzer
             this.btnRefreshGridView.UseVisualStyleBackColor = true;
             this.btnRefreshGridView.Click += new System.EventHandler(this.btnRefreshGridView_Click);
             // 
-            // splitContainer1
+            // splitContainerMain
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.splitContainerMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 102);
-            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainerMain.Location = new System.Drawing.Point(12, 139);
+            this.splitContainerMain.Name = "splitContainerMain";
             // 
-            // splitContainer1.Panel1
+            // splitContainerMain.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dgv_ErrorsViewer);
+            this.splitContainerMain.Panel1.Controls.Add(this.dgv_ErrorsViewer);
             // 
-            // splitContainer1.Panel2
+            // splitContainerMain.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.pictureBox_viewer);
-            this.splitContainer1.Size = new System.Drawing.Size(940, 567);
-            this.splitContainer1.SplitterDistance = 580;
-            this.splitContainer1.TabIndex = 10;
+            this.splitContainerMain.Panel2.Controls.Add(this.pictureBox_viewer);
+            this.splitContainerMain.Size = new System.Drawing.Size(1016, 530);
+            this.splitContainerMain.SplitterDistance = 626;
+            this.splitContainerMain.TabIndex = 10;
             // 
             // pictureBox_viewer
             // 
@@ -115,9 +122,9 @@ namespace ErrorLogAnalyzer
             this.pictureBox_viewer.GridScale = Shoniz.Windows.Forms.ImageBoxGridScale.Tiny;
             this.pictureBox_viewer.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.pictureBox_viewer.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox_viewer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox_viewer.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox_viewer.Name = "pictureBox_viewer";
-            this.pictureBox_viewer.Size = new System.Drawing.Size(356, 567);
+            this.pictureBox_viewer.Size = new System.Drawing.Size(386, 530);
             this.pictureBox_viewer.TabIndex = 0;
             // 
             // refreshAlert
@@ -126,10 +133,9 @@ namespace ErrorLogAnalyzer
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(510, 19);
+            this.label1.Location = new System.Drawing.Point(282, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(225, 20);
             this.label1.TabIndex = 12;
@@ -137,11 +143,10 @@ namespace ErrorLogAnalyzer
             // 
             // lblRecordsNum
             // 
-            this.lblRecordsNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRecordsNum.AutoSize = true;
             this.lblRecordsNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblRecordsNum.ForeColor = System.Drawing.Color.Chocolate;
-            this.lblRecordsNum.Location = new System.Drawing.Point(719, 19);
+            this.lblRecordsNum.Location = new System.Drawing.Point(513, 61);
             this.lblRecordsNum.Name = "lblRecordsNum";
             this.lblRecordsNum.Size = new System.Drawing.Size(18, 20);
             this.lblRecordsNum.TabIndex = 12;
@@ -153,33 +158,85 @@ namespace ErrorLogAnalyzer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.prgCacheSize.CustomText = null;
             this.prgCacheSize.DisplayStyle = Shoniz.Windows.Forms.ProgressBarDisplayText.Percentage;
-            this.prgCacheSize.Location = new System.Drawing.Point(12, 62);
+            this.prgCacheSize.Location = new System.Drawing.Point(12, 99);
             this.prgCacheSize.Name = "prgCacheSize";
-            this.prgCacheSize.Size = new System.Drawing.Size(940, 34);
+            this.prgCacheSize.Size = new System.Drawing.Size(1016, 34);
             this.prgCacheSize.TabIndex = 11;
             this.prgCacheSize.TextColor = System.Drawing.Color.Tan;
             this.prgCacheSize.TextFont = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // cmbServerName
+            // 
+            this.cmbServerName.FormattingEnabled = true;
+            this.cmbServerName.Location = new System.Drawing.Point(379, 21);
+            this.cmbServerName.Name = "cmbServerName";
+            this.cmbServerName.Size = new System.Drawing.Size(222, 21);
+            this.cmbServerName.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(283, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Server\\Instance :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cmbDatabaseName
+            // 
+            this.cmbDatabaseName.FormattingEnabled = true;
+            this.cmbDatabaseName.Location = new System.Drawing.Point(703, 21);
+            this.cmbDatabaseName.Name = "cmbDatabaseName";
+            this.cmbDatabaseName.Size = new System.Drawing.Size(205, 21);
+            this.cmbDatabaseName.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(638, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Database :";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // picServerState
+            // 
+            this.picServerState.Image = global::ErrorLogAnalyzer.Properties.Resources.Enable;
+            this.picServerState.Location = new System.Drawing.Point(929, 12);
+            this.picServerState.Name = "picServerState";
+            this.picServerState.Size = new System.Drawing.Size(40, 37);
+            this.picServerState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picServerState.TabIndex = 15;
+            this.picServerState.TabStop = false;
             // 
             // LogReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 681);
+            this.ClientSize = new System.Drawing.Size(1040, 681);
+            this.Controls.Add(this.picServerState);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbDatabaseName);
+            this.Controls.Add(this.cmbServerName);
             this.Controls.Add(this.lblRecordsNum);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.prgCacheSize);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.btnRefreshGridView);
             this.Controls.Add(this.btnQuit);
             this.MinimumSize = new System.Drawing.Size(879, 43);
             this.Name = "LogReader";
             this.Text = "Error Log Analyzer";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ErrorsViewer)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.splitContainerMain.Panel1.ResumeLayout(false);
+            this.splitContainerMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
+            this.splitContainerMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.refreshAlert)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picServerState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,12 +247,18 @@ namespace ErrorLogAnalyzer
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.DataGridView dgv_ErrorsViewer;
         private System.Windows.Forms.Button btnRefreshGridView;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainerMain;
         private Shoniz.Windows.Forms.ImageBox pictureBox_viewer;
         private ErrorProvider refreshAlert;
         private Shoniz.Windows.Forms.ProgressBar prgCacheSize;
         private Label lblRecordsNum;
         private Label label1;
+        private ComboBox cmbServerName;
+        private Label label2;
+        private ComboBox cmbDatabaseName;
+        private Label label3;
+        private PictureBox picServerState;
+        private ToolTip toolTip;
     }
 }
 

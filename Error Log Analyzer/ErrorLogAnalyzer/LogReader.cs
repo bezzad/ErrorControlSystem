@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Sql;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -17,7 +16,6 @@ namespace ErrorLogAnalyzer
 {
     public partial class LogReader : BaseForm
     {
-        private Connection _currentConnection;
         private List<ProxyError> _errors = new List<ProxyError>();
         private DirectoryInfo _cacheDir;
         private readonly Timer _timer;
@@ -29,7 +27,7 @@ namespace ErrorLogAnalyzer
 
             _timer = new Timer { Interval = 1000 };
             _timer.Tick += _timer_Tick;
-            
+
 
             cmbServerName.TextChanged += (sender, ev) => CreateConnectionStringByControlsValue();
 
@@ -220,19 +218,18 @@ namespace ErrorLogAnalyzer
         }
 
 
-        public async Task<string[]> GetSqlDatabasesAsync(string connString)
+        public async Task<string[]> GetSqlDatabasesAsync()
         {
-            return await Task.Run(() =>
-            {
-                var databases = new List<String>();
+            var databases = new List<String>();
 
-                //create connection
-                var sqlConn = new SqlConnection(connString);
+            //create connection
+            using (var sqlConn = ConnectionManager.GetDefaultConnection().SqlConn)
+            {
 
                 try
                 {
                     //open connection
-                    sqlConn.Open();
+                    await sqlConn.OpenAsync();
 
                     //get databases
                     var tblDatabases = sqlConn.GetSchema("Databases");
@@ -254,7 +251,7 @@ namespace ErrorLogAnalyzer
                 }
 
                 return databases.ToArray();
-            });
+            }
         }
 
         private void SetDatabaseConnectionState(Exception exp)
@@ -262,20 +259,21 @@ namespace ErrorLogAnalyzer
             CheckForIllegalCrossThreadCalls = false;
 
             picServerState.Invoke(new Action(() =>
+            {
                 picServerState.Image = (exp == null)
-                ? Properties.Resources.Enable // Connected Successful
-                : Properties.Resources.Disable));
+                    ? Properties.Resources.Enable // Connected Successful
+                    : Properties.Resources.Disable;
 
-
-            this.toolTip.SetToolTip(this.picServerState,
-                (exp == null)
-                    ? string.Format(
-                        "The {0} is available to connect.",
-                        string.IsNullOrEmpty(cmbServerName.Text) ? Environment.MachineName : cmbServerName.Text)
-                    : string.Format(
-                        "The {0} is not available to connect.{1}The user id or password maybe is not correct",
-                        string.IsNullOrEmpty(cmbServerName.Text) ? Environment.MachineName : cmbServerName.Text,
-                        Environment.NewLine));
+                this.toolTip.SetToolTip(this.picServerState,
+                    (exp == null)
+                        ? string.Format(
+                            "The {0} is available to connect.",
+                            string.IsNullOrEmpty(cmbServerName.Text) ? Environment.MachineName : cmbServerName.Text)
+                        : string.Format(
+                            "The {0} is not available to connect.{1}The user id or password maybe is not correct",
+                            string.IsNullOrEmpty(cmbServerName.Text) ? Environment.MachineName : cmbServerName.Text,
+                            Environment.NewLine));
+            }));
 
 
             this.toolTip.ToolTipIcon = (exp == null) ? ToolTipIcon.Info : ToolTipIcon.Error;
@@ -290,13 +288,14 @@ namespace ErrorLogAnalyzer
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                _currentConnection = new Connection(cmbServerName.Text, cmbDatabaseName.Text);
+                ConnectionManager.Add(new Connection(cmbServerName.Text, cmbDatabaseName.Text), "UM");
+                ConnectionManager.SetToDefaultConnection("um");
 
                 // Clear old server databases
                 cmbDatabaseName.Items.Clear();
 
                 // Set Database names of selected server
-                var dbs = await GetSqlDatabasesAsync(_currentConnection.ConnectionString);
+                var dbs = await GetSqlDatabasesAsync();
 
                 // Add database names to combo box items
                 cmbDatabaseName.Items.AddRange(items: dbs);

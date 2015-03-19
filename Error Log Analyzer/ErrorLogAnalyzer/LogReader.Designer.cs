@@ -203,7 +203,7 @@ namespace ErrorLogAnalyzer
             // 
             // picServerState
             // 
-            this.picServerState.Image = global::ErrorLogAnalyzer.Properties.Resources.Enable;
+            this.picServerState.Image = global::ErrorLogAnalyzer.Properties.Resources.Disable;
             this.picServerState.Location = new System.Drawing.Point(929, 12);
             this.picServerState.Name = "picServerState";
             this.picServerState.Size = new System.Drawing.Size(40, 37);

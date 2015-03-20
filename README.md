@@ -179,42 +179,70 @@ Now, we need to create two table by names __ErrorLog__ and __Snapshots__ to save
 
 __ErrorLog Table:__
 
-| Column Name      | Data Type             || 
-|:----------------------- |:------------------------ ||
-| ErrorId                  |   `bigint`                ||
-| DateTime             |   `datetime`            ||
-| Host                     |  `varchar(200)`       ||
-| [User]                   | `varchar(200)`       ||
-| IsHandled            |  `bit`                       ||
-| Type                    |  `varchar(100)`       ||
-| AppName            |  `varchar(100)`      ||
-| Data                    |  `xml`                      ||
-| CurrentCulture    |  `nvarchar(100)`     ||
-| CLRVersion        |  `varchar(20)`         ||
-| Message             |  `nvarchar(MAX)`   ||
-| Source                |  `nvarchar(Max)`   ||
-| StackTrace          |  `nvarchar(Max)`   ||
-| ModuleName      |  `varchar(200)`       ||
-| MemberType       |  `varchar(50)`        ||
-| Method                |  `nvarchar(500)`    ||
-| Processes            |  `varchar(Max)`     ||
-| ErrorDateTime     |  `datetime`            ||
-| OS                       |  `varchar(1000)`    ||
-| IPv4Address        |  `varchar(15)`        ||
-| MACAddress       |  `varchar(50)`        ||
-| HResult               |  `int`                       ||
-| LineColumn         |  `varchar(50)`        ||
-| DuplicateNo        |  `int`                       ||
+| Column Name      | Data Type             | 
+|:----------------------- |:------------------------ |
+| ErrorId                  |   `bigint`                |
+| DateTime             |   `datetime`           |
+| Host                     |  `varchar(200)`      |
+| [User]                   | `varchar(200)`      |
+| IsHandled            |  `bit`                      |
+| Type                    |  `varchar(100)`      |
+| AppName            |  `varchar(100)`      |
+| Data                    |  `xml`                     |
+| CurrentCulture    |  `nvarchar(100)`    |
+| CLRVersion        |  `varchar(20)`        |
+| Message             |  `nvarchar(MAX)`  |
+| Source                |  `nvarchar(Max)`   |
+| StackTrace          |  `nvarchar(Max)`  |
+| ModuleName      |  `varchar(200)`      |
+| MemberType       |  `varchar(50)`       |
+| Method                |  `nvarchar(500)`   |
+| Processes            |  `varchar(Max)`   |
+| ErrorDateTime     |  `datetime`           |
+| OS                       |  `varchar(1000)`   |
+| IPv4Address        |  `varchar(15)`       |
+| MACAddress       |  `varchar(50)`       |
+| HResult               |  `int`                      |
+| LineColumn         |  `varchar(50)`       |
+| DuplicateNo        |  `int`                      |
 
 __Snapshots Table:__
 
-| Column Name      | Data Type             || 
-|:----------------------- |:------------------------ ||
-| ErrorLogId            |   `int`                     ||
-| ScreenCapture     |   `image`               ||
+| Column Name      | Data Type             |
+|:----------------------- |:------------------------ |
+| ErrorLogId            |   `int`                     |
+| ScreenCapture     |   `image`               |
 
 For easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git/wiki) to use SQL Queries.
 There are __SQL Scripts__ to create tables and queries.
+
+
+--------------------------
+### Mirroring the Error Control System repository ###
+
+If you want to mirror this repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
+
+```
+#!command-line
+
+$ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git
+# Make a bare mirrored clone of the repository
+
+$ cd error-control-system.git
+$ git remote set-url --push origin https://github.com/Behzadkhosravifar/mirrored
+# Set the push location to your mirror
+```
+
+As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror. To update your mirror, fetch updates and push, which could be automated by running a cron job.
+
+```
+#!command-line
+
+$ git fetch -p origin
+$ git push --mirror
+```
+
+
 
 --------------------------
 ### LICENSE INFORMATION ###

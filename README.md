@@ -225,7 +225,7 @@ If you want to mirror this repository in another location, including getting upd
 ```
 #!command-line
 
-$ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git
+$ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git
 # Make a bare mirrored clone of the repository
 
 $ cd error-control-system.git

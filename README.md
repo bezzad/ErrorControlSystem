@@ -22,8 +22,7 @@ user codes, enter the following command to invoke and run the module.
 
 This is initialize codes of the module by `C# language`:
  
-```
-#!csharp
+```csharp
 
 using System;
 using System.Windows.Forms;
@@ -65,8 +64,7 @@ namespace TestApplication
 
 This is initialize codes of the module by `VB.NET language`:
  
-```
-#!vb
+```vb
 
 Imports ExceptionManager
 
@@ -222,8 +220,7 @@ There are __SQL Scripts__ to create tables and queries.
 
 If you want to mirror this repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
 
-```
-#!command-line
+```command-line
 
 $ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git
 # Make a bare mirrored clone of the repository
@@ -235,8 +232,7 @@ $ git remote set-url --push origin https://github.com/ExampleUser/mirrored
 
 As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror. To update your mirror, fetch updates and push, which could be automated by running a cron job.
 
-```
-#!command-line
+```command-line
 
 $ git fetch -p origin
 $ git push --mirror

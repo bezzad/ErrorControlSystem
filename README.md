@@ -1,4 +1,4 @@
-# [Error Control System](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git)  README #
+# [Error Control System](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git)  README #
 ---------------------
 ### What Is This? ###
 
@@ -150,7 +150,7 @@ Now you can read the code and its comments and see the result, experiment with
 it, and hopefully quickly grasp how things work.
 
 If you find a problem, incorrect comment, obsolete or improper code or such,
-please search for an issue about it at [ECS Issue](https://bitbucket.org/BehzadKhosravifar/error-control-system/issues)
+please search for an issue about it at [ECS Issue](https://bitbucket.org/BehzadKhosravifar/errorcontrolsystem/issues)
 If there isn't already an issue for it, please create a new one.
 
 
@@ -213,7 +213,7 @@ __Snapshots Table:__
 | ErrorLogId            |   `int`                     |
 | ScreenCapture     |   `image`               |
 
-For easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/error-control-system.git/wiki) to use SQL Queries.
+For easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git/wiki) to use SQL Queries.
 There are __SQL Scripts__ to create tables and queries.
 
 

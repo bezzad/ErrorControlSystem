@@ -218,7 +218,7 @@ There are __SQL Scripts__ to create tables and queries.
 
 
 --------------------------
-### Mirroring the Error Control System repository ###
+### Mirroring the Error Control System Repository to Your Git Repository ###
 
 If you want to mirror this repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
 
@@ -229,7 +229,7 @@ $ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/e
 # Make a bare mirrored clone of the repository
 
 $ cd error-control-system.git
-$ git remote set-url --push origin https://github.com/Behzadkhosravifar/mirrored
+$ git remote set-url --push origin https://github.com/ExampleUser/mirrored
 # Set the push location to your mirror
 ```
 
@@ -241,7 +241,6 @@ As with a bare clone, a mirrored clone includes all remote branches and tags, bu
 $ git fetch -p origin
 $ git push --mirror
 ```
-
 
 
 --------------------------

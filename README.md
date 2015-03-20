@@ -161,7 +161,7 @@ The `ErrorHandlerEngine` project used from __UsersManagements __ database. So th
 For Creating __UsersManagements__ database on your server or pc do below steps:
 
 Note:
->     In the new version database and tables automatically created by __ErrorHandlerEngine__
+>     In the new version database and tables automatically created by ErrorHandlerEngine
 
 
 First open `SQL Server Management Studio` then connect to your Server instance.

@@ -228,7 +228,7 @@ If you want to mirror this repository in another location, including getting upd
 $ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git
 # Make a bare mirrored clone of the repository
 
-$ cd error-control-system.git
+$ cd errorcontrolsystem.git
 $ git remote set-url --push origin https://github.com/ExampleUser/mirrored
 # Set the push location to your mirror
 ```

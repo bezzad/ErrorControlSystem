@@ -216,7 +216,7 @@ There are __SQL Scripts__ to create tables and queries.
 
 
 --------------------------
-### Mirroring the Error Control System Repository to Your Git Repository ###
+### Mirroring the ErrorControlSystem Repository to Your Git Repository ###
 
 If you want to mirror this repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
 

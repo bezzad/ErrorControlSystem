@@ -22,7 +22,7 @@ user codes, enter the following command to invoke and run the module.
 
 This is initialize codes of the module by `C# language`:
  
-```csharp
+```C#
 
 using System;
 using System.Windows.Forms;
@@ -64,7 +64,7 @@ namespace TestApplication
 
 This is initialize codes of the module by `VB.NET language`:
  
-```vb
+```VB.NET
 
 Imports ExceptionManager
 
@@ -116,7 +116,8 @@ In the initialize code snippet you've seen that, for the `ExpHandlerEngine` meth
 -  Snapshot
 
 For example in above codes, this code means is:
-```csharp
+```C#
+
 ExpHandlerEngine.Start(new DbConnectionsManager.Connection(@"localhost", "UsersManagements"),
                 ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 ```
@@ -167,8 +168,7 @@ Next step's, Create New Database by name __UsersManagements__ or any name of you
 
 Only be carefully, in order to launch the program, enter the database name. For example: 
 
-```
-#!csharp
+```C#
 
 ExpHandlerEngine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
 ```

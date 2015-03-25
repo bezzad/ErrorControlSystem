@@ -1,4 +1,6 @@
-# [Error Control System](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git)  README #
+# [Error Control System](https://github.com/Behzadkhosravifar/ErrorControlSystem)  README #
+![Error Control System.png](https://github.com/Behzadkhosravifar/ErrorControlSystem/blob/master/Images/Error%20Control%20System.png)
+
 ---------------------
 ### What Is This? ###
 
@@ -95,10 +97,10 @@ End Module
 
 For create a Sub Main method of MainModule.vb in VB winform apps, go to the Project Designer (go to Project Properties or double-click the My Project node in Solution Explorer)
 
-![VB Solution.PNG](https://bitbucket.org/repo/7AAK6y/images/391053001-VB%20Solution.PNG)
+![VB Solution Project.PNG](https://github.com/Behzadkhosravifar/ErrorControlSystem/blob/master/Images/VB%20Solution%20Project.png)
 
 After shown below form make uncheck the `Enable Application Framework` option on the Application tab:
-![VB Application TAB.PNG](https://bitbucket.org/repo/7AAK6y/images/2287578620-VB%20Application%20TAB.PNG)
+![VB Application Properties.PNG](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/VB%20Application%20Properties.png)
 
 Change the __Startup object__ to `Sub Main`.
 
@@ -149,7 +151,7 @@ Now you can read the code and its comments and see the result, experiment with
 it, and hopefully quickly grasp how things work.
 
 If you find a problem, incorrect comment, obsolete or improper code or such,
-please search for an issue about it at [ECS Issue](https://bitbucket.org/BehzadKhosravifar/errorcontrolsystem/issues)
+please search for an issue about it at [ECS Issue](https://github.com/Behzadkhosravifar/ErrorControlSystem/issues)
 If there isn't already an issue for it, please create a new one.
 
 
@@ -211,32 +213,8 @@ __Snapshots Table:__
 | ErrorLogId            |   `int`                     |
 | ScreenCapture     |   `image`               |
 
-For easy way please go ahead and try [Wiki](https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git/wiki) to use SQL Queries.
+For easy way please go ahead and try [Wiki](https://github.com/Behzadkhosravifar/ErrorControlSystem/wiki) to use SQL Queries.
 There are __SQL Scripts__ to create tables and queries.
-
-
---------------------------
-### Mirroring the ErrorControlSystem Repository to Your Git Repository ###
-
-If you want to mirror this repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
-
-```command
-
-$ git clone --mirror https://BehzadKhosravifar@bitbucket.org/BehzadKhosravifar/errorcontrolsystem.git
-# Make a bare mirrored clone of the repository
-
-$ cd errorcontrolsystem.git
-$ git remote set-url --push origin https://github.com/ExampleUser/mirrored
-# Set the push location to your mirror
-```
-
-As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror. To update your mirror, fetch updates and push, which could be automated by running a cron job.
-
-```command
-
-$ git fetch -p origin
-$ git push --mirror
-```
 
 
 --------------------------

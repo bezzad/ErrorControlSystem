@@ -30,6 +30,12 @@
       <SubType>Content</SubType>
       <DependentUpon>ActivityDiagram.activitydiagram</DependentUpon>
     </Content>
+    <EmbeddedResource Include="ErrorHandlerEngine-1.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorHandlerEngine-2.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <Content Include="ModelDefinition\ModelingProject.uml">
       <SubType>Content</SubType>
     </Content>

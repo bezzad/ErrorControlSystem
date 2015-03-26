@@ -7,8 +7,8 @@
     <ProjectGuid>{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shoniz.Windows.Forms</RootNamespace>
-    <AssemblyName>Shoniz.Windows.Forms.ImageBox</AssemblyName>
+    <RootNamespace>Windows.Forms</RootNamespace>
+    <AssemblyName>Windows.Forms.ImageBox</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Shoniz.Windows.Forms.ImageBox.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Windows.Forms.ImageBox.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

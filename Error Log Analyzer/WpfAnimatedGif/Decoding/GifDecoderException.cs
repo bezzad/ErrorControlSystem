@@ -1,6 +1,6 @@
 using System;
 
-namespace WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedGif.Decoding
 {
     [Serializable]
     internal class GifDecoderException : Exception

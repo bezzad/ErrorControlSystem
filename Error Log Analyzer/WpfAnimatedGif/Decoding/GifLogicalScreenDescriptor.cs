@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedGif.Decoding
 {
     internal class GifLogicalScreenDescriptor
     {

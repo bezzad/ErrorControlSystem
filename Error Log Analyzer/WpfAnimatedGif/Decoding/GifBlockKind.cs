@@ -1,4 +1,4 @@
-namespace WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedGif.Decoding
 {
     internal enum GifBlockKind
     {

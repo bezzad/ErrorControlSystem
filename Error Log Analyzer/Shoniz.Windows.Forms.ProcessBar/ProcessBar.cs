@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
     // Shoniz ProgressBar
-    // Copyright (c) 2010-2014 Shoniz.
-    // http://Shoniz.com
+    // Copyright (c) 2010-2014 
+    // http://com
 
     // If you use this control in your applications, attribution, donations or contributions are welcome.
 

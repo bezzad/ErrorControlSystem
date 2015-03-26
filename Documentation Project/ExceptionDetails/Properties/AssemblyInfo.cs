@@ -12,7 +12,7 @@ using System.Security;
 [assembly: AssemblyCompany("Shoniz by Mr. Behzad Khosravifar")]
 [assembly: AssemblyProduct("ExceptionDetails")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
-[assembly: AssemblyTrademark("Shoniz.co")]
+[assembly: AssemblyTrademark("co")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

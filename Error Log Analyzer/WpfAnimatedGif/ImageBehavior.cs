@@ -11,9 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
-using WpfAnimatedGif.Decoding;
+using Windows.WpfAnimatedGif.Decoding;
 
-namespace WpfAnimatedGif
+namespace Windows.WpfAnimatedGif
 {
     /// <summary>
     /// Provides attached properties that display animated GIFs in a standard Image control.

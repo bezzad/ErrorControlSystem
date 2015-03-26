@@ -5,13 +5,13 @@ using System.Drawing;
 using System.Windows.Forms;
 
 #if USEWIN32PINVOKELIB
-using Shoniz.Win32;
+using Win32;
 
 #endif
 
 // Original ScrollControl code by Scott Crawford (http://sukiware.com/)
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
   /// <summary>
   /// Defines a base class for controls that support scrolling behavior.

@@ -1,9 +1,9 @@
-﻿namespace Shoniz.Windows.Forms
+﻿namespace Windows.Forms
 {
   // Shoniz ImageBox
-  // Copyright (c) 2010-2014 Shoniz.
-  // http://Shoniz.com
-  // http://Shoniz.com/blog/tag/imagebox
+  // Copyright (c) 2010-2014 
+  // http://com
+  // http://com/blog/tag/imagebox
 
   // Licensed under the MIT License. See imagebox-license.txt for the full text.
 

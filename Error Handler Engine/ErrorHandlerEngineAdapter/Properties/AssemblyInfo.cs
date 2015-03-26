@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ErrorHandlerEngine")]
 [assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker  \n\rCreator Info:\n\r Mr.Behzad Khosravifar [mailto:Behzad.Khosravifar@gmail.com] \n\r Mr.Ayuob Amini  [mailto:Ayyub.Amini@gmail.com]")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Shoniz.co by Mr.Behzad Khosravifar")]
+[assembly: AssemblyCompany("co by Mr.Behzad Khosravifar")]
 [assembly: AssemblyProduct("ErrorHandlerEngine")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Shoniz Corporation.")]
 [assembly: AssemblyTrademark("Shoniz")]

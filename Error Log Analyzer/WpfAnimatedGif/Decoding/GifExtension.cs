@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedGif.Decoding
 {
     internal abstract class GifExtension : GifBlock
     {

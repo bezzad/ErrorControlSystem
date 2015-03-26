@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 // Original VirtualScrollableControl code by Scott Crawford (http://sukiware.com/)
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
   /// <summary>
   /// Defines a base class for controls that support auto-scrolling behavior.

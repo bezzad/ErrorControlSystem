@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedGif.Decoding
 {
     // label 0xFF
     internal class GifApplicationExtension : GifExtension

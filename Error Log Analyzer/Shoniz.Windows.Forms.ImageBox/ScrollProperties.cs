@@ -2,7 +2,7 @@
 
 // Original ScrollControl code by Scott Crawford (http://sukiware.com/)
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
   partial class ScrollControl
   {

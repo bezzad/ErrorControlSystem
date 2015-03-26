@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
     public enum ProgressBarDisplayText
     {

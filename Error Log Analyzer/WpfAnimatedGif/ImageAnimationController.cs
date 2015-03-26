@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace WpfAnimatedGif
+namespace Windows.WpfAnimatedGif
 {
     /// <summary>
     /// Provides a way to pause, resume or seek a GIF animation.

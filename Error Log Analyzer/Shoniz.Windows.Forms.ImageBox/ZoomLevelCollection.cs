@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Shoniz.Windows.Forms;
+using Windows.Forms;
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
   /// <summary>
   /// Represents available levels of zoom in an <see cref="ImageBox"/> control

@@ -8,8 +8,8 @@
     <ProjectGuid>{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfAnimatedGif</RootNamespace>
-    <AssemblyName>WpfAnimatedGif</AssemblyName>
+    <RootNamespace>Windows.WpfAnimatedGif</RootNamespace>
+    <AssemblyName>Windows.WpfAnimatedGif</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\WpfAnimatedGif.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Windows.WpfAnimatedGif.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />

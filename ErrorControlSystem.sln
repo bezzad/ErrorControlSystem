@@ -29,9 +29,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogAnalyzer", "Error L
 		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1} = {EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shoniz.Windows.Forms.ImageBox", "Error Log Analyzer\Shoniz.Windows.Forms.ImageBox\Shoniz.Windows.Forms.ImageBox.csproj", "{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.ImageBox", "Error Log Analyzer\Shoniz.Windows.Forms.ImageBox\Windows.Forms.ImageBox.csproj", "{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shoniz.Windows.Forms.ProcessBar", "Error Log Analyzer\Shoniz.Windows.Forms.ProcessBar\Shoniz.Windows.Forms.ProcessBar.csproj", "{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.ProcessBar", "Error Log Analyzer\Shoniz.Windows.Forms.ProcessBar\Windows.Forms.ProcessBar.csproj", "{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineWPF", "Error Handler Engine\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.csproj", "{732A87F6-4CF3-4160-99D5-78B8B07D93C9}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -73,7 +73,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestVBwinFormDotNet45", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineAdapterPattern", "Documentation Project\ErrorHandlerEngineAdapterPattern\ErrorHandlerEngineAdapterPattern.csproj", "{54CB6B60-C881-4BCD-BD16-EFDBD57FC3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAnimatedGif", "Error Log Analyzer\WpfAnimatedGif\WpfAnimatedGif.csproj", "{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.WpfAnimatedGif", "Error Log Analyzer\WpfAnimatedGif\Windows.WpfAnimatedGif.csproj", "{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,11 +4,11 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Shoniz.Windows.Forms
+namespace Windows.Forms
 {
     // Shoniz ImageBox
-    // Copyright (c) 2010-2014 Shoniz.
-    // http://Shoniz.com
+    // Copyright (c) 2010-2014 
+    // http://com
     
     // If you use this control in your applications, attribution, donations or contributions are welcome.
 
@@ -18,7 +18,7 @@ namespace Shoniz.Windows.Forms
     [DefaultProperty("Image")]
     [ToolboxBitmap(typeof(ImageBox), "ImageBox.bmp")]
     [ToolboxItem(true)]
-    /* [Designer("Shoniz.Windows.Forms.Design.ImageBoxDesigner", Shoniz.Windows.Forms.ImageBox.Design.dll, PublicKeyToken=58daa28b0b2de221")] */
+    /* [Designer("Windows.Forms.Design.ImageBoxDesigner", Windows.Forms.ImageBox.Design.dll, PublicKeyToken=58daa28b0b2de221")] */
     public class ImageBox : VirtualScrollableControl
     {
         #region Constants

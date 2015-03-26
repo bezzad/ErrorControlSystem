@@ -35,11 +35,11 @@ namespace ErrorLogAnalyzer
             this.dgv_ErrorsViewer = new System.Windows.Forms.DataGridView();
             this.btnRefreshGridView = new System.Windows.Forms.Button();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.pictureBox_viewer = new Shoniz.Windows.Forms.ImageBox();
+            this.pictureBox_viewer = new Windows.Forms.ImageBox();
             this.refreshAlert = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.lblRecordsNum = new System.Windows.Forms.Label();
-            this.prgCacheSize = new Shoniz.Windows.Forms.ProgressBar();
+            this.prgCacheSize = new Windows.Forms.ProgressBar();
             this.cmbServerName = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbDatabaseName = new System.Windows.Forms.ComboBox();
@@ -118,8 +118,8 @@ namespace ErrorLogAnalyzer
             this.pictureBox_viewer.GridCellSize = 20;
             this.pictureBox_viewer.GridColor = System.Drawing.Color.Transparent;
             this.pictureBox_viewer.GridColorAlternate = System.Drawing.Color.Transparent;
-            this.pictureBox_viewer.GridDisplayMode = Shoniz.Windows.Forms.ImageBoxGridDisplayMode.Image;
-            this.pictureBox_viewer.GridScale = Shoniz.Windows.Forms.ImageBoxGridScale.Tiny;
+            this.pictureBox_viewer.GridDisplayMode = Windows.Forms.ImageBoxGridDisplayMode.Image;
+            this.pictureBox_viewer.GridScale = Windows.Forms.ImageBoxGridScale.Tiny;
             this.pictureBox_viewer.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.pictureBox_viewer.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_viewer.Margin = new System.Windows.Forms.Padding(2);
@@ -157,7 +157,7 @@ namespace ErrorLogAnalyzer
             this.prgCacheSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.prgCacheSize.CustomText = null;
-            this.prgCacheSize.DisplayStyle = Shoniz.Windows.Forms.ProgressBarDisplayText.Percentage;
+            this.prgCacheSize.DisplayStyle = Windows.Forms.ProgressBarDisplayText.Percentage;
             this.prgCacheSize.Location = new System.Drawing.Point(12, 99);
             this.prgCacheSize.Name = "prgCacheSize";
             this.prgCacheSize.Size = new System.Drawing.Size(1016, 34);
@@ -248,9 +248,9 @@ namespace ErrorLogAnalyzer
         private System.Windows.Forms.DataGridView dgv_ErrorsViewer;
         private System.Windows.Forms.Button btnRefreshGridView;
         private System.Windows.Forms.SplitContainer splitContainerMain;
-        private Shoniz.Windows.Forms.ImageBox pictureBox_viewer;
+        private Windows.Forms.ImageBox pictureBox_viewer;
         private ErrorProvider refreshAlert;
-        private Shoniz.Windows.Forms.ProgressBar prgCacheSize;
+        private Windows.Forms.ProgressBar prgCacheSize;
         private Label lblRecordsNum;
         private Label label1;
         private ComboBox cmbServerName;

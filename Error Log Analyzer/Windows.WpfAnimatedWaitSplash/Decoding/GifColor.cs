@@ -1,4 +1,4 @@
-namespace Windows.WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedWaitSplash.Decoding
 {
     internal struct GifColor
     {

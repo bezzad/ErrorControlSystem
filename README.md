@@ -1,5 +1,5 @@
 # [Error Control System](https://github.com/Behzadkhosravifar/ErrorControlSystem)  README #
-![Error Control System.png](https://github.com/Behzadkhosravifar/ErrorControlSystem/blob/master/Images/Error%20Control%20System.png)
+(![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png))[https://github.com/Behzadkhosravifar/ErrorControlSystem]
 
 ---------------------
 ### What Is This? ###

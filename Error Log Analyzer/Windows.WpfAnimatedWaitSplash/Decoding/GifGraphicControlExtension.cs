@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Windows.WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedWaitSplash.Decoding
 {
     // label 0xF9
     internal class GifGraphicControlExtension : GifExtension

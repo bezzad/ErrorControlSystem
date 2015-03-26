@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Windows.WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedWaitSplash.Decoding
 {
     internal class GifImageData
     {

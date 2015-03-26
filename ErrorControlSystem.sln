@@ -24,15 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionDetails", "Documen
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject", "Documentation Project\ModelingProject\ModelingProject.modelproj", "{D5F7F6B8-B864-43DC-B13B-6BCC045BF37B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogAnalyzer", "Error Log Analyzer\ErrorLogAnalyzer\ErrorLogAnalyzer.csproj", "{5C31AB6D-3745-4501-A293-5E29EBDBD833}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1} = {EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.ImageBox", "Error Log Analyzer\Shoniz.Windows.Forms.ImageBox\Windows.Forms.ImageBox.csproj", "{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.ProcessBar", "Error Log Analyzer\Shoniz.Windows.Forms.ProcessBar\Windows.Forms.ProcessBar.csproj", "{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineWPF", "Error Handler Engine\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.csproj", "{732A87F6-4CF3-4160-99D5-78B8B07D93C9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DF9E798A-6D3B-461E-8B74-BE0757FB3325} = {DF9E798A-6D3B-461E-8B74-BE0757FB3325}
@@ -73,7 +64,13 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestVBwinFormDotNet45", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineAdapterPattern", "Documentation Project\ErrorHandlerEngineAdapterPattern\ErrorHandlerEngineAdapterPattern.csproj", "{54CB6B60-C881-4BCD-BD16-EFDBD57FC3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.WpfAnimatedGif", "Error Log Analyzer\WpfAnimatedGif\Windows.WpfAnimatedGif.csproj", "{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogAnalyzer", "Error Log Analyzer\ErrorLogAnalyzer\ErrorLogAnalyzer.csproj", "{5C31AB6D-3745-4501-A293-5E29EBDBD833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.ImageBox", "Error Log Analyzer\Windows.Forms.ImageBox\Windows.Forms.ImageBox.csproj", "{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.ProcessBar", "Error Log Analyzer\Windows.Forms.ProcessBar\Windows.Forms.ProcessBar.csproj", "{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.WpfAnimatedWaitSplash", "Error Log Analyzer\Windows.WpfAnimatedWaitSplash\Windows.WpfAnimatedWaitSplash.csproj", "{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,18 +99,6 @@ Global
 		{D5F7F6B8-B864-43DC-B13B-6BCC045BF37B}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{D5F7F6B8-B864-43DC-B13B-6BCC045BF37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F7F6B8-B864-43DC-B13B-6BCC045BF37B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{732A87F6-4CF3-4160-99D5-78B8B07D93C9}.Debug|Any CPU.ActiveCfg = Release|Any CPU
 		{732A87F6-4CF3-4160-99D5-78B8B07D93C9}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{732A87F6-4CF3-4160-99D5-78B8B07D93C9}.Debug|Any CPU.Deploy.0 = Release|Any CPU
@@ -143,6 +128,18 @@ Global
 		{54CB6B60-C881-4BCD-BD16-EFDBD57FC3F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54CB6B60-C881-4BCD-BD16-EFDBD57FC3F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54CB6B60-C881-4BCD-BD16-EFDBD57FC3F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C31AB6D-3745-4501-A293-5E29EBDBD833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}.Release|Any CPU.ActiveCfg = Release|Any CPU

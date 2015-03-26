@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace Windows.WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedWaitSplash.Decoding
 {
     internal static class GifHelpers
     {

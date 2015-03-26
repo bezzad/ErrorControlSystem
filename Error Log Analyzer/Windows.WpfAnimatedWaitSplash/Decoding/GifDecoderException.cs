@@ -1,6 +1,6 @@
 using System;
 
-namespace Windows.WpfAnimatedGif.Decoding
+namespace Windows.WpfAnimatedWaitSplash.Decoding
 {
     [Serializable]
     internal class GifDecoderException : Exception

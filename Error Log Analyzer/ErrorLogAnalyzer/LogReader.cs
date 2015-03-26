@@ -25,6 +25,8 @@ namespace ErrorLogAnalyzer
         {
             InitializeComponent();
 
+            OnStartupAction = OnStartup;
+
             _timer = new Timer { Interval = 1000 };
             _timer.Tick += _timer_Tick;
 
@@ -84,10 +86,8 @@ namespace ErrorLogAnalyzer
             ConnectionManager.SetToDefaultConnection("um");
         }
 
-        public override async void OnStartup(object sender, EventArgs e)
+        async void OnStartup()
         {
-            base.OnStartup(sender, e);
-
             // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
@@ -105,28 +105,39 @@ namespace ErrorLogAnalyzer
             ofd.CustomPlaces.Add(appDataDir);
 
             if (ofd.ShowDialog() != DialogResult.OK)
-                Close();
+            {
+                this.Invoke(new Action(Close));
+                return;
+            }
             else
             {
                 _filePath = ofd.FileName;
 
                 _cacheDir = new DirectoryInfo(Path.GetDirectoryName(ofd.FileName));
 
-                refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data");
+                this.Invoke(new Action(() => 
+                    refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data")));
             }
 
 
             // Exit form this method if reopen the combo box
             if (cmbServerName.Items.Count > 0) return;
 
-            // add local host in first time
-            cmbServerName.Items.Add("localhost");
+            cmbServerName.Invoke(new Action(() =>
+            {
+                // add local host in first time
+                cmbServerName.Items.Add("localhost");
+            }));
 
             // Find any servers in network
             var servers = await GetServersAsync();
 
-            // Fill server names combo
-            cmbServerName.Items.AddRange(servers);
+            cmbServerName.Invoke(new Action(() =>
+            {
+                // Fill server names combo
+                cmbServerName.Items.AddRange(servers);
+            }));
+
         }
 
         private void btnQuit_Click(object sender, EventArgs e)

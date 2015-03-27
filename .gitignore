@@ -14,7 +14,10 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+
+# The Solution User Options File of Visual Studio
 *.suo
+*.v12.suo
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/

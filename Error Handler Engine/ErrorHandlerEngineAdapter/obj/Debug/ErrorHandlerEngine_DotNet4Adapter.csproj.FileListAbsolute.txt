@@ -1,8 +1,0 @@
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine_DotNet4Adapter.dll
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine_DotNet4Adapter.pdb
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine_DotNet4Adapter.tlb
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine.dll
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\bin\Debug\ErrorHandlerEngine.pdb
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\obj\Debug\ErrorHandlerEngine_DotNet4Adapter.csprojResolveAssemblyReference.cache
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\obj\Debug\ErrorHandlerEngine_DotNet4Adapter.dll
-D:\Shoniz\Error Control System\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine_DotNet4Adapter\obj\Debug\ErrorHandlerEngine_DotNet4Adapter.pdb

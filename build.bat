@@ -1,4 +1,4 @@
 del build.log
 mkdir out
 
-devenv.exe ErrorControlSystem.sln /build Release /out build.log
+msbuild ErrorControlSystem.sln /t:Clean /t:Rebuild /property:Configuration=Release /out build.log -o \out

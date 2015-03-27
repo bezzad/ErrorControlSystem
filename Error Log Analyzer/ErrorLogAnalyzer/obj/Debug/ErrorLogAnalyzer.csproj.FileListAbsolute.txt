@@ -115,10 +115,6 @@ D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorL
 D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.Properties.Resources.resources
 D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.csproj.GenerateResource.Cache
 D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\ErrorLogAnalyzer.exe
-D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ImageBox.dll
-D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ProcessBar.dll
-D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ImageBox.pdb
-D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ProcessBar.pdb
 D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.exe
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.LogReader.resources
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.Properties.Resources.resources
@@ -129,3 +125,10 @@ D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ImageBox.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Shoniz.Windows.Forms.ProcessBar.pdb
 D:\Programming\Shoniz\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.exe
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Windows.Forms.ImageBox.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Windows.Forms.ProcessBar.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Windows.WpfAnimatedWaitSplash.dll
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Windows.Forms.ImageBox.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Windows.Forms.ProcessBar.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\bin\Debug\Windows.WpfAnimatedWaitSplash.pdb
+D:\Programming\Error Control System\ErrorControlSystem\Error Log Analyzer\ErrorLogAnalyzer\obj\Debug\ErrorLogAnalyzer.BaseForm.resources

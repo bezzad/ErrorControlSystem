@@ -17,9 +17,7 @@ namespace ErrorLogAnalyzer
     public partial class LogReader : BaseForm
     {
         private List<ProxyError> _errors = new List<ProxyError>();
-        private DirectoryInfo _cacheDir;
         private readonly Timer _timer;
-        private string _filePath;
 
         public LogReader()
         {
@@ -46,7 +44,7 @@ namespace ErrorLogAnalyzer
 
         void _timer_Tick(object sender, EventArgs e)
         {
-            SdfFileManager.SetConnectionString(_filePath);
+            SdfFileManager.SetConnectionString(txtCacheFilePath.Text);
 
             var newErrors = SdfFileManager.GetErrors().ToList();
 
@@ -86,7 +84,7 @@ namespace ErrorLogAnalyzer
             ConnectionManager.SetToDefaultConnection("um");
         }
 
-        async void OnStartup()
+        void OnStartup()
         {
             // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -104,40 +102,31 @@ namespace ErrorLogAnalyzer
             };
             ofd.CustomPlaces.Add(appDataDir);
 
-            if (ofd.ShowDialog() != DialogResult.OK)
+            bool canNotReadCacheFile = false;
+            do
             {
-                this.Invoke(new Action(Close));
-                return;
-            }
-            else
-            {
-                _filePath = ofd.FileName;
+                canNotReadCacheFile = false;
 
-                _cacheDir = new DirectoryInfo(Path.GetDirectoryName(ofd.FileName));
+                if (ofd.ShowDialog() != DialogResult.OK)
+                {
+                    this.Invoke(new Action(Close));
+                    return;
+                }
 
-                this.Invoke(new Action(() => 
-                    refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data")));
-            }
+                var extension = Path.GetExtension(ofd.FileName);
+                if (extension != null && !extension.Equals(".log", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show("Can not read your cache file");
+                    canNotReadCacheFile = true;
+                }
 
+            } while (canNotReadCacheFile); // till the user path to correct cache file
 
-            // Exit form this method if reopen the combo box
-            if (cmbServerName.Items.Count > 0) return;
+            txtCacheFilePath.Invoke(new Action(() =>
+                txtCacheFilePath.Text = ofd.FileName));
 
-            cmbServerName.Invoke(new Action(() =>
-            {
-                // add local host in first time
-                cmbServerName.Items.Add("localhost");
-            }));
-
-            // Find any servers in network
-            var servers = await GetServersAsync();
-
-            cmbServerName.Invoke(new Action(() =>
-            {
-                // Fill server names combo
-                cmbServerName.Items.AddRange(servers);
-            }));
-
+            this.Invoke(new Action(() =>
+                refreshAlert.SetError(btnRefreshGridView, "Click on Refresh button to show cache data")));
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -180,7 +169,7 @@ namespace ErrorLogAnalyzer
 
         private void SetCacheSizeViewer()
         {
-            var dirSize = _cacheDir.GetDirectorySize();
+            var dirSize = new DirectoryInfo(Path.GetDirectoryName(txtCacheFilePath.Text)).GetDirectorySize();
             var limitSize = DiskHelper.CacheLimitSize;
 
             var percent = unchecked((int)(dirSize * 100 / limitSize));
@@ -315,6 +304,40 @@ namespace ErrorLogAnalyzer
             {
                 this.Cursor = Cursors.Default;
             }
+        }
+
+        private async void cmbServerName_DropDown(object sender, EventArgs e)
+        {
+            if (cmbServerName.Items.Count == 0)
+            {
+                await InvokeAsync(() =>
+                {
+                    // Exit form this method if reopen the combo box
+                    if (cmbServerName.Items.Count > 0) return;
+
+                    cmbServerName.Invoke(new Action(() =>
+                    {
+                        // add local host in first time
+                        cmbServerName.Items.Add("localhost");
+                    }));
+
+                    // Find any servers in network
+                    var servers = GetServersAsync().GetAwaiter().GetResult();
+
+                    cmbServerName.Invoke(new Action(() =>
+                    {
+                        // Fill server names combo
+                        cmbServerName.Items.AddRange(servers);
+                    }));
+                });
+
+                cmbServerName.DroppedDown = true;
+            }
+        }
+
+        private void LogReader_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _timer.Stop();
         }
     }
 }

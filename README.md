@@ -221,6 +221,7 @@ There are __SQL Scripts__ to create tables and queries.
 ### LICENSE INFORMATION ###
 
 Error Handler Engine 3.0.0.2
+
 This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to

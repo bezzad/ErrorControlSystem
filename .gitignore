@@ -14,6 +14,7 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+*.suo
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
@@ -154,3 +155,9 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+
+# UnitTest fakes assembly
+*.Fakes.dll
+*.Fakes.fakesconfig
+*.Fakes.messages
+*.Fakes.xml

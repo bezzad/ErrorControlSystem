@@ -142,8 +142,8 @@ Note:
 \ErrorControlSystem\out\Error Handler Engines\... directory if you're installing by hand, for example).
 
  Note:
->      If there is not any file in the Release folders, 
->      run the build.bat file to compile project and create release executable files.
+>      If there is not any file in the out folders, 
+>      run the buildx86.bat (or buildx64 on 64bit Operation System) file to compile project and create executable files.
 >      Or 
 >      please open project .sln file on Visual Studio 2013 and debug/release that to compile native files.
 

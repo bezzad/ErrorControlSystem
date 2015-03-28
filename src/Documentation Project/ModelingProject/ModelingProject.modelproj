@@ -28,15 +28,15 @@
     <Content Include="ModelDefinition\Package_1534.uml">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build.dll">
+    <Compile Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build.dll">
       <SubType>Content</SubType>
-    </Content>
-    <Content Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.targets">
+    </Compile>
+    <Compile Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.targets">
       <SubType>Content</SubType>
-    </Content>
-    <Content Include="Resources\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets">
+    </Compile>
+    <Compile Include="Resources\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets">
       <SubType>Content</SubType>
-    </Content>
+    </Compile>
     <Content Include="Using a .NET 4 Based DLL From a .NET 2 Based Application.docx">
       <SubType>Content</SubType>
     </Content>
@@ -67,15 +67,6 @@
     <Folder Include="Resources" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Name>Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build</Name>
-      <HintPath>Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-      <Name>System</Name>
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
-    </Reference>
     <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <Name>System.Core</Name>
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll</HintPath>

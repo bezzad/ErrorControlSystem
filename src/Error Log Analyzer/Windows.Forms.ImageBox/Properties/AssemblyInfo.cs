@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
+#pragma warning disable 1607
 [assembly: AssemblyTitle("Shoniz ImageBox Control")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

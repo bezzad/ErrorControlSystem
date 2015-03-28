@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
-using WpfAnimatedGif.Properties;
+using Windows.WpfAnimatedWaitSplash.Properties;
 
 [assembly: AssemblyTitle("WpfAnimatedGif")]
 [assembly: AssemblyDescription("A library to display animated GIF images in WPF")]
@@ -26,7 +26,7 @@ using WpfAnimatedGif.Properties;
 
 [assembly: InternalsVisibleTo("WpfAnimatedGif.Demo")]
 
-namespace WpfAnimatedGif.Properties
+namespace Windows.WpfAnimatedWaitSplash.Properties
 {
     class VersionInfo
     {

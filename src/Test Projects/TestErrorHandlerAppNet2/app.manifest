@@ -5,14 +5,14 @@
   <assemblyIdentity
     type = "win32"
     name = "TestErrorHandlerAppNet2"
-    version = "1.0.0.0"
+    version = "3.0.*"
     />
   <dependency>
     <dependentAssembly>
       <assemblyIdentity
         type="win32"
         name="ErrorHandlerEngineAdapter"
-        version="1.0.0.0" />
+        version="3.0.*" />
     </dependentAssembly>
   </dependency>
 

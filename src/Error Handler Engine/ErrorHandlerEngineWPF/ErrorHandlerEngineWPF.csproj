@@ -108,13 +108,15 @@
     <Compile Include="..\ErrorHandlerEngine\ModelObjecting\ScreenCapture.cs">
       <Link>ModelObjecting\ScreenCapture.cs</Link>
     </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="..\ErrorHandlerEngine\Resources\EmbeddedAssembly.cs">
       <Link>Resources\EmbeddedAssembly.cs</Link>
     </Compile>
     <Compile Include="..\ErrorHandlerEngine\ServerController\ServerTransmitter.cs">
       <Link>ServerController\ServerTransmitter.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

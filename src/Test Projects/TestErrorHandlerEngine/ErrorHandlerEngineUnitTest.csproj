@@ -6,8 +6,8 @@
     <ProjectGuid>{840587CA-2824-4F8E-873F-5BE66CC98FAB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestErrorHandlerEngine</RootNamespace>
-    <AssemblyName>TestErrorHandlerEngine</AssemblyName>
+    <RootNamespace>ErrorHandlerEngineUnitTest</RootNamespace>
+    <AssemblyName>ErrorHandlerEngineUnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -29,7 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\out\TestProjects\ErrorHandlerEngineUnitTest\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -49,7 +49,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>True</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -63,6 +65,7 @@
     <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine.csproj">
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
       <Name>ErrorHandlerEngine</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModelObjecting;
 
-namespace TestModelObjecting
+namespace ErrorHandlerEngineUnitTest.ModelObjecting
 {
     /// <summary>
     /// Summary description for ScreenCaptureUnitTest

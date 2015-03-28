@@ -1,4 +1,7 @@
 # [Error Control System](https://github.com/Behzadkhosravifar/ErrorControlSystem)  README #
+---------------------
+[![Build status](https://ci.appveyor.com/api/projects/status/9qdlpbpf3gyfuvdu?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/errorcontrolsystem)
+
 [![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png)](https://github.com/Behzadkhosravifar/ErrorControlSystem)
 
 ---------------------
@@ -128,7 +131,7 @@ Select all options by excepted `ReSizeSnapshots`
 By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including __Handled__ or __UnHandled__ exceptions on the your database.
 
 Note:
->     In the new version 2.1.1.0 a later, the option set in from database at runtime, 
+>     In the new version 2.1.1.0 and later, the option set in from database at runtime, 
 >     and not necessary to set that from initial  Start  method
 
 
@@ -136,14 +139,17 @@ Note:
 ### How To Install The Modules ###
 
 1. Install examples for developers (unpacking it to your disk, and go to
-\ErrorControlSystem\Error Handler Engine\ErrorHandlerEngine\bin\Release directory if you're installing by hand, for example).
+\ErrorControlSystem\out\Error Handler Engines\... directory if you're installing by hand, for example).
 
  Note:
->      If there is not any file in the Release folders, please open project .sln file on 
->      Visual Studio 2013 and debug/release that to compile native files.
+>      If there is not any file in the Release folders, 
+>      run the build.bat file to compile project and create release executable files.
+>      Or 
+>      please open project .sln file on Visual Studio 2013 and debug/release that to compile native files.
 
 
-2. In your project reference add this module dll file:  References > Add Reference... > Browse to above path > Select ErrorHandlerEngine.dll
+2. In your project reference add this module dll file:  
+   References > Add Reference... > Browse to above path > Select ErrorHandlerEngine.dll
 
 3. Rebuild access permissions if you are prompted to.
 

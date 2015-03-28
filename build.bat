@@ -1,4 +1,4 @@
-del build.log
+del msbuild.log
 mkdir out
 
-msbuild ErrorControlSystem.sln /t:Clean /t:Rebuild /property:Configuration=Release /out build.log -o \out
+"C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe" "src\ErrorControlSystem.sln" /t:Clean /t:Rebuild /property:Configuration=Release /fileLogger /verbosity:normal

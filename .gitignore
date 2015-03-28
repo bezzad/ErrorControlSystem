@@ -14,6 +14,7 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+[Oo]ut/
 
 # The Solution User Options File of Visual Studio
 *.suo

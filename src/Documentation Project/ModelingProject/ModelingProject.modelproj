@@ -22,7 +22,13 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="ExceptionDetails.xls">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package_1534.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Using a .NET 4 Based DLL From a .NET 2 Based Application.docx">
       <SubType>Content</SubType>
     </Content>
     <Folder Include="ModelDefinition\" />

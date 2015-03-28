@@ -143,9 +143,11 @@ Note:
 
  Note:
 >      If there is not any file in the out folders, 
->      run the buildx86.bat (or buildx64 on 64bit Operation System) file to compile project and create executable files.
+>      run the buildx86.bat (or buildx64 on 64bit Operation System) file 
+>      to compile project and create executable files.
 >      Or 
->      please open project .sln file on Visual Studio 2013 and debug/release that to compile native files.
+>      please open project .sln file on Visual Studio 2013 
+>      and debug/release that to compile native files.
 
 
 2. In your project reference add this module dll file:  

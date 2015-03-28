@@ -76,6 +76,9 @@ namespace ErrorLogAnalyzer
             SetCacheSizeViewer();
 
             CountDatabaseRecords();
+
+            if (dgv_ErrorsViewer.RowCount > 0 && dgv_ErrorsViewer.SelectedRows[0].Index == 0)
+                dgvErrorsViewer_SelectionChanged();
         }
 
         void cmbDatabaseName_TextChanged(object sender, EventArgs e)
@@ -102,7 +105,7 @@ namespace ErrorLogAnalyzer
             };
             ofd.CustomPlaces.Add(appDataDir);
 
-            bool canNotReadCacheFile = false;
+            bool canNotReadCacheFile;
             do
             {
                 canNotReadCacheFile = false;
@@ -216,7 +219,6 @@ namespace ErrorLogAnalyzer
                 return sqlServers;
             });
         }
-
 
         public async Task<string[]> GetSqlDatabasesAsync()
         {

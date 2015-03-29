@@ -56,7 +56,7 @@ namespace ErrorLogAnalyzer
 
         #region Properties
 
-        public static Splash WaitSplash = new Splash();
+        public Splash WaitSplash;
         public Action OnStartupAction;
 
         #endregion
@@ -68,7 +68,7 @@ namespace ErrorLogAnalyzer
         {
             InitializeComponent();
 
-            WaitSplash.OwnerControl = this;
+            WaitSplash = new Splash(this);
 
             Application.Idle += Application_Idle;
         }
@@ -100,28 +100,6 @@ namespace ErrorLogAnalyzer
             this.Focus();
         }
 
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            base.OnSizeChanged(e);
-
-            WaitSplash.CenterToParent(this);
-        }
-
-        protected override void OnLocationChanged(EventArgs e)
-        {
-            base.OnLocationChanged(e);
-
-            WaitSplash.CenterToParent(this);
-        }
-
-
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-
-            WaitSplash.Focus();
-        }
-        
         #endregion
     }
 }

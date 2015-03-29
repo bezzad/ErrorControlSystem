@@ -112,7 +112,8 @@ namespace ErrorLogAnalyzer
 
                 if (ofd.ShowDialog() != DialogResult.OK)
                 {
-                    this.Invoke(new Action(Close));
+                    if (this.IsHandleCreated)
+                        this.Invoke(new Action(Close));
                     return;
                 }
 

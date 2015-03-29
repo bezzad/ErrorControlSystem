@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace WaitSplash
 
         #region Constructors
 
-        public Splash()
+        protected Splash()
         {
             this.InitializeComponent();
 
@@ -40,6 +41,22 @@ namespace WaitSplash
 
             TickCounter = new DispatcherTimer();
             TickCounter.Tick += TickCounter_Tick;
+        }
+
+        public Splash(System.Windows.Window win)
+            : this()
+        {
+            Owner = win;
+            win.SizeChanged += (s, e) => this.CenterToParent(win);
+            win.LocationChanged += (s, e) => this.CenterToParent(win);
+        }
+
+        public Splash(System.Windows.Forms.Form parentForm)
+            : this()
+        {
+            OwnerControl = parentForm;
+            parentForm.SizeChanged += (s, e) => this.CenterToParent(parentForm);
+            parentForm.LocationChanged += (s, e) => this.CenterToParent(parentForm);
         }
 
         #endregion
@@ -57,7 +74,7 @@ namespace WaitSplash
 
             // Set the owned WPF window’s owner with the non-WPF owner window
             WindowInteropHelper helper = new WindowInteropHelper(this);
-            helper.Owner = ownerWindowHandle; 
+            helper.Owner = ownerWindowHandle;
 
             // Center window
             // Note - Need to use HwndSource to get handle to WPF owned window,
@@ -125,23 +142,23 @@ namespace WaitSplash
         /// <summary>
         /// Starts the wait splash and shown that
         /// </summary>
-        public void Start()
+        public async void Start()
         {
-            Task.Run(() =>
-            {
-                lock (SyncLocker)
-                {
-                    if (++ShowTimes == 1)
-                    {
-                        this.Dispatcher.Invoke(() =>
-                        {
-                            TickCount = Environment.TickCount;
-                            TickCounter.Start();
-                            this.Show();
-                        });
-                    }
-                }
-            });
+            await Task.Run(() =>
+             {
+                 lock (SyncLocker)
+                 {
+                     if (++ShowTimes == 1)
+                     {
+                         this.Dispatcher.Invoke(() =>
+                         {
+                             TickCount = Environment.TickCount;
+                             TickCounter.Start();
+                             this.Show();
+                         });
+                     }
+                 }
+             });
         }
 
         /// <summary>
@@ -165,6 +182,14 @@ namespace WaitSplash
             });
         }
 
+        protected override void OnLostFocus(RoutedEventArgs e)
+        {
+            base.OnLostFocus(e);
+
+            this.Focus();
+        }
+
         #endregion
+
     }
 }

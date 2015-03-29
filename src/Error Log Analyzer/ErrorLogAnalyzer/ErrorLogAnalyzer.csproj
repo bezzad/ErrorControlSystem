@@ -66,9 +66,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BaseForm.resx">
-      <DependentUpon>BaseForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LogReader.resx">
       <DependentUpon>LogReader.cs</DependentUpon>
       <SubType>Designer</SubType>

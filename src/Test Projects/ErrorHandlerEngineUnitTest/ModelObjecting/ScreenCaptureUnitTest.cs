@@ -16,17 +16,19 @@ namespace ErrorHandlerEngineUnitTest.ModelObjecting
 
         public ScreenCaptureUnitTest()
         {
-            // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
-            var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            //// LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
+            //var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 
-            // Application Name and Major Version 
-            var appNameVer = "TestErrorHandlerEngine v1";
+            //// Application Name and Major Version 
+            //var appNameVer = "TestErrorHandlerEngine v1";
 
-            // Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
-            StorageDirPath = Path.Combine(appDataDir, appNameVer);
+            //// Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
+            //StorageDirPath = Path.Combine(appDataDir, appNameVer);
 
-            if (!Directory.Exists(StorageDirPath))
-                Directory.CreateDirectory(StorageDirPath);
+            //if (!Directory.Exists(StorageDirPath))
+            //    Directory.CreateDirectory(StorageDirPath);
+
+            StorageDirPath = "";
         }
 
         #region Additional test attributes

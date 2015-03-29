@@ -40,7 +40,6 @@
     <EmbeddedResource Include="Activity Diagram.xps">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="App.config" />
     <None Include="DatabaseModel.dbml.layout">
       <DependentUpon>DatabaseModel.dbml</DependentUpon>
     </None>

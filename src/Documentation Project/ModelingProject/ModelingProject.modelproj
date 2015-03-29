@@ -9,6 +9,8 @@
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
     <Name>ModelingProject</Name>
     <RootNamespace>ModelingProject</RootNamespace>
+    <ValidateArchitecture>
+    </ValidateArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -22,28 +24,28 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="ExceptionDetails.xls">
+    <EmbeddedResource Include="ExceptionDetails.xls">
       <SubType>Content</SubType>
-    </Content>
+    </EmbeddedResource>
     <Content Include="ModelDefinition\Package_1534.uml">
       <SubType>Content</SubType>
     </Content>
-    <Compile Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build.dll">
+    <EmbeddedResource Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build.dll">
       <SubType>Content</SubType>
-    </Compile>
-    <Compile Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.targets">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.targets">
       <SubType>Content</SubType>
-    </Compile>
-    <Compile Include="Resources\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets">
       <SubType>Content</SubType>
-    </Compile>
-    <Content Include="Using a .NET 4 Based DLL From a .NET 2 Based Application.docx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Using a .NET 4 Based DLL From a .NET 2 Based Application.docx">
       <SubType>Content</SubType>
-    </Content>
+    </EmbeddedResource>
     <Folder Include="ModelDefinition\" />
-    <Content Include="ActivityDiagram.activitydiagram">
+    <EmbeddedResource Include="ActivityDiagram.activitydiagram">
       <SubType>Content</SubType>
-    </Content>
+    </EmbeddedResource>
     <Content Include="ActivityDiagram.activitydiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>ActivityDiagram.activitydiagram</DependentUpon>
@@ -54,9 +56,9 @@
     <EmbeddedResource Include="ErrorHandlerEngine-2.png">
       <SubType>Content</SubType>
     </EmbeddedResource>
-    <Content Include="DatabaseModeling.classdiagram">
+    <EmbeddedResource Include="DatabaseModeling.classdiagram">
       <SubType>Content</SubType>
-    </Content>
+    </EmbeddedResource>
     <Content Include="DatabaseModeling.classdiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>DatabaseModeling.classdiagram</DependentUpon>
@@ -70,6 +72,7 @@
     <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <Name>System.Core</Name>
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
 </Project>

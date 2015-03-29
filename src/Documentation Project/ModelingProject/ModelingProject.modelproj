@@ -24,41 +24,28 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <EmbeddedResource Include="ExceptionDetails.xls">
+    <Content Include="ExceptionDetails.xls">
       <SubType>Content</SubType>
-    </EmbeddedResource>
+    </Content>
+    <Content Include="Activity Diagram.xps">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package_1534.uml">
       <SubType>Content</SubType>
     </Content>
-    <EmbeddedResource Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.Build.dll">
+    <Content Include="Using a .NET 4 Based DLL From a .NET 2 Based Application.docx">
       <SubType>Content</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Microsoft.VisualStudio.TeamArchitect.LayerDesigner.targets">
-      <SubType>Content</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets">
-      <SubType>Content</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Using a .NET 4 Based DLL From a .NET 2 Based Application.docx">
-      <SubType>Content</SubType>
-    </EmbeddedResource>
-    <Folder Include="ModelDefinition\" />
-    <EmbeddedResource Include="ActivityDiagram.activitydiagram">
-      <SubType>Content</SubType>
-    </EmbeddedResource>
-    <Content Include="ActivityDiagram.activitydiagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>ActivityDiagram.activitydiagram</DependentUpon>
     </Content>
-    <EmbeddedResource Include="ErrorHandlerEngine-1.png">
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ErrorHandlerEngine-1.png">
       <SubType>Content</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorHandlerEngine-2.png">
+    </Content>
+    <Content Include="ErrorHandlerEngine-2.png">
       <SubType>Content</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DatabaseModeling.classdiagram">
+    </Content>
+    <Content Include="DatabaseModeling.classdiagram">
       <SubType>Content</SubType>
-    </EmbeddedResource>
+    </Content>
     <Content Include="DatabaseModeling.classdiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>DatabaseModeling.classdiagram</DependentUpon>
@@ -66,7 +53,6 @@
     <Content Include="ModelDefinition\ModelingProject.uml">
       <SubType>Content</SubType>
     </Content>
-    <Folder Include="Resources" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

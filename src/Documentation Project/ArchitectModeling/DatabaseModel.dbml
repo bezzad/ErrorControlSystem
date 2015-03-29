@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="UsersManagements" Class="DatabaseModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=UsersManagements;Integrated Security=True" SettingsObjectName="ArchitectModeling.Properties.Settings" SettingsPropertyName="UsersManagementsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ErrorLog" Member="ErrorLogs">
+    <Type Name="ErrorLog">
+      <Column Name="ErrorId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServerDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Host" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="[User]" Member="User" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="IsHandled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="AppName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Data" Type="System.Xml.Linq.XElement" DbType="Xml" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CurrentCulture" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CLRVersion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="StackTrace" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ModuleName" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="MemberType" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Method" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Processes" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ErrorDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OS" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IPv4Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MACAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="HResult" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LineColumn" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DuplicateNo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Snapshots" Member="Snapshots">
+    <Type Name="Snapshot">
+      <Column Name="ErrorLogID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ScreenCapture" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_InsertErrorLog" Method="sp_InsertErrorLog">
+    <Parameter Name="ServerDateTime" Parameter="serverDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Host" Parameter="host" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="User" Parameter="user" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="IsHandled" Parameter="isHandled" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="AppName" Parameter="appName" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="ScreenCapture" Parameter="screenCapture" Type="System.Data.Linq.Binary" DbType="Image" />
+    <Parameter Name="CurrentCulture" Parameter="currentCulture" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="CLRVersion" Parameter="cLRVersion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="Source" Parameter="source" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="StackTrace" Parameter="stackTrace" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="ModuleName" Parameter="moduleName" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="MemberType" Parameter="memberType" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Method" Parameter="method" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="Processes" Parameter="processes" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="ErrorDateTime" Parameter="errorDateTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="OS" Parameter="oS" Type="System.String" DbType="VarChar(1000)" />
+    <Parameter Name="IPv4Address" Parameter="iPv4Address" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MACAddress" Parameter="mACAddress" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="HResult" Parameter="hResult" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LineCol" Parameter="lineCol" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Duplicate" Parameter="duplicate" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Data" Parameter="data" Type="System.Xml.Linq.XElement" DbType="Xml" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetErrorHandlerOption" Method="GetErrorHandlerOption" IsComposable="true">
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

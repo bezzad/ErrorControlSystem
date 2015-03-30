@@ -61,7 +61,7 @@
     <Parameter Name="Data" Parameter="data" Type="System.Xml.Linq.XElement" DbType="Xml" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.GetErrorHandlerOption" Method="GetErrorHandlerOption" IsComposable="true">
+  <Function Name="dbo.GetErrorHandlingOptions" Method="GetErrorHandlingOptions" IsComposable="true">
     <Return Type="System.Int32" />
   </Function>
 </Database>

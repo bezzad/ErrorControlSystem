@@ -170,11 +170,11 @@
       <FileName>Shared\IError.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="ExceptionManager.ErrorHandlerOption" Collapsed="true">
+  <Enum Name="ExceptionManager.ErrorHandlingOptions" Collapsed="true">
     <Position X="2" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgIAAAAEAAAA=</HashCode>
-      <FileName>ExceptionManager\ErrorHandlerOption.cs</FileName>
+      <FileName>ExceptionManager\ErrorHandlingOptions.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

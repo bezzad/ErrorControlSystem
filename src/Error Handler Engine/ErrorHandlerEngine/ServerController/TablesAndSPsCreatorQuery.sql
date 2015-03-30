@@ -265,12 +265,12 @@ END
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------- 
--- Create UserDefinedFunction [dbo].[GetErrorHandlerOption]      Script Date: 03/12/2015 17:25:26 
+-- Create UserDefinedFunction [dbo].[GetErrorHandlingOptions]      Script Date: 03/12/2015 17:25:26 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
-IF Not EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GetErrorHandlerOption]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+IF Not EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GetErrorHandlingOptions]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
 BEGIN
 	DECLARE @fnCreator nvarchar(MAX) =
-		'CREATE	FUNCTION [dbo].[GetErrorHandlerOption] ( )
+		'CREATE	FUNCTION [dbo].[GetErrorHandlingOptions] ( )
 		RETURNS INT As
 
 		BEGIN

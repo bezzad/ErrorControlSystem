@@ -420,11 +420,13 @@ namespace ErrorHandlerEngine.DbConnectionManager
         {
             try
             {
-                return Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version;
+                var ver = Assembly.GetEntryAssembly().GetName().Version;
+                return Assembly.GetEntryAssembly().GetName().Name + " v" + ver.Major + "." + ver.Minor;
             }
             catch
             {
-                return Assembly.GetExecutingAssembly().GetName().Name + " v" + Assembly.GetExecutingAssembly().GetName().Version;
+                var ver = Assembly.GetExecutingAssembly().GetName().Version;
+                return Assembly.GetExecutingAssembly().GetName().Name + " v" + ver.Major + "." + ver.Minor;
             }
         }
 

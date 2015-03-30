@@ -115,8 +115,8 @@ namespace ArchitectModeling
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetErrorHandlerOption", IsComposable=true)]
-		public System.Nullable<int> GetErrorHandlerOption()
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetErrorHandlingOptions", IsComposable=true)]
+		public System.Nullable<int> GetErrorHandlingOptions()
 		{
 			return ((System.Nullable<int>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod()))).ReturnValue));
 		}

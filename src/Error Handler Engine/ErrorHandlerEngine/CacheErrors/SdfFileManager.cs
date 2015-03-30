@@ -387,7 +387,7 @@ namespace ErrorHandlerEngine.CacheErrors
                     cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
 
                     sqlConn.Open();
-
+                    
                     var result = cmd.ExecuteScalar();
 
                     return (result is DBNull) ? null : ((byte[])result).ToImage();

@@ -94,7 +94,7 @@ namespace ErrorHandlerEngine.CacheErrors
             }
         }
 
-        public static async void CacheTheError(Error error, ErrorHandlerOption option)
+        public static async void CacheTheError(Error error, ErrorHandlingOptions option)
         {
             if (_errorSaverActionBlock == null ||
                 _errorSaverActionBlock.Completion.IsFaulted)
@@ -105,7 +105,7 @@ namespace ErrorHandlerEngine.CacheErrors
                 {
                     await SdfFileManager.InsertOrUpdateAsync(e);
 
-                    if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlerOption.SendCacheToServer))
+                    if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlingOptions.SendCacheToServer))
                         await CheckStateAsync();
                 },
                     new ExecutionDataflowBlockOptions

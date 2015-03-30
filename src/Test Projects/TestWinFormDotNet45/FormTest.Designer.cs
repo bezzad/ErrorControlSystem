@@ -36,11 +36,12 @@
             this.btnThrowExceptExceptions = new System.Windows.Forms.Button();
             this.btnDataException = new System.Windows.Forms.Button();
             this.btnThrowMultiExps = new System.Windows.Forms.Button();
+            this.btnExemptedMethodException = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(51, 395);
+            this.btnQuit.Location = new System.Drawing.Point(51, 476);
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(238, 38);
             this.btnQuit.TabIndex = 1;
@@ -125,11 +126,23 @@
             this.btnThrowMultiExps.UseVisualStyleBackColor = true;
             this.btnThrowMultiExps.Click += new System.EventHandler(this.btnThrowMultiExps_Click);
             // 
+            // btnExemptedMethodException
+            // 
+            this.btnExemptedMethodException.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExemptedMethodException.Location = new System.Drawing.Point(51, 348);
+            this.btnExemptedMethodException.Name = "btnExemptedMethodException";
+            this.btnExemptedMethodException.Size = new System.Drawing.Size(238, 42);
+            this.btnExemptedMethodException.TabIndex = 11;
+            this.btnExemptedMethodException.Text = "Exempted Method Exception";
+            this.btnExemptedMethodException.UseVisualStyleBackColor = true;
+            this.btnExemptedMethodException.Click += new System.EventHandler(this.btnExemptedMethodException_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 445);
+            this.ClientSize = new System.Drawing.Size(335, 526);
+            this.Controls.Add(this.btnExemptedMethodException);
             this.Controls.Add(this.btnThrowMultiExps);
             this.Controls.Add(this.btnDataException);
             this.Controls.Add(this.btnThrowExceptExceptions);
@@ -154,6 +167,7 @@
         private System.Windows.Forms.Button btnThrowExceptExceptions;
         private System.Windows.Forms.Button btnDataException;
         private System.Windows.Forms.Button btnThrowMultiExps;
+        private System.Windows.Forms.Button btnExemptedMethodException;
     }
 }
 

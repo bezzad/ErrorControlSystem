@@ -19,20 +19,27 @@ namespace TestWinFormDotNet45
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
             ExpHandlerEngine.Start(new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
-                   ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+                   ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
             //
             // Or this new version(3.0.0.59 or later) model:
             // ExpHandlerEngine.Start("localhost", "UsersManagements");
             //
 
             // Except 'NotImplementedException' from raise log
-            ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));
+            ExceptionHandler.Filter.ExemptedExceptionTypes.Add(typeof(NotImplementedException));
 
             // Filter 'Exception' type from Snapshot capturing 
-            ExceptionHandler.NonSnapshotExceptionTypes.Add(typeof(FormatException));
+            ExceptionHandler.Filter.NonSnapshotExceptionTypes.Add(typeof(FormatException));
 
             // Add extra data for labeling exceptions
-            ExceptionHandler.AttachExtraData.Add("TestWinFormDotNet45 v2.1.1.0", "beta version");
+            ExceptionHandler.Filter.AttachExtraData.Add("TestWinFormDotNet45 v3.1.1.0", "beta version");
+
+            // Filter a method of a specific class in my assembly from raise log
+            ExceptionHandler.Filter.ExemptedErrorCodePlaces.Add(
+                new CodePlace("TestWinFormDotNet45", "FormTest", "btnExemptedMethodException_Click"));
+
+            // Raise just from these code place (TestWinFormDotNet45.dll), method and class was not important = null
+            ExceptionHandler.Filter.JustErrorFromTheseCodePlaces.Add(new CodePlace("TestWinFormDotNet45", null, null));
             //
             // ---------------------------------------------------------------------------------
             //

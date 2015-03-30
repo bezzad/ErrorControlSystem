@@ -7,13 +7,13 @@ Module MainModule
         ExpHandlerEngine.Start("localhost", "UsersManagements")
 
         'Except 'NotImplementedException' from raise log
-        ExceptionHandler.ExceptedExceptionTypes.Add(GetType(NotImplementedException))
+        ExceptionHandler.Filter.ExemptedExceptionTypes.Add(GetType(NotImplementedException))
 
         'Filter 'Exception' type from Snapshot capturing 
-        ExceptionHandler.NonSnapshotExceptionTypes.Add(GetType(FormatException))
+        ExceptionHandler.Filter.NonSnapshotExceptionTypes.Add(GetType(FormatException))
 
         'Add extra data for labeling exceptions
-        ExceptionHandler.AttachExtraData.Add("TestVBwinFormDotNet45 v2.1.1.0", "beta version")
+        ExceptionHandler.Filter.AttachExtraData.Add("TestVBwinFormDotNet45 v2.1.1.0", "beta version")
 
         ' ---------------------------------------------------------------------------------
 

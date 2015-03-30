@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -135,6 +136,19 @@ namespace TestWinFormDotNet45
                 catch { }
             });
         }
+
+        private void btnExemptedMethodException_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               new ExpThrower().throwExp();
+                //throw new IOException("Test");
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 
 
@@ -161,6 +175,16 @@ namespace TestWinFormDotNet45
             MyPublicData4 = "I am Public Property 4";
             MyPublicData5 = "I am Public Property 5";
 
+        }
+    }
+
+
+
+    class ExpThrower
+    {
+        public void throwExp()
+        {
+            throw new IOException("Exempted Method Exception");
         }
     }
 }

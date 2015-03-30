@@ -21,7 +21,7 @@ namespace ErrorHandlerEngine.ExceptionManager
     {
         #region Properties
 
-        private static ErrorHandlerOption _option;
+        private static ErrorHandlingOptions _option;
 
         #endregion
 
@@ -54,15 +54,15 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #region Methods
 
-        public static async void Start(ErrorHandlerOption option = ErrorHandlerOption.Default)
+        public static async void Start(ErrorHandlingOptions option = ErrorHandlingOptions.Default)
         {
-            _option = option & ~ErrorHandlerOption.SendCacheToServer;
+            _option = option & ~ErrorHandlingOptions.SendCacheToServer;
 
             await ServerTransmitter.InitialTransmitterAsync();
         }
 
 
-        public static async void Start(Connection conn, ErrorHandlerOption option = ErrorHandlerOption.Default)
+        public static async void Start(Connection conn, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
         {
             _option = option;
 
@@ -71,7 +71,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             await ServerTransmitter.InitialTransmitterAsync();
 
-            var publicSetting = await ServerTransmitter.GetErrorHandlerOptionAsync();
+            var publicSetting = await ServerTransmitter.GetErrorHandlingOptionsAsync();
             if (publicSetting != 0)
                 _option = publicSetting;
 
@@ -80,7 +80,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
 
         public static void Start(string server, string database, string username, string pass,
-            ErrorHandlerOption option = ErrorHandlerOption.Default)
+            ErrorHandlingOptions option = ErrorHandlingOptions.Default)
         {
             var conn = new Connection(server, database, username, pass);
 
@@ -88,7 +88,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         }
 
         public static void Start(string server, string database,
-            ErrorHandlerOption option = ErrorHandlerOption.Default)
+            ErrorHandlingOptions option = ErrorHandlingOptions.Default)
         {
             var conn = new Connection(server, database);
 
@@ -107,7 +107,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option | ErrorHandlerOption.IsHandled);
+            e.Exception.RaiseLog(_option | ErrorHandlingOptions.IsHandled);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unobserved Task Exception");
+            e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unobserved Task Exception");
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
         {
-            e.Exception.RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled Thread Exception");
+            e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="e"></param>
         private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
-            (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlerOption.IsHandled, "Unhandled UI Exception");
+            (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled UI Exception");
 
             Application.Exit();
         }

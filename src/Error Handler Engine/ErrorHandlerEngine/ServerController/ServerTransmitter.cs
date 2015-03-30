@@ -226,15 +226,15 @@ namespace ErrorHandlerEngine.ServerController
             }
         }
 
-        public static async Task<ErrorHandlerOption> GetErrorHandlerOptionAsync()
+        public static async Task<ErrorHandlingOptions> GetErrorHandlingOptionsAsync()
         {
             //
             // execute the command
             try
             {
                 ExceptionHandler.IsSelfException = true;
-                var optInt = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<int>("SELECT dbo.GetErrorHandlerOption()", CommandType.Text);
-                return (ErrorHandlerOption)optInt;
+                var optInt = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<int>("SELECT dbo.GetErrorHandlingOptions()", CommandType.Text);
+                return (ErrorHandlingOptions)optInt;
             }
             finally
             {

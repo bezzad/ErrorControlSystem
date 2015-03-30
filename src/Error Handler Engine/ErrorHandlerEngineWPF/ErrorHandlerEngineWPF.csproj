@@ -74,8 +74,8 @@
     <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\StringCipher.cs">
       <Link>DbConnectionManager\StringCipher.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ErrorHandlerOption.cs">
-      <Link>ExceptionManager\ErrorHandlerOption.cs</Link>
+    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ErrorHandlingOptions.cs">
+      <Link>ExceptionManager\ErrorHandlingOptions.cs</Link>
     </Compile>
     <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ExceptionHandler.cs">
       <Link>ExceptionManager\ExceptionHandler.cs</Link>

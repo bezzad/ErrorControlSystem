@@ -45,7 +45,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         static ExceptionHandler()
         {
-            Filter.ExemptedErrorCodePlaces.Add(new CodePlace(Assembly.GetExecutingAssembly().GetName().Name, null, null));
+            Filter.ExemptedUnhandledExceptionCodePlaces.Add(new CodePlace(Assembly.GetExecutingAssembly().GetName().Name, null, null));
 
             EmbeddedAssembly.Load("System.Data.SqlServerCe.dll");
             EmbeddedAssembly.Load("System.Threading.Tasks.Dataflow.dll");
@@ -66,10 +66,16 @@ namespace ErrorHandlerEngine.ExceptionManager
         public static Error RaiseLog(this Exception exp, ErrorHandlingOptions option = ErrorHandlingOptions.Default, String errorTitle = "UnHandled Exception")
         {
             //
+            // Self exceptions just run in Handled Mode!
+            if (IsSelfException && option.HasFlag(ErrorHandlingOptions.IsHandled))
+            {
+                IsSelfException = false;
+                return null;
+            }
+            //
             // Filter exception
             if (Filter.IsExemptedException(exp, ref option))
                 return null;
-
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);
@@ -108,14 +114,9 @@ namespace ErrorHandlerEngine.ExceptionManager
             public static Dictionary<string, string> AttachExtraData = Error.DicExtraData;
 
             /// <summary>
-            /// List of exempted error code places to do not logs
+            /// List of exempted unhandled errors code places to do not logs
             /// </summary>
-            public static List<CodePlace> ExemptedErrorCodePlaces = new List<CodePlace>();
-
-            /// <summary>
-            /// List of just error from these code places to logs
-            /// </summary>
-            public static List<CodePlace> JustErrorFromTheseCodePlaces = new List<CodePlace>();
+            public static List<CodePlace> ExemptedUnhandledExceptionCodePlaces = new List<CodePlace>();
 
 
             internal static bool IsExemptedException(Exception exp, ref ErrorHandlingOptions opt)
@@ -130,8 +131,7 @@ namespace ErrorHandlerEngine.ExceptionManager
                 //
                 // Is exception in except list?
                 return ExemptedExceptionTypes.Any(x => x == exceptionType) ||
-                    ExemptedErrorCodePlaces.Any(x => x.IsFromThisPlace(exp));
-
+                    ExemptedUnhandledExceptionCodePlaces.Any(x => x.IsFromThisPlace(exp));
             }
         }
     }

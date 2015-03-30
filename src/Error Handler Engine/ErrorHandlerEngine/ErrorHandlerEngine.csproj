@@ -62,7 +62,7 @@
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="Shared\CodeLocation.cs" />
     <Compile Include="Shared\Error.cs" />
-    <Compile Include="ExceptionManager\ErrorHandlerOption.cs" />
+    <Compile Include="ExceptionManager\ErrorHandlingOptions.cs" />
     <Compile Include="Shared\IError.cs" />
     <Compile Include="ExceptionManager\ExceptionHandler.cs" />
     <Compile Include="Shared\ProxyError.cs" />

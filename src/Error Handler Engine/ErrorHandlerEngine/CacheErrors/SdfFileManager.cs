@@ -85,7 +85,7 @@ namespace ErrorHandlerEngine.CacheErrors
         public static void CheckSdf(string filePath)
         {
             ExceptionHandler.IsSelfException = true;
-            
+
             try
             {
                 var testConn = new SqlCeConnection(ConnectionString);
@@ -212,17 +212,18 @@ namespace ErrorHandlerEngine.CacheErrors
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
-                cmd.CommandText = @"UPDATE [ErrorLog]
-                                    SET [DuplicateNo] = [DuplicateNo] + 1,
-                                        [IsHandled] = @isHandled,
-                                        [StackTrace] = @stackTrace
-                                    WHERE ErrorId = @id";
+                cmd.CommandText =
+                    string.Format("UPDATE [ErrorLog] SET [DuplicateNo] = [DuplicateNo] + 1 {0} WHERE ErrorId = @id",
+                        error.IsHandled ? "" : ", [IsHandled] = @isHandled, [StackTrace] = @stackTrace");
 
                 //
                 // Add parameters to command, which will be passed to the stored procedure
                 cmd.Parameters.AddWithValue("@id", error.Id);
-                cmd.Parameters.AddWithValue("@isHandled", error.IsHandled);
-                cmd.Parameters.AddWithValue("@stackTrace", error.StackTrace);
+                if (!error.IsHandled) // Just in Unhandled Exceptions
+                {
+                    cmd.Parameters.AddWithValue("@isHandled", error.IsHandled);
+                    cmd.Parameters.AddWithValue("@stackTrace", error.StackTrace);
+                }
 
                 try
                 {
@@ -387,7 +388,7 @@ namespace ErrorHandlerEngine.CacheErrors
                     cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
 
                     sqlConn.Open();
-                    
+
                     var result = cmd.ExecuteScalar();
 
                     return (result is DBNull) ? null : ((byte[])result).ToImage();

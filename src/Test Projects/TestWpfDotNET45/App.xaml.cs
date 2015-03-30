@@ -1,6 +1,5 @@
 ﻿
 using System.Windows;
-using ErrorHandlerEngine.DbConnectionManager;
 using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestWpfDotNET45
@@ -14,7 +13,7 @@ namespace TestWpfDotNET45
         {
             base.OnStartup(e);
 
-            ExpHandlerEngine.Start(new Connection(".", "UsersManagements"));
+            ExpHandlerEngine.Start(".", "UsersManagements");
         }
     }
 }

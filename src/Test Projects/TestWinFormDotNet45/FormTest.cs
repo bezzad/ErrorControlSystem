@@ -139,15 +139,7 @@ namespace TestWinFormDotNet45
 
         private void btnExemptedMethodException_Click(object sender, EventArgs e)
         {
-            try
-            {
-               new ExpThrower().throwExp();
-                //throw new IOException("Test");
-            }
-            catch (Exception)
-            {
-
-            }
+            new ExpThrower().throwExp();
         }
     }
 
@@ -174,7 +166,6 @@ namespace TestWinFormDotNet45
             MyPublicData3 = "I am Public Property 3";
             MyPublicData4 = "I am Public Property 4";
             MyPublicData5 = "I am Public Property 5";
-
         }
     }
 

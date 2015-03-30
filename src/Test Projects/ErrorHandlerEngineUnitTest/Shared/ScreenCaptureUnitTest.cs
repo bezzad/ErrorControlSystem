@@ -12,11 +12,11 @@ namespace ErrorHandlerEngineUnitTest.Shared
     [TestClass]
     public class ScreenCaptureUnitTest
     {
-        private static string StorageDirPath;
+        //private static string StorageDirPath;
 
         public ScreenCaptureUnitTest()
         {
-            StorageDirPath = "";
+            //StorageDirPath = "";
         }
 
         #region Additional test attributes

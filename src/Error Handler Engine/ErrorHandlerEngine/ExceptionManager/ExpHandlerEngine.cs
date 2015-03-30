@@ -5,11 +5,11 @@ using System.Security.Permissions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CacheErrors;
-using DbConnectionsManager;
-using ServerController;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ServerController;
 
-namespace ExceptionManager
+namespace ErrorHandlerEngine.ExceptionManager
 {
 
     /// <summary>

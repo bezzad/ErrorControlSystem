@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DbConnectionsManager
+namespace ErrorHandlerEngine.DbConnectionManager
 {
     public class ConnectionCollection : IEnumerable<Connection>, IDisposable
     {

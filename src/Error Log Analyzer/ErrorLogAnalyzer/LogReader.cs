@@ -6,11 +6,11 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using CacheErrors;
 using System;
 using System.Windows.Forms;
-using DbConnectionsManager;
-using Shared;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.Shared;
 
 namespace ErrorLogAnalyzer
 {

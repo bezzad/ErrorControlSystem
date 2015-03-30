@@ -2,13 +2,13 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using DbConnectionsManager;
-using ExceptionManager;
-using Shared;
-using Properties;
-using ServerController;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.Properties;
+using ErrorHandlerEngine.ServerController;
+using ErrorHandlerEngine.Shared;
 
-namespace CacheErrors
+namespace ErrorHandlerEngine.CacheErrors
 {
     internal static class CacheController
     {

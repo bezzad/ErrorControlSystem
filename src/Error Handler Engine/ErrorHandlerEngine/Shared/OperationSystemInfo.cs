@@ -1,5 +1,5 @@
 ﻿
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     public class OperationSystemInfo
     {

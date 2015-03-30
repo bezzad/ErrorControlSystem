@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using DbConnectionsManager;
-using ServerController;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ServerController;
 
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     public static class NetworkHelper
     {

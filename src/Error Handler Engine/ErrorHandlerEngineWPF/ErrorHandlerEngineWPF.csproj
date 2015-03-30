@@ -7,7 +7,7 @@
     <ProjectGuid>{732A87F6-4CF3-4160-99D5-78B8B07D93C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorHandlerEngineWPF</RootNamespace>
+    <RootNamespace>ErrorHandlerEngine</RootNamespace>
     <AssemblyName>ErrorHandlerEngineWPF</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

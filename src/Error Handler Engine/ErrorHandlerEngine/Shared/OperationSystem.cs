@@ -2,8 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     /// <summary>
     /// Provides detailed information about the host operating system.

@@ -31,7 +31,8 @@ This is initialize codes of the module by `C# language`:
 
 using System;
 using System.Windows.Forms;
-using ExceptionManager;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestApplication
 {
@@ -46,7 +47,7 @@ namespace TestApplication
             //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExpHandlerEngine.Start(new DbConnectionsManager.Connection("localhost", "UsersManagements"),
+            ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"),
                 ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 
             // Except 'NotImplementedException' from raise log
@@ -71,14 +72,15 @@ This is initialize codes of the module by `VB.NET language`:
  
 ```vb
 
-Imports ExceptionManager
+Imports ErrorHandlerEngine.DbConnectionManager
+Imports ErrorHandlerEngine.ExceptionManager
 
 Module MainModule
     Sub Main()
 
         ' ------------------ Initial Error Handler Engine --------------------------------
 
-        ExpHandlerEngine.Start(New DbConnectionsManager.Connection("localhost", "UsersManagements"),
+        ExpHandlerEngine.Start(New Connection("localhost", "UsersManagements"),
                 ErrorHandlerOption.Default And Not ErrorHandlerOption.ReSizeSnapshots)
 
         'Except 'NotImplementedException' from raise log
@@ -123,7 +125,7 @@ In the initialize code snippet you've seen that, for the `ExpHandlerEngine` meth
 For example in above codes, this code means is:
 ```csharp
 
-ExpHandlerEngine.Start(new DbConnectionsManager.Connection(@"localhost", "UsersManagements"),
+ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
                 ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
 ```
 Select all options by excepted `ReSizeSnapshots`

@@ -1,11 +1,12 @@
-﻿Imports ExceptionManager
+﻿
+Imports ErrorHandlerEngine.DbConnectionManager
+Imports ErrorHandlerEngine.ExceptionManager
 
 Module MainModule
     Sub Main()
 
         ' ------------------ Initial Error Handler Engine --------------------------------
-
-        ExpHandlerEngine.Start(New DbConnectionsManager.Connection("localhost", "UsersManagements"),
+        ExpHandlerEngine.Start(New Connection("localhost", "UsersManagements"),
                 ErrorHandlerOption.Default And Not ErrorHandlerOption.ReSizeSnapshots)
 
         'Except 'NotImplementedException' from raise log
@@ -18,7 +19,7 @@ Module MainModule
         ExceptionHandler.AttachExtraData.Add("TestVBwinFormDotNet45 v2.1.1.0", "beta version")
 
         ' ---------------------------------------------------------------------------------
-        
+
         Application.Run(New Form1())
     End Sub
 End Module

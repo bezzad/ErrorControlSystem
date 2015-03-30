@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using ErrorHandlerEngine.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shared;
 
 namespace ErrorHandlerEngineUnitTest.Shared
 {
@@ -45,7 +45,7 @@ namespace ErrorHandlerEngineUnitTest.Shared
         [TestCategory("ScreenCapture.cs")]
         public void TestTakeScreenCaptureAndDelete()
         {
-            Image img = ScreenCapture.Capture();
+            var img = ScreenCapture.Capture();
             if (img != null)
             {
                 img.ResizeImage(800, 600).Save(StorageDirPath + "\\test800.png");

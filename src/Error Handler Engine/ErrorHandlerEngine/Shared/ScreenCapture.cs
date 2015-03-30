@@ -1,13 +1,11 @@
-﻿
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     /// <summary>
     /// Provides functions to capture the entire screen, or a particular window.

@@ -3,12 +3,12 @@ using System.Diagnostics;
 using System.Runtime.ExceptionServices;
 using System.Security.Permissions;
 using System.Threading.Tasks;
-using CacheErrors;
-using DbConnectionsManager;
-using ServerController;
 using System.Windows;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ServerController;
 
-namespace ExceptionManager
+namespace ErrorHandlerEngine.ExceptionManager
 {
 
     /// <summary>

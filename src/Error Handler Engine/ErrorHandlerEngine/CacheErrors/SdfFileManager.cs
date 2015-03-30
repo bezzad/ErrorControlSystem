@@ -6,10 +6,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ExceptionManager;
-using Shared;
+using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.Shared;
 
-namespace CacheErrors
+namespace ErrorHandlerEngine.CacheErrors
 {
     public static class SdfFileManager
     {

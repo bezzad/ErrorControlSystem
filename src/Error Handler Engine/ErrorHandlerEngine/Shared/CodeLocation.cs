@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     [Serializable]
     [System.Runtime.InteropServices.ComVisible(true)]

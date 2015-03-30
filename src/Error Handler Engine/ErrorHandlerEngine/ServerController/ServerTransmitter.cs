@@ -6,12 +6,12 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using CacheErrors;
-using DbConnectionsManager;
-using ExceptionManager;
-using Shared;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.Shared;
 
-namespace ServerController
+namespace ErrorHandlerEngine.ServerController
 {
     public static class ServerTransmitter
     {

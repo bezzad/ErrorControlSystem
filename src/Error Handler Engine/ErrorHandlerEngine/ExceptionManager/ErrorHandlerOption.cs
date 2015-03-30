@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ExceptionManager
+namespace ErrorHandlerEngine.ExceptionManager
 {
 
     /// <summary>

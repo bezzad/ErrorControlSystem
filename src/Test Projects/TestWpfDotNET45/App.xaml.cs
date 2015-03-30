@@ -1,7 +1,7 @@
 ﻿
 using System.Windows;
-using DbConnectionsManager;
-using ExceptionManager;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestWpfDotNET45
 {

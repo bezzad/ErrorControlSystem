@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime;
 using System.Text.RegularExpressions;
 
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     public class CurrentProcesses : IList<String>, ICloneable
     {

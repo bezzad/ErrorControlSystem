@@ -23,10 +23,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using CacheErrors;
-using Shared;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.Resources;
+using ErrorHandlerEngine.Shared;
 
-namespace ExceptionManager
+namespace ErrorHandlerEngine.ExceptionManager
 {
     /// <summary>
     /// Additional Data attached to exception object.

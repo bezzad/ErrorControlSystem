@@ -1,126 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 
-/// <summary>
-/// A class for loading Embedded Assembly
-/// </summary>
-public static class EmbeddedAssembly
+namespace ErrorHandlerEngine.Resources
 {
-    // Version 1.3
-
-    static Dictionary<string, Assembly> dic = null;
-
     /// <summary>
-    /// Load Assembly, DLL from Embedded Resources into memory.
+    /// A class for loading Embedded Assembly
     /// </summary>
-    /// <param name="embeddedResource">File Name. Example: SomeTools.dll</param>
-    public static void Load(string embeddedResource)
+    public static class EmbeddedAssembly
     {
-        if (dic == null) dic = new Dictionary<string, Assembly>();
+        // Version 1.3
 
-        Assembly curAsm = Assembly.GetExecutingAssembly();
-        string embeddedResourceFullName =
-            curAsm.GetManifestResourceNames().First(res => res.EndsWith(embeddedResource, StringComparison.OrdinalIgnoreCase));
-        byte[] ba = null;
-        Assembly asm = null;
+        static Dictionary<string, Assembly> dic = null;
 
-        using (Stream stm = curAsm.GetManifestResourceStream(embeddedResourceFullName))
+        /// <summary>
+        /// Load Assembly, DLL from Embedded Resources into memory.
+        /// </summary>
+        /// <param name="embeddedResource">File Name. Example: SomeTools.dll</param>
+        public static void Load(string embeddedResource)
         {
-            // Either the file is not existed or it is not mark as embedded resource
-            if (stm == null)
-                throw new Exception(embeddedResourceFullName + " is not found in Embedded Resources.");
+            if (dic == null) dic = new Dictionary<string, Assembly>();
 
-            // Get byte[] from the file from embedded resource
-            ba = new byte[(int)stm.Length];
-            stm.Read(ba, 0, (int)stm.Length);
-            try
+            Assembly curAsm = Assembly.GetExecutingAssembly();
+            string embeddedResourceFullName =
+                curAsm.GetManifestResourceNames().First(res => res.EndsWith(embeddedResource, StringComparison.OrdinalIgnoreCase));
+            byte[] ba = null;
+            Assembly asm = null;
+
+            using (Stream stm = curAsm.GetManifestResourceStream(embeddedResourceFullName))
             {
-                asm = Assembly.Load(ba);
+                // Either the file is not existed or it is not mark as embedded resource
+                if (stm == null)
+                    throw new Exception(embeddedResourceFullName + " is not found in Embedded Resources.");
 
-                // Add the assembly/dll into dictionary
-                dic.Add(asm.FullName, asm);
-                return;
-            }
-            catch
-            {
-                // Purposely do nothing
-                // Unmanaged dll or assembly cannot be loaded directly from byte[]
-                // Let the process fall through for next part
-            }
-        }
-
-        bool fileOk = false;
-        string tempFile = "";
-
-        using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
-        {
-            // Get the hash value from embedded DLL/assembly
-            string fileHash = BitConverter.ToString(sha1.ComputeHash(ba)).Replace("-", string.Empty);
-
-            // Define the temporary storage location of the DLL/assembly
-            tempFile = Path.GetTempPath() + embeddedResource;
-
-            // Determines whether the DLL/assembly is existed or not
-            if (File.Exists(tempFile))
-            {
-                // Get the hash value of the existed file
-                byte[] bb = File.ReadAllBytes(tempFile);
-                string fileHash2 = BitConverter.ToString(sha1.ComputeHash(bb)).Replace("-", string.Empty);
-
-                // Compare the existed DLL/assembly with the Embedded DLL/assembly
-                if (fileHash == fileHash2)
+                // Get byte[] from the file from embedded resource
+                ba = new byte[(int)stm.Length];
+                stm.Read(ba, 0, (int)stm.Length);
+                try
                 {
-                    // Same file
-                    fileOk = true;
+                    asm = Assembly.Load(ba);
+
+                    // Add the assembly/dll into dictionary
+                    dic.Add(asm.FullName, asm);
+                    return;
+                }
+                catch
+                {
+                    // Purposely do nothing
+                    // Unmanaged dll or assembly cannot be loaded directly from byte[]
+                    // Let the process fall through for next part
+                }
+            }
+
+            bool fileOk = false;
+            string tempFile = "";
+
+            using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
+            {
+                // Get the hash value from embedded DLL/assembly
+                string fileHash = BitConverter.ToString(sha1.ComputeHash(ba)).Replace("-", string.Empty);
+
+                // Define the temporary storage location of the DLL/assembly
+                tempFile = Path.GetTempPath() + embeddedResource;
+
+                // Determines whether the DLL/assembly is existed or not
+                if (File.Exists(tempFile))
+                {
+                    // Get the hash value of the existed file
+                    byte[] bb = File.ReadAllBytes(tempFile);
+                    string fileHash2 = BitConverter.ToString(sha1.ComputeHash(bb)).Replace("-", string.Empty);
+
+                    // Compare the existed DLL/assembly with the Embedded DLL/assembly
+                    if (fileHash == fileHash2)
+                    {
+                        // Same file
+                        fileOk = true;
+                    }
+                    else
+                    {
+                        // Not same
+                        fileOk = false;
+                    }
                 }
                 else
                 {
-                    // Not same
+                    // The DLL/assembly is not existed yet
                     fileOk = false;
                 }
             }
-            else
+
+            // Create the file on disk
+            if (!fileOk)
             {
-                // The DLL/assembly is not existed yet
-                fileOk = false;
+                System.IO.File.WriteAllBytes(tempFile, ba);
             }
+
+            // Load it into memory
+            asm = Assembly.LoadFile(tempFile);
+
+            // Add the loaded DLL/assembly into dictionary
+            dic.Add(asm.FullName, asm);
         }
 
-        // Create the file on disk
-        if (!fileOk)
+        /// <summary>
+        /// Retrieve specific loaded DLL/assembly from memory
+        /// </summary>
+        /// <param name="assemblyFullName"></param>
+        /// <returns></returns>
+        public static Assembly Get(string assemblyFullName)
         {
-            System.IO.File.WriteAllBytes(tempFile, ba);
-        }
+            if (dic == null || dic.Count == 0)
+                return null;
 
-        // Load it into memory
-        asm = Assembly.LoadFile(tempFile);
+            if (dic.ContainsKey(assemblyFullName))
+                return dic[assemblyFullName];
 
-        // Add the loaded DLL/assembly into dictionary
-        dic.Add(asm.FullName, asm);
-    }
-
-    /// <summary>
-    /// Retrieve specific loaded DLL/assembly from memory
-    /// </summary>
-    /// <param name="assemblyFullName"></param>
-    /// <returns></returns>
-    public static Assembly Get(string assemblyFullName)
-    {
-        if (dic == null || dic.Count == 0)
             return null;
 
-        if (dic.ContainsKey(assemblyFullName))
-            return dic[assemblyFullName];
-
-        return null;
-
-        // Don't throw Exception if the dictionary does not contain the requested assembly.
-        // This is because the event of AssemblyResolve will be raised for every
-        // Embedded Resources (such as pictures) of the projects.
-        // Those resources wil not be loaded by this class and will not exist in dictionary.
+            // Don't throw Exception if the dictionary does not contain the requested assembly.
+            // This is because the event of AssemblyResolve will be raised for every
+            // Embedded Resources (such as pictures) of the projects.
+            // Those resources wil not be loaded by this class and will not exist in dictionary.
+        }
     }
 }

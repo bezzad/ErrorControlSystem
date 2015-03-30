@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using CacheErrors;
-using DbConnectionsManager;
-using ExceptionManager;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.ExceptionManager;
 
-namespace Shared
+namespace ErrorHandlerEngine.Shared
 {
     public class Error : IError, IDisposable, ICloneable, IEquatable<Error>
     {

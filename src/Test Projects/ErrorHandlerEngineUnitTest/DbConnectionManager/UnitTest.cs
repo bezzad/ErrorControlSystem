@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using DbConnectionsManager;
+using ErrorHandlerEngine.DbConnectionManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ErrorHandlerEngineUnitTest.DbConnectionManager

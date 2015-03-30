@@ -75,6 +75,21 @@ namespace ErrorHandlerEngine.ExceptionManager
             await CacheController.CheckStateAsync();
         }
 
+        public static void Start(string server, string database, string username, string pass,
+           ErrorHandlerOption option = ErrorHandlerOption.Default)
+        {
+            var conn = new Connection(server, database, username, pass);
+
+            Start(conn, option);
+        }
+
+        public static void Start(string server, string database,
+            ErrorHandlerOption option = ErrorHandlerOption.Default)
+        {
+            var conn = new Connection(server, database);
+
+            Start(conn, option);
+        }
 
         /// <summary>
         /// This is new to .Net 4 and is extremely useful for ensuring that you ALWAYS log SOMETHING.

@@ -46,7 +46,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             // Catch all unhandled exceptions.
             System.Windows.Forms.Application.ThreadException += ThreadExceptionHandler;
-            
+
             ExceptionHandler.IsSelfException = false;
         }
 
@@ -76,6 +76,23 @@ namespace ErrorHandlerEngine.ExceptionManager
                 _option = publicSetting;
 
             await CacheController.CheckStateAsync();
+        }
+
+
+        public static void Start(string server, string database, string username, string pass,
+            ErrorHandlerOption option = ErrorHandlerOption.Default)
+        {
+            var conn = new Connection(server, database, username, pass);
+
+            Start(conn, option);
+        }
+
+        public static void Start(string server, string database,
+            ErrorHandlerOption option = ErrorHandlerOption.Default)
+        {
+            var conn = new Connection(server, database);
+
+            Start(conn, option);
         }
 
 

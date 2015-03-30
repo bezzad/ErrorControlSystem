@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine.DbConnectionManager;
 using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestWinFormDotNet45
@@ -19,8 +18,12 @@ namespace TestWinFormDotNet45
             //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
-                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+            ExpHandlerEngine.Start(new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
+                   ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+            //
+            // Or this new version(3.0.0.59 or later) model:
+            // ExpHandlerEngine.Start("localhost", "UsersManagements");
+            //
 
             // Except 'NotImplementedException' from raise log
             ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));

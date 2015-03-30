@@ -25,7 +25,7 @@ namespace ErrorLogAnalyzer
 
             OnStartupAction = OnStartup;
 
-            _timer = new Timer { Interval = 1000 };
+            _timer = new Timer { Interval = 2000 };
             _timer.Tick += _timer_Tick;
 
 

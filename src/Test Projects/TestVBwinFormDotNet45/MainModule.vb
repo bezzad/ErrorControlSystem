@@ -1,13 +1,10 @@
-﻿
-Imports ErrorHandlerEngine.DbConnectionManager
-Imports ErrorHandlerEngine.ExceptionManager
+﻿Imports ErrorHandlerEngine.ExceptionManager
 
 Module MainModule
     Sub Main()
 
         ' ------------------ Initial Error Handler Engine --------------------------------
-        ExpHandlerEngine.Start(New Connection("localhost", "UsersManagements"),
-                ErrorHandlerOption.Default And Not ErrorHandlerOption.ReSizeSnapshots)
+        ExpHandlerEngine.Start("localhost", "UsersManagements")
 
         'Except 'NotImplementedException' from raise log
         ExceptionHandler.ExceptedExceptionTypes.Add(GetType(NotImplementedException))

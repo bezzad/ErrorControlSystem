@@ -31,7 +31,6 @@ This is initialize codes of the module by `C# language`:
 
 using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine.DbConnectionManager;
 using ErrorHandlerEngine.ExceptionManager;
 
 namespace TestApplication
@@ -44,11 +43,15 @@ namespace TestApplication
 			Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //
+           //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExpHandlerEngine.Start(new Connection("localhost", "UsersManagements"),
-                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+            ExpHandlerEngine.Start(new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
+                   ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+            //
+            // Or this new version(3.0.0.59 or later) model:
+            // ExpHandlerEngine.Start("localhost", "UsersManagements");
+            //
 
             // Except 'NotImplementedException' from raise log
             ExceptionHandler.ExceptedExceptionTypes.Add(typeof(NotImplementedException));
@@ -72,25 +75,14 @@ This is initialize codes of the module by `VB.NET language`:
  
 ```vb
 
-Imports ErrorHandlerEngine.DbConnectionManager
 Imports ErrorHandlerEngine.ExceptionManager
 
 Module MainModule
     Sub Main()
 
         ' ------------------ Initial Error Handler Engine --------------------------------
-
-        ExpHandlerEngine.Start(New Connection("localhost", "UsersManagements"),
-                ErrorHandlerOption.Default And Not ErrorHandlerOption.ReSizeSnapshots)
-
-        'Except 'NotImplementedException' from raise log
-        ExceptionHandler.ExceptedExceptionTypes.Add(GetType(NotImplementedException))
-
-        'Filter 'Exception' type from Snapshot capturing 
-        ExceptionHandler.NonSnapshotExceptionTypes.Add(GetType(FormatException))
-
-        'Add extra data for labeling exceptions
-        ExceptionHandler.AttachExtraData.Add("TestVBwinFormDotNet45 v2.1.1.0", "beta version")
+		
+		ExpHandlerEngine.Start("localhost", "UsersManagements")
 
         ' ---------------------------------------------------------------------------------
         

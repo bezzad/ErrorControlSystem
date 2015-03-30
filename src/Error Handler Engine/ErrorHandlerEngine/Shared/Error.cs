@@ -8,7 +8,7 @@ using CacheErrors;
 using DbConnectionsManager;
 using ExceptionManager;
 
-namespace ModelObjecting
+namespace Shared
 {
     public class Error : IError, IDisposable, ICloneable, IEquatable<Error>
     {
@@ -60,9 +60,10 @@ namespace ModelObjecting
             // First initialize Snapshot of Error, because that's speed is important!
             if (!SdfFileManager.Contains(Id) && option.HasFlag(ErrorHandlerOption.Snapshot))
             {
-                Snapshot = option.HasFlag(ErrorHandlerOption.ReSizeSnapshots)
-                        ? ScreenCapture.Capture().ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height)
-                        : ScreenCapture.Capture();
+                Snapshot = ScreenCapture.Capture();
+
+                if (Snapshot != null && option.HasFlag(ErrorHandlerOption.ReSizeSnapshots))
+                    Snapshot.ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height);
             }
 
             #endregion

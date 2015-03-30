@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.Serialization;
 using CacheErrors;
 
-namespace ModelObjecting
+namespace Shared
 {
     [Serializable]
     public class ProxyError : IError, IDisposable, ICloneable, IEquatable<ProxyError>, ISerializable, IEqualityComparer<ProxyError>

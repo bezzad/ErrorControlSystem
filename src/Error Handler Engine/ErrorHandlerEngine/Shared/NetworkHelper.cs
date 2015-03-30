@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 using DbConnectionsManager;
 using ServerController;
 
-namespace ModelObjecting
+namespace Shared
 {
     public static class NetworkHelper
     {

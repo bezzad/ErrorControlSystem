@@ -1,5 +1,5 @@
 ﻿
-namespace ModelObjecting
+namespace Shared
 {
     public class OperationSystemInfo
     {

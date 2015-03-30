@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ModelObjecting
+namespace Shared
 {
     public interface IError
     {

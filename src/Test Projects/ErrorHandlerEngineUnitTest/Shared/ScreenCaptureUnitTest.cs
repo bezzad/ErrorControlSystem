@@ -1,10 +1,10 @@
-﻿using System;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ModelObjecting;
+using Shared;
 
-namespace ErrorHandlerEngineUnitTest.ModelObjecting
+namespace ErrorHandlerEngineUnitTest.Shared
 {
     /// <summary>
     /// Summary description for ScreenCaptureUnitTest
@@ -16,18 +16,6 @@ namespace ErrorHandlerEngineUnitTest.ModelObjecting
 
         public ScreenCaptureUnitTest()
         {
-            //// LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
-            //var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-
-            //// Application Name and Major Version 
-            //var appNameVer = "TestErrorHandlerEngine v1";
-
-            //// Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
-            //StorageDirPath = Path.Combine(appDataDir, appNameVer);
-
-            //if (!Directory.Exists(StorageDirPath))
-            //    Directory.CreateDirectory(StorageDirPath);
-
             StorageDirPath = "";
         }
 
@@ -57,61 +45,105 @@ namespace ErrorHandlerEngineUnitTest.ModelObjecting
         [TestCategory("ScreenCapture.cs")]
         public void TestTakeScreenCaptureAndDelete()
         {
-            ScreenCapture.Capture().ResizeImage(800, 600).Save(StorageDirPath + "\\test800.png");
-            Assert.IsTrue(File.Exists(StorageDirPath + "\\test800.png"));
-
+            Image img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.ResizeImage(800, 600).Save(StorageDirPath + "\\test800.png");
+                Assert.IsTrue(File.Exists(StorageDirPath + "\\test800.png"));
+            }
             //
             // JPEG
             //
-            ScreenCapture.Capture().Save(StorageDirPath + "test.jpg", ImageFormat.Jpeg);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.jpg"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.jpg", ImageFormat.Jpeg);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.jpg"));
+            }
             //
             // PNG
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.png", ImageFormat.Png);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.png"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.png", ImageFormat.Png);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.png"));
+            }
             //
             // GIF
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.gif", ImageFormat.Gif);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.gif"));
-            File.Delete(StorageDirPath + "test.gif");
-            Assert.IsFalse(File.Exists(StorageDirPath + "test.gif"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.gif", ImageFormat.Gif);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.gif"));
+                File.Delete(StorageDirPath + "test.gif");
+                Assert.IsFalse(File.Exists(StorageDirPath + "test.gif"));
+            }
             //
             // BMP
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.bmp", ImageFormat.Bmp);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.bmp"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.bmp", ImageFormat.Bmp);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.bmp"));
+            }
             //
             // EMF
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.emf", ImageFormat.Emf);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.emf"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.emf", ImageFormat.Emf);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.emf"));
+            }
             //
             // EXIF
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.exif", ImageFormat.Exif);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.exif"));
+            
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.exif", ImageFormat.Exif);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.exif"));
+            }
             //
             // ICON
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.ico", ImageFormat.Icon);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.ico"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.ico", ImageFormat.Icon);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.ico"));
+            }
             //
             // Memory BMP
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "MemoryBmp.bmp", ImageFormat.MemoryBmp);
-            Assert.IsTrue(File.Exists(StorageDirPath + "MemoryBmp.bmp"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "MemoryBmp.bmp", ImageFormat.MemoryBmp);
+                Assert.IsTrue(File.Exists(StorageDirPath + "MemoryBmp.bmp"));
+            }
             //
             // Tiff
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.Tiff", ImageFormat.Tiff);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.Tiff"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.Tiff", ImageFormat.Tiff);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.Tiff"));
+            }
             //
             // WMF
             // 
-            ScreenCapture.Capture().Save(StorageDirPath + "test.wmf", ImageFormat.Wmf);
-            Assert.IsTrue(File.Exists(StorageDirPath + "test.wmf"));
+            img = ScreenCapture.Capture();
+            if (img != null)
+            {
+                img.Save(StorageDirPath + "test.wmf", ImageFormat.Wmf);
+                Assert.IsTrue(File.Exists(StorageDirPath + "test.wmf"));
+            }
         }
 
         // Use ClassCleanup to run code after all tests in a class have run

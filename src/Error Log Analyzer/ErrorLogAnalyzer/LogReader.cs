@@ -10,7 +10,7 @@ using CacheErrors;
 using System;
 using System.Windows.Forms;
 using DbConnectionsManager;
-using ModelObjecting;
+using Shared;
 
 namespace ErrorLogAnalyzer
 {

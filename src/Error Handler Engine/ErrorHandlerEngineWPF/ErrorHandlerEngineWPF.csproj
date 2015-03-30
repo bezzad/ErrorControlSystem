@@ -80,36 +80,6 @@
     <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ExceptionHandler.cs">
       <Link>ExceptionManager\ExceptionHandler.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\CodeLocation.cs">
-      <Link>ModelObjecting\CodeLocation.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\CurrentProcesses.cs">
-      <Link>ModelObjecting\CurrentProcesses.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\DiskHelper.cs">
-      <Link>ModelObjecting\DiskHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\Error.cs">
-      <Link>ModelObjecting\Error.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\IError.cs">
-      <Link>ModelObjecting\IError.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\NetworkHelper.cs">
-      <Link>ModelObjecting\NetworkHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\OperationSystem.cs">
-      <Link>ModelObjecting\OperationSystem.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\OperationSystemInfo.cs">
-      <Link>ModelObjecting\OperationSystemInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\ProxyError.cs">
-      <Link>ModelObjecting\ProxyError.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ModelObjecting\ScreenCapture.cs">
-      <Link>ModelObjecting\ScreenCapture.cs</Link>
-    </Compile>
     <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -118,6 +88,36 @@
     </Compile>
     <Compile Include="..\ErrorHandlerEngine\ServerController\ServerTransmitter.cs">
       <Link>ServerController\ServerTransmitter.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\CodeLocation.cs">
+      <Link>Shared\CodeLocation.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\CurrentProcesses.cs">
+      <Link>Shared\CurrentProcesses.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\DiskHelper.cs">
+      <Link>Shared\DiskHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\Error.cs">
+      <Link>Shared\Error.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\IError.cs">
+      <Link>Shared\IError.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\NetworkHelper.cs">
+      <Link>Shared\NetworkHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\OperationSystem.cs">
+      <Link>Shared\OperationSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\OperationSystemInfo.cs">
+      <Link>Shared\OperationSystemInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\ProxyError.cs">
+      <Link>Shared\ProxyError.cs</Link>
+    </Compile>
+    <Compile Include="..\ErrorHandlerEngine\Shared\ScreenCapture.cs">
+      <Link>Shared\ScreenCapture.cs</Link>
     </Compile>
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

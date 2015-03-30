@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="DbConnectionManager\TestTools.cs" />
     <Compile Include="DbConnectionManager\UnitTest.cs" />
-    <Compile Include="ModelObjecting\ScreenCaptureUnitTest.cs" />
+    <Compile Include="Shared\ScreenCaptureUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

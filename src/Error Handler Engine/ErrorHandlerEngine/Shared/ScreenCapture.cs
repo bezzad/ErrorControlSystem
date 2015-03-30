@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 
-namespace ModelObjecting
+namespace Shared
 {
     /// <summary>
     /// Provides functions to capture the entire screen, or a particular window.
@@ -33,6 +33,9 @@ namespace ModelObjecting
             var screenShotBmp = new Bitmap(AllScreenSize.Width, AllScreenSize.Height, PixelFormat.Format32bppArgb);
             using (var screenShotGraphics = Graphics.FromImage(screenShotBmp))
             {
+                if (AllScreenSize == Rectangle.Empty || AllScreenSize.Width <= 200 || AllScreenSize.Height <= 200)
+                    return null;
+
                 screenShotGraphics.CopyFromScreen(AllScreenSize.X, AllScreenSize.Y,
                     0, 0, AllScreenSize.Size, CopyPixelOperation.SourceCopy);
 
@@ -92,6 +95,8 @@ namespace ModelObjecting
         /// <returns></returns>
         public static Image ResizeImage(this Image image, int desWidth, int desHeight)
         {
+            if (image == null) return null;
+
             int w, h;
 
             if (image.Height > image.Width)

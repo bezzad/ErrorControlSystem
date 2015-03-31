@@ -59,7 +59,6 @@ namespace ErrorHandlerEngine.CacheErrors
             try
             {
                 AreErrorsInSendState = true;
-                ExceptionHandler.IsSelfException = true;
 
                 // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
                 // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\AppName vAppVersion
@@ -79,7 +78,6 @@ namespace ErrorHandlerEngine.CacheErrors
             }
             finally
             {
-                ExceptionHandler.IsSelfException = false;
                 AreErrorsInSendState = false;
             }
         }

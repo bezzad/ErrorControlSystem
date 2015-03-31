@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Security.Permissions;
 using System.Threading;
@@ -29,7 +30,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         static ExpHandlerEngine()
         {
-            ExceptionHandler.IsSelfException = true;
+            if (!ExceptionHandler.AssembelyLoaded)
+                ExceptionHandler.LoadAssemblies();
 
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
@@ -46,8 +48,6 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             // Catch all unhandled exceptions.
             System.Windows.Forms.Application.ThreadException += ThreadExceptionHandler;
-
-            ExceptionHandler.IsSelfException = false;
         }
 
         #endregion

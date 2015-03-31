@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Security.Permissions;
 using System.Threading.Tasks;
@@ -28,7 +29,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         static ExpHandlerEngine()
         {
-            ExceptionHandler.IsSelfException = true;
+            if (!ExceptionHandler.AssembelyLoaded)
+                ExceptionHandler.LoadAssemblies();
 
             Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
@@ -43,8 +45,6 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             // Catch all WPF unhandled exceptions.
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
-
-            ExceptionHandler.IsSelfException = false;
         }
 
         #endregion

@@ -9,6 +9,7 @@ using System.Threading.Tasks.Dataflow;
 using ErrorHandlerEngine.CacheErrors;
 using ErrorHandlerEngine.DbConnectionManager;
 using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine.Resources;
 using ErrorHandlerEngine.Shared;
 
 namespace ErrorHandlerEngine.ServerController
@@ -26,7 +27,7 @@ namespace ErrorHandlerEngine.ServerController
         #endregion
 
         #region Constructor
-        
+
         public static async Task InitialTransmitterAsync()
         {
         CheckDatabase:
@@ -98,12 +99,11 @@ namespace ErrorHandlerEngine.ServerController
                 // Set the command object so it knows to execute a stored procedure
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = GetFromResources("DatabaseCreatorQuery.sql").Replace("#DatabaseName", databaseName);
+                cmd.CommandText = EmbeddedAssembly.GetFromResources("DatabaseCreatorQuery.sql").Replace("#DatabaseName", databaseName);
                 //
                 // execute the command
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
                     await sqlConn.OpenAsync();
 
                     await cmd.ExecuteNonQueryAsync();
@@ -111,7 +111,6 @@ namespace ErrorHandlerEngine.ServerController
                 finally
                 {
                     sqlConn.Close();
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -127,12 +126,11 @@ namespace ErrorHandlerEngine.ServerController
                 // Set the command object so it knows to execute a stored procedure
                 cmd.CommandType = CommandType.Text;
 
-                cmd.CommandText = GetFromResources("TablesAndSPsCreatorQuery.sql");
+                cmd.CommandText = EmbeddedAssembly.GetFromResources("TablesAndSPsCreatorQuery.sql");
                 //
                 // execute the command
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
                     await conn.OpenAsync();
 
                     await cmd.ExecuteNonQueryAsync();
@@ -140,7 +138,6 @@ namespace ErrorHandlerEngine.ServerController
                 finally
                 {
                     conn.Close();
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -184,15 +181,8 @@ namespace ErrorHandlerEngine.ServerController
                 cmd.Parameters.AddWithValue("@Data", error.Data);
                 //
                 // execute the command
-                try
-                {
-                    ExceptionHandler.IsSelfException = true;
-                    await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
-                }
-                finally
-                {
-                    ExceptionHandler.IsSelfException = false;
-                }
+
+                await ConnectionManager.GetDefaultConnection().ExecuteNonQueryAsync(cmd);
             }
         }
 
@@ -200,64 +190,25 @@ namespace ErrorHandlerEngine.ServerController
         {
             //
             // execute the command
-            try
-            {
-                ExceptionHandler.IsSelfException = true;
-                return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
-            }
-            finally
-            {
-                ExceptionHandler.IsSelfException = false;
-            }
+            return ConnectionManager.GetDefaultConnection().ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text);
         }
 
         public static async Task<DateTime> FetchServerDataTimeAsync()
         {
             //
             // execute the command
-            try
-            {
-                ExceptionHandler.IsSelfException = true;
-                return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
-            }
-            finally
-            {
-                ExceptionHandler.IsSelfException = false;
-            }
+            return await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text);
         }
 
         public static async Task<ErrorHandlingOptions> GetErrorHandlingOptionsAsync()
         {
             //
             // execute the command
-            try
-            {
-                ExceptionHandler.IsSelfException = true;
-                var optInt = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<int>("SELECT dbo.GetErrorHandlingOptions()", CommandType.Text);
-                return (ErrorHandlingOptions)optInt;
-            }
-            finally
-            {
-                ExceptionHandler.IsSelfException = false;
-            }
+            var optInt = await ConnectionManager.GetDefaultConnection().ExecuteScalarAsync<int>("SELECT dbo.GetErrorHandlingOptions()", CommandType.Text);
+            return (ErrorHandlingOptions)optInt;
         }
 
-        internal static string GetFromResources(string resourceName)
-        {
-            var asm = Assembly.GetExecutingAssembly();
-
-            var resource = asm.GetManifestResourceNames().First(res => res.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase));
-
-            using (var stream = asm.GetManifestResourceStream(resource))
-            {
-                if (stream == null) return string.Empty;
-
-                using (var reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
-        }
+        
 
         #endregion
     }

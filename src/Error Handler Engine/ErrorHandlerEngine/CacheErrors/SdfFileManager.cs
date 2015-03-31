@@ -65,8 +65,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = createErrorLogTable;
 
                     await sqlCon.OpenAsync();
@@ -76,16 +74,12 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlCon.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
 
         public static void CheckSdf(string filePath)
         {
-            ExceptionHandler.IsSelfException = true;
-
             try
             {
                 var testConn = new SqlCeConnection(ConnectionString);
@@ -98,10 +92,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 // fix the SDF file
                 File.Delete(filePath);
                 CreateSdfAsync(filePath).GetAwaiter().GetResult();
-            }
-            finally
-            {
-                ExceptionHandler.IsSelfException = false;
             }
         }
 
@@ -195,14 +185,12 @@ namespace ErrorHandlerEngine.CacheErrors
 
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
                     await sqlConn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
                     sqlConn.Close();
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -227,16 +215,12 @@ namespace ErrorHandlerEngine.CacheErrors
 
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     await sqlConn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                 }
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -256,8 +240,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = string.Format("Select * From ErrorLog Where ErrorId = {0}", id);
 
                     await sqlConn.OpenAsync();
@@ -267,8 +249,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -280,8 +260,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog Where ErrorId = {0}", id);
 
                     sqlConn.Open();
@@ -291,8 +269,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -329,8 +305,6 @@ namespace ErrorHandlerEngine.CacheErrors
                                                             ,[DuplicateNo]
                                                             ,[Data]
                                                         FROM ErrorLog");
-
-                    ExceptionHandler.IsSelfException = true;
 
                     sqlConn.Open();
 
@@ -370,8 +344,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -383,8 +355,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = string.Format("Select [ScreenCapture] From ErrorLog Where ErrorId = {0}", id);
 
                     sqlConn.Open();
@@ -396,8 +366,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = true;
                 }
             }
         }
@@ -409,8 +377,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = string.Format("Delete From ErrorLog Where ErrorId = {0}", id);
 
                     await sqlConn.OpenAsync();
@@ -420,8 +386,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -433,8 +397,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog");
 
                     await sqlConn.OpenAsync();
@@ -444,8 +406,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }
@@ -457,8 +417,6 @@ namespace ErrorHandlerEngine.CacheErrors
             {
                 try
                 {
-                    ExceptionHandler.IsSelfException = true;
-
                     cmd.CommandText = string.Format("SELECT ABS(DATEDIFF(HH, Min([ErrorDateTime]), GETDATE())) FROM ErrorLog");
 
                     await sqlConn.OpenAsync();
@@ -468,8 +426,6 @@ namespace ErrorHandlerEngine.CacheErrors
                 finally
                 {
                     sqlConn.Close();
-
-                    ExceptionHandler.IsSelfException = false;
                 }
             }
         }

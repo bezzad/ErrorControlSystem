@@ -61,7 +61,7 @@ namespace ErrorHandlerEngine.Resources
             using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
             {
                 // Get the hash value from embedded DLL/assembly
-                string fileHash = BitConverter.ToString(sha1.ComputeHash(ba)).Replace("-", string.Empty);
+                string fileHash = BitConverter.ToString(sha1.ComputeHash(ba)).Replace("-", String.Empty);
 
                 // Define the temporary storage location of the DLL/assembly
                 tempFile = Path.GetTempPath() + embeddedResource;
@@ -71,7 +71,7 @@ namespace ErrorHandlerEngine.Resources
                 {
                     // Get the hash value of the existed file
                     byte[] bb = File.ReadAllBytes(tempFile);
-                    string fileHash2 = BitConverter.ToString(sha1.ComputeHash(bb)).Replace("-", string.Empty);
+                    string fileHash2 = BitConverter.ToString(sha1.ComputeHash(bb)).Replace("-", String.Empty);
 
                     // Compare the existed DLL/assembly with the Embedded DLL/assembly
                     if (fileHash == fileHash2)
@@ -95,7 +95,7 @@ namespace ErrorHandlerEngine.Resources
             // Create the file on disk
             if (!fileOk)
             {
-                System.IO.File.WriteAllBytes(tempFile, ba);
+                File.WriteAllBytes(tempFile, ba);
             }
 
             // Load it into memory
@@ -124,6 +124,23 @@ namespace ErrorHandlerEngine.Resources
             // This is because the event of AssemblyResolve will be raised for every
             // Embedded Resources (such as pictures) of the projects.
             // Those resources wil not be loaded by this class and will not exist in dictionary.
+        }
+
+        internal static string GetFromResources(string resourceName)
+        {
+            var asm = Assembly.GetExecutingAssembly();
+
+            var resource = asm.GetManifestResourceNames().First(res => res.EndsWith(resourceName, StringComparison.OrdinalIgnoreCase));
+
+            using (var stream = asm.GetManifestResourceStream(resource))
+            {
+                if (stream == null) return String.Empty;
+
+                using (var reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
         }
     }
 }

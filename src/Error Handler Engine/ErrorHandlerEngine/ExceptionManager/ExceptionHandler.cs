@@ -37,24 +37,32 @@ namespace ErrorHandlerEngine.ExceptionManager
     public static class ExceptionHandler
     {
         #region Properties
-
-        internal static volatile bool IsSelfException = false;
-
+        internal static bool AssembelyLoaded { get; set; }
+        
         #endregion
 
-
+        #region Constructors
         static ExceptionHandler()
         {
-            Filter.ExemptedUnhandledExceptionCodePlaces.Add(new CodePlace(Assembly.GetExecutingAssembly().GetName().Name, null, null));
+            Filter.ExemptedExceptionCodePlaces.Add(new CodePlace(Assembly.GetExecutingAssembly().GetName().Name, null, null));
 
+            LoadAssemblies();
+
+            StorageRouter.ReadyCache();
+        }
+        
+        #endregion
+
+        #region Methods
+
+        internal static void LoadAssemblies()
+        {
             EmbeddedAssembly.Load("System.Data.SqlServerCe.dll");
             EmbeddedAssembly.Load("System.Threading.Tasks.Dataflow.dll");
             AppDomain.CurrentDomain.AssemblyResolve += (s, e) => EmbeddedAssembly.Get(e.Name);
 
-            StorageRouter.ReadyCache();
+            AssembelyLoaded = true;
         }
-
-        #region Methods
 
         /// <summary>
         /// Raise log of handled error's.
@@ -63,19 +71,35 @@ namespace ErrorHandlerEngine.ExceptionManager
         /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns></returns>
-        public static Error RaiseLog(this Exception exp, ErrorHandlingOptions option = ErrorHandlingOptions.Default, String errorTitle = "UnHandled Exception")
+        public static Error RaiseLog(this Exception exp, ErrorHandlingOptions option = ErrorHandlingOptions.Default,
+            String errorTitle = "UnHandled Exception")
         {
+            #region ---------------------------- Filter exception ---------------------------------------
             //
-            // Self exceptions just run in Handled Mode!
-            if (IsSelfException && option.HasFlag(ErrorHandlingOptions.IsHandled))
+            // Find exception type:
+            var expType = exp.GetType();
+            //
+            // Is exception within non-snapshot list? (yes => remove snapshot option)
+            if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
+                option &= ~ErrorHandlingOptions.Snapshot;
+            //
+            // Raise from FirstChance:
+            if (option.HasFlag(ErrorHandlingOptions.IsHandled))
             {
-                IsSelfException = false;
-                return null;
+                // Is exception in exempted list?
+                if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
+                    Filter.ExemptedExceptionCodePlaces.Any(x => x.IsCallFromThisPlace(5)))
+                    return null;
             }
-            //
-            // Filter exception
-            if (Filter.IsExemptedException(exp, ref option))
-                return null;
+            else // Raise from UnhandledException:
+            {
+                // Is exception in exempted list?
+                if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
+                    Filter.ExemptedExceptionCodePlaces.Any(x => x.IsCallFromThisPlace(new StackTrace(exp).GetFrames())))
+                    return null;
+            }
+            #endregion ------------------------------------------------------------------------------------
+
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);
@@ -95,7 +119,8 @@ namespace ErrorHandlerEngine.ExceptionManager
 
         #endregion
 
-
+        #region Internal Classes
+        
         public static class Filter
         {
             /// <summary>
@@ -116,100 +141,9 @@ namespace ErrorHandlerEngine.ExceptionManager
             /// <summary>
             /// List of exempted unhandled errors code places to do not logs
             /// </summary>
-            public static List<CodePlace> ExemptedUnhandledExceptionCodePlaces = new List<CodePlace>();
-
-
-            internal static bool IsExemptedException(Exception exp, ref ErrorHandlingOptions opt)
-            {
-                //
-                // Find exception type:
-                var exceptionType = exp.GetType();
-                //
-                // Is exception in non snapshot list? (yes => remove snapshot option)
-                if (NonSnapshotExceptionTypes.Any(x => x == exceptionType))
-                    opt &= ~ErrorHandlingOptions.Snapshot;
-                //
-                // Is exception in except list?
-                return ExemptedExceptionTypes.Any(x => x == exceptionType) ||
-                    ExemptedUnhandledExceptionCodePlaces.Any(x => x.IsFromThisPlace(exp));
-            }
+            public static List<CodePlace> ExemptedExceptionCodePlaces = new List<CodePlace>();
         }
-    }
-
-    public class CodePlace
-    {
-        public string AssemblyName = String.Empty;
-        public string ClassName = String.Empty;
-        public string MethodName = String.Empty;
-
-        public CodePlace(string assemblyName, string className, string methodName)
-        {
-            AssemblyName = assemblyName;
-            ClassName = className;
-            MethodName = methodName;
-        }
-
-        public bool IsFromThisPlace(Exception exp)
-        {
-            var st = new System.Diagnostics.StackTrace(exp);
-
-            if (st.GetFrames() == null || !st.GetFrames().Any()) return false;
-
-            IEnumerable<StackFrame> lstFiltering = null;
-            //
-            // Filter by Assembly Names
-            if (!string.IsNullOrEmpty(AssemblyName))
-            {
-                lstFiltering = st.GetFrames().Where(
-                    x => RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase));
-            }
-            //
-            // Filter by Class Names
-            if (!string.IsNullOrEmpty(ClassName))
-            {
-                if (lstFiltering != null) // Before Filtered by Assembly Name
-                {
-                    lstFiltering = lstFiltering.Where(
-                        x =>
-                        {
-                            var declaringType = x.GetMethod().DeclaringType;
-                            return declaringType != null && declaringType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase);
-                        });
-                }
-                else // Not Assembly Name
-                {
-                    lstFiltering = st.GetFrames().Where(
-                        x =>
-                        {
-                            var declaringType = x.GetMethod().DeclaringType;
-                            return declaringType != null && declaringType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase);
-                        });
-                }
-            }
-            //
-            // Filter by Method Names
-            if (!string.IsNullOrEmpty(MethodName))
-            {
-                if (lstFiltering != null) // Before Filtered by Assembly Name or Class Name
-                {
-                    lstFiltering = lstFiltering.Where(
-                        x => x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-                }
-                else // Not any filter before
-                {
-                    lstFiltering = st.GetFrames().Where(
-                        x => x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-                }
-            }
-
-
-            return lstFiltering != null && lstFiltering.Any();
-        }
-
-        private string RemoveExtension(string value)
-        {
-            int dotIndex = value.IndexOf('.');
-            return value.Substring(0, dotIndex);
-        }
+        
+        #endregion
     }
 }

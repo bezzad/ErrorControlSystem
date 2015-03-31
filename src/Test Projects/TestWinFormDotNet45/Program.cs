@@ -35,7 +35,7 @@ namespace TestWinFormDotNet45
             ExceptionHandler.Filter.AttachExtraData.Add("TestWinFormDotNet45 v3.1.1.0", "beta version");
 
             // Filter a method of a specific class in my assembly from raise unhanded exceptions log
-            ExceptionHandler.Filter.ExemptedUnhandledExceptionCodePlaces.Add(
+            ExceptionHandler.Filter.ExemptedExceptionCodePlaces.Add(
                 new CodePlace("TestWinFormDotNet45", "FormTest", "btnExemptedMethodException_Click"));
             //
             // ---------------------------------------------------------------------------------

@@ -57,7 +57,7 @@
     <Compile Include="DbConnectionManager\ConnectionCollection.cs" />
     <Compile Include="DbConnectionManager\ConnectionManager.cs" />
     <Compile Include="DbConnectionManager\StringCipher.cs" />
-    <Compile Include="ExceptionManager\CodePlace.cs" />
+    <Compile Include="ExceptionManager\CodeScope.cs" />
     <Compile Include="Shared\DiskHelper.cs" />
     <Compile Include="CacheErrors\StorageRouter.cs" />
     <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />

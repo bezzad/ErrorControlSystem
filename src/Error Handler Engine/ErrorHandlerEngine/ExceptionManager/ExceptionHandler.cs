@@ -38,19 +38,19 @@ namespace ErrorHandlerEngine.ExceptionManager
     {
         #region Properties
         internal static bool AssembelyLoaded { get; set; }
-        
+
         #endregion
 
         #region Constructors
         static ExceptionHandler()
         {
-            Filter.ExemptedExceptionCodePlaces.Add(new CodePlace(Assembly.GetExecutingAssembly().GetName().Name, null, null));
+            Filter.ExemptedCodeScopes.Add(new CodeScope(Assembly.GetExecutingAssembly().GetName().Name, null, null));
 
             LoadAssemblies();
 
             StorageRouter.ReadyCache();
         }
-        
+
         #endregion
 
         #region Methods
@@ -83,21 +83,16 @@ namespace ErrorHandlerEngine.ExceptionManager
             if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
                 option &= ~ErrorHandlingOptions.Snapshot;
             //
-            // Raise from FirstChance:
-            if (option.HasFlag(ErrorHandlingOptions.IsHandled))
-            {
-                // Is exception in exempted list?
-                if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
-                    Filter.ExemptedExceptionCodePlaces.Any(x => x.IsCallFromThisPlace(5)))
-                    return null;
-            }
-            else // Raise from UnhandledException:
-            {
-                // Is exception in exempted list?
-                if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
-                    Filter.ExemptedExceptionCodePlaces.Any(x => x.IsCallFromThisPlace(new StackTrace(exp).GetFrames())))
-                    return null;
-            }
+            // Create call stack till this method
+            // Handled exception OR Unhandled exception ?
+            var callStackFrames = option.HasFlag(ErrorHandlingOptions.IsHandled)
+                ? new StackTrace(2).GetFrames()    // Raise from FirstChance:
+                : new StackTrace(exp).GetFrames(); // Raise from UnhandledException:
+            //
+            // Is exception in exempted list?
+            if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
+                Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                return null;
             #endregion ------------------------------------------------------------------------------------
 
             //
@@ -120,7 +115,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         #endregion
 
         #region Internal Classes
-        
+
         public static class Filter
         {
             /// <summary>
@@ -139,11 +134,17 @@ namespace ErrorHandlerEngine.ExceptionManager
             public static Dictionary<string, string> AttachExtraData = Error.DicExtraData;
 
             /// <summary>
-            /// List of exempted unhandled errors code places to do not logs
+            /// List of exempted code places to do not raise error logs
             /// </summary>
-            public static List<CodePlace> ExemptedExceptionCodePlaces = new List<CodePlace>();
+            public static List<CodeScope> ExemptedCodeScopes = new List<CodeScope>();
+
+            /// <summary>
+            /// The just raise error code scope collection.
+            /// Do not raise any exception in other code places.
+            /// </summary>
+            public static List<CodeScope> JustRaiseErrorCodeScopes = new List<CodeScope>();
         }
-        
+
         #endregion
     }
 }

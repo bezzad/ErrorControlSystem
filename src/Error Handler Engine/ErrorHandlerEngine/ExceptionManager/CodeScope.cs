@@ -2,32 +2,20 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErrorHandlerEngine.ExceptionManager
 {
-    public class CodePlace
+    public class CodeScope
     {
         public string AssemblyName = String.Empty;
         public string ClassName = String.Empty;
         public string MethodName = String.Empty;
 
-        public CodePlace(string assemblyName, string className, string methodName)
+        public CodeScope(string assemblyName, string className, string methodName)
         {
             AssemblyName = assemblyName;
             ClassName = className;
             MethodName = methodName;
-        }
-
-        /// <summary>
-        /// Is call method from this code place.
-        /// </summary>
-        /// <param name="skipCalls">Number of the skip calls from top of the stack.</param>
-        /// <returns></returns>
-        public bool IsCallFromThisPlace(int skipCalls)
-        {
-            return IsCallFromThisPlace(frames: new StackTrace().GetFrames().Skip(skipCalls));
         }
 
         /// <summary>
@@ -38,6 +26,7 @@ namespace ErrorHandlerEngine.ExceptionManager
         public bool IsCallFromThisPlace(IEnumerable<StackFrame> frames)
         {
             if (frames == null || !frames.Any()) return false;
+
 
             IEnumerable<StackFrame> lstFiltering = null;
             //

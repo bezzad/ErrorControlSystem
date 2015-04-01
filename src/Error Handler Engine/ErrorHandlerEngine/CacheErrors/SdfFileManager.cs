@@ -225,12 +225,16 @@ namespace ErrorHandlerEngine.CacheErrors
             }
         }
 
-        public static async Task InsertOrUpdateAsync(Error error)
+        public static async Task<bool> InsertOrUpdateAsync(Error error)
         {
             if (Contains(error.Id))
+            {
                 await UpdateAsync(error);
-            else
-                await InsertAsync(error);
+                return false; // In update state not necessary to check cache size
+            }
+
+            await InsertAsync(error);
+            return true; // New error added to database, so need to check cache size
         }
 
         public static async Task<ProxyError> GetErrorAsync(int id)

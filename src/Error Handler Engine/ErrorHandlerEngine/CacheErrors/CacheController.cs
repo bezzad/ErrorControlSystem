@@ -101,10 +101,9 @@ namespace ErrorHandlerEngine.CacheErrors
 
                 _errorSaverActionBlock = new ActionBlock<Error>(async e =>
                 {
-                    await SdfFileManager.InsertOrUpdateAsync(e);
-
-                    if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlingOptions.SendCacheToServer))
-                        await CheckStateAsync();
+                    if (await SdfFileManager.InsertOrUpdateAsync(e)) // insert or update database and return cache check state
+                        if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlingOptions.SendCacheToServer))
+                            await CheckStateAsync();
                 },
                     new ExecutionDataflowBlockOptions
                     {

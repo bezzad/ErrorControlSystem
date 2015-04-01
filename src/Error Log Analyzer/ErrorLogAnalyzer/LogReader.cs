@@ -77,6 +77,8 @@ namespace ErrorLogAnalyzer
 
             CountDatabaseRecords();
 
+            CountCacheRecords();
+
             if (dgv_ErrorsViewer.RowCount > 0 && dgv_ErrorsViewer.SelectedRows[0].Index == 0)
                 dgvErrorsViewer_SelectionChanged();
         }
@@ -168,6 +170,18 @@ namespace ErrorLogAnalyzer
             {
                 lblRecordsNum.Text = "Database Connection Corrupted";
                 SetDatabaseConnectionState(exp);
+            }
+        }
+
+        private void CountCacheRecords()
+        {
+            try
+            {
+                lblCacheRecords.Text = _errors.Sum(x => x.Duplicate + 1).ToString(CultureInfo.InvariantCulture);
+            }
+            catch (Exception exp)
+            {
+                lblCacheRecords.Text = "Cache Connection Corrupted";
             }
         }
 

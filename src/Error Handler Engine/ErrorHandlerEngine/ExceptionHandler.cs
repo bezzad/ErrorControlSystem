@@ -20,7 +20,6 @@
 //**********************************************************************************//
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -29,7 +28,7 @@ using ErrorHandlerEngine.CacheErrors;
 using ErrorHandlerEngine.Resources;
 using ErrorHandlerEngine.Shared;
 
-namespace ErrorHandlerEngine.ExceptionManager
+namespace ErrorHandlerEngine
 {
     /// <summary>
     /// Additional Data attached to exception object.

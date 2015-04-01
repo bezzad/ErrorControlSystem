@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ErrorHandlerEngine.Shared;
 
-namespace ErrorHandlerEngine.ExceptionManager
+namespace ErrorHandlerEngine
 {
     public static partial class ExceptionHandler
     {

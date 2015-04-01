@@ -62,6 +62,9 @@
     <Compile Include="..\ErrorHandlerEngine\CacheErrors\StorageRouter.cs">
       <Link>CacheErrors\StorageRouter.cs</Link>
     </Compile>
+    <Compile Include="..\ErrorHandlerEngine\CodeScope.cs">
+      <Link>CodeScope.cs</Link>
+    </Compile>
     <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\Connection.cs">
       <Link>DbConnectionManager\Connection.cs</Link>
     </Compile>
@@ -74,17 +77,14 @@
     <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\StringCipher.cs">
       <Link>DbConnectionManager\StringCipher.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\CodeScope.cs">
-      <Link>ExceptionManager\CodeScope.cs</Link>
+    <Compile Include="..\ErrorHandlerEngine\ErrorHandlingOptions.cs">
+      <Link>ErrorHandlingOptions.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ErrorHandlingOptions.cs">
-      <Link>ExceptionManager\ErrorHandlingOptions.cs</Link>
+    <Compile Include="..\ErrorHandlerEngine\ExceptionHandler.cs">
+      <Link>ExceptionHandler.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ExceptionHandler.cs">
-      <Link>ExceptionManager\ExceptionHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\Filter.cs">
-      <Link>ExceptionManager\Filter.cs</Link>
+    <Compile Include="..\ErrorHandlerEngine\Filter.cs">
+      <Link>Filter.cs</Link>
     </Compile>
     <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
@@ -125,7 +125,7 @@
     <Compile Include="..\ErrorHandlerEngine\Shared\ScreenCapture.cs">
       <Link>Shared\ScreenCapture.cs</Link>
     </Compile>
-    <Compile Include="ExceptionManager\Engine.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

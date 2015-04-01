@@ -1,4 +1,4 @@
-﻿Imports ErrorHandlerEngine.ExceptionManager
+﻿Imports ErrorHandlerEngine
 
 Module MainModule
     Sub Main()

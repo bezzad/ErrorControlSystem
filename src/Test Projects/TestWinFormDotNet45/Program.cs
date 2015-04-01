@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine;
 
 namespace TestWinFormDotNet45
 {

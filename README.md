@@ -31,7 +31,7 @@ This is initialize codes of the module by `C# language`:
 
 using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine.ExceptionManager;
+using ErrorHandlerEngine;
 
 namespace TestApplication
 {
@@ -85,7 +85,7 @@ This is initialize codes of the module by `VB.NET language`:
  
 ```vb
 
-Imports ErrorHandlerEngine.ExceptionManager
+Imports ErrorHandlerEngine
 
 Module MainModule
     Sub Main()

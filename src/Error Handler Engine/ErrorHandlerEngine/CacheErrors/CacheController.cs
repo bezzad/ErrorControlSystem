@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.Properties;
 using ErrorHandlerEngine.ServerController;
 using ErrorHandlerEngine.Shared;

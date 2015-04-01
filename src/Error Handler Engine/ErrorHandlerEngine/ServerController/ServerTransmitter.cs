@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorHandlerEngine.CacheErrors;
 using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.ExceptionManager;
 using ErrorHandlerEngine.Resources;
 using ErrorHandlerEngine.Shared;
 

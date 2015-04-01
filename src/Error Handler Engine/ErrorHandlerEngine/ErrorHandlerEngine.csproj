@@ -53,20 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheErrors\CacheController.cs" />
+    <Compile Include="CodeScope.cs" />
     <Compile Include="DbConnectionManager\Connection.cs" />
     <Compile Include="DbConnectionManager\ConnectionCollection.cs" />
     <Compile Include="DbConnectionManager\ConnectionManager.cs" />
     <Compile Include="DbConnectionManager\StringCipher.cs" />
-    <Compile Include="ExceptionManager\CodeScope.cs" />
-    <Compile Include="ExceptionManager\Filter.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="ErrorHandlingOptions.cs" />
+    <Compile Include="ExceptionHandler.cs" />
+    <Compile Include="Filter.cs" />
     <Compile Include="Shared\DiskHelper.cs" />
     <Compile Include="CacheErrors\StorageRouter.cs" />
-    <Compile Include="ExceptionManager\Engine.cs" />
     <Compile Include="Shared\CodeLocation.cs" />
     <Compile Include="Shared\Error.cs" />
-    <Compile Include="ExceptionManager\ErrorHandlingOptions.cs" />
     <Compile Include="Shared\IError.cs" />
-    <Compile Include="ExceptionManager\ExceptionHandler.cs" />
     <Compile Include="Shared\ProxyError.cs" />
     <Compile Include="Shared\NetworkHelper.cs" />
     <Compile Include="Shared\OperationSystem.cs" />

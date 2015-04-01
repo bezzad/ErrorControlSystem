@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using ErrorHandlerEngine.CacheErrors;
 using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.ExceptionManager;
 
 namespace ErrorHandlerEngine.Shared
 {

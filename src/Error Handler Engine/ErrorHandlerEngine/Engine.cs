@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Security.Permissions;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 using ErrorHandlerEngine.CacheErrors;
 using ErrorHandlerEngine.DbConnectionManager;
 using ErrorHandlerEngine.ServerController;
 
-namespace ErrorHandlerEngine.ExceptionManager
+namespace ErrorHandlerEngine
 {
     public static partial class ExceptionHandler
     {
@@ -30,10 +30,11 @@ namespace ErrorHandlerEngine.ExceptionManager
 
             static Engine()
             {
-                if (!ExceptionHandler.AssembelyLoaded)
-                    ExceptionHandler.LoadAssemblies();
+                if (!AssembelyLoaded) LoadAssemblies();
 
                 Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
+
+                //System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
                 // Catch all handled exceptions in managed code, before the runtime searches the Call Stack 
                 AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
@@ -44,8 +45,8 @@ namespace ErrorHandlerEngine.ExceptionManager
                 // Catch all unobserved task exceptions.
                 TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
-                // Catch all WPF unhandled exceptions.
-                Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+                // Catch all unhandled exceptions.
+                System.Windows.Forms.Application.ThreadException += ThreadExceptionHandler;
             }
 
             #endregion
@@ -76,6 +77,7 @@ namespace ErrorHandlerEngine.ExceptionManager
                 await CacheController.CheckStateAsync();
             }
 
+
             public static void Start(string server, string database, string username, string pass,
                 ErrorHandlingOptions option = ErrorHandlingOptions.Default)
             {
@@ -91,6 +93,7 @@ namespace ErrorHandlerEngine.ExceptionManager
 
                 Start(conn, option);
             }
+
 
             /// <summary>
             /// This is new to .Net 4 and is extremely useful for ensuring that you ALWAYS log SOMETHING.
@@ -119,6 +122,18 @@ namespace ErrorHandlerEngine.ExceptionManager
             }
 
             /// <summary>
+            /// If you are hosting any WinForm components in your WPF application, 
+            /// this final event is one to watch. There's no way to influence events thereafter, 
+            /// but at least you get to see what the problem was.
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
+            {
+                e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
+            }
+
+            /// <summary>
             /// Catch all unhandled exceptions in all threads.
             /// Although Application.DispatcherUnhandledException covers most issues in the current AppDomain, 
             /// in extremely rare circumstances, you may be running a thread on a second AppDomain. 
@@ -132,16 +147,7 @@ namespace ErrorHandlerEngine.ExceptionManager
                 (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlingOptions.IsHandled,
                     "Unhandled UI Exception");
 
-                Application.Current.Shutdown();
-            }
-
-            private static void Current_DispatcherUnhandledException(object sender,
-                System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
-            {
-                // Prevent default unhandled exception processing
-                e.Handled = true;
-
-                e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
+                Application.Exit();
             }
 
             #endregion

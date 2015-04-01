@@ -179,7 +179,7 @@ namespace ErrorLogAnalyzer
             {
                 lblCacheRecords.Text = _errors.Sum(x => x.Duplicate + 1).ToString(CultureInfo.InvariantCulture);
             }
-            catch (Exception exp)
+            catch (Exception)
             {
                 lblCacheRecords.Text = "Cache Connection Corrupted";
             }

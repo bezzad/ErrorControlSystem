@@ -83,6 +83,9 @@
     <Compile Include="..\ErrorHandlerEngine\ExceptionManager\ExceptionHandler.cs">
       <Link>ExceptionManager\ExceptionHandler.cs</Link>
     </Compile>
+    <Compile Include="..\ErrorHandlerEngine\ExceptionManager\Filter.cs">
+      <Link>ExceptionManager\Filter.cs</Link>
+    </Compile>
     <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -122,7 +125,7 @@
     <Compile Include="..\ErrorHandlerEngine\Shared\ScreenCapture.cs">
       <Link>Shared\ScreenCapture.cs</Link>
     </Compile>
-    <Compile Include="ExceptionManager\ExpHandlerEngine.cs" />
+    <Compile Include="ExceptionManager\Engine.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

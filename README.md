@@ -46,12 +46,12 @@ namespace TestApplication
             //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExpHandlerEngine.Start(
-				new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
+            ExceptionHandler.Engine.Start(
+                new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
             //
-            // Or this new version(3.0.0.59 or later) model:
-            // ExpHandlerEngine.Start("localhost", "UsersManagements");
+            // Or this new version(3.0.0.6 or later) model:
+            // ExceptionHandler.Engine.Start("localhost", "UsersManagements");
             //
 
             // Except 'NotImplementedException' from raise log
@@ -70,7 +70,7 @@ namespace TestApplication
             // The just raise error from 'TestWinFormDotNet45'.
             // Do not raise any exception in other code places.
             ExceptionHandler.Filter.JustRaiseErrorCodeScopes.Add(
-				new CodeScope("TestWinFormDotNet45", null, null));
+                new CodeScope("TestWinFormDotNet45", null, null));
             //
             // ---------------------------------------------------------------------------------
             //
@@ -92,7 +92,7 @@ Module MainModule
 
         ' ------------------ Initial Error Handler Engine --------------------------------
 		
-		ExpHandlerEngine.Start("localhost", "UsersManagements")
+		ExceptionHandler.Engine.Start("localhost", "UsersManagements")
 
         ' ---------------------------------------------------------------------------------
         
@@ -112,7 +112,7 @@ After shown below form make uncheck the `Enable Application Framework` option on
 Change the __Startup object__ to `Sub Main`.
 
 
-In the initialize code snippet you've seen that, for the `ExpHandlerEngine` method should be an option. This option is used to specify the error data, which includes the following values:
+In the initialize code snippet you've seen that, for the `ExceptionHandler.Engine` method should be an option. This option is used to specify the error data, which includes the following values:
 
 -  All
 -  AlertUnHandledError
@@ -127,8 +127,8 @@ In the initialize code snippet you've seen that, for the `ExpHandlerEngine` meth
 For example in above codes, this code means is:
 ```csharp
 
-ExpHandlerEngine.Start(new Connection(@"localhost", "UsersManagements"),
-                ErrorHandlerOption.Default & ~ErrorHandlerOption.ReSizeSnapshots);
+ExceptionHandler.Engine.Start("localhost", "UsersManagements",
+                ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
 ```
 Select all options by excepted `ReSizeSnapshots`
 
@@ -184,7 +184,11 @@ Only be carefully, in order to launch the program, enter the database name. For 
 
 ```csharp
 
-ExpHandlerEngine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
+ExceptionHandler.Engine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
+
+// or simpler mode:
+ExceptionHandler.Engine.Start("Server Name", "Database Name", "UserName", "Password");
+
 ```
 
 Now, we need to create two table by names __ErrorLog__ and __Snapshots__ to save exceptions by screen captures.

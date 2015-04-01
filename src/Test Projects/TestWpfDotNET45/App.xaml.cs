@@ -13,7 +13,7 @@ namespace TestWpfDotNET45
         {
             base.OnStartup(e);
 
-            ExpHandlerEngine.Start(".", "UsersManagements");
+            ExceptionHandler.Engine.Start(".", "UsersManagements");
         }
     }
 }

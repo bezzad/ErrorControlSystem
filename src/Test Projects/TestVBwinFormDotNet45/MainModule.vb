@@ -4,7 +4,7 @@ Module MainModule
     Sub Main()
 
         ' ------------------ Initial Error Handler Engine --------------------------------
-        ExpHandlerEngine.Start("localhost", "UsersManagements")
+        ExceptionHandler.Engine.Start("localhost", "UsersManagements")
 
         'Except 'NotImplementedException' from raise log
         ExceptionHandler.Filter.ExemptedExceptionTypes.Add(GetType(NotImplementedException))

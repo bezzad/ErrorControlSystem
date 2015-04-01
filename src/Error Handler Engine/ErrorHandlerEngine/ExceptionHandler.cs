@@ -86,24 +86,24 @@ namespace ErrorHandlerEngine
             // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
             // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
             // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
-            var callStackFrames = !option.HasFlag(ErrorHandlingOptions.IsHandled) && exp.StackTrace != null // 3#
-                ? new StackTrace(exp).GetFrames() // 3#: Raise from UnhandledException:
-                : new StackTrace(2).GetFrames();  // 1# or 2#: Raise from FirstChance:
+            var callStackTrace = !option.HasFlag(ErrorHandlingOptions.IsHandled) && exp.StackTrace != null // 3#
+                ? new StackTrace(exp, true) // 3#: Raise from UnhandledException:
+                : new StackTrace(2, true);  // 1# or 2#: Raise from FirstChance:
             //
             // Is exception in exempted list?
             if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
-                Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackTrace)))
                 return null;
             //
             // Must be exception occurred from these code scopes to that raised by handler.
-            if (Filter.JustRaiseErrorCodeScopes.Count > 0 && 
-                !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+            if (Filter.JustRaiseErrorCodeScopes.Count > 0 &&
+                !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackTrace)))
                 return null;
             #endregion ------------------------------------------------------------------------------------
 
             //
             // initial the error object by additional data 
-            var error = new Error(exp, option);
+            var error = new Error(exp, callStackTrace.ToString(), option);
             //
             // Alert Unhandled Error 
             if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOptions.IsHandled))

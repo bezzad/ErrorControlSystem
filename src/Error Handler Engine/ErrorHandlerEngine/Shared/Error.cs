@@ -28,8 +28,9 @@ namespace ErrorHandlerEngine.Shared
         /// Get handled exception's by additional data.
         /// </summary>
         /// <param name="exp">>The occurrence raw error.</param>
+        /// <param name="newStackTrace">New stack trace context to changes by exception stackTrace</param>
         /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        public Error(Exception exp, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+        public Error(Exception exp, string newStackTrace = null, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
         {
             #region HResult [Exception Type Code]
 
@@ -69,9 +70,10 @@ namespace ErrorHandlerEngine.Shared
 
             #region StackTrace
 
-            StackTrace = exp.InnerException != null
+            StackTrace = newStackTrace ??
+                (exp.InnerException != null
                 ? exp.InnerException.StackTrace ?? ""
-                : exp.StackTrace ?? "";
+                : exp.StackTrace ?? "");
 
             #endregion
 

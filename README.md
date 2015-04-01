@@ -61,7 +61,7 @@ namespace TestApplication
             ExceptionHandler.Filter.NonSnapshotExceptionTypes.Add(typeof(FormatException));
 
             // Add extra data for labeling exceptions
-            ExceptionHandler.Filter.AttachExtraData.Add("TestWinFormDotNet45 v3.1.1.0", "beta version");
+            ExceptionHandler.Filter.AttachExtraData.Add("TestWinFormDotNet45 v3", "beta version");
 
             // Filter a method of a specific class in my assembly from raise unhanded exceptions log
             ExceptionHandler.Filter.ExemptedCodeScopes.Add(
@@ -90,11 +90,11 @@ Imports ErrorHandlerEngine
 Module MainModule
     Sub Main()
 
-        ' ------------------ Initial Error Handler Engine --------------------------------
+        ' ------------------ Initial Error Handler Engine ------------------
 		
 		ExceptionHandler.Engine.Start("localhost", "UsersManagements")
 
-        ' ---------------------------------------------------------------------------------
+        ' ------------------------------------------------------------------
         
         Application.Run(New Form1())
     End Sub

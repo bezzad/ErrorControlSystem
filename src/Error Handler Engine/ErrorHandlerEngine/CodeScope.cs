@@ -21,10 +21,12 @@ namespace ErrorHandlerEngine
         /// <summary>
         /// Is call method from this code place.
         /// </summary>
-        /// <param name="frames">The frames of call methods or exception stackTrace frames.</param>
+        /// <param name="stackTrace">The frames of call methods or exception stackTrace frames.</param>
         /// <returns></returns>
-        public bool IsCallFromThisPlace(IEnumerable<StackFrame> frames)
+        public bool IsCallFromThisPlace(StackTrace stackTrace)
         {
+            IEnumerable<StackFrame> frames = stackTrace.GetFrames();
+
             if (frames == null || !frames.Any()) return false;
 
             if (!string.IsNullOrEmpty(AssemblyName))
@@ -40,7 +42,7 @@ namespace ErrorHandlerEngine
                             x.GetMethod().ReflectedType != null &&
                             x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase));
             }
-            
+
             if (!string.IsNullOrEmpty(MethodName))
             {
                 frames = frames.Where(x =>

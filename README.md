@@ -46,7 +46,8 @@ namespace TestApplication
             //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExpHandlerEngine.Start(new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
+            ExpHandlerEngine.Start(
+				new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
             //
             // Or this new version(3.0.0.59 or later) model:
@@ -68,7 +69,8 @@ namespace TestApplication
 
             // The just raise error from 'TestWinFormDotNet45'.
             // Do not raise any exception in other code places.
-            ExceptionHandler.Filter.JustRaiseErrorCodeScopes.Add(new CodeScope("TestWinFormDotNet45", null, null));
+            ExceptionHandler.Filter.JustRaiseErrorCodeScopes.Add(
+				new CodeScope("TestWinFormDotNet45", null, null));
             //
             // ---------------------------------------------------------------------------------
             //

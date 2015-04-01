@@ -27,55 +27,49 @@ namespace ErrorHandlerEngine.ExceptionManager
         {
             if (frames == null || !frames.Any()) return false;
 
+            bool a = !string.IsNullOrEmpty(AssemblyName),
+                c = !string.IsNullOrEmpty(ClassName),
+                m = !string.IsNullOrEmpty(MethodName);
 
-            IEnumerable<StackFrame> lstFiltering = null;
-            //
-            // Filter by Assembly Names
-            if (!string.IsNullOrEmpty(AssemblyName))
+            if (a && c && m)
             {
-                lstFiltering = frames.Where(
-                    x => RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase));
+                return frames.Any(x =>
+                    RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase) &&
+                    x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase) &&
+                    x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
             }
-            //
-            // Filter by Class Names
-            if (!string.IsNullOrEmpty(ClassName))
+            else if (a && c)
             {
-                if (lstFiltering != null) // Before Filtered by Assembly Name
-                {
-                    lstFiltering = lstFiltering.Where(
-                        x =>
-                        {
-                            var declaringType = x.GetMethod().DeclaringType;
-                            return declaringType != null && declaringType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase);
-                        });
-                }
-                else // Not Assembly Name
-                {
-                    lstFiltering = frames.Where(
-                        x =>
-                        {
-                            var declaringType = x.GetMethod().DeclaringType;
-                            return declaringType != null && declaringType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase);
-                        });
-                }
+                return frames.Any(x =>
+                   RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase) &&
+                   x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase));
             }
-            //
-            // Filter by Method Names
-            if (!string.IsNullOrEmpty(MethodName))
+            else if (a && m)
             {
-                if (lstFiltering != null) // Before Filtered by Assembly Name or Class Name
-                {
-                    lstFiltering = lstFiltering.Where(
-                        x => x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-                }
-                else // Not any filter before
-                {
-                    lstFiltering = frames.Where(
-                        x => x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-                }
+                return frames.Any(x =>
+                   RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase) &&
+                   x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (a)
+            {
+                return frames.Any(x => RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (c & m)
+            {
+                return frames.Any(x =>
+                   x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase) &&
+                   x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (c)
+            {
+                return frames.Any(x => x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (m)
+            {
+                return frames.Any(x => x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
             }
 
-            return lstFiltering != null && lstFiltering.Any();
+            return false;
         }
 
         private string RemoveExtension(string value)

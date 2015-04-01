@@ -421,12 +421,14 @@ namespace ErrorHandlerEngine.DbConnectionManager
             try
             {
                 var ver = Assembly.GetEntryAssembly().GetName().Version;
-                return Assembly.GetEntryAssembly().GetName().Name + " v" + ver.Major + "." + ver.Minor;
+                return string.Format("{0} v{1}.{2}.{3}",
+                    Assembly.GetEntryAssembly().GetName().Name, ver.Major, ver.Minor, ver.Build);
             }
             catch
             {
                 var ver = Assembly.GetExecutingAssembly().GetName().Version;
-                return Assembly.GetExecutingAssembly().GetName().Name + " v" + ver.Major + "." + ver.Minor;
+                return string.Format("{0} v{1}.{2}.{3}",
+                    Assembly.GetExecutingAssembly().GetName().Name, ver.Major, ver.Minor, ver.Build);
             }
         }
 

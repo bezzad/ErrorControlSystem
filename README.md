@@ -65,6 +65,10 @@ namespace TestApplication
             // Filter a method of a specific class in my assembly from raise unhanded exceptions log
             ExceptionHandler.Filter.ExemptedCodeScopes.Add(
                 new CodeScope("TestWinFormDotNet45", "FormTest", "btnExemptedMethodException_Click"));
+
+            // The just raise error from 'TestWinFormDotNet45'.
+            // Do not raise any exception in other code places.
+            ExceptionHandler.Filter.JustRaiseErrorCodeScopes.Add(new CodeScope("TestWinFormDotNet45", null, null));
             //
             // ---------------------------------------------------------------------------------
             //

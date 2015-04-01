@@ -98,8 +98,9 @@ namespace ErrorHandlerEngine.ExceptionManager
             //
             // initial the error object by additional data 
             var error = new Error(exp, option);
-
-            if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOptions.IsHandled)) // Alert Unhandled Error 
+            //
+            // Alert Unhandled Error 
+            if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOptions.IsHandled)) 
             {
                 MessageBox.Show(exp.Message,
                     errorTitle,

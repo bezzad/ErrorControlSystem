@@ -34,7 +34,7 @@ namespace ErrorHandlerEngine.ExceptionManager
     /// <summary>
     /// Additional Data attached to exception object.
     /// </summary>
-    public static class ExceptionHandler
+    public static partial class ExceptionHandler
     {
         #region Properties
         internal static bool AssembelyLoaded { get; set; }
@@ -84,14 +84,21 @@ namespace ErrorHandlerEngine.ExceptionManager
                 option &= ~ErrorHandlingOptions.Snapshot;
             //
             // Create call stack till this method
-            // Handled exception OR Unhandled exception ?
-            var callStackFrames = option.HasFlag(ErrorHandlingOptions.IsHandled)
-                ? new StackTrace(2).GetFrames()    // Raise from FirstChance:
-                : new StackTrace(exp).GetFrames(); // Raise from UnhandledException:
+            // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
+            // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
+            // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
+            var callStackFrames = !option.HasFlag(ErrorHandlingOptions.IsHandled) && exp.StackTrace != null // 3#
+                ? new StackTrace(exp).GetFrames() // 3#: Raise from UnhandledException:
+                : new StackTrace(2).GetFrames();  // 1# or 2#: Raise from FirstChance:
             //
             // Is exception in exempted list?
             if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
                 Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                return null;
+            //
+            // Must be exception occurred from these code scopes to that raised by handler.
+            if (Filter.JustRaiseErrorCodeScopes.Count > 0 && 
+                !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
                 return null;
             #endregion ------------------------------------------------------------------------------------
 
@@ -100,7 +107,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             var error = new Error(exp, option);
             //
             // Alert Unhandled Error 
-            if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOptions.IsHandled)) 
+            if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOptions.IsHandled))
             {
                 MessageBox.Show(exp.Message,
                     errorTitle,
@@ -140,7 +147,7 @@ namespace ErrorHandlerEngine.ExceptionManager
             public static List<CodeScope> ExemptedCodeScopes = new List<CodeScope>();
 
             /// <summary>
-            /// The just raise error code scope collection.
+            /// The just raise error from these code scope collection.
             /// Do not raise any exception in other code places.
             /// </summary>
             public static List<CodeScope> JustRaiseErrorCodeScopes = new List<CodeScope>();

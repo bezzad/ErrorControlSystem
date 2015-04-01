@@ -27,49 +27,27 @@ namespace ErrorHandlerEngine.ExceptionManager
         {
             if (frames == null || !frames.Any()) return false;
 
-            bool a = !string.IsNullOrEmpty(AssemblyName),
-                c = !string.IsNullOrEmpty(ClassName),
-                m = !string.IsNullOrEmpty(MethodName);
-
-            if (a && c && m)
+            if (!string.IsNullOrEmpty(AssemblyName))
             {
-                return frames.Any(x =>
-                    RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase) &&
-                    x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase) &&
-                    x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-            }
-            else if (a && c)
-            {
-                return frames.Any(x =>
-                   RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase) &&
-                   x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase));
-            }
-            else if (a && m)
-            {
-                return frames.Any(x =>
-                   RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase) &&
-                   x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-            }
-            else if (a)
-            {
-                return frames.Any(x => RemoveExtension(x.GetMethod().Module.Name).Equals(AssemblyName, StringComparison.OrdinalIgnoreCase));
-            }
-            else if (c & m)
-            {
-                return frames.Any(x =>
-                   x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase) &&
-                   x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
-            }
-            else if (c)
-            {
-                return frames.Any(x => x.GetMethod().ReflectedType != null && x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase));
-            }
-            else if (m)
-            {
-                return frames.Any(x => x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
+                frames = frames.Where(x =>
+                            RemoveExtension(x.GetMethod().Module.Name)
+                                .Equals(AssemblyName, StringComparison.OrdinalIgnoreCase));
             }
 
-            return false;
+            if (!string.IsNullOrEmpty(ClassName))
+            {
+                frames = frames.Where(x =>
+                            x.GetMethod().ReflectedType != null &&
+                            x.GetMethod().ReflectedType.Name.Equals(ClassName, StringComparison.OrdinalIgnoreCase));
+            }
+            
+            if (!string.IsNullOrEmpty(MethodName))
+            {
+                frames = frames.Where(x =>
+                           x.GetMethod().Name.Equals(MethodName, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return frames.Any();
         }
 
         private string RemoveExtension(string value)

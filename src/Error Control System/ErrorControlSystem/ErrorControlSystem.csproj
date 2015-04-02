@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-    <NoWarn>1607</NoWarn>
+    <NoWarn>1607, 1591</NoWarn>
     <DocumentationFile>..\..\..\out\ErrorControlSystem\WinForm\ErrorControlSystem.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>1607</NoWarn>
+    <NoWarn>1607, 1591</NoWarn>
     <DocumentationFile>..\..\..\out\ErrorControlSystem\WinForm\ErrorControlSystem.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>

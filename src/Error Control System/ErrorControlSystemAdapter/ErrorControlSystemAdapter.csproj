@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>1607</NoWarn>
+    <NoWarn>1607, 1591</NoWarn>
     <DocumentationFile>..\..\..\out\ErrorControlSystem\Adapter\ErrorControlSystemAdapter.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -42,7 +42,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
+    <Compile Include="..\ErrorControlSystem\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ErrorHandlerAdapter.cs" />
@@ -52,7 +52,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ErrorHandlerEngine\ErrorControlSystem.csproj">
+    <ProjectReference Include="..\ErrorControlSystem\ErrorControlSystem.csproj">
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
       <Name>ErrorControlSystem</Name>
     </ProjectReference>

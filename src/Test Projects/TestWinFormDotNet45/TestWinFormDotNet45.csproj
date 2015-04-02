@@ -78,10 +78,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorControlSystem.csproj">
+    <ProjectReference Include="..\..\Error Control System\ErrorControlSystem\ErrorControlSystem.csproj">
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
       <Name>ErrorControlSystem</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

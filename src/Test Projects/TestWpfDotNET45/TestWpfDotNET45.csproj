@@ -100,10 +100,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngineWPF\ErrorControlSystemWPF.csproj">
-      <Project>{732a87f6-4cf3-4160-99d5-78b8b07d93c9}</Project>
-      <Name>ErrorControlSystemWPF</Name>
-      <Private>True</Private>
+    <ProjectReference Include="..\..\Error Control System\ErrorControlSystem\ErrorControlSystem.csproj">
+      <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
+      <Name>ErrorControlSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.DbConnectionManager;
 using ErrorControlSystem.Shared;
-using ErrorControlSystem.Shared;
 
 namespace ErrorLogAnalyzer
 {

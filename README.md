@@ -46,14 +46,11 @@ namespace TestApplication
             //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExceptionHandler.Engine.Start(
-                new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
+            ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
             //
-            // Or this new version(3.0.0.6 or later) model:
-            // ExceptionHandler.Engine.Start("localhost", "UsersManagements");
+            // Some of the optional configuration items.
             //
-
             // Except 'NotImplementedException' from raise log
             ExceptionHandler.Filter.ExemptedExceptionTypes.Add(typeof(NotImplementedException));
 

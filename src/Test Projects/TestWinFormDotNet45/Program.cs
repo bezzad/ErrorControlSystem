@@ -18,14 +18,11 @@ namespace TestWinFormDotNet45
             //
             //  ------------------ Initial Error Handler Engine --------------------------------
             //
-            ExceptionHandler.Engine.Start(
-                new ErrorHandlerEngine.DbConnectionManager.Connection("localhost", "UsersManagements"),
+            ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
             //
-            // Or this new version(3.0.0.59 or later) model:
-            // ExceptionHandler.Engine.Start("localhost", "UsersManagements");
+            // Some of the optional configuration items.
             //
-
             // Except 'NotImplementedException' from raise log
             ExceptionHandler.Filter.ExemptedExceptionTypes.Add(typeof(NotImplementedException));
 
@@ -33,7 +30,7 @@ namespace TestWinFormDotNet45
             ExceptionHandler.Filter.NonSnapshotExceptionTypes.Add(typeof(FormatException));
 
             // Add extra data for labeling exceptions
-            ExceptionHandler.Filter.AttachExtraData.Add("TestWinFormDotNet45 v3.1.1.0", "beta version");
+            ExceptionHandler.Filter.AttachExtraData.Add("TestWinFormDotNet45 v3", "beta version");
 
             // Filter a method of a specific class in my assembly from raise unhanded exceptions log
             ExceptionHandler.Filter.ExemptedCodeScopes.Add(

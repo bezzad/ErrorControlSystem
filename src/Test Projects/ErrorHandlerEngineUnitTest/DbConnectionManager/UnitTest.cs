@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using ErrorHandlerEngine.DbConnectionManager;
+using ErrorControlSystem.DbConnectionManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ErrorHandlerEngineUnitTest.DbConnectionManager
+namespace ErrorControlSystemUnitTest.DbConnectionManager
 {
     [TestClass]
     public class UnitTest

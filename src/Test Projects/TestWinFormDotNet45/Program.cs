@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine;
+using ErrorControlSystem;
 
 namespace TestWinFormDotNet45
 {
@@ -16,7 +16,7 @@ namespace TestWinFormDotNet45
             Application.SetCompatibleTextRenderingDefault(false);
 
             //
-            //  ------------------ Initial Error Handler Engine --------------------------------
+            // ------------------ Initial Error Control System --------------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 
-namespace ErrorHandlerEngine.DbConnectionManager
+namespace ErrorControlSystem.DbConnectionManager
 {
     public class Connection : ICloneable
     {

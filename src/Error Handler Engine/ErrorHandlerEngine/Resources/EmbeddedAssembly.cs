@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 
-namespace ErrorHandlerEngine.Resources
+namespace ErrorControlSystem.Resources
 {
     /// <summary>
     /// A class for loading Embedded Assembly

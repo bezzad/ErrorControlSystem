@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ErrorHandlerEngine.Properties {
+namespace ErrorControlSystem.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -2,12 +2,12 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.Properties;
-using ErrorHandlerEngine.ServerController;
-using ErrorHandlerEngine.Shared;
+using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.Properties;
+using ErrorControlSystem.ServerController;
+using ErrorControlSystem.Shared;
 
-namespace ErrorHandlerEngine.CacheErrors
+namespace ErrorControlSystem.CacheErrors
 {
     internal static class CacheController
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ErrorHandlerEngine.Shared;
+using ErrorControlSystem.Shared;
 
-namespace ErrorHandlerEngine
+namespace ErrorControlSystem
 {
     public static partial class ExceptionHandler
     {

@@ -27,7 +27,7 @@ user codes, enter the following command to invoke and run the module.
 
 This is initialize codes of the module by `C# language`:
  
-```csharp
+```C#
 
 using System;
 using System.Windows.Forms;
@@ -44,7 +44,7 @@ namespace TestApplication
             Application.SetCompatibleTextRenderingDefault(false);
 
             //
-            //  ------------------ Initial Error Handler Engine --------------------------------
+            //  ------------------ Initial Error Control System --------------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
@@ -87,7 +87,7 @@ Imports ErrorHandlerEngine
 Module MainModule
     Sub Main()
 
-        ' ------------------ Initial Error Handler Engine ------------------
+        ' ------------------ Initial Error Control System ------------------
 		
 		ExceptionHandler.Engine.Start("localhost", "UsersManagements")
 
@@ -122,7 +122,7 @@ In the initialize code snippet you've seen that, for the `ExceptionHandler.Engin
 -  Snapshot
 
 For example in above codes, this code means is:
-```csharp
+```C#
 
 ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                 ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
@@ -167,11 +167,11 @@ If there isn't already an issue for it, please create a new one.
 --------------------------
 ### Creating SQL Server Database ###
 
-The `ErrorHandlerEngine` project used from __UsersManagements __ database. So that is necessary for run this application.
+The `ErrorControlSystem` project used from __UsersManagements __ database. So that is necessary for run this application.
 For Creating __UsersManagements__ database on your server or pc do below steps:
 
 Note:
->     In the new version database and tables automatically created by ErrorHandlerEngine
+>     In the new version database and tables automatically created by ErrorControlSystem
 
 
 First open `SQL Server Management Studio` then connect to your Server instance.
@@ -179,7 +179,7 @@ Next step's, Create New Database by name __UsersManagements__ or any name of you
 
 Only be carefully, in order to launch the program, enter the database name. For example: 
 
-```csharp
+```C#
 
 ExceptionHandler.Engine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
 
@@ -233,17 +233,16 @@ There are __SQL Scripts__ to create tables and queries.
 --------------------------
 ### LICENSE INFORMATION ###
 
-Error Handler Engine 3.0.0.2
+Error Control System 3.0.0.6
 
 This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to
                   
-Copyright (C) 2015  [Shoniz](http://shoniz.com/) corporation
-[Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
+Copyright (C) 2015 [Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,
-either version 3 of the License, or (at your option) any later version.
+either version 1.0.1 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of

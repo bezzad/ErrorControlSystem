@@ -1,9 +1,9 @@
-﻿Imports ErrorHandlerEngine
+﻿Imports ErrorControlSystem
 
 Module MainModule
     Sub Main()
 
-        ' ------------------ Initial Error Handler Engine --------------------------------
+        ' ------------------ Initial Error Control System --------------------------------
         ExceptionHandler.Engine.Start("localhost", "UsersManagements")
 
         'Except 'NotImplementedException' from raise log

@@ -11,7 +11,7 @@
     <dependentAssembly>
       <assemblyIdentity
         type="win32"
-        name="ErrorHandlerEngineAdapter"
+        name="ErrorControlSystemAdapter"
         version="3.0.*" />
     </dependentAssembly>
   </dependency>

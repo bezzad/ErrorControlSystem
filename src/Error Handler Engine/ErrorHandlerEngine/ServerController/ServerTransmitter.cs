@@ -3,12 +3,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using ErrorHandlerEngine.CacheErrors;
-using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.Resources;
-using ErrorHandlerEngine.Shared;
+using ErrorControlSystem.CacheErrors;
+using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.Resources;
+using ErrorControlSystem;
+using ErrorControlSystem.Shared;
 
-namespace ErrorHandlerEngine.ServerController
+namespace ErrorControlSystem.ServerController
 {
     public static class ServerTransmitter
     {

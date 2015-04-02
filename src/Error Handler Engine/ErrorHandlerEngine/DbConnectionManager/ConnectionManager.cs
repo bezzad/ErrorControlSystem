@@ -9,7 +9,7 @@ using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ErrorHandlerEngine.DbConnectionManager
+namespace ErrorControlSystem.DbConnectionManager
 {
     public class ConnectionManager : IDisposable
     {

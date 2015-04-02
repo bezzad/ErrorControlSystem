@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ErrorHandlerEngine
+namespace ErrorControlSystem
 {
     [ComVisible(true)]
     [Guid("2A9A506F-FB51-406C-9D2F-026AD54E2B60")]

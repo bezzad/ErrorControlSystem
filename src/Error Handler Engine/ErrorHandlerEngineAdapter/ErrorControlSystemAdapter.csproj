@@ -7,8 +7,8 @@
     <ProjectGuid>{A11D0CD8-E5A8-40C7-BE3F-CBAAC5C0818E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorHandlerEngine</RootNamespace>
-    <AssemblyName>ErrorHandlerEngineAdapter</AssemblyName>
+    <RootNamespace>ErrorControlSystem</RootNamespace>
+    <AssemblyName>ErrorControlSystemAdapter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,23 +16,23 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineAdapter\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\Adapter\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\Adapter\ErrorControlSystemAdapter.XML</DocumentationFile>
     <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineAdapter\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\Adapter\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1607</NoWarn>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\Adapter\ErrorControlSystemAdapter.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -42,17 +42,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ErrorHandlerAdapter.cs" />
     <Compile Include="IErrorHandlerAdapter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ErrorHandlerEngine\ErrorHandlerEngine.csproj">
+    <ProjectReference Include="..\ErrorHandlerEngine\ErrorControlSystem.csproj">
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
-      <Name>ErrorHandlerEngine</Name>
+      <Name>ErrorControlSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

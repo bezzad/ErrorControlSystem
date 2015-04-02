@@ -7,8 +7,8 @@
     <ProjectGuid>{732A87F6-4CF3-4160-99D5-78B8B07D93C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorHandlerEngine</RootNamespace>
-    <AssemblyName>ErrorHandlerEngineWPF</AssemblyName>
+    <RootNamespace>ErrorControlSystem</RootNamespace>
+    <AssemblyName>ErrorControlSystemWPF</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,20 +16,22 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWPF\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\WPF\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1607</NoWarn>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\WPF\ErrorControlSystemWPF.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWPF\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\WPF\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1607</NoWarn>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\WPF\ErrorControlSystemWPF.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework" />

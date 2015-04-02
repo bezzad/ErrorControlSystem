@@ -76,9 +76,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine.csproj">
+    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorControlSystem.csproj">
       <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
-      <Name>ErrorHandlerEngine</Name>
+      <Name>ErrorControlSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\Windows.Forms.ImageBox\Windows.Forms.ImageBox.csproj">
       <Project>{4159c8d3-c18d-4bed-8be6-9bad1b0ca4f6}</Project>

@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngine", "Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine.csproj", "{DF9E798A-6D3B-461E-8B74-BE0757FB3325}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem", "Error Handler Engine\ErrorHandlerEngine\ErrorControlSystem.csproj", "{DF9E798A-6D3B-461E-8B74-BE0757FB3325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineAdapter", "Error Handler Engine\ErrorHandlerEngineAdapter\ErrorHandlerEngineAdapter.csproj", "{A11D0CD8-E5A8-40C7-BE3F-CBAAC5C0818E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystemAdapter", "Error Handler Engine\ErrorHandlerEngineAdapter\ErrorControlSystemAdapter.csproj", "{A11D0CD8-E5A8-40C7-BE3F-CBAAC5C0818E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation Project", "Documentation Project", "{21D0B50A-5F2C-4664-BDBA-A54DB9887B37}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Handler Engine", "Error Handler Engine", "{F1970199-8158-4ACE-A735-B034144C045B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Control System", "Error Control System", "{F1970199-8158-4ACE-A735-B034144C045B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Log Analyzer", "Error Log Analyzer", "{70D8EB31-5124-453C-BA64-FD39FF3CF960}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Projects", "Test Projects", "{DED4B0E7-23E1-448E-93FF-8162300675E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorHandlerEngineWPF", "Error Handler Engine\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.csproj", "{732A87F6-4CF3-4160-99D5-78B8B07D93C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystemWPF", "Error Handler Engine\ErrorHandlerEngineWPF\ErrorControlSystemWPF.csproj", "{732A87F6-4CF3-4160-99D5-78B8B07D93C9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DF9E798A-6D3B-461E-8B74-BE0757FB3325} = {DF9E798A-6D3B-461E-8B74-BE0757FB3325}
 	EndProjectSection

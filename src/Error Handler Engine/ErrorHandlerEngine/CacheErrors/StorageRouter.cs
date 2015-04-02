@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.Shared;
+using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.Shared;
 
-namespace ErrorHandlerEngine.CacheErrors
+namespace ErrorControlSystem.CacheErrors
 {
     /// <summary>
     /// Routing Where the data must be saved

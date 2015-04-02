@@ -24,11 +24,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using ErrorHandlerEngine.CacheErrors;
-using ErrorHandlerEngine.Resources;
-using ErrorHandlerEngine.Shared;
+using ErrorControlSystem.CacheErrors;
+using ErrorControlSystem.Resources;
+using ErrorControlSystem.Shared;
 
-namespace ErrorHandlerEngine
+namespace ErrorControlSystem
 {
     /// <summary>
     /// Additional Data attached to exception object.

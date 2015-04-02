@@ -7,8 +7,8 @@
     <ProjectGuid>{DF9E798A-6D3B-461E-8B74-BE0757FB3325}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorHandlerEngine</RootNamespace>
-    <AssemblyName>ErrorHandlerEngine</AssemblyName>
+    <RootNamespace>ErrorControlSystem</RootNamespace>
+    <AssemblyName>ErrorControlSystem</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,22 +16,24 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWinApp\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\WinForm\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RegisterForComInterop>false</RegisterForComInterop>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <NoWarn>1607</NoWarn>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\WinForm\ErrorControlSystem.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWinApp\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\WinForm\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1607</NoWarn>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\WinForm\ErrorControlSystem.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

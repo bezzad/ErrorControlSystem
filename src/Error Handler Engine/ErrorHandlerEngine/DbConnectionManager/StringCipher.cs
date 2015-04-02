@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ErrorHandlerEngine.DbConnectionManager
+namespace ErrorControlSystem.DbConnectionManager
 {
     public static class StringCipher
     {

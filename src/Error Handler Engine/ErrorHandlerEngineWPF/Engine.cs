@@ -4,11 +4,11 @@ using System.Runtime.ExceptionServices;
 using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Windows;
-using ErrorHandlerEngine.CacheErrors;
-using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.ServerController;
+using ErrorControlSystem.CacheErrors;
+using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.ServerController;
 
-namespace ErrorHandlerEngine
+namespace ErrorControlSystem
 {
     public static partial class ExceptionHandler
     {

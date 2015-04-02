@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ErrorHandlerEngine.Shared
+namespace ErrorControlSystem.Shared
 {
     public interface IError
     {

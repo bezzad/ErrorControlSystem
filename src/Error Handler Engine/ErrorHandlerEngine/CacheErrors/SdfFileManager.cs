@@ -6,9 +6,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ErrorHandlerEngine.Shared;
+using ErrorControlSystem.Shared;
 
-namespace ErrorHandlerEngine.CacheErrors
+namespace ErrorControlSystem.CacheErrors
 {
     public static class SdfFileManager
     {

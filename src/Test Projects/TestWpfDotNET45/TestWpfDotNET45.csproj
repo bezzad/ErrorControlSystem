@@ -100,9 +100,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.csproj">
+    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngineWPF\ErrorControlSystemWPF.csproj">
       <Project>{732a87f6-4cf3-4160-99d5-78b8b07d93c9}</Project>
-      <Name>ErrorHandlerEngineWPF</Name>
+      <Name>ErrorControlSystemWPF</Name>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

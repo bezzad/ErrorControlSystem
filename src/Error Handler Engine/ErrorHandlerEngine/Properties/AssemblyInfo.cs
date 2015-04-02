@@ -4,14 +4,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ErrorHandlerEngine")]
-[assembly: AssemblyDescription("Error Control System: 1.ErrorHandlerEngine 2.ErrorLogAnalyzer 3.BugTracker")]
+[assembly: AssemblyTitle("ErrorControlSystem")]
+[assembly: AssemblyDescription("Creator Info: Mr.Behzad Khosravifar [mailto:Behzad.Khosravifar@gmail.com]")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("co by Mr.Behzad Khosravifar")]
-[assembly: AssemblyProduct("ErrorHandlerEngine")]
+[assembly: AssemblyCompany("Mr.Behzad Khosravifar")]
+[assembly: AssemblyProduct("ErrorControlSystem")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Behzad Khosravifar Corporation.")]
-[assembly: AssemblyTrademark("Shoniz")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyTrademark("B.B")]
+[assembly: AssemblyCulture("en-us")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(true)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8afb3bd9-eb63-4651-8bc3-003d6d83b5b0")]
+[assembly: Guid("f57a1667-aaf4-4ac7-8941-c3394472e155")]
 
 // Version information for an assembly consists of the following four values:
 //

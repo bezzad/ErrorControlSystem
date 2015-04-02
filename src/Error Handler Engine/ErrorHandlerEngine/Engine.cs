@@ -5,11 +5,11 @@ using System.Security.Permissions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ErrorHandlerEngine.CacheErrors;
-using ErrorHandlerEngine.DbConnectionManager;
-using ErrorHandlerEngine.ServerController;
+using ErrorControlSystem.CacheErrors;
+using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.ServerController;
 
-namespace ErrorHandlerEngine
+namespace ErrorControlSystem
 {
     public static partial class ExceptionHandler
     {

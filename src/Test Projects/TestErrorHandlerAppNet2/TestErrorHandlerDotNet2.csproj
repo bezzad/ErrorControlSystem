@@ -44,7 +44,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Error Control System\ErrorControlSystemAdapter\IErrorHandlerAdapter.cs">
+    <Compile Include="..\..\Error Handler Engine\ErrorHandlerEngineAdapter\IErrorHandlerAdapter.cs">
       <Link>IErrorHandlerAdapter.cs</Link>
     </Compile>
     <Compile Include="Form1.cs">

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using ErrorControlSystem;
+using ErrorHandlerEngine;
 
 namespace TestErrorHandlerDotNet2
 {
@@ -15,7 +15,7 @@ namespace TestErrorHandlerDotNet2
         [STAThread]
         static void Main()
         {
-            //Type myClassAdapterType = Type.GetTypeFromProgID("ErrorControlSystemAdapter.ErrorHandlerAdapter");
+            //Type myClassAdapterType = Type.GetTypeFromProgID("ErrorHandlerEngineAdapter.ErrorHandlerAdapter");
             var myClassAdapterType = Type.GetTypeFromCLSID(new Guid("11BE9CF0-218D-45C6-A9AD-55C891F936F0"));
             var myClassAdapterInstance = Activator.CreateInstance(myClassAdapterType);
             iErrorHandler = (IErrorHandlerAdapter)myClassAdapterInstance;

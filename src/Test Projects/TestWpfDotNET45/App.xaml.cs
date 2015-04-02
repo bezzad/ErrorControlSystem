@@ -1,6 +1,6 @@
 ﻿
 using System.Windows;
-using ErrorControlSystem;
+using ErrorHandlerEngine;
 
 namespace TestWpfDotNET45
 {

@@ -8,9 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using System.Windows.Forms;
-using ErrorControlSystem.CacheErrors;
-using ErrorControlSystem.DbConnectionManager;
-using ErrorControlSystem.Shared;
+using ErrorHandlerEngine.CacheErrors;
+using ErrorHandlerEngine.DbConnectionManager;
+using ErrorHandlerEngine.Shared;
 
 namespace ErrorLogAnalyzer
 {

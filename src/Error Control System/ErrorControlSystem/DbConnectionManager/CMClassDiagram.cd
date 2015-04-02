@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="System.Data.Common.DbConnection" Collapsed="true">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Data.SqlClient.SqlConnection" Collapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <InheritanceLine Type="System.Data.Common.DbConnection" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.562" Y="1.441" />
+        <Point X="2.562" Y="2.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Orientation="Bottom" Position="0.307" />
+  </Class>
+  <Class Name="ErrorControlSystem.DbConnectionManager.Connection" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <InheritanceLine Type="System.Object" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="1.062" />
+        <Point X="7.75" Y="1.625" />
+        <Point X="6.5" Y="1.625" />
+        <Point X="6.5" Y="2" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ACAiAAAAAAAgGAYEQAQAAAwAAACACAAGCCEAohIVABA=</HashCode>
+      <FileName>DbConnectionManager\Connection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.136" />
+  </Class>
+  <Class Name="ErrorControlSystem.DbConnectionManager.ConnectionCollection" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIAAABAACAACgAACAAABAQAAAAIAAAAAAAAAABQIAA=</HashCode>
+      <FileName>DbConnectionManager\ConnectionCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.146" />
+  </Class>
+  <Class Name="ErrorControlSystem.DbConnectionManager.ConnectionManager" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKQAAAJACCAICFQYBAEBWQAAAAsAADTCCAAJACEASA=</HashCode>
+      <FileName>DbConnectionManager\ConnectionManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="ErrorControlSystem.DbConnectionManager.StringCipher" Collapsed="true">
+    <Position X="5.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAIAAAAAYACAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DbConnectionManager\StringCipher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -4,162 +4,182 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{732A87F6-4CF3-4160-99D5-78B8B07D93C9}</ProjectGuid>
+    <ProjectGuid>{ACAB6A56-4C9D-4B88-8AF7-3185C6D5C89C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorHandlerEngine</RootNamespace>
-    <AssemblyName>ErrorHandlerEngineWPF</AssemblyName>
+    <RootNamespace>ErrorControlSystem</RootNamespace>
+    <AssemblyName>ErrorControlSystemWPF</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWPF\</OutputPath>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\out\ErrorControlSystem\WPF\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>1607</NoWarn>
-    <DocumentationFile>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\WPF\ErrorControlSystemWPF.XML</DocumentationFile>
+    <NoWarn>1607, 1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWPF\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorControlSystem\WPF\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>1607</NoWarn>
-    <DocumentationFile>..\..\..\out\ErrorHandlerEngines\ErrorHandlerEngineWPF\ErrorHandlerEngineWPF.XML</DocumentationFile>
+    <NoWarn>1607, 1591</NoWarn>
+    <DocumentationFile>..\..\..\out\ErrorControlSystem\WPF\ErrorControlSystemWPF.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.9.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ErrorHandlerEngine\CacheErrors\CacheController.cs">
+    <Compile Include="..\ErrorControlSystem\CachErrors\CacheController.cs">
       <Link>CacheErrors\CacheController.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\CacheErrors\SdfFileManager.cs">
+    <Compile Include="..\ErrorControlSystem\CachErrors\SdfFileManager.cs">
       <Link>CacheErrors\SdfFileManager.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\CacheErrors\StorageRouter.cs">
+    <Compile Include="..\ErrorControlSystem\CachErrors\StorageRouter.cs">
       <Link>CacheErrors\StorageRouter.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\CodeScope.cs">
+    <Compile Include="..\ErrorControlSystem\CodeScope.cs">
       <Link>CodeScope.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\Connection.cs">
+    <Compile Include="..\ErrorControlSystem\DbConnectionManager\Connection.cs">
       <Link>DbConnectionManager\Connection.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\ConnectionCollection.cs">
+    <Compile Include="..\ErrorControlSystem\DbConnectionManager\ConnectionCollection.cs">
       <Link>DbConnectionManager\ConnectionCollection.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\ConnectionManager.cs">
+    <Compile Include="..\ErrorControlSystem\DbConnectionManager\ConnectionManager.cs">
       <Link>DbConnectionManager\ConnectionManager.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\DbConnectionManager\StringCipher.cs">
+    <Compile Include="..\ErrorControlSystem\DbConnectionManager\StringCipher.cs">
       <Link>DbConnectionManager\StringCipher.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ErrorHandlingOptions.cs">
+    <Compile Include="..\ErrorControlSystem\ErrorHandlingOptions.cs">
       <Link>ErrorHandlingOptions.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ExceptionHandler.cs">
+    <Compile Include="..\ErrorControlSystem\ExceptionHandler.cs">
       <Link>ExceptionHandler.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Filter.cs">
+    <Compile Include="..\ErrorControlSystem\Filter.cs">
       <Link>Filter.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Resources\EmbeddedAssembly.cs">
+    <Compile Include="..\ErrorControlSystem\Resources\EmbeddedAssembly.cs">
       <Link>Resources\EmbeddedAssembly.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\ServerController\ServerTransmitter.cs">
+    <Compile Include="..\ErrorControlSystem\ServerController\ServerTransmitter.cs">
       <Link>ServerController\ServerTransmitter.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\CodeLocation.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\CodeLocation.cs">
       <Link>Shared\CodeLocation.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\CurrentProcesses.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\CurrentProcesses.cs">
       <Link>Shared\CurrentProcesses.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\DiskHelper.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\DiskHelper.cs">
       <Link>Shared\DiskHelper.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\Error.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\Error.cs">
       <Link>Shared\Error.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\IError.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\IError.cs">
       <Link>Shared\IError.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\NetworkHelper.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\NetworkHelper.cs">
       <Link>Shared\NetworkHelper.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\OperationSystem.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\OperationSystem.cs">
       <Link>Shared\OperationSystem.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\OperationSystemInfo.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\OperationSystemInfo.cs">
       <Link>Shared\OperationSystemInfo.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\ProxyError.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\ProxyError.cs">
       <Link>Shared\ProxyError.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorHandlerEngine\Shared\ScreenCapture.cs">
+    <Compile Include="..\ErrorControlSystem\Shared\ScreenCapture.cs">
       <Link>Shared\ScreenCapture.cs</Link>
     </Compile>
     <Compile Include="Engine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ServerController\DatabaseCreatorQuery.sql" />
-    <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
+    <None Include="..\ErrorControlSystem\DbConnectionManager\CMClassDiagram.cd">
+      <Link>DbConnectionManager\CMClassDiagram.cd</Link>
+    </None>
+    <None Include="..\ErrorControlSystem\EHEClassDiagram.cd">
+      <Link>EHEClassDiagram.cd</Link>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\System.Data.SqlServerCe.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\System.Threading.Tasks.Dataflow.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\ErrorControlSystem\ServerController\DatabaseCreatorQuery.sql">
+      <Link>ServerController\DatabaseCreatorQuery.sql</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ErrorControlSystem\ServerController\TablesAndSPsCreatorQuery.sql">
+      <Link>ServerController\TablesAndSPsCreatorQuery.sql</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

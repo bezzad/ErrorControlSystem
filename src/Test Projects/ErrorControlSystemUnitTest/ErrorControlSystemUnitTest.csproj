@@ -6,8 +6,8 @@
     <ProjectGuid>{840587CA-2824-4F8E-873F-5BE66CC98FAB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorHandlerEngineUnitTest</RootNamespace>
-    <AssemblyName>ErrorHandlerEngineUnitTest</AssemblyName>
+    <RootNamespace>ErrorControlSystemUnitTest</RootNamespace>
+    <AssemblyName>ErrorControlSystemUnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\TestProjects\ErrorHandlerEngineUnitTest\</OutputPath>
+    <OutputPath>..\..\..\out\TestProjects\ErrorControlSystemUnitTest\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,7 +30,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\TestProjects\ErrorHandlerEngineUnitTest\</OutputPath>
+    <OutputPath>..\..\..\out\TestProjects\ErrorControlSystemUnitTest\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -64,10 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Handler Engine\ErrorHandlerEngine\ErrorHandlerEngine.csproj">
-      <Project>{df9e798a-6d3b-461e-8b74-be0757fb3325}</Project>
-      <Name>ErrorHandlerEngine</Name>
-      <Private>True</Private>
+    <ProjectReference Include="..\..\Error Control System\ErrorControlSystem\ErrorControlSystem.csproj">
+      <Project>{515c50e8-a9a0-4ac0-8591-7369c1a31dc8}</Project>
+      <Name>ErrorControlSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

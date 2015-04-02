@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using ErrorHandlerEngine;
+using ErrorControlSystem;
 
 namespace TestErrorHandlerDotNet2
 {

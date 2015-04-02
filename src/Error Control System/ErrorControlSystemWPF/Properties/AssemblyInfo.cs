@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Error Control System Created by [Mr. Behzad Khosravifar](mailto:Behzad.Khosravifar@gmail.com)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mr.Behzad Khosravifar")]
-[assembly: AssemblyProduct("ErrorHandlerEngine")]
+[assembly: AssemblyProduct("ErrorControlSystem")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Behzad Khosravifar Corporation.")]
 [assembly: AssemblyTrademark("B.B")]
 [assembly: AssemblyCulture("")]

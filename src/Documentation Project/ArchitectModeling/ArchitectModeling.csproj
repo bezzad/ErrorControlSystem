@@ -60,10 +60,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ErrorHandlerEngine-1.png">
+    <EmbeddedResource Include="ErrorControlSystem-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ErrorHandlerEngine-2.png">
+    <EmbeddedResource Include="ErrorControlSystem-2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

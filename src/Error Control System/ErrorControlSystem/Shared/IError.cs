@@ -25,8 +25,8 @@ namespace ErrorControlSystem.Shared
         String Source { get; set; }
         String StackTrace { get; set; }
         String User { get; set; }
-        CodeLocation LineColumn { get; set; }
+        CodeScope LineColumn { get; set; }
         int Duplicate { get; set; }
-        string Data { get; set; }
+        String Data { get; set; }
     }
 }

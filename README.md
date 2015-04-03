@@ -31,7 +31,8 @@ This is initialize codes of the module by `C# language`:
 
 using System;
 using System.Windows.Forms;
-using ErrorHandlerEngine;
+using ErrorControlSystem;
+using ErrorControlSystem.Shared;
 
 namespace TestApplication
 {
@@ -44,7 +45,7 @@ namespace TestApplication
             Application.SetCompatibleTextRenderingDefault(false);
 
             //
-            //  ------------------ Initial Error Control System --------------------------------
+            // ------------------ Initial Error Control System --------------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
@@ -82,7 +83,7 @@ This is initialize codes of the module by `VB.NET language`:
  
 ```vb
 
-Imports ErrorHandlerEngine
+Imports ErrorControlSystem
 
 Module MainModule
     Sub Main()
@@ -140,7 +141,7 @@ Note:
 ### How To Install The Modules ###
 
 1. Install examples for developers (unpacking it to your disk, and go to
-\ErrorControlSystem\out\Error Handler Engines\... directory if you're installing by hand, for example).
+\ErrorControlSystem\out\ErrorControlSystem\... directory if you're installing by hand, for example).
 
  Note:
 >      If there is not any file in the out folders, 
@@ -152,7 +153,7 @@ Note:
 
 
 2. In your project reference add this module dll file:  
-   References > Add Reference... > Browse to above path > Select ErrorHandlerEngine.dll
+   References > Add Reference... > Browse to above path > Select ErrorControlSystem.dll
 
 3. Rebuild access permissions if you are prompted to.
 

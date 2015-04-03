@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ErrorControlSystem;
+using ErrorControlSystem.Shared;
 
 namespace TestWinFormDotNet45
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -28,9 +29,9 @@ namespace ErrorControlSystem.Shared
         /// Get handled exception's by additional data.
         /// </summary>
         /// <param name="exp">>The occurrence raw error.</param>
-        /// <param name="newStackTrace">New stack trace context to changes by exception stackTrace</param>
+        /// <param name="frames">The array of <see cref="System.Diagnostics.StackFrame"/> to changes by exception stackTrace</param>
         /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        public Error(Exception exp, string newStackTrace = null, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+        public Error(Exception exp, StackFrame[] frames = null, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
         {
             #region HResult [Exception Type Code]
 
@@ -40,7 +41,7 @@ namespace ErrorControlSystem.Shared
 
             #region Error Line Column
 
-            LineColumn = new CodeLocation(exp);
+            LineColumn = new CodeScope(exp);
 
             #endregion
 
@@ -70,7 +71,7 @@ namespace ErrorControlSystem.Shared
 
             #region StackTrace
 
-            StackTrace = newStackTrace ??
+            StackTrace = CodeScope.StackFramesToString(frames) ??
                 (exp.InnerException != null
                 ? exp.InnerException.StackTrace ?? ""
                 : exp.StackTrace ?? "");
@@ -221,7 +222,7 @@ namespace ErrorControlSystem.Shared
         public string Source { get; set; }
         public string StackTrace { get; set; }
         public string User { get; set; }
-        public CodeLocation LineColumn { get; set; }
+        public CodeScope LineColumn { get; set; }
         public int Duplicate { get; set; }
         public string Data { get; set; }
         #endregion
@@ -251,7 +252,7 @@ namespace ErrorControlSystem.Shared
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;
-            LineColumn = CodeLocation.Empty;
+            LineColumn = CodeScope.Empty;
             Duplicate = 0;
             Data = string.Empty;
         }

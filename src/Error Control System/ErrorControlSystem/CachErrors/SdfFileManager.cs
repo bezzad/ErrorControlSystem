@@ -176,7 +176,7 @@ namespace ErrorControlSystem.CachErrors
                 cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
                 cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
-                cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
+                cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString(true));
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                 cmd.Parameters.AddWithValue("@Data", error.Data);
                 if (error.Snapshot == null) cmd.Parameters.AddWithValue("@Snapshot", DBNull.Value);
@@ -339,7 +339,7 @@ namespace ErrorControlSystem.CachErrors
                                 IPv4Address = (string)error["IPv4Address"],
                                 MacAddress = (string)error["MACAddress"],
                                 HResult = (int)error["HResult"],
-                                LineColumn = CodeLocation.Parse(error["LineColumn"] as string),
+                                LineColumn = CodeScope.Parse(error["LineColumn"] as string),
                                 Duplicate = (int)error["DuplicateNo"],
                                 Data = (string)error["Data"]
                             });

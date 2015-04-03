@@ -90,7 +90,7 @@ namespace ErrorControlSystem.Shared
             Source = (string)info.GetValue("Source", typeof(string));
             StackTrace = (string)info.GetValue("StackTrace", typeof(string));
             User = (string)info.GetValue("User", typeof(string));
-            LineColumn = (CodeLocation)info.GetValue("LineColumn", typeof(CodeLocation));
+            LineColumn = (CodeScope)info.GetValue("LineColumn", typeof(CodeScope));
             Duplicate = (int)info.GetValue("Duplicate", typeof(int));
             Data = (string)info.GetValue("Data", typeof(string));
             // Initialize by invoking a specific constructor on Order when Value property is accessed
@@ -164,7 +164,7 @@ namespace ErrorControlSystem.Shared
         public string Source { get; set; }
         public string StackTrace { get; set; }
         public string User { get; set; }
-        public CodeLocation LineColumn { get; set; }
+        public CodeScope LineColumn { get; set; }
         public int Duplicate { get; set; }
         public string Data { get; set; }
         #endregion
@@ -194,7 +194,7 @@ namespace ErrorControlSystem.Shared
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;
-            LineColumn = CodeLocation.Empty;
+            LineColumn = CodeScope.Empty;
             Duplicate = 0;
             Data = string.Empty;
         }

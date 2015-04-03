@@ -57,7 +57,7 @@
     <Compile Include="CachErrors\CacheController.cs" />
     <Compile Include="CachErrors\SdfFileManager.cs" />
     <Compile Include="CachErrors\StorageRouter.cs" />
-    <Compile Include="CodeScope.cs" />
+    <Compile Include="Shared\CodeScope.cs" />
     <Compile Include="DbConnectionManager\Connection.cs" />
     <Compile Include="DbConnectionManager\ConnectionCollection.cs" />
     <Compile Include="DbConnectionManager\ConnectionManager.cs" />
@@ -78,7 +78,6 @@
     </Compile>
     <Compile Include="Resources\EmbeddedAssembly.cs" />
     <Compile Include="ServerController\ServerTransmitter.cs" />
-    <Compile Include="Shared\CodeLocation.cs" />
     <Compile Include="Shared\CurrentProcesses.cs" />
     <Compile Include="Shared\DiskHelper.cs" />
     <Compile Include="Shared\Error.cs" />

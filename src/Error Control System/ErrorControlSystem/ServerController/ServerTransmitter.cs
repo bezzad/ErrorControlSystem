@@ -172,7 +172,7 @@ namespace ErrorControlSystem.ServerController
                 cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
                 cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
-                cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString());
+                cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString(true));
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                 cmd.Parameters.AddWithValue("@Data", error.Data);
                 //

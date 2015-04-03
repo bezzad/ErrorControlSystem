@@ -75,9 +75,6 @@
     <Compile Include="..\ErrorControlSystem\CachErrors\StorageRouter.cs">
       <Link>CacheErrors\StorageRouter.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorControlSystem\CodeScope.cs">
-      <Link>CodeScope.cs</Link>
-    </Compile>
     <Compile Include="..\ErrorControlSystem\DbConnectionManager\Connection.cs">
       <Link>DbConnectionManager\Connection.cs</Link>
     </Compile>
@@ -105,8 +102,8 @@
     <Compile Include="..\ErrorControlSystem\ServerController\ServerTransmitter.cs">
       <Link>ServerController\ServerTransmitter.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorControlSystem\Shared\CodeLocation.cs">
-      <Link>Shared\CodeLocation.cs</Link>
+    <Compile Include="..\ErrorControlSystem\Shared\CodeScope.cs">
+      <Link>Shared\CodeScope.cs</Link>
     </Compile>
     <Compile Include="..\ErrorControlSystem\Shared\CurrentProcesses.cs">
       <Link>Shared\CurrentProcesses.cs</Link>

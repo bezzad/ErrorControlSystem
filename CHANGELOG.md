@@ -2,26 +2,39 @@
 
 # Version history
 
-## 2.0.169
+## [v4.0.1]()
 
 Added
 
-* Added automatic unit test rewriting
-* Added configuration of how line-endings are generated during state printing. This is to mitigate problems due to different operating systems uses different line-endings.
-* Added assertion helper methods `Stateprinter.Assert.AreEqual`, `Stateprinter.Assert.IsSame`, `Stateprinter.Assert.PrintIsSame` and `Stateprinter.Assert.That`.  Improves the unit test experience by printing a suggested expected string as C# code.
-* Added a `AllFieldsAndPropertiesHarvester` which is able to harvest properties and fields.
-* `StringConverter` is now configurable with respect to quote character.
-* BREAKING CHANGE: Projective harvester is now using the `AllFieldsAndPropertiesHarvester` rather instead of the `FieldHarvester`. This means both fields and properties are now harvested.
+* Bug fixes
+* Improved stability
+* Add Server and Database chosen combo box to ErrorLogAnalyzer
+* Add WaitSplash feature to ECS Cache Analyzer for known background workers
+* Never do not Raise Self Exceptions by new Algorithm
+* Cache Size Checked Only When an Error Inserted
+* Exempted Exception from Some Code Scopes
+* Just Raise Error Log in Special Code Scopes
+* Replace Exception.StackTrace data by Call Method StackTrace for store completely data
+* Convert Exception.StackTrace to customized format for use that in Analyzer easily
+* Change and speedup SDF chache file update model
+* Check cache drives space to ignore or throw exception for filling the cache drive capacity
+* Add an EventHandler to ErrorHandlerEngine for Alert any UnHandled Exception
 
 
-## [v3.0](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v3.0.zip)
+
+## [v3.0.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v3.0.zip)
 
 Added
 
-* Executing stylecop on the build server.
-* Made the `Configuration` class API a bit more fluent
-* BUGFIX: Harvesting of types were cached across `Stateprinter` instances, which no longer makes sense since harvesting is configurable from instance to instance.
-* BUGFIX: Changed how `ToString()` methods are harvested. Thanks to "Sjdirect".
+* Bug fixes
+* Improved stability
+* Personalized Exception Handler
+* Filter Exception Raiser and Snapshot Cupturing
+* Set Error Handler Options from Database
+* Send Cache Data to Server at Periodic Times
+* Caputre Multi-Screen Snapshots
+* Auto Create and Update Tables and StoredProcedures on Database
+* Release ErrorHandlerEngine WPF version
 
 
 ## [v2.0.0](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v2.0.zip)
@@ -40,7 +53,6 @@ Added
 
 
 ## [v1.0.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v1.0.zip)
-
 
 Added
 

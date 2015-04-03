@@ -21,8 +21,9 @@ namespace ErrorControlSystem
         FetchServerDateTime = 8,
         ReSizeSnapshots = 16,
         SendCacheToServer = 32,
+        FilterExceptions = 64,
 
-        Default = Snapshot | FetchServerDateTime | AlertUnHandledError | SendCacheToServer | ReSizeSnapshots,
+        Default = Snapshot | FetchServerDateTime | AlertUnHandledError | SendCacheToServer | ReSizeSnapshots | FilterExceptions,
         All = 0xFFFF // Combined value of all
     }
 

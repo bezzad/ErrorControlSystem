@@ -19,6 +19,7 @@ Added
 * Change and speedup SDF chache file update model
 * Check cache drives space to ignore or throw exception for filling the cache drive capacity
 * Add an EventHandler to ErrorHandlerEngine for Alert any UnHandled Exception
+* LineColumn text divided to Line and Column integer number in databases
 
 
 

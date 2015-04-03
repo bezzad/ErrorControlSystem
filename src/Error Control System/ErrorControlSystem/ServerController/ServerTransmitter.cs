@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Runtime.Remoting;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorControlSystem.CachErrors;
@@ -24,23 +26,34 @@ namespace ErrorControlSystem.ServerController
 
         #region Constructor
 
+        /// <summary>
+        /// Initials the transmitter asynchronous.
+        /// Check the server and then database existence and ...
+        /// </summary>
         public static async Task InitialTransmitterAsync()
         {
-        CheckDatabase:
-            await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync();
+            var cm = ConnectionManager.GetDefaultConnection(); // fetch default connection
 
-            var cm = ConnectionManager.GetDefaultConnection();
-
-            if (cm.IsReady)
+            if (await cm.IsServerOnlineAsync()) // Is server on ?
             {
-                await CreateTablesAndStoredProceduresAsync();
-            }
-            else if (await cm.IsServerOnlineAsync())
-            {
-                await CreateDatabaseAsync();
+                await CreateDatabaseAsync(); // Check or Create Raw Database
 
-                goto CheckDatabase;
+                if (await cm.CheckDbConnectionAsync()) // Is database exist on server ?
+                {
+                    await CreateTablesAndStoredProceduresAsync(); // Check or create Tables and StoredProcedures
+                }
+                else // database is not exist !!!
+                {
+                    CanToSent = false;
+                    new DataException("Database is not exist or corrupted").RaiseLog(ErrorHandlingOptions.IsHandled);
+                }
             }
+            else // server is off !!
+            {
+                CanToSent = false;
+                new ServerException("Server is not online!").RaiseLog(ErrorHandlingOptions.IsHandled);
+            }
+
 
             ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
                 async (e) =>
@@ -51,9 +64,10 @@ namespace ErrorControlSystem.ServerController
                         {
                             await InsertErrorAsync(e);
                         }
-                        catch (Exception)
+                        catch (Exception exp)
                         {
                             CanToSent = false;
+                            exp.RaiseLog(ErrorHandlingOptions.IsHandled);
                         }
                         finally
                         {
@@ -172,7 +186,8 @@ namespace ErrorControlSystem.ServerController
                 cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
                 cmd.Parameters.AddWithValue("@MACAddress", error.MacAddress);
                 cmd.Parameters.AddWithValue("@HResult", error.HResult);
-                cmd.Parameters.AddWithValue("@LineCol", error.LineColumn.ToString(true));
+                cmd.Parameters.AddWithValue("@Line", error.LineColumn.Line);
+                cmd.Parameters.AddWithValue("@Column", error.LineColumn.Column);
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
                 cmd.Parameters.AddWithValue("@Data", error.Data);
                 //
@@ -204,7 +219,7 @@ namespace ErrorControlSystem.ServerController
             return (ErrorHandlingOptions)optInt;
         }
 
-        
+
 
         #endregion
     }

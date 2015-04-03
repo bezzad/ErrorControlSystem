@@ -63,8 +63,8 @@ namespace ErrorControlSystem
             {
                 _option = option;
 
-                ConnectionManager.Add(conn, "ErrorHandlerServer");
-                ConnectionManager.SetToDefaultConnection("ErrorHandlerServer");
+                ConnectionManager.Add(conn, "ErrorControlSystemConnection");
+                ConnectionManager.SetToDefaultConnection("ErrorControlSystemConnection");
 
                 await ServerTransmitter.InitialTransmitterAsync();
 

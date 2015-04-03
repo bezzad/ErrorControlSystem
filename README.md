@@ -195,30 +195,31 @@ __ErrorLog Table:__
 
 | Column Name      | Data Type             | 
 |:----------------------- |:------------------------ |
-| ErrorId                  |   `bigint`                |
-| DateTime             |   `datetime`           |
+| ErrorId                  |   `bigint`          |
+| DateTime				 |   `datetime`           |
 | Host                     |  `varchar(200)`      |
 | [User]                   | `varchar(200)`      |
-| IsHandled            |  `bit`                      |
+| IsHandled				  |  `bit`               |
 | Type                    |  `varchar(200)`      |
-| AppName            |  `varchar(200)`      |
-| Data                    |  `xml`                     |
-| CurrentCulture    |  `nvarchar(200)`    |
-| CLRVersion        |  `varchar(100)`        |
+| AppName			   |  `varchar(200)`      |
+| Data                    |  `xml`            |
+| CurrentCulture	  |  `nvarchar(200)`    |
+| CLRVersion		  |  `varchar(100)`        |
 | Message             |  `nvarchar(MAX)`  |
 | Source                |  `nvarchar(MAX)`   |
 | StackTrace          |  `nvarchar(MAX)`  |
-| ModuleName      |  `varchar(200)`      |
-| MemberType       |  `varchar(200)`       |
+| ModuleName		  |  `varchar(200)`      |
+| MemberType		   |  `varchar(200)`       |
 | Method                |  `nvarchar(500)`   |
 | Processes            |  `varchar(MAX)`   |
-| ErrorDateTime     |  `datetime`           |
+| ErrorDateTime		    |  `datetime`           |
 | OS                       |  `varchar(1000)`   |
-| IPv4Address        |  `varchar(50)`       |
-| MACAddress       |  `varchar(50)`       |
-| HResult               |  `int`                      |
-| LineColumn         |  `varchar(50)`       |
-| DuplicateNo        |  `int`                      |
+| IPv4Address		    |  `varchar(50)`       |
+| MACAddress		  |  `varchar(50)`       |
+| HResult               |  `int`              |
+| Line					 |  `int`       |
+| Column				 |  `int`       |
+| DuplicateNo		   |  `int`            |
 
 __Snapshots Table:__
 

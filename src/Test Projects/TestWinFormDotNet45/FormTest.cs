@@ -68,7 +68,6 @@ namespace TestWinFormDotNet45
                 () => { throw new ApplicationException("Test"); },
                 () => { throw new FormatException("Test"); }
             };
-
         }
 
         private void btnQuit_Click(object sender, EventArgs e)

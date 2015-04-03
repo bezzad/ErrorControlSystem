@@ -34,7 +34,8 @@ BEGIN
 		[IPv4Address] [varchar](50) NULL, 
 		[MACAddress] [varchar](50) NULL, 
 		[HResult] [int] NULL, 
-		[LineColumn] [varchar](50) NULL, 
+		[Line] [int] NULL, 
+		[Column] [int] NULL,
 		[DuplicateNo] [int] NULL, 
     	
 		 CONSTRAINT [PK_ErrorLog] PRIMARY KEY CLUSTERED  
@@ -122,7 +123,8 @@ BEGIN
 		@IPv4Address VARCHAR(50) = NULL, 
 		@MACAddress VARCHAR(50) = NULL, 
 		@HResult INT, 
-		@LineCol VARCHAR(50) = NULL, 
+		@Line INT, 
+		@Column INT,
 		@Duplicate INT, 
 		@Data XML = NULL 
 		AS 
@@ -140,13 +142,13 @@ BEGIN
 					-- Check the error exist or not? if exist then just update that 
 					IF ( Select COUNT(ErrorId) FROM [ErrorLog]  
 						 WHERE HResult = @HResult AND  
-							   LineColumn = @LineCol AND  
+							   Line = @Line AND
 							   Method = @Method AND 
 							   [User] = @User) > 0 
 						-- Update error object from ErrorLog table 
 						UPDATE dbo.ErrorLog SET DuplicateNo += 1  
 							WHERE HResult = @HResult AND  
-								  LineColumn = @LineCol AND  
+								  Line = @Line AND
 								  Method = @Method AND 
 								  [User] = @User 
 					ELSE 
@@ -173,7 +175,8 @@ BEGIN
 									   ,[IPv4Address] 
 									   ,[MACAddress] 
 									   ,[HResult] 
-									   ,[LineColumn] 
+									   ,[Line] 
+									   ,[Column]
 									   ,[DuplicateNo] 
 									   ,[Data]) 
 							VALUES  (	@ServerDateTime 
@@ -196,7 +199,8 @@ BEGIN
 									   ,@IPv4Address 
 									   ,@MACAddress 
 									   ,@HResult 
-									   ,@LineCol 
+									   ,@Line
+									   ,@Column
 									   ,@Duplicate 
 									   ,@Data 
 									) 
@@ -239,7 +243,7 @@ BEGIN
 				IF @ERROR_NUMBER <> 50000 
 					INSERT  INTO UsersManagements.dbo.ErrorLog 
 							( [Type], 
-							  [LineColumn], 
+							  [Line], 
 							  [Message], 
 							  [HResult], 
 							  [Data] 
@@ -284,15 +288,16 @@ BEGIN
 					@FetchServerDateTime INT = 8,
 					@ReSizeSnapshots INT = 16,
 					@SendCacheToServer INT = 32,
+					@FilterExceptions INT = 64,
 					@Default INT,
 					@All INT = 0xFFFF;
 					
-			SET @Default =  (@Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots);
+			SET @Default =  (@Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots + @FilterExceptions);
 
-			IF(CHARINDEX(''TestErrorHandlerDotNet45'', @AppName) = 1 AND @UserName = ''DBITABRIZ\khosravifar.b'')
+			IF(CHARINDEX(''TestWinFormDotNet45'', @AppName) = 1 AND @UserName = ''DBITABRIZ\khosravifar.b'')
 				RETURN (@Default)
 
-			IF(CHARINDEX(''TestErrorHandlerDotNet45'', @AppName) = 1 AND @UserName = ''Behzad-PC\Behzad'')
+			IF(CHARINDEX(''TestWinFormDotNet45'', @AppName) = 1)
 				RETURN (@Default)
 				
 			RETURN @None

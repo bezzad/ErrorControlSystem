@@ -23,8 +23,6 @@ namespace ErrorLogAnalyzer
         {
             InitializeComponent();
 
-            OnStartupAction = OnStartup;
-
             _timer = new Timer { Interval = 2000 };
             _timer.Tick += _timer_Tick;
 
@@ -89,7 +87,8 @@ namespace ErrorLogAnalyzer
             ConnectionManager.SetToDefaultConnection("um");
         }
 
-        void OnStartup()
+
+        public override void OnFormLoad()
         {
             // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
             var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

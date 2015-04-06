@@ -180,7 +180,7 @@ namespace ErrorControlSystem.CachErrors
                 cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
                 cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
                 cmd.Parameters.AddWithValue("@Method", error.Method);
-                cmd.Parameters.AddWithValue("@Processes", error.Processes);
+                cmd.Parameters.AddWithValue("@Processes", error.Processes.Substring());
                 cmd.Parameters.AddWithValue("@ErrorDateTime", error.ErrorDateTime);
                 cmd.Parameters.AddWithValue("@OS", error.OS);
                 cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ErrorControlSystem;
 
 namespace ErrorLogAnalyzer
 {
@@ -13,6 +14,8 @@ namespace ErrorLogAnalyzer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            ExceptionHandler.Engine.Start(".", "UsersManagements");
 
             Application.Run(new LogReader());
         }

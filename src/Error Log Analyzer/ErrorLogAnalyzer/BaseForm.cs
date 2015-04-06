@@ -57,7 +57,6 @@ namespace ErrorLogAnalyzer
         #region Properties
 
         public Splash WaitSplash;
-        public Action OnStartupAction;
 
         #endregion
 
@@ -77,7 +76,7 @@ namespace ErrorLogAnalyzer
         {
             Application.Idle -= Application_Idle;
 
-            await InvokeAsync(OnStartupAction);
+            await InvokeAsync(OnFormLoad);
         }
 
         public async Task InvokeAsync(Action doSomething)
@@ -100,6 +99,10 @@ namespace ErrorLogAnalyzer
             this.Focus();
         }
 
+        public virtual void OnFormLoad()
+        {
+            
+        }
         #endregion
     }
 }

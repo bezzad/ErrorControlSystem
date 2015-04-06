@@ -69,7 +69,6 @@ namespace ErrorLogAnalyzer
             }
         }
 
-
         public static void UpdateRow(this DataGridView dataGrid, Object rowObj, Func<DataGridViewRow, object, bool> comparison)
         {
             foreach (DataGridViewRow row in dataGrid.Rows)
@@ -93,4 +92,3 @@ namespace ErrorLogAnalyzer
         }
     }
 }
-

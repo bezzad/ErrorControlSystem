@@ -22,7 +22,7 @@ namespace ErrorControlSystem.Shared
             #region Initialize Lazy<Image> Snapshot
 
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
+            Snapshot = new Lazy<Image>(() => SqlCompactEditionManager.GetSnapshot(Id));
 
             #endregion
         }
@@ -61,7 +61,7 @@ namespace ErrorControlSystem.Shared
             #region Initialize Lazy<Image> Snapshot
 
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
+            Snapshot = new Lazy<Image>(() => SqlCompactEditionManager.GetSnapshot(Id));
 
             #endregion
         }
@@ -94,7 +94,7 @@ namespace ErrorControlSystem.Shared
             Duplicate = (int)info.GetValue("Duplicate", typeof(int));
             Data = (string)info.GetValue("Data", typeof(string));
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => SdfFileManager.GetSnapshot(Id));
+            Snapshot = new Lazy<Image>(() => SqlCompactEditionManager.GetSnapshot(Id));
         }
 
         #endregion

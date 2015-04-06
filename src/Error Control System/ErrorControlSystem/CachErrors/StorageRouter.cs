@@ -36,11 +36,11 @@ namespace ErrorControlSystem.CachErrors
         {
             if (File.Exists(ErrorLogFilePath))
             {
-                SdfFileManager.CheckSdf(ErrorLogFilePath);
+                SqlCompactEditionManager.CheckSdf(ErrorLogFilePath);
             }
             else
             {
-                await SdfFileManager.CreateSdfAsync(ErrorLogFilePath);
+                await SqlCompactEditionManager.CreateSdfAsync(ErrorLogFilePath);
             }
         }
 
@@ -50,7 +50,7 @@ namespace ErrorControlSystem.CachErrors
 
             CheckLogPath();
 
-            await SdfFileManager.CreateSdfAsync(ErrorLogFilePath);
+            await SqlCompactEditionManager.CreateSdfAsync(ErrorLogFilePath);
         }
 
         private static void CheckLogPath()

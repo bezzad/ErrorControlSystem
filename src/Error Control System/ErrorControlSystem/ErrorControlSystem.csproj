@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CachErrors\CacheController.cs" />
-    <Compile Include="CachErrors\SdfFileManager.cs" />
+    <Compile Include="CachErrors\SqlCompactEditionManager.cs" />
     <Compile Include="CachErrors\StorageRouter.cs" />
     <Compile Include="Shared\CodeScope.cs" />
     <Compile Include="DbConnectionManager\Connection.cs" />

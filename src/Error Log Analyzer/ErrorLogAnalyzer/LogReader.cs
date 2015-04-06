@@ -44,9 +44,9 @@ namespace ErrorLogAnalyzer
 
         void _timer_Tick(object sender, EventArgs e)
         {
-            SdfFileManager.SetConnectionString(txtCacheFilePath.Text);
+            SqlCompactEditionManager.SetConnectionString(txtCacheFilePath.Text);
 
-            var newErrors = SdfFileManager.GetErrors().ToList();
+            var newErrors = SqlCompactEditionManager.GetErrors().ToList();
 
             //
             // Update old errors

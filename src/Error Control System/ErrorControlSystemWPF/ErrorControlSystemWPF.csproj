@@ -69,8 +69,8 @@
     <Compile Include="..\ErrorControlSystem\CachErrors\CacheController.cs">
       <Link>CacheErrors\CacheController.cs</Link>
     </Compile>
-    <Compile Include="..\ErrorControlSystem\CachErrors\SdfFileManager.cs">
-      <Link>CacheErrors\SdfFileManager.cs</Link>
+    <Compile Include="..\ErrorControlSystem\CachErrors\SqlCompactEditionManager.cs">
+      <Link>CacheErrors\SqlCompactEditionManager.cs</Link>
     </Compile>
     <Compile Include="..\ErrorControlSystem\CachErrors\StorageRouter.cs">
       <Link>CacheErrors\StorageRouter.cs</Link>

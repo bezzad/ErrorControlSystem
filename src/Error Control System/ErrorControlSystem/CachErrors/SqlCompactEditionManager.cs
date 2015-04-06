@@ -10,9 +10,16 @@ using ErrorControlSystem.Shared;
 
 namespace ErrorControlSystem.CachErrors
 {
-    public static class SdfFileManager
+    public static class SqlCompactEditionManager
     {
+        #region Properties
+
+        private const int Max = 3999;
+
         public static string ConnectionString { get; private set; }
+
+        #endregion
+
 
         public static void SetConnectionString(string filePath)
         {
@@ -169,7 +176,7 @@ namespace ErrorControlSystem.CachErrors
                 cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
                 cmd.Parameters.AddWithValue("@Message", error.Message);
                 cmd.Parameters.AddWithValue("@Source", error.Source ?? "Source Not Found");
-                cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace);
+                cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace.Substring());
                 cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
                 cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
                 cmd.Parameters.AddWithValue("@Method", error.Method);
@@ -182,7 +189,7 @@ namespace ErrorControlSystem.CachErrors
                 cmd.Parameters.AddWithValue("@Line", error.LineColumn.Line);
                 cmd.Parameters.AddWithValue("@Column", error.LineColumn.Column);
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
-                cmd.Parameters.AddWithValue("@Data", error.Data);
+                cmd.Parameters.AddWithValue("@Data", error.Data.Substring());
                 if (error.Snapshot == null) cmd.Parameters.AddWithValue("@Snapshot", DBNull.Value);
                 else cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot.ToBytes());
 
@@ -213,7 +220,7 @@ namespace ErrorControlSystem.CachErrors
                 if (!error.IsHandled) // Just in Unhandled Exceptions
                 {
                     cmd.Parameters.AddWithValue("@isHandled", error.IsHandled);
-                    cmd.Parameters.AddWithValue("@stackTrace", error.StackTrace);
+                    cmd.Parameters.AddWithValue("@stackTrace", error.StackTrace.Substring());
                 }
 
                 try
@@ -436,6 +443,11 @@ namespace ErrorControlSystem.CachErrors
                     sqlConn.Close();
                 }
             }
+        }
+
+        private static string Substring(this string item)
+        {
+            return item.Length > Max ? item.Substring(0, Max) : item;
         }
     }
 }

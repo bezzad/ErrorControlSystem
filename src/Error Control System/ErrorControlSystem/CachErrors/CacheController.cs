@@ -33,7 +33,7 @@ namespace ErrorControlSystem.CachErrors
                     {
                         //
                         // Remove Error from Log file:
-                        await SdfFileManager.DeleteAsync(ack.Item1.Id);
+                        await SqlCompactEditionManager.DeleteAsync(ack.Item1.Id);
                         //
                         // De-story error from Memory (RAM):
                         if (ack.Item1 != null) ack.Item1.Dispose();
@@ -70,7 +70,7 @@ namespace ErrorControlSystem.CachErrors
                 // and if successful sent then clear them...
                 if (ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent)
                     if (new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize
-                        || await SdfFileManager.GetTheFirstErrorHoursAsync() >= ExpireHours)
+                        || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ExpireHours)
                     {
                         await UploadCacheAsync();
                     }
@@ -83,7 +83,7 @@ namespace ErrorControlSystem.CachErrors
 
         public static async Task UploadCacheAsync()
         {
-            foreach (var error in SdfFileManager.GetErrors())
+            foreach (var error in SqlCompactEditionManager.GetErrors())
             {
                 await ServerTransmitter.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
 
@@ -100,7 +100,7 @@ namespace ErrorControlSystem.CachErrors
 
                 _errorSaverActionBlock = new ActionBlock<Error>(async e =>
                 {
-                    if (await SdfFileManager.InsertOrUpdateAsync(e)) // insert or update database and return cache check state
+                    if (await SqlCompactEditionManager.InsertOrUpdateAsync(e)) // insert or update database and return cache check state
                         if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlingOptions.SendCacheToServer))
                             await CheckStateAsync();
                 },

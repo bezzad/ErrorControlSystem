@@ -351,7 +351,7 @@ namespace ErrorControlSystem.CachErrors
                                 IPv4Address = (string)error["IPv4Address"],
                                 MacAddress = (string)error["MACAddress"],
                                 HResult = (int)error["HResult"],
-                                LineColumn = new CodeScope(null, null, null, null, (int)error["Line"], (int)error["Column"]),
+                                LineColumn = new CodeScope((int)error["Line"], (int)error["Column"]),
                                 Duplicate = (int)error["DuplicateNo"],
                                 Data = (string)error["Data"]
                             });

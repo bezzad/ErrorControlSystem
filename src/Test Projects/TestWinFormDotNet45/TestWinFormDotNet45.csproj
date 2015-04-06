@@ -45,10 +45,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FormTest.cs">
+    <Compile Include="TestNameSpace\FormTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTest.Designer.cs">
+    <Compile Include="TestNameSpace\FormTest.Designer.cs">
       <DependentUpon>FormTest.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -60,7 +60,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormTest.resx">
+    <EmbeddedResource Include="TestNameSpace\FormTest.resx">
       <DependentUpon>FormTest.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

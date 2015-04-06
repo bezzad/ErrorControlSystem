@@ -1,4 +1,4 @@
-﻿namespace TestWinFormDotNet45
+﻿namespace TestWinFormDotNet45.TestNameSpace
 {
     partial class FormTest
     {

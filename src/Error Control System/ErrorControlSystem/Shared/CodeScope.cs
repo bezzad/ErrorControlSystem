@@ -19,22 +19,23 @@ namespace ErrorControlSystem.Shared
         /// </devdoc>
         public static readonly CodeScope Empty = new CodeScope();
 
-        public String Namespace = String.Empty;
-        public String Class = String.Empty;
-        public String Method = String.Empty;
-        public String FilePath = String.Empty;
+        public String Assembly { get; set; }
+        public String Namespace { get; set; }
+        public String Class { get; set; }
+        public String Method { get; set; }
+        public String FilePath { get; set; }
 
         /// <devdoc>
         ///    Gets the line-coordinate of this <see cref='CodeScope'/>.
         /// </devdoc>
-        public int Line = 0;
+        public int Line { get; set; }
 
         /// <devdoc>
         ///    <para>
         ///       Gets the column-coordinate of this <see cref='CodeScope'/>.
         ///    </para>
         /// </devdoc>
-        public int Column = 0;
+        public int Column { get; set; }
 
         #endregion
 
@@ -42,6 +43,7 @@ namespace ErrorControlSystem.Shared
 
         protected CodeScope()
         {
+            Assembly = String.Empty;
             Namespace = String.Empty;
             Class = String.Empty;
             Method = String.Empty;
@@ -55,11 +57,13 @@ namespace ErrorControlSystem.Shared
         /// with the specified exception data to file code line and column from that stack trace.
         /// </summary>
         /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="namespaceName">Name of namespace</param>
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
-        public CodeScope(string assemblyName, string className, string methodName)
+        public CodeScope(string assemblyName, string namespaceName, string className, string methodName)
         {
-            this.Namespace = assemblyName;
+            this.Assembly = assemblyName;
+            this.Namespace = namespaceName;
             this.Class = className;
             this.Method = methodName;
         }
@@ -70,15 +74,29 @@ namespace ErrorControlSystem.Shared
         /// with the specified exception data to file code line and column from that stack trace.
         /// </summary>
         /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="namespaceName">Name of the namespace.</param>
         /// <param name="className">Name of the class.</param>
         /// <param name="methodName">Name of the method.</param>
         /// <param name="filePath">The file path.</param>
         /// <param name="lineNo">The line no.</param>
         /// <param name="columnNo">The column no.</param>
-        public CodeScope(string assemblyName, string className, string methodName, string filePath, int lineNo, int columnNo)
-            : this(assemblyName, className, methodName)
+        public CodeScope(string assemblyName, string namespaceName, string className, string methodName, string filePath, int lineNo, int columnNo)
+            : this(assemblyName, namespaceName, className, methodName)
         {
             FilePath = filePath;
+            Line = lineNo;
+            Column = columnNo;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CodeScope"/> class
+        /// with the specified exception data to file code line and column from that stack trace.
+        /// </summary>
+        /// <param name="lineNo">The line no.</param>
+        /// <param name="columnNo">The column no.</param>
+        public CodeScope(int lineNo, int columnNo)
+            : this()
+        {
             Line = lineNo;
             Column = columnNo;
         }
@@ -100,6 +118,7 @@ namespace ErrorControlSystem.Shared
                 // if there is a type (non global method) print it
                 if (t != null)
                 {
+                    this.Assembly = Path.GetFileNameWithoutExtension(t.Module.Name);
                     this.Namespace = t.Namespace;
                     this.Class = t.Name;
                 }
@@ -197,28 +216,54 @@ namespace ErrorControlSystem.Shared
         /// <returns><see cref="Boolean"/></returns>
         public bool IsCallFromThisPlace(IEnumerable<StackFrame> frames)
         {
-            if (frames == null || !frames.Any()) return false;
-
-            if (!string.IsNullOrEmpty(Namespace))
+            if (frames == null) return false;
+            //
+            // Is remainder at least one frame? 
+            if (!frames.Any()) return false;
+            //
+            // Filter frames by assembly name:
+            if (!string.IsNullOrEmpty(this.Assembly))
             {
                 frames = frames.Where(x =>
                             Path.GetFileNameWithoutExtension(x.GetMethod().Module.Name)
-                                .Equals(Namespace, StringComparison.OrdinalIgnoreCase));
+                                .Equals(Assembly, StringComparison.OrdinalIgnoreCase));
+                //
+                // Is remainder at least one frame after filters? 
+                if (!frames.Any()) return false;
             }
-
-            if (!string.IsNullOrEmpty(Class))
+            //
+            // Filter frames by namespace name:
+            if (!string.IsNullOrEmpty(this.Namespace))
+            {
+                frames = frames.Where(x =>
+                            x.GetMethod().DeclaringType != null &&
+                            x.GetMethod().DeclaringType.Namespace
+                                .EndsWith(this.Namespace, StringComparison.OrdinalIgnoreCase));
+                //
+                // Is remainder at least one frame after filters? 
+                if (!frames.Any()) return false;
+            }
+            //
+            // Filter frames by class name:
+            if (!string.IsNullOrEmpty(this.Class))
             {
                 frames = frames.Where(x =>
                             x.GetMethod().ReflectedType != null &&
-                            x.GetMethod().ReflectedType.Name.Equals(Class, StringComparison.OrdinalIgnoreCase));
+                            x.GetMethod().ReflectedType.Name
+                                .Equals(Class, StringComparison.OrdinalIgnoreCase));
+                //
+                // Is remainder at least one frame after filters? 
+                if (!frames.Any()) return false;
             }
-
-            if (!string.IsNullOrEmpty(Method))
+            //
+            // Filter frames by mathod name:
+            if (!string.IsNullOrEmpty(this.Method))
             {
                 frames = frames.Where(x =>
                            x.GetMethod().Name.Equals(Method, StringComparison.OrdinalIgnoreCase));
             }
-
+            //
+            // Is remainder at least one frame after filters?
             return frames.Any();
         }
 
@@ -396,7 +441,7 @@ namespace ErrorControlSystem.Shared
                 int col;
                 if (!int.TryParse(strCol, out col)) return false;
 
-                cl = new CodeScope(null, null, null, null, line, col);
+                cl = new CodeScope(line, col);
             }
             catch (Exception)
             {

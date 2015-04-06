@@ -43,7 +43,7 @@ namespace ErrorControlSystem
         #region Constructors
         static ExceptionHandler()
         {
-            Filter.ExemptedCodeScopes.Add(new CodeScope(Assembly.GetExecutingAssembly().GetName().Name, null, null));
+            Filter.ExemptedCodeScopes.Add(new CodeScope(Assembly.GetExecutingAssembly().GetName().Name, "CachErrors", null, null));
 
             LoadAssemblies();
 

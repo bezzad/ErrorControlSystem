@@ -17,30 +17,15 @@ namespace ErrorLogAnalyzer
     public partial class LogReader : BaseForm
     {
         private List<ProxyError> _errors = new List<ProxyError>();
-        private readonly Timer _timer;
 
         public LogReader()
         {
             InitializeComponent();
-
-            _timer = new Timer { Interval = 2000 };
-            _timer.Tick += _timer_Tick;
-
-
-            cmbServerName.TextChanged += (sender, ev) => CreateConnectionStringByControlsValue();
-
-            cmbDatabaseName.TextChanged += cmbDatabaseName_TextChanged;
-
-            pictureBox_viewer.MouseEnter += (s, ea) => pictureBox_viewer.Focus();
-
-            dgv_ErrorsViewer.SelectionChanged += (sender, args) => JustRunEventByUser(dgvErrorsViewer_SelectionChanged);
-
-            dgv_ErrorsViewer.CreateColumns(typeof(IError));
-
+            
             _errors = new List<ProxyError>();
         }
 
-        void _timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             SqlCompactEditionManager.SetConnectionString(txtCacheFilePath.Text);
 
@@ -78,7 +63,7 @@ namespace ErrorLogAnalyzer
             CountCacheRecords();
 
             if (dgv_ErrorsViewer.RowCount > 0 && dgv_ErrorsViewer.SelectedRows[0].Index == 0)
-                dgvErrorsViewer_SelectionChanged();
+                dgv_ErrorsViewer_SelectionChanged(sender, e);
         }
 
         void cmbDatabaseName_TextChanged(object sender, EventArgs e)
@@ -140,17 +125,10 @@ namespace ErrorLogAnalyzer
             Close();
         }
 
-        private void dgvErrorsViewer_SelectionChanged()
-        {
-            var index = dgv_ErrorsViewer.CurrentRow != null ? dgv_ErrorsViewer.CurrentRow.Index : 0;
-
-            if (index < _errors.Count && index >= 0)
-                pictureBox_viewer.Image = _errors[index].Snapshot.Value ?? Properties.Resources._null;
-        }
 
         private void btnRefreshGridView_Click(object sender, EventArgs e)
         {
-            _timer.Start();
+            timer.Start();
 
             btnRefreshGridView.Enabled = false;
         }
@@ -272,8 +250,6 @@ namespace ErrorLogAnalyzer
 
         private void SetDatabaseConnectionState(Exception exp)
         {
-            CheckForIllegalCrossThreadCalls = false;
-
             picServerState.Invoke(new Action(() =>
             {
                 picServerState.Image = (exp == null)
@@ -293,33 +269,6 @@ namespace ErrorLogAnalyzer
 
 
             this.toolTip.ToolTipIcon = (exp == null) ? ToolTipIcon.Info : ToolTipIcon.Error;
-
-            CheckForIllegalCrossThreadCalls = true;
-        }
-
-
-        private async void CreateConnectionStringByControlsValue()
-        {
-            try
-            {
-                this.Cursor = Cursors.WaitCursor;
-
-                ConnectionManager.Add(new Connection(cmbServerName.Text, cmbDatabaseName.Text), "UM");
-                ConnectionManager.SetToDefaultConnection("um");
-
-                // Clear old server databases
-                cmbDatabaseName.Items.Clear();
-
-                // Set Database names of selected server
-                var dbs = await GetSqlDatabasesAsync();
-
-                // Add database names to combo box items
-                cmbDatabaseName.Items.AddRange(items: dbs);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
         }
 
         private async void cmbServerName_DropDown(object sender, EventArgs e)
@@ -353,7 +302,50 @@ namespace ErrorLogAnalyzer
 
         private void LogReader_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _timer.Stop();
+            timer.Stop();
         }
+
+        private async void cmbServerName_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                ConnectionManager.Add(new Connection(cmbServerName.Text, cmbDatabaseName.Text), "UM");
+                ConnectionManager.SetToDefaultConnection("um");
+
+                // Clear old server databases
+                cmbDatabaseName.Items.Clear();
+
+                // Set Database names of selected server
+                var dbs = await GetSqlDatabasesAsync();
+
+                // Add database names to combo box items
+                cmbDatabaseName.Items.AddRange(items: dbs);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void pictureBox_viewer_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox_viewer.Focus();
+        }
+
+        private void dgv_ErrorsViewer_SelectionChanged(object sender, EventArgs e)
+        {
+            JustRunEventByUser(() =>
+            {
+                var index = dgv_ErrorsViewer.CurrentRow != null ? dgv_ErrorsViewer.CurrentRow.Index : 0;
+
+                if (index < _errors.Count && index >= 0)
+                    pictureBox_viewer.Image = _errors[index].Snapshot.Value ?? Properties.Resources._null;
+            });
+        }
+
+
+
     }
 }

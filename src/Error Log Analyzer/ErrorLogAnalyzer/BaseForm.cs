@@ -67,6 +67,8 @@ namespace ErrorLogAnalyzer
         {
             InitializeComponent();
 
+            CheckForIllegalCrossThreadCalls = false;
+
             WaitSplash = new Splash(this);
 
             Application.Idle += Application_Idle;

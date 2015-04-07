@@ -14,8 +14,8 @@ modification friendly, in order to help developers quickly learn their inner
 workings.
 
 NOTE: 
->     This program is only for exception handling of Windows-based applications (WinForms, WPF)
->     that are written by .NET languages such as C#,  VB, Visual F#  and  Visual C++
+>     This program is only for exception handling of Windows-based applications (WinForms, WPF, Console)
+>     that are written by .NET languages such as C#, VB.NET, Visual F#  and  Visual C++
 
 
 --------------------------------

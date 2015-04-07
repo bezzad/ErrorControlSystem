@@ -23,6 +23,8 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
+using System.Security;
 using System.Windows.Forms;
 using ErrorControlSystem.CachErrors;
 using ErrorControlSystem.Resources;
@@ -76,6 +78,8 @@ namespace ErrorControlSystem
         /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns></returns>
+        [HandleProcessCorruptedStateExceptions]
+        [SecurityCritical]
         public static Error RaiseLog(this Exception exp, ErrorHandlingOptions option = ErrorHandlingOptions.Default,
             String errorTitle = "UnHandled Exception")
         {

@@ -68,11 +68,24 @@ namespace TestApplication
             // Do not raise any exception in other code places.
             ExceptionHandler.Filter.JustRaiseErrorCodeScopes.Add(
                 new CodeScope("Assembly", "Namespace", "Class", "Method"));
+			//
+            // Show unhandled exception message customized mode. 
+            ExceptionHandler.OnShowUnhandledError += AlertUnhandledErrors;
             //
             // ---------------------------------------------------------------------------------
             //
 
             Application.Run(new FormTest());
+        }
+
+		/// <summary>
+        /// Show unhandled exception message customized mode.
+        /// </summary>
+        /// <param name="sender">Raw exception object</param>
+        /// <param name="e">Compiled error object</param>
+        public static void AlertUnhandledErrors(object sender, UnhandledErrorEventArgs e)
+        {
+            MessageBox.Show(e.ErrorObject.Message);
         }
     }
 }

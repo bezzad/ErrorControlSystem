@@ -87,6 +87,7 @@
     <Compile Include="Shared\OperationSystemInfo.cs" />
     <Compile Include="Shared\ProxyError.cs" />
     <Compile Include="Shared\ScreenCapture.cs" />
+    <Compile Include="UnhandledErrorEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

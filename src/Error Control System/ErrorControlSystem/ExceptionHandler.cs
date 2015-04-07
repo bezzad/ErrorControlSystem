@@ -2,13 +2,13 @@
 //                           LICENSE INFORMATION                                    //
 //**********************************************************************************//
 //   Error Handler Engine 1.0.0.2                                                   //
-//   This Class Library creates a way of handling structured exception handling,     //
+//   This Class Library creates a way of handling structured exception handling,    //
 //   inheriting from the Exception class gives us access to many method             //
 //   we wouldn't otherwise have access to                                           //
 //                                                                                  //
 //   Copyright (C) 2015                                                             //
 //   Behzad Khosravifar                                                             //
-//   Email: Behzad.Khosravifar@Gmail.com                                            //
+//   mailto:Behzad.Khosravifar@Gmail.com                                            //
 //                                                                                  //
 //   This program published by the Free Software Foundation,                        //
 //   either version 2 of the License, or (at your option) any later version.        //
@@ -36,7 +36,13 @@ namespace ErrorControlSystem
     public static partial class ExceptionHandler
     {
         #region Properties
+
         internal static bool AssembelyLoaded { get; set; }
+
+        /// <summary>
+        /// Represents the method that will handle the event raised by an exception that is not handled by the application domain.
+        /// </summary>
+        public static UnhandledErrorEventHandler OnShowUnhandledError;
 
         #endregion
 
@@ -110,14 +116,21 @@ namespace ErrorControlSystem
             //
             // initial the error object by additional data 
             var error = new Error(exp, callStackFrames, option);
-            //
-            // Alert Unhandled Error 
-            if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError) && !option.HasFlag(ErrorHandlingOptions.IsHandled))
+
+            if (!option.HasFlag(ErrorHandlingOptions.IsHandled)) // Is Unhandled Exception ?
             {
-                MessageBox.Show(exp.Message,
-                    errorTitle,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                //
+                // Handle 'OnShowUnhandledError' events
+                OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
+                //
+                // Alert Unhandled Error 
+                if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError))
+                {
+                    MessageBox.Show(exp.Message,
+                        errorTitle,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
             }
 
             CacheController.CacheTheError(error, option);

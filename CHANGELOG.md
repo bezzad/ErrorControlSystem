@@ -18,7 +18,7 @@ Added
 * Convert Exception.StackTrace to customized format for use that in Analyzer easily
 * Change and speedup SDF chache file update model
 * Check cache drives space to ignore or throw exception for filling the cache drive capacity
-* Add an EventHandler to ErrorHandlerEngine for Alert any UnHandled Exception
+* Add an EventHandler to ErrorControlSystem for Alert any UnHandled Exception by ExceptionHandler.OnShowUnhandledError
 * LineColumn text divided to Line and Column integer number in databases
 
 
@@ -35,7 +35,7 @@ Added
 * Send Cache Data to Server at Periodic Times
 * Caputre Multi-Screen Snapshots
 * Auto Create and Update Tables and StoredProcedures on Database
-* Release ErrorHandlerEngine WPF version
+* Release ErrorControlSystem WPF version
 
 
 ## [v2.0.0](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v2.0.zip)

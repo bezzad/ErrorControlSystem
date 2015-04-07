@@ -4,7 +4,7 @@ using System.IO;
 using ErrorControlSystem.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ErrorHandlerEngineUnitTest.Shared
+namespace ErrorControlSystemUnitTest.Shared
 {
     /// <summary>
     /// Summary description for ScreenCaptureUnitTest

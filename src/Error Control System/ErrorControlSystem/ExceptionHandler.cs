@@ -1,7 +1,7 @@
 ﻿//**********************************************************************************//
 //                           LICENSE INFORMATION                                    //
 //**********************************************************************************//
-//   Error Handler Engine 1.0.0.2                                                   //
+//   Error Control System                                                           //
 //   This Class Library creates a way of handling structured exception handling,    //
 //   inheriting from the Exception class gives us access to many method             //
 //   we wouldn't otherwise have access to                                           //
@@ -19,19 +19,20 @@
 //                                                                                  //
 //**********************************************************************************//
 
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.ExceptionServices;
-using System.Security;
-using System.Windows.Forms;
-using ErrorControlSystem.CachErrors;
-using ErrorControlSystem.Resources;
-using ErrorControlSystem.Shared;
-
 namespace ErrorControlSystem
 {
+    using System;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.ExceptionServices;
+    using System.Security;
+    using System.Windows.Forms;
+
+    using ErrorControlSystem.CachErrors;
+    using ErrorControlSystem.Resources;
+    using ErrorControlSystem.Shared;
+
     /// <summary>
     /// Additional Data attached to exception object.
     /// </summary>

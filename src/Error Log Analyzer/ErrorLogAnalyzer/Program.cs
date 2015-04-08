@@ -12,11 +12,10 @@ namespace ErrorLogAnalyzer
         [STAThread]
         private static void Main()
         {
+            ExceptionHandler.Engine.Start(".", "UsersManagements");
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            ExceptionHandler.Engine.Start(".", "UsersManagements");
-
             Application.Run(new LogReader());
         }
     }

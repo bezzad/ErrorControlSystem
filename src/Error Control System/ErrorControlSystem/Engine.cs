@@ -1,16 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-using System.Runtime.ExceptionServices;
-using System.Security.Permissions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ErrorControlSystem.CachErrors;
-using ErrorControlSystem.DbConnectionManager;
-using ErrorControlSystem.ServerController;
-
-namespace ErrorControlSystem
+﻿namespace ErrorControlSystem
 {
+    using System;
+    using System.Diagnostics;
+    using System.Runtime.ExceptionServices;
+    using System.Security.Permissions;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using ErrorControlSystem.CachErrors;
+    using ErrorControlSystem.DbConnectionManager;
+    using ErrorControlSystem.ServerController;
+
     public static partial class ExceptionHandler
     {
         /// <summary>
@@ -104,6 +104,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
             {
                 e.Exception.RaiseLog(_option | ErrorHandlingOptions.IsHandled);
@@ -116,6 +117,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
             {
                 e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unobserved Task Exception");
@@ -128,6 +130,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
             {
                 e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
@@ -142,12 +145,13 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
                 (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlingOptions.IsHandled,
                     "Unhandled UI Exception");
 
-                Application.Exit();
+                Environment.Exit(0);
             }
 
             #endregion

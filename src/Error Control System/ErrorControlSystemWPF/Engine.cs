@@ -1,15 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-using System.Runtime.ExceptionServices;
-using System.Security.Permissions;
-using System.Threading.Tasks;
-using System.Windows;
-using ErrorControlSystem.CachErrors;
-using ErrorControlSystem.DbConnectionManager;
-using ErrorControlSystem.ServerController;
-
-namespace ErrorControlSystem
+﻿namespace ErrorControlSystem
 {
+    using System;
+    using System.Diagnostics;
+    using System.Runtime.ExceptionServices;
+    using System.Security.Permissions;
+    using System.Threading.Tasks;
+    using System.Windows;
+
+    using ErrorControlSystem.CachErrors;
+    using ErrorControlSystem.DbConnectionManager;
+    using ErrorControlSystem.ServerController;
+
     public static partial class ExceptionHandler
     {
         /// <summary>
@@ -29,8 +30,7 @@ namespace ErrorControlSystem
 
             static Engine()
             {
-                if (!ExceptionHandler.AssembelyLoaded)
-                    ExceptionHandler.LoadAssemblies();
+                if (!AssembelyLoaded) LoadAssemblies();
 
                 Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
@@ -100,6 +100,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void CurrentDomain_FirstChanceException(object sender, FirstChanceExceptionEventArgs e)
             {
                 e.Exception.RaiseLog(_option | ErrorHandlingOptions.IsHandled);
@@ -112,6 +113,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
             {
                 e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unobserved Task Exception");
@@ -126,14 +128,16 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
+            [HandleProcessCorruptedStateExceptions]
             private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
                 (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlingOptions.IsHandled,
                     "Unhandled UI Exception");
 
-                Application.Current.Shutdown();
+                Environment.Exit(0);
             }
 
+            [HandleProcessCorruptedStateExceptions]
             private static void Current_DispatcherUnhandledException(object sender,
                 System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
             {

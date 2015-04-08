@@ -51,7 +51,8 @@
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DynamicDataGridView.cs">
+    <Compile Include="DataGridViewHelper.cs" />
+    <Compile Include="ErrorDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="LogReader.cs">

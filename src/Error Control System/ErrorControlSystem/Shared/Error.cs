@@ -10,7 +10,7 @@ using ErrorControlSystem.DbConnectionManager;
 
 namespace ErrorControlSystem.Shared
 {
-    public class Error : IError, IDisposable, ICloneable, IEquatable<Error>
+    public class Error : IError, IDisposable, ICloneable
     {
         #region Properties
 
@@ -275,17 +275,18 @@ namespace ErrorControlSystem.Shared
 
             foreach (var property in typeof(IError).GetProperties())
             {
-                typeof(Error).GetProperty(property.Name)
-                    .SetValue(instance, typeof(Error).GetProperty(property.Name).GetValue(this));
+                if (property.CanRead && property.CanWrite)
+                    typeof(Error).GetProperty(property.Name)
+                        .SetValue(instance, typeof(Error).GetProperty(property.Name).GetValue(this));
             }
 
             return instance;
         }
         #endregion
 
-        #region IEquatable<Error> Implement
+        #region IEquatable<IError> Implement
 
-        public bool Equals(Error other)
+        public bool Equals(IError other)
         {
             if (other == null) return false;
 
@@ -293,7 +294,7 @@ namespace ErrorControlSystem.Shared
             return Id == other.Id;
         }
 
-        public bool Equals(Error x, Error y)
+        public bool Equals(IError x, IError y)
         {
             // Note: value types can't have derived classes, so we don't need 
             return x != null && y != null && x.Equals(y);
@@ -301,14 +302,14 @@ namespace ErrorControlSystem.Shared
 
         /// <devdoc>
         ///    <para>
-        ///       Specifies whether this <see cref='Error'/> contains
+        ///       Specifies whether this <see cref='IError'/> contains
         ///       the same coordinates as the specified <see cref='System.Object'/>.
         ///    </para>
         /// </devdoc>
         public override bool Equals(object obj)
         {
-            if (!(obj is Error)) return false;
-            var comp = (Error)obj;
+            if (!(obj is IError)) return false;
+            var comp = (IError)obj;
             // Note: value types can't have derived classes, so we don't need 
             // to check the types of the objects here.  -- [....], 2/21/2001
             return Equals(comp);

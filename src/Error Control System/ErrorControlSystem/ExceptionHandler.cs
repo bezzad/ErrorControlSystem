@@ -44,7 +44,7 @@ namespace ErrorControlSystem
         /// <summary>
         /// Represents the method that will handle the event raised by an exception that is not handled by the application domain.
         /// </summary>
-        public static UnhandledErrorEventHandler OnShowUnhandledError;
+        public static UnhandledErrorEventHandler OnShowUnhandledError = delegate { };
 
         #endregion
 

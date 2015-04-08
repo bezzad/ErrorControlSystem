@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using ErrorControlSystem.Shared;
 
 namespace ErrorLogAnalyzer
@@ -32,8 +33,9 @@ namespace ErrorLogAnalyzer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.dgv_ErrorsViewer = new DynamicDataGridView<IError>();
+            this.DynamicDgv = new ErrorDataGridView();
             this.btnRefreshGridView = new System.Windows.Forms.Button();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.pictureBox_viewer = new Windows.Forms.ImageBox();
@@ -52,7 +54,7 @@ namespace ErrorLogAnalyzer
             this.label5 = new System.Windows.Forms.Label();
             this.lblCacheRecords = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ErrorsViewer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DynamicDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -72,20 +74,22 @@ namespace ErrorLogAnalyzer
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
-            // dgv_ErrorsViewer
+            // DynamicDgv
             // 
-            this.dgv_ErrorsViewer.AllowUserToAddRows = false;
-            this.dgv_ErrorsViewer.AllowUserToDeleteRows = false;
-            this.dgv_ErrorsViewer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ErrorsViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_ErrorsViewer.Location = new System.Drawing.Point(0, 0);
-            this.dgv_ErrorsViewer.Name = "dgv_ErrorsViewer";
-            this.dgv_ErrorsViewer.ReadOnly = true;
-            this.dgv_ErrorsViewer.RowHeadersVisible = false;
-            this.dgv_ErrorsViewer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ErrorsViewer.Size = new System.Drawing.Size(624, 530);
-            this.dgv_ErrorsViewer.TabIndex = 4;
-            this.dgv_ErrorsViewer.SelectionChanged += new System.EventHandler(this.dgv_ErrorsViewer_SelectionChanged);
+            this.DynamicDgv.AllowUserToAddRows = false;
+            this.DynamicDgv.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
+            this.DynamicDgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DynamicDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DynamicDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DynamicDgv.Location = new System.Drawing.Point(0, 0);
+            this.DynamicDgv.Name = "DynamicDgv";
+            this.DynamicDgv.ReadOnly = true;
+            this.DynamicDgv.RowHeadersVisible = false;
+            this.DynamicDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DynamicDgv.Size = new System.Drawing.Size(624, 530);
+            this.DynamicDgv.TabIndex = 4;
+            this.DynamicDgv.SelectionChanged += new System.EventHandler(this.dgv_ErrorsViewer_SelectionChanged);
             // 
             // btnRefreshGridView
             // 
@@ -109,7 +113,7 @@ namespace ErrorLogAnalyzer
             // 
             // splitContainerMain.Panel1
             // 
-            this.splitContainerMain.Panel1.Controls.Add(this.dgv_ErrorsViewer);
+            this.splitContainerMain.Panel1.Controls.Add(this.DynamicDgv);
             // 
             // splitContainerMain.Panel2
             // 
@@ -298,7 +302,7 @@ namespace ErrorLogAnalyzer
             this.Name = "LogReader";
             this.Text = "Error Log Analyzer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogReader_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ErrorsViewer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DynamicDgv)).EndInit();
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
@@ -313,7 +317,7 @@ namespace ErrorLogAnalyzer
         #endregion
 
         private System.Windows.Forms.Button btnQuit;
-        private DynamicDataGridView<IError> dgv_ErrorsViewer;
+        private ErrorDataGridView DynamicDgv;
         private System.Windows.Forms.Button btnRefreshGridView;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private Windows.Forms.ImageBox pictureBox_viewer;

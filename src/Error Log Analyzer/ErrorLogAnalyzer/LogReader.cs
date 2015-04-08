@@ -21,7 +21,7 @@ namespace ErrorLogAnalyzer
         public LogReader()
         {
             InitializeComponent();
-            
+
             _errors = new List<ProxyError>();
         }
 
@@ -35,7 +35,7 @@ namespace ErrorLogAnalyzer
             // Update old errors
             foreach (var item in newErrors.Union(_errors))
             {
-                dgv_ErrorsViewer.UpdateRow(item, (row, o) => (int)row.Cells["Id"].Value == ((ProxyError)o).Id);
+                DynamicDgv.UpdateRow(item);
             }
             //
             // Add new errors
@@ -43,13 +43,13 @@ namespace ErrorLogAnalyzer
             {
                 _errors.Add(item);
 
-                dgv_ErrorsViewer.AddRow(item);
+                DynamicDgv.AddRow(item);
             }
             //
             // Remove sent errors in old list and data grid view
             foreach (var item in _errors.Except(newErrors))
             {
-                dgv_ErrorsViewer.RemoveRowByCondition(item, (row, o) => (int)row.Cells["Id"].Value == ((ProxyError)o).Id);
+                DynamicDgv.RemoveRow(item);
             }
 
             _errors = newErrors;
@@ -62,7 +62,7 @@ namespace ErrorLogAnalyzer
 
             CountCacheRecords();
 
-            if (dgv_ErrorsViewer.RowCount > 0 && dgv_ErrorsViewer.SelectedRows[0].Index == 0)
+            if (DynamicDgv.RowCount > 0 && DynamicDgv.SelectedRows[0].Index == 0)
                 dgv_ErrorsViewer_SelectionChanged(sender, e);
         }
 
@@ -338,10 +338,9 @@ namespace ErrorLogAnalyzer
         {
             JustRunEventByUser(() =>
             {
-                var index = dgv_ErrorsViewer.CurrentRow != null ? dgv_ErrorsViewer.CurrentRow.Index : 0;
-
-                if (index < _errors.Count && index >= 0)
-                    pictureBox_viewer.Image = _errors[index].Snapshot.Value ?? Properties.Resources._null;
+                var currentRow = DynamicDgv.GetCurrentRow();
+                if (currentRow != null)
+                    pictureBox_viewer.Image = currentRow.Snapshot.Value ?? Properties.Resources._null;
             });
         }
 

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ErrorControlSystem.Shared
 {
-    public interface IError
+    public interface IError : IEquatable<IError>
     {
         int Id { set; get; }
         Boolean IsHandled { get; set; }

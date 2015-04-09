@@ -27,7 +27,7 @@ namespace ErrorLogAnalyzer
 
             foreach (DataGridViewColumn col in dgv.Columns)
             {
-                dgv.Rows[index].Cells[col.Name].Value = row.GetType().GetProperty(col.Name).GetValue(row) ?? "";
+                dgv.Rows[index].Cells[col.Name].Value = row.GetType().GetProperty(col.DataPropertyName).GetValue(row) ?? "";
             }
         }
 
@@ -35,7 +35,7 @@ namespace ErrorLogAnalyzer
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (GetRowataBoundItem(row, typeof(TRow)).Equals(rowObj))
+                if (GetRowataBoundItem(row).Equals(rowObj))
                 {
                     dgv.Rows.Remove(row);
                     break;
@@ -48,11 +48,11 @@ namespace ErrorLogAnalyzer
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (GetRowataBoundItem(row, typeof(TRow)).Equals(rowObj))
+                if (GetRowataBoundItem(row).Equals(rowObj))
                 {
                     foreach (DataGridViewColumn col in dgv.Columns)
                     {
-                        row.Cells[col.Name].Value = rowObj.GetType().GetProperty(col.Name).GetValue(rowObj) ?? "";
+                        row.Cells[col.Name].Value = rowObj.GetType().GetProperty(col.DataPropertyName).GetValue(rowObj) ?? "";
                     }
                 }
             }
@@ -61,22 +61,22 @@ namespace ErrorLogAnalyzer
         public static TRow GetCurrentRow(DataGridView dgv)
         {
             if (dgv.CurrentRow != null)
-                return ((TRow)GetRowataBoundItem(dgv.CurrentRow, typeof(TRow)));
+                return ((TRow)GetRowataBoundItem(dgv.CurrentRow));
 
             return null;
         }
 
 
-        public static object GetRowataBoundItem(DataGridViewRow row, Type T)
+        public static TRow GetRowataBoundItem(DataGridViewRow row)
         {
-            var tInstance = Activator.CreateInstance(T);
+            var tInstance = Activator.CreateInstance(typeof(TRow));
 
             foreach (var cell in row.Cells.Cast<DataGridViewCell>())
             {
-                T.GetProperty(cell.OwningColumn.DataPropertyName).SetValue(tInstance, cell.Value);
+                typeof(TRow).GetProperty(cell.OwningColumn.DataPropertyName).SetValue(tInstance, cell.Value);
             }
 
-            return tInstance;
+            return (TRow)tInstance;
         }
 
         private static string GetHeaderNameFromColName(string columnName)

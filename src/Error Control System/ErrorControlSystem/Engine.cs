@@ -47,6 +47,9 @@
 
                 // Catch all unhandled exceptions.
                 System.Windows.Forms.Application.ThreadException += ThreadExceptionHandler;
+
+                // Catch all WPF unhandled exceptions.
+                System.Windows.Threading.Dispatcher.CurrentDispatcher.UnhandledException += Current_DispatcherUnhandledException;
             }
 
             #endregion
@@ -154,6 +157,16 @@
                 Environment.Exit(0);
             }
 
+
+            [HandleProcessCorruptedStateExceptions]
+            private static void Current_DispatcherUnhandledException(object sender,
+                System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+            {
+                // Prevent default unhandled exception processing
+                e.Handled = true;
+
+                e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
+            }
             #endregion
         }
     }

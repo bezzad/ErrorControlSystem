@@ -37,6 +37,7 @@
             this.btnDataException = new System.Windows.Forms.Button();
             this.btnThrowMultiExps = new System.Windows.Forms.Button();
             this.btnExemptedMethodException = new System.Windows.Forms.Button();
+            this.btnViolation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnQuit
@@ -137,11 +138,23 @@
             this.btnExemptedMethodException.UseVisualStyleBackColor = true;
             this.btnExemptedMethodException.Click += new System.EventHandler(this.btnExemptedMethodException_Click);
             // 
+            // btnViolation
+            // 
+            this.btnViolation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnViolation.Location = new System.Drawing.Point(51, 396);
+            this.btnViolation.Name = "btnViolation";
+            this.btnViolation.Size = new System.Drawing.Size(238, 42);
+            this.btnViolation.TabIndex = 11;
+            this.btnViolation.Text = "Violation Access Exception";
+            this.btnViolation.UseVisualStyleBackColor = true;
+            this.btnViolation.Click += new System.EventHandler(this.btnViolation_Click);
+            // 
             // FormTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 526);
+            this.Controls.Add(this.btnViolation);
             this.Controls.Add(this.btnExemptedMethodException);
             this.Controls.Add(this.btnThrowMultiExps);
             this.Controls.Add(this.btnDataException);
@@ -168,6 +181,7 @@
         private System.Windows.Forms.Button btnDataException;
         private System.Windows.Forms.Button btnThrowMultiExps;
         private System.Windows.Forms.Button btnExemptedMethodException;
+        private System.Windows.Forms.Button btnViolation;
     }
 }
 

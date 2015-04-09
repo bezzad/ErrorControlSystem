@@ -28,15 +28,13 @@
     <Lollipop Orientation="Bottom" Position="0.2" />
   </Class>
   <Class Name="ErrorControlSystem.DbConnectionManager.ConnectionManager" Collapsed="true">
-    <Position X="2.5" Y="4" Width="1.5" />
+    <Position X="2.25" Y="4" Width="1.5" />
     <InheritanceLine Type="System.Object" ManuallyRouted="true" FixedToPoint="true">
       <Path>
         <Point X="6.75" Y="1.812" />
         <Point X="6.75" Y="2.512" />
-        <Point X="3.999" Y="2.512" />
-        <Point X="3.999" Y="3.51" />
-        <Point X="3" Y="3.51" />
-        <Point X="3" Y="4" />
+        <Point X="2.75" Y="2.512" />
+        <Point X="2.75" Y="4" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -98,13 +96,21 @@
   </Class>
   <Class Name="ErrorControlSystem.Shared.OperationSystemInfo" Collapsed="true">
     <Position X="3.25" Y="3" Width="1.5" />
+    <InheritanceLine Type="System.Object" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="1.812" />
+        <Point X="6.75" Y="2.512" />
+        <Point X="4.062" Y="2.512" />
+        <Point X="4.062" Y="3" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>IYAAAAAAAAEAAAAEAAAAAAQACAAAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>Shared\OperationSystemInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.Shared.ProxyError" Collapsed="true">
-    <Position X="12.5" Y="3" Width="1.5" />
+    <Position X="11" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AiADAgAEAiAgUgCIwAAgAAAiAAECKLEDAAAAIAAAAJE=</HashCode>
       <FileName>Shared\ProxyError.cs</FileName>
@@ -119,9 +125,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.ExceptionHandler" Collapsed="true">
-    <Position X="11.75" Y="6.25" Width="1.5" />
+    <Position X="7" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgQAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgQAAAAAAAAAAAAIAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -132,11 +138,11 @@
       <FileName>CachErrors\CacheController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorControlSystem.CachErrors.SdfFileManager" Collapsed="true">
+  <Class Name="ErrorControlSystem.CachErrors.SqlCompactEditionManager" Collapsed="true">
     <Position X="6.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAEAAAACAAAAAABAIAACAAAAAAAAAgIAKAAgAAYAIA=</HashCode>
-      <FileName>CachErrors\SdfFileManager.cs</FileName>
+      <HashCode>QAAEAAAACFAAAAABAIAACAAAAAAAAAgIAKAAgAAYAIA=</HashCode>
+      <FileName>CachErrors\SqlCompactEditionManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.CachErrors.StorageRouter" Collapsed="true">
@@ -147,7 +153,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.Properties.Resources" Collapsed="true">
-    <Position X="10.75" Y="3" Width="1.5" />
+    <Position X="10" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAEAAQAAAAAAEAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
@@ -166,8 +172,15 @@
     </TypeIdentifier>
     <Lollipop Orientation="Bottom" Position="0.117" />
   </Class>
+  <Class Name="ErrorControlSystem.UnhandledErrorEventArgs" Collapsed="true">
+    <Position X="2.75" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAIAA=</HashCode>
+      <FileName>UnhandledErrorEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="ErrorControlSystem.Shared.IError" Collapsed="true">
-    <Position X="12.25" Y="5.5" Width="1.5" />
+    <Position X="5.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACADAgAAAgAAUgCAQAAgAAACAAECKDEDAAAAIAAAAIE=</HashCode>
       <FileName>Shared\IError.cs</FileName>
@@ -180,5 +193,12 @@
       <FileName>ErrorHandlingOptions.cs</FileName>
     </TypeIdentifier>
   </Enum>
+  <Delegate Name="ErrorControlSystem.UnhandledErrorEventHandler" Collapsed="true">
+    <Position X="1" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UnhandledErrorEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

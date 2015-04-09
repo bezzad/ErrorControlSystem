@@ -20,6 +20,7 @@ Added
 * Check cache drives space to ignore or throw exception for filling the cache drive capacity
 * Add an EventHandler to ErrorControlSystem for Alert any UnHandled Exception by ExceptionHandler.OnShowUnhandledError
 * LineColumn text divided to Line and Column integer number in databases
+* ErrorControlSystem WPF version combined by WinForms version
 
 
 

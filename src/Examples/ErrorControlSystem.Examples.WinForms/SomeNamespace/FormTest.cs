@@ -140,6 +140,17 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
         {
             new ExpThrower().throwExp();
         }
+
+        private void btnViolation_Click(object sender, EventArgs e)
+        {
+            //System.Diagnostics.Debugger.Break();
+            this.AccessViolation();
+        }
+
+        private unsafe void AccessViolation()
+        {
+            var b = *(byte*)8762765876;
+        }
     }
 
 

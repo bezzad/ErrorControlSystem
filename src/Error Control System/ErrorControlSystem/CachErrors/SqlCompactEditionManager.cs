@@ -64,7 +64,7 @@ namespace ErrorControlSystem.CachErrors
                                     [Column] [int] NULL,
                                     [ScreenCapture] [image] NULL,
 	                                [DuplicateNo] [int] NULL, 
-                                    [Data] [nvarchar] (4000) NULL) ";
+                                    [Data] [ntext] NULL) ";
 
 
             using (var sqlCon = new SqlCeConnection(ConnectionString))

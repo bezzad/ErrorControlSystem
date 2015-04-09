@@ -32,8 +32,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem", "Error
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystemAdapter", "Error Control System\ErrorControlSystemAdapter\ErrorControlSystemAdapter.csproj", "{1D83C547-23E7-4CDB-9D08-5590283FDEC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystemUnitTest", "Test Projects\ErrorControlSystemUnitTest\ErrorControlSystemUnitTest.csproj", "{840587CA-2824-4F8E-873F-5BE66CC98FAB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Examples.Console", "Examples\ErrorControlSystem.Examples.Console\ErrorControlSystem.Examples.Console.csproj", "{D5777125-5D95-4A23-AFCB-84475B0E341E}"
@@ -45,6 +43,8 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ErrorControlSystem.Examples.VisualBasicWinForms", "Examples\ErrorControlSystem.Examples.VisualBasicWinForms\ErrorControlSystem.Examples.VisualBasicWinForms.vbproj", "{0F0269F4-7411-43E3-9686-012A53F41DA2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Examples.WinFormsDotNet2", "Examples\ErrorControlSystem.Examples.WinFormsDotNet2\ErrorControlSystem.Examples.WinFormsDotNet2.csproj", "{1B36CEC8-3613-4EEC-AE41-32492EA3564C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Tests", "Test Projects\ErrorControlSystem.Tests\ErrorControlSystem.Tests.csproj", "{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,10 +80,6 @@ Global
 		{1D83C547-23E7-4CDB-9D08-5590283FDEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D83C547-23E7-4CDB-9D08-5590283FDEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D83C547-23E7-4CDB-9D08-5590283FDEC7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{840587CA-2824-4F8E-873F-5BE66CC98FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{840587CA-2824-4F8E-873F-5BE66CC98FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{840587CA-2824-4F8E-873F-5BE66CC98FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{840587CA-2824-4F8E-873F-5BE66CC98FAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5777125-5D95-4A23-AFCB-84475B0E341E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5777125-5D95-4A23-AFCB-84475B0E341E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5777125-5D95-4A23-AFCB-84475B0E341E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -104,6 +100,10 @@ Global
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,7 +114,7 @@ Global
 		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
 		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
-		{840587CA-2824-4F8E-873F-5BE66CC98FAB} = {DED4B0E7-23E1-448E-93FF-8162300675E6}
+		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB} = {DED4B0E7-23E1-448E-93FF-8162300675E6}
 		{515C50E8-A9A0-4AC0-8591-7369C1A31DC8} = {8CF64119-A504-468E-91AC-AA6C4A0862BA}
 		{1D83C547-23E7-4CDB-9D08-5590283FDEC7} = {8CF64119-A504-468E-91AC-AA6C4A0862BA}
 		{D5777125-5D95-4A23-AFCB-84475B0E341E} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}

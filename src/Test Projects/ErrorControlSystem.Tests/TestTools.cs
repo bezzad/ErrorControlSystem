@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ErrorControlSystemUnitTest.DbConnectionManager
+namespace ErrorControlSystem.Tests
 {
     public static class TestTools
     {

@@ -1,10 +1,6 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using ErrorControlSystem.Shared;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ErrorControlSystemUnitTest.Shared
+namespace ErrorControlSystem.Tests.Shared
 {
     /// <summary>
     /// Summary description for ScreenCaptureUnitTest

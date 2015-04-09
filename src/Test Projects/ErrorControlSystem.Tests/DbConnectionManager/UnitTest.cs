@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using ErrorControlSystem.DbConnectionManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ErrorControlSystemUnitTest.DbConnectionManager
+namespace ErrorControlSystem.Tests.DbConnectionManager
 {
     [TestClass]
     public class UnitTest

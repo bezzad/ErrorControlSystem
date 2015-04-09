@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using System.Windows.Forms;
+using ErrorControlSystem;
 using ErrorControlSystem.CachErrors;
 using ErrorControlSystem.DbConnectionManager;
 using ErrorControlSystem.Shared;
@@ -165,7 +166,7 @@ namespace ErrorLogAnalyzer
         private void SetCacheSizeViewer()
         {
             var dirSize = new DirectoryInfo(Path.GetDirectoryName(txtCacheFilePath.Text)).GetDirectorySize();
-            var limitSize = DiskHelper.CacheLimitSize;
+            var limitSize = ErrorHandlingOption.CacheLimitSize;
 
             var percent = unchecked((int)(dirSize * 100 / limitSize));
             prgCacheSize.Value = percent > 100 ? 100 : percent;

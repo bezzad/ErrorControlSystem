@@ -8,8 +8,6 @@ namespace ErrorControlSystem.Shared
 {
     public static class DiskHelper
     {
-        public static long CacheLimitSize { get { return Settings.Default.CacheLimitSize; } }
-
         /// <summary>
         /// Get Size of directory by all sub directory and files.
         /// </summary>

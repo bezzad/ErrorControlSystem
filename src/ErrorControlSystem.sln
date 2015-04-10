@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation Project", "Documentation Project", "{21D0B50A-5F2C-4664-BDBA-A54DB9887B37}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{21D0B50A-5F2C-4664-BDBA-A54DB9887B37}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Log Analyzer", "Error Log Analyzer", "{70D8EB31-5124-453C-BA64-FD39FF3CF960}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Projects", "Test Projects", "{DED4B0E7-23E1-448E-93FF-8162300675E6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DED4B0E7-23E1-448E-93FF-8162300675E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogAnalyzer", "Error Log Analyzer\ErrorLogAnalyzer\ErrorLogAnalyzer.csproj", "{5C31AB6D-3745-4501-A293-5E29EBDBD833}"
 EndProject
@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\UpdateFromOrigin.bat = ..\UpdateFromOrigin.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchitectModeling", "Documentation Project\ArchitectModeling\ArchitectModeling.csproj", "{98E878F8-06C7-442B-A647-627F03BC6BF2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Error Control System", "Error Control System", "{8CF64119-A504-468E-91AC-AA6C4A0862BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem", "Error Control System\ErrorControlSystem\ErrorControlSystem.csproj", "{515C50E8-A9A0-4AC0-8591-7369C1A31DC8}"
@@ -49,7 +47,9 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ErrorControlSystem.Examples
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Examples.WinFormsDotNet2", "Examples\ErrorControlSystem.Examples.WinFormsDotNet2\ErrorControlSystem.Examples.WinFormsDotNet2.csproj", "{1B36CEC8-3613-4EEC-AE41-32492EA3564C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Tests", "Test Projects\ErrorControlSystem.Tests\ErrorControlSystem.Tests.csproj", "{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchitectModeling", "Documentation\ArchitectModeling\ArchitectModeling.csproj", "{98E878F8-06C7-442B-A647-627F03BC6BF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Tests", "Tests\ErrorControlSystem.Tests\ErrorControlSystem.Tests.csproj", "{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,10 +73,6 @@ Global
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{515C50E8-A9A0-4AC0-8591-7369C1A31DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{515C50E8-A9A0-4AC0-8591-7369C1A31DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{515C50E8-A9A0-4AC0-8591-7369C1A31DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -105,6 +101,10 @@ Global
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98E878F8-06C7-442B-A647-627F03BC6BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU

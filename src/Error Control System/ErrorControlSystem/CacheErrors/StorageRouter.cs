@@ -3,7 +3,7 @@ using System.IO;
 using ErrorControlSystem.DbConnectionManager;
 using ErrorControlSystem.Shared;
 
-namespace ErrorControlSystem.CachErrors
+namespace ErrorControlSystem.CacheErrors
 {
     /// <summary>
     /// Routing Where the data must be saved
@@ -13,7 +13,6 @@ namespace ErrorControlSystem.CachErrors
         #region Properties
 
         public static string ErrorLogFilePath;
-
 
         #endregion
 
@@ -57,14 +56,8 @@ namespace ErrorControlSystem.CachErrors
         {
             if (!string.IsNullOrEmpty(ErrorLogFilePath) && File.Exists(ErrorLogFilePath)) return; // That path's is correct.
 
-            // LocalApplicationData: "C:\Users\[UserName]\AppData\Local"
-            var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-
-            // Application Name and Major Version 
-            var appNameVer = String.Format(Connection.GetRunningAppNameVersion());
-
-            // Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
-            var storageDirPath = Path.Combine(appDataDir, appNameVer);
+            // Storage Path\[AppName] v[AppMajorVersion]\
+            var storageDirPath = StoragePathBuilder.GetPath(ErrorHandlingOption.StoragePath);
 
             var dir = Directory.CreateDirectory(storageDirPath);
             dir.Attributes = FileAttributes.Directory;

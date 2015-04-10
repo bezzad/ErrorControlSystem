@@ -7,7 +7,7 @@ using ErrorControlSystem.Properties;
 using ErrorControlSystem.ServerController;
 using ErrorControlSystem.Shared;
 
-namespace ErrorControlSystem.CachErrors
+namespace ErrorControlSystem.CacheErrors
 {
     internal static class CacheController
     {

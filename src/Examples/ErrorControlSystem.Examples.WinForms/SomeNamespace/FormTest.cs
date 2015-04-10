@@ -151,6 +151,31 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
         {
             var b = *(byte*)8762765876;
         }
+
+        private void btnTestExceptionHandlerSpeed_Click(object sender, EventArgs e)
+        {
+            const long oneMinute = 60000;
+
+            Task.Factory.StartNew(() =>
+            {
+                int counter = 0;
+                var firstTime = Environment.TickCount;
+
+                while (Environment.TickCount - firstTime <= oneMinute)
+                {
+                    try
+                    {
+                        throw new FormatException("Speed Test Exception");
+                    }
+                    catch
+                    {
+                        counter++;
+                    }
+                }
+
+                MessageBox.Show("Number of exceptions that handling in one minute is: " + counter);
+            });
+        }
     }
 
 

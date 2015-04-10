@@ -1,16 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ErrorControlSystem.CachErrors;
+using System.Configuration;
+using System.Linq.Expressions;
+using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.Properties;
 
 namespace ErrorControlSystem
 {
     public static class ErrorHandlingOption
     {
+        #region Fields
+
         private static bool _displayDeveloperUI;
+
+        #endregion
+
+        #region Properties
+
 
         /// <summary>
         /// Gets or sets a value indicating whether the unhandled exception handlers in <see cref="ErrorControlSystem.ExceptionHandler"/> 
@@ -51,10 +56,10 @@ namespace ErrorControlSystem
 
         /// <summary>
         /// Gets or sets the size of error caches that each time an exception occurs, 
-        /// the ECS bug reporters is prepared to be send to server.
+        /// the ECS bug reporters is prepared to be send to the server.
         /// Default value is 4194304 bytes.
         /// </summary>
-        public static long CacheLimitSize { get { return Settings.Default.CacheLimitSize; } }
+        public static long CacheLimitSize { get; set; }
 
 
         /// <summary>
@@ -79,9 +84,33 @@ namespace ErrorControlSystem
         /// After an exception occurs, the exception handlers are created and queued for submission.
         /// Until then, the reports will be stored in this location. 
         /// Default value is the LocalApplicationData directory.
-        /// This setting can either be assigned a full path string or a value from <see cref="ErrorControlSystem.CachErrors.StoragePath"/> enumeration.
+        /// This setting can either be assigned a full path string or a value from <see cref="ErrorControlSystem.CacheErrors.StoragePath"/> enumeration.
         /// </summary>
         public static StoragePath StoragePath { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the ErrorControlSystem errors custom storage path.
+        /// Default value is <see cref="String.Empty"/>
+        /// </summary>
+        public static String CustomStoragePath { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether Report handled exceptions or not?
+        /// If you want also to report handled exceptions, so set it to <C>true</C>; otherwise, <c>false</c>.
+        /// Default value is true.
+        /// </summary>
+        public static bool ReportHandledExceptions { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the error log path.
+        /// </summary>
+        /// <value>
+        /// The error log path.
+        /// </value>
+        public static String ErrorLogPath { get; set; }
 
 
         /// <summary>
@@ -90,11 +119,12 @@ namespace ErrorControlSystem
         /// Condition for display developer UI is that application running in Debug Mode and from IDE.
         /// Default value is true.
         /// </summary>
-        internal static bool DisplayDeveloperUI
+        public static bool DisplayDeveloperUI
         {
             get { return !ReleaseMode && IsRunningFromIDE && _displayDeveloperUI; }
             set { _displayDeveloperUI = value; }
         }
+
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable send error data to network server.
@@ -103,7 +133,52 @@ namespace ErrorControlSystem
         /// </summary>
         internal static bool? EnableNetworkSending { get; set; }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Replicate the behavior of normal Properties.Settings class via getting default values for null settings.
+        /// Use this like GetDefaultValue(() =&gt; CacheLimitSize);
+        /// </summary>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        private static string GetDefaultValue<T>(Expression<Func<T>> propertyExpression)
+        {
+            var defaultSetting =
+                typeof(Properties.Settings).GetProperty(((MemberExpression)propertyExpression.Body).Member.Name)
+                                           .GetCustomAttributes(typeof(DefaultSettingValueAttribute), false)[0] as DefaultSettingValueAttribute;
+            return defaultSetting != null ? defaultSetting.Value : null;
+        }
 
 
+        /// <summary>
+        /// Loads the app config settings to set default all properties.
+        /// </summary>
+        private static void LoadSettings()
+        {
+            CacheLimitSize = Settings.Default.CacheLimitSize;
+            DisplayDeveloperUI = Settings.Default.DisplayDeveloperUI;
+            EnableNetworkSending = Settings.Default.EnableNetworkSending;
+            ReportHandledExceptions = Settings.Default.ReportHandledExceptions;
+            ErrorLogPath = Settings.Default.ErrorLogPath;
+            ExitApplicationImmediately = Settings.Default.ExitApplicationImmediately;
+            CustomStoragePath = Settings.Default.CustomStoragePath;
+            MaxQueuedCacheErrors = Settings.Default.MaxQueuedCacheErrors;
+            HandleProcessCorruptedStateExceptions = Settings.Default.HandleProcessCorruptedStateExceptions;
+            StoragePath = Settings.Default.StoragePath;
+        }
+
+        #endregion
+
+        #region Constructors
+
+        static ErrorHandlingOption()
+        {
+            LoadSettings();
+        }
+
+        #endregion
     }
 }

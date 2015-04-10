@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ErrorControlSystem.CachErrors
+﻿namespace ErrorControlSystem.CacheErrors
 {
     public enum StoragePath
     {
@@ -24,14 +18,14 @@ namespace ErrorControlSystem.CachErrors
         CurrentDirectory,
 
         /// <summary>
-        /// User's isolated storage store (application scope).
-        /// </summary>
-        IsolatedStorage,
-
-        /// <summary>
         /// Custom path should be a full path like 'C:\Documents and Settings\MyUser\Local Settings\Temp'.
         /// </summary>
         /// <remarks>Path should not have a trailing slash. If the directory doesn't exist, it is created first.</remarks>
-        Custom
+        Custom,
+
+        /// <summary>
+        /// The internet cache path
+        /// </summary>
+        InternetCache
     }
 }

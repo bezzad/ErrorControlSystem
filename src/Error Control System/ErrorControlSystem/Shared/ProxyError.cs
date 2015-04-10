@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.Serialization;
-using ErrorControlSystem.CachErrors;
+using ErrorControlSystem.CacheErrors;
 
 namespace ErrorControlSystem.Shared
 {

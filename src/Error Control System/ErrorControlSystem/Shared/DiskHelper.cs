@@ -45,7 +45,7 @@ namespace ErrorControlSystem.Shared
             {
                 try
                 {
-                    Settings.Default[key] = (attach ? (ReadSetting(key) ?? "") : "") + value;
+                    Settings.Default[key] = (attach ? ReadSetting(key) : "") + value;
 
                     Settings.Default.Save();
 

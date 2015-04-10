@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using ErrorControlSystem.CachErrors;
+using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.DbConnectionManager;
 
 namespace ErrorControlSystem.Shared

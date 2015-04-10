@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ErrorControlSystem.Shared;
 
-namespace ErrorControlSystem.CachErrors
+namespace ErrorControlSystem.CacheErrors
 {
     public static class SqlCompactEditionManager
     {

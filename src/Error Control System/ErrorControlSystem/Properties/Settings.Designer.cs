@@ -46,5 +46,101 @@ namespace ErrorControlSystem.Properties {
                 this["CacheLimitSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LocalApplicationData")]
+        public global::ErrorControlSystem.CacheErrors.StoragePath StoragePath {
+            get {
+                return ((global::ErrorControlSystem.CacheErrors.StoragePath)(this["StoragePath"]));
+            }
+            set {
+                this["StoragePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ReportHandledExceptions {
+            get {
+                return ((bool)(this["ReportHandledExceptions"]));
+            }
+            set {
+                this["ReportHandledExceptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int MaxQueuedCacheErrors {
+            get {
+                return ((int)(this["MaxQueuedCacheErrors"]));
+            }
+            set {
+                this["MaxQueuedCacheErrors"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HandleProcessCorruptedStateExceptions {
+            get {
+                return ((bool)(this["HandleProcessCorruptedStateExceptions"]));
+            }
+            set {
+                this["HandleProcessCorruptedStateExceptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExitApplicationImmediately {
+            get {
+                return ((bool)(this["ExitApplicationImmediately"]));
+            }
+            set {
+                this["ExitApplicationImmediately"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayDeveloperUI {
+            get {
+                return ((bool)(this["DisplayDeveloperUI"]));
+            }
+            set {
+                this["DisplayDeveloperUI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableNetworkSending {
+            get {
+                return ((bool)(this["EnableNetworkSending"]));
+            }
+            set {
+                this["EnableNetworkSending"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomStoragePath {
+            get {
+                return ((string)(this["CustomStoragePath"]));
+            }
+            set {
+                this["CustomStoragePath"] = value;
+            }
+        }
     }
 }

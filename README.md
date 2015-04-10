@@ -1,4 +1,4 @@
-# [Error Control System](https://github.com/Behzadkhosravifar/ErrorControlSystem)  README #
+# [Error Control System](https://github.com/Behzadkhosravifar/ErrorControlSystem) #
 ---------------------
 [![Build status](https://ci.appveyor.com/api/projects/status/9qdlpbpf3gyfuvdu?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/errorcontrolsystem)
 

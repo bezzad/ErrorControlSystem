@@ -131,25 +131,25 @@
       <FileName>Engine.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorControlSystem.CachErrors.CacheController" Collapsed="true">
+  <Class Name="ErrorControlSystem.CacheErrors.CacheController" Collapsed="true">
     <Position X="2.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAQAIAAAAAQAAAACIAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CachErrors\CacheController.cs</FileName>
+      <FileName>CacheErrors\CacheController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorControlSystem.CachErrors.SqlCompactEditionManager" Collapsed="true">
+  <Class Name="ErrorControlSystem.CacheErrors.SqlCompactEditionManager" Collapsed="true">
     <Position X="6.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAEAAAACFAAAAABAIAACAAAAAAAAAgIAKAAgAAYAIA=</HashCode>
-      <FileName>CachErrors\SqlCompactEditionManager.cs</FileName>
+      <FileName>CacheErrors\SqlCompactEditionManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ErrorControlSystem.CachErrors.StorageRouter" Collapsed="true">
+  <Class Name="ErrorControlSystem.CacheErrors.StorageRouter" Collapsed="true">
     <Position X="8" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACgAAAAAAAABA=</HashCode>
-      <FileName>CachErrors\StorageRouter.cs</FileName>
+      <FileName>CacheErrors\StorageRouter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.Properties.Resources" Collapsed="true">

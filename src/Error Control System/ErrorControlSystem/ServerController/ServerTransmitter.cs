@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Runtime.Remoting;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
-using ErrorControlSystem.CachErrors;
+using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.DbConnectionManager;
 using ErrorControlSystem.Resources;
 using ErrorControlSystem.Shared;

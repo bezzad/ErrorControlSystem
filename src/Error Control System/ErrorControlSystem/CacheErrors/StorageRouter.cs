@@ -1,21 +1,14 @@
-﻿using System;
-using System.IO;
-using ErrorControlSystem.DbConnectionManager;
-using ErrorControlSystem.Shared;
-
-namespace ErrorControlSystem.CacheErrors
+﻿namespace ErrorControlSystem.CacheErrors
 {
+    using System.IO;
+
+    using ErrorControlSystem.Shared;
+
     /// <summary>
     /// Routing Where the data must be saved
     /// </summary>
     internal static class StorageRouter
     {
-        #region Properties
-
-        public static string ErrorLogFilePath;
-
-        #endregion
-
         #region Constructor
 
         static StorageRouter()
@@ -33,28 +26,28 @@ namespace ErrorControlSystem.CacheErrors
 
         public static async void ReadyCache()
         {
-            if (File.Exists(ErrorLogFilePath))
+            if (File.Exists(ErrorHandlingOption.ErrorLogPath))
             {
-                SqlCompactEditionManager.CheckSdf(ErrorLogFilePath);
+                SqlCompactEditionManager.CheckSdf(ErrorHandlingOption.ErrorLogPath);
             }
             else
             {
-                await SqlCompactEditionManager.CreateSdfAsync(ErrorLogFilePath);
+                await SqlCompactEditionManager.CreateSdfAsync(ErrorHandlingOption.ErrorLogPath);
             }
         }
 
         private static async void LoadLogPath()
         {
-            ErrorLogFilePath = DiskHelper.ReadSetting("ErrorLogPath");
+            ErrorHandlingOption.ErrorLogPath = DiskHelper.ReadSetting("ErrorLogPath");
 
             CheckLogPath();
 
-            await SqlCompactEditionManager.CreateSdfAsync(ErrorLogFilePath);
+            await SqlCompactEditionManager.CreateSdfAsync(ErrorHandlingOption.ErrorLogPath);
         }
 
         private static void CheckLogPath()
         {
-            if (!string.IsNullOrEmpty(ErrorLogFilePath) && File.Exists(ErrorLogFilePath)) return; // That path's is correct.
+            if (!string.IsNullOrEmpty(ErrorHandlingOption.ErrorLogPath) && File.Exists(ErrorHandlingOption.ErrorLogPath)) return; // That path's is correct.
 
             // Storage Path\[AppName] v[AppMajorVersion]\
             var storageDirPath = StoragePathBuilder.GetPath(ErrorHandlingOption.StoragePath);
@@ -62,13 +55,13 @@ namespace ErrorControlSystem.CacheErrors
             var dir = Directory.CreateDirectory(storageDirPath);
             dir.Attributes = FileAttributes.Directory;
 
-            ErrorLogFilePath = Path.Combine(storageDirPath, "Errors.log");
+            ErrorHandlingOption.ErrorLogPath = Path.Combine(storageDirPath, "Errors.log");
         }
 
         private static async void RegisterErrorPathsAsync()
         {
             // Add Error data path to [ErrorLogPath] of setting file:
-            await DiskHelper.WriteSettingAsync("ErrorLogPath", ErrorLogFilePath);
+            await DiskHelper.WriteSettingAsync("ErrorLogPath", ErrorHandlingOption.ErrorLogPath);
         }
 
         #endregion

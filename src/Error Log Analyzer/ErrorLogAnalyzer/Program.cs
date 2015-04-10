@@ -12,8 +12,9 @@ namespace ErrorLogAnalyzer
         [STAThread]
         private static void Main()
         {
-            ExceptionHandler.Engine.Start(".", "UsersManagements");
-            
+            ExceptionHandler.Engine.Start(".", "UsersManagements",
+                ErrorHandlingOptions.All & ~ErrorHandlingOptions.ResizeSnapshots);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogReader());

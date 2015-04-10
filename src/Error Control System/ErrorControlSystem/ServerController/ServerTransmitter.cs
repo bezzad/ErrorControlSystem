@@ -16,10 +16,6 @@ namespace ErrorControlSystem.ServerController
     {
         #region Properties
 
-        // maybe the network have exception then dead loop occurred,
-        // so this variable closed that
-        public static volatile bool CanToSent = true;
-
         public static TransformBlock<ProxyError, Tuple<ProxyError, bool>> ErrorListenerTransformBlock;
 
         #endregion
@@ -44,30 +40,29 @@ namespace ErrorControlSystem.ServerController
                 }
                 else // database is not exist !!!
                 {
-                    CanToSent = false;
-                    new DataException("Database is not exist or corrupted").RaiseLog(ErrorHandlingOptions.IsHandled);
+                    ErrorHandlingOption.EnableNetworkSending = false;
+                    new DataException("Database is not exist or corrupted").RaiseLog();
                 }
             }
             else // server is off !!
             {
-                CanToSent = false;
-                new ServerException("Server is not online!").RaiseLog(ErrorHandlingOptions.IsHandled);
+                ErrorHandlingOption.EnableNetworkSending = false;
+                new ServerException("Server is not online!").RaiseLog();
             }
 
 
             ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
                 async (e) =>
                 {
-                    if (CanToSent) // Server Connector to online or offline ?
+                    if (ErrorHandlingOption.EnableNetworkSending) // Server Connector to online or offline ?
                     {
                         try
                         {
                             await InsertErrorAsync(e);
                         }
-                        catch (Exception exp)
+                        catch
                         {
-                            CanToSent = false;
-                            exp.RaiseLog(ErrorHandlingOptions.IsHandled);
+                            ErrorHandlingOption.EnableNetworkSending = false;
                         }
                         finally
                         {
@@ -77,7 +72,7 @@ namespace ErrorControlSystem.ServerController
                     else ErrorListenerTransformBlock.Complete();
                     //
                     // Post to Acknowledge Action Block:
-                    return new Tuple<ProxyError, bool>(e, CanToSent);
+                    return new Tuple<ProxyError, bool>(e, ErrorHandlingOption.EnableNetworkSending);
                 },
                 new ExecutionDataflowBlockOptions()
                 {

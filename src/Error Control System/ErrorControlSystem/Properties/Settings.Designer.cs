@@ -142,5 +142,65 @@ namespace ErrorControlSystem.Properties {
                 this["CustomStoragePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FetchServerDateTime {
+            get {
+                return ((bool)(this["FetchServerDateTime"]));
+            }
+            set {
+                this["FetchServerDateTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Snapshot {
+            get {
+                return ((bool)(this["Snapshot"]));
+            }
+            set {
+                this["Snapshot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ResizeSnapshots {
+            get {
+                return ((bool)(this["ResizeSnapshots"]));
+            }
+            set {
+                this["ResizeSnapshots"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayUnhandledExceptions {
+            get {
+                return ((bool)(this["DisplayUnhandledExceptions"]));
+            }
+            set {
+                this["DisplayUnhandledExceptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FilterExceptions {
+            get {
+                return ((bool)(this["FilterExceptions"]));
+            }
+            set {
+                this["FilterExceptions"] = value;
+            }
+        }
     }
 }

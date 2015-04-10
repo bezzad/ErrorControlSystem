@@ -20,6 +20,8 @@
 //**********************************************************************************//
 
 
+using System.Data;
+
 namespace ErrorControlSystem
 {
     using System;
@@ -53,8 +55,6 @@ namespace ErrorControlSystem
         #region Constructors
         static ExceptionHandler()
         {
-            Filter.ExemptedCodeScopes.Add(new CodeScope(Assembly.GetExecutingAssembly().GetName().Name, "CacheErrors", null, null));
-
             LoadAssemblies();
 
             StorageRouter.ReadyCache();
@@ -77,26 +77,27 @@ namespace ErrorControlSystem
         /// Raise log of handled error's.
         /// </summary>
         /// <param name="exp">The Error object.</param>
-        /// <param name="option">The option to select what jobs must be doing and stored in Error object's.</param>
+        /// <param name="isHandled">Is handled exception or unhandled ?</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns></returns>
-        [HandleProcessCorruptedStateExceptions]
         [SecurityCritical]
-        public static Error RaiseLog(this Exception exp, ErrorHandlingOptions option = ErrorHandlingOptions.Default,
-            String errorTitle = "UnHandled Exception")
+        public static Error RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "UnHandled Exception")
         {
+            if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
+                return null;
             //
             // Create call stack till this method
             // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
             // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
             // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
-            var callStackFrames = !option.HasFlag(ErrorHandlingOptions.IsHandled) && exp.StackTrace != null // 3#
+            var callStackFrames = !isHandled && exp.StackTrace != null // 3#
                 ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
                 : new StackTrace(2, true).GetFrames(); // 1# or 2#: Raise from FirstChance
 
+
             #region ---------------------------- Filter exception ---------------------------------------
 
-            if (option.HasFlag(ErrorHandlingOptions.FilterExceptions))
+            if (ErrorHandlingOption.FilterExceptions)
             {
                 //
                 // Find exception type:
@@ -104,7 +105,7 @@ namespace ErrorControlSystem
                 //
                 // Is exception within non-snapshot list? (yes => remove snapshot option)
                 if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
-                    option &= ~ErrorHandlingOptions.Snapshot;
+                    ErrorHandlingOption.Snapshot = false;
                 //
                 // Is exception in exempted list?
                 if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
@@ -117,20 +118,24 @@ namespace ErrorControlSystem
                     return null;
             }
 
+            if (ErrorHandlingOption.CacheCodeScope.IsCallFromThisPlace(callStackFrames))
+                return null;
+
             #endregion ------------------------------------------------------------------------------------
 
             //
             // initial the error object by additional data 
-            var error = new Error(exp, callStackFrames, option);
+            var error = new Error(exp, callStackFrames);
 
-            if (!option.HasFlag(ErrorHandlingOptions.IsHandled)) // Is Unhandled Exception ?
+            if (!isHandled) // Is Unhandled Exception ?
             {
+                error.IsHandled = false;
                 //
                 // Handle 'OnShowUnhandledError' events
                 OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
                 //
                 // Alert Unhandled Error 
-                if (option.HasFlag(ErrorHandlingOptions.AlertUnHandledError))
+                if (ErrorHandlingOption.DisplayUnhandledExceptions)
                 {
                     MessageBox.Show(exp.Message,
                         errorTitle,
@@ -139,7 +144,7 @@ namespace ErrorControlSystem
                 }
             }
 
-            CacheController.CacheTheError(error, option);
+            CacheController.CacheTheError(error);
 
             return error;
         }

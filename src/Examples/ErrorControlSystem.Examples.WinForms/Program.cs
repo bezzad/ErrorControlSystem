@@ -17,7 +17,7 @@ namespace ErrorControlSystem.Examples.WinForms
             // ------------------ Initial Error Control System --------------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
-                   ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
+                   ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ResizeSnapshots);
             //
             // Some of the optional configuration items.
             //

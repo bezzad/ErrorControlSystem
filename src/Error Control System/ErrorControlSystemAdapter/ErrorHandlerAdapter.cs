@@ -11,12 +11,7 @@ namespace ErrorControlSystem
 
         public void Raise(Exception exp, bool isHandled = true, bool alertError = false, bool screenCapture = true)
         {
-            var option = ErrorHandlingOptions.None;
-            if (isHandled) option |= ErrorHandlingOptions.IsHandled;
-            if(alertError) option|= ErrorHandlingOptions.AlertUnHandledError;
-            if (screenCapture) option |= ErrorHandlingOptions.Snapshot;
-
-            exp.RaiseLog(option);
+            exp.RaiseLog(isHandled);
         }
     }
 }

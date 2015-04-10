@@ -61,14 +61,14 @@ namespace ErrorControlSystem.CacheErrors
 
                 // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
                 // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\AppName vAppVersion
-                var rootDir = StorageRouter.ErrorLogFilePath.Substring(0, StorageRouter.ErrorLogFilePath.LastIndexOf('\\'));
+                var rootDir = StoragePathBuilder.GetPath(ErrorHandlingOption.StoragePath);
 
                 var maxSize = Settings.Default.CacheLimitSize;
 
 
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...
-                if (ConnectionManager.GetDefaultConnection().IsReady && ServerTransmitter.CanToSent)
+                if (ConnectionManager.GetDefaultConnection().IsReady && ErrorHandlingOption.EnableNetworkSending)
                     if (new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize
                         || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ExpireHours)
                     {
@@ -87,11 +87,11 @@ namespace ErrorControlSystem.CacheErrors
             {
                 await ServerTransmitter.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
 
-                if (!ServerTransmitter.CanToSent) break;
+                if (!ErrorHandlingOption.EnableNetworkSending) break;
             }
         }
 
-        public static async void CacheTheError(Error error, ErrorHandlingOptions option)
+        public static async void CacheTheError(Error error)
         {
             if (_errorSaverActionBlock == null ||
                 _errorSaverActionBlock.Completion.IsFaulted)
@@ -101,7 +101,7 @@ namespace ErrorControlSystem.CacheErrors
                 _errorSaverActionBlock = new ActionBlock<Error>(async e =>
                 {
                     if (await SqlCompactEditionManager.InsertOrUpdateAsync(e)) // insert or update database and return cache check state
-                        if (_errorSaverActionBlock.InputCount == 0 && option.HasFlag(ErrorHandlingOptions.SendCacheToServer))
+                        if (_errorSaverActionBlock.InputCount == 0 && ErrorHandlingOption.EnableNetworkSending)
                             await CheckStateAsync();
                 },
                     new ExecutionDataflowBlockOptions

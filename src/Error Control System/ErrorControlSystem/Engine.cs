@@ -43,12 +43,6 @@ namespace ErrorControlSystem
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         public static class Engine
         {
-            #region Properties
-
-            private static ErrorHandlingOptions _option;
-
-            #endregion
-
             #region Static Constructors
 
             static Engine()
@@ -81,17 +75,21 @@ namespace ErrorControlSystem
 
             #region Start Methods
 
-            public static async void Start(ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+            public static async void Start(ErrorHandlingOptions option)
             {
-                _option = option & ~ErrorHandlingOptions.SendCacheToServer;
+                ErrorHandlingOption.SetSetting(option & ~ErrorHandlingOptions.EnableNetworkSending);
 
                 await ServerTransmitter.InitialTransmitterAsync();
             }
 
-
-            public static async void Start(Connection conn, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+            public static void Start()
             {
-                _option = option;
+                Start(ErrorHandlingOptions.Default);
+            }
+
+            public static async void Start(Connection conn, ErrorHandlingOptions option)
+            {
+                ErrorHandlingOption.SetSetting(option);
 
                 ConnectionManager.Add(conn, "ErrorControlSystemConnection");
                 ConnectionManager.SetToDefaultConnection("ErrorControlSystemConnection");
@@ -100,26 +98,43 @@ namespace ErrorControlSystem
 
                 var publicSetting = await ServerTransmitter.GetErrorHandlingOptionsAsync();
                 if (publicSetting != 0)
-                    _option = publicSetting;
+                    ErrorHandlingOption.SetSetting(publicSetting);
 
                 await CacheController.CheckStateAsync();
             }
 
+            public static void Start(Connection conn)
+            {
+                Start(conn, ErrorHandlingOptions.Default);
+            }
 
-            public static void Start(string server, string database, string username, string pass,
-                ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+
+            public static void Start(string server, string database, string username, string pass, ErrorHandlingOptions option)
             {
                 var conn = new Connection(server, database, username, pass);
 
                 Start(conn, option);
             }
 
-            public static void Start(string server, string database,
-                ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+            public static void Start(string server, string database, string username, string pass)
+            {
+                var conn = new Connection(server, database, username, pass);
+
+                Start(conn);
+            }
+
+            public static void Start(string server, string database, ErrorHandlingOptions option)
             {
                 var conn = new Connection(server, database);
 
                 Start(conn, option);
+            }
+
+            public static void Start(string server, string database)
+            {
+                var conn = new Connection(server, database);
+
+                Start(conn);
             }
 
             #endregion
@@ -241,7 +256,7 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="FirstChanceExceptionEventArgs"/> instance containing the event data.</param>
             private static void FirstChanceExceptionHandler(object sender, FirstChanceExceptionEventArgs e)
             {
-                e.Exception.RaiseLog(_option | ErrorHandlingOptions.IsHandled);
+                e.Exception.RaiseLog();
             }
 
             /// <summary>
@@ -253,7 +268,7 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="UnobservedTaskExceptionEventArgs"/> instance containing the event data.</param>
             private static void UnobservedTaskExceptionHandler(object sender, UnobservedTaskExceptionEventArgs e)
             {
-                e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unobserved Task Exception");
+                e.Exception.RaiseLog(false, "Unobserved Task Exception");
             }
 
             /// <summary>
@@ -265,7 +280,7 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="ThreadExceptionEventArgs"/> instance containing the event data.</param>
             private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
             {
-                e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
+                e.Exception.RaiseLog(false, "Unhandled Thread Exception");
             }
 
             /// <summary>
@@ -279,8 +294,7 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="UnhandledExceptionEventArgs"/> instance containing the event data.</param>
             private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
-                (e.ExceptionObject as Exception).RaiseLog(_option & ~ErrorHandlingOptions.IsHandled,
-                    "Unhandled UI Exception");
+                (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception");
 
                 Environment.Exit(0);
             }
@@ -296,7 +310,7 @@ namespace ErrorControlSystem
                 // Prevent default unhandled exception processing
                 e.Handled = true;
 
-                e.Exception.RaiseLog(_option & ~ErrorHandlingOptions.IsHandled, "Unhandled Thread Exception");
+                e.Exception.RaiseLog(false, "Unhandled Thread Exception");
             }
 
             #endregion

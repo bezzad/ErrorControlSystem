@@ -31,7 +31,7 @@ namespace ErrorControlSystem.Shared
         /// <param name="exp">>The occurrence raw error.</param>
         /// <param name="frames">The array of <see cref="System.Diagnostics.StackFrame"/> to changes by exception stackTrace</param>
         /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        public Error(Exception exp, StackFrame[] frames = null, ErrorHandlingOptions option = ErrorHandlingOptions.Default)
+        public Error(Exception exp, StackFrame[] frames = null)
         {
             #region HResult [Exception Type Code]
 
@@ -59,12 +59,12 @@ namespace ErrorControlSystem.Shared
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!SqlCompactEditionManager.Contains(Id) && option.HasFlag(ErrorHandlingOptions.Snapshot))
+            if (!SqlCompactEditionManager.Contains(Id) && ErrorHandlingOption.Snapshot)
             {
                 Snapshot = ScreenCapture.Capture();
 
-                if (Snapshot != null && option.HasFlag(ErrorHandlingOptions.ReSizeSnapshots))
-                    Snapshot.ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height);
+                if (Snapshot != null && ErrorHandlingOption.ResizeSnapshots)
+                    Snapshot = Snapshot.ResizeImage(ScreenCapture.ReSizeAspectRatio.Width, ScreenCapture.ReSizeAspectRatio.Height);
             }
 
             #endregion
@@ -86,7 +86,7 @@ namespace ErrorControlSystem.Shared
 
             #region Server Date Time
 
-            ServerDateTime = option.HasFlag(ErrorHandlingOptions.FetchServerDateTime)
+            ServerDateTime = ErrorHandlingOption.FetchServerDateTime
                 ? NetworkHelper.GetServerDateTime()
                 : DateTime.Now;
 
@@ -151,9 +151,9 @@ namespace ErrorControlSystem.Shared
 
             #endregion
 
-            #region Is Handled Error or UnHandled?
+            #region IsHandled default value is true
 
-            IsHandled = option.HasFlag(ErrorHandlingOptions.IsHandled);
+            IsHandled = true;
 
             #endregion
 

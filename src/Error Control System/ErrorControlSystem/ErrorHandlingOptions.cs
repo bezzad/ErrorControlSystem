@@ -14,20 +14,20 @@
     public enum ErrorHandlingOptions
     {
         None = 0,
+        All = 0xFFFF, // Combined value of all
 
-        IsHandled = 1,
-        AlertUnHandledError = 2,
+        DisplayUnhandledExceptions = 1,
+        ReportHandledExceptions = 2,
         Snapshot = 4,
         FetchServerDateTime = 8,
-        ReSizeSnapshots = 16,
-        SendCacheToServer = 32,
+        ResizeSnapshots = 16,
+        EnableNetworkSending = 32,
         FilterExceptions = 64,
-        BreakExecution = 128,
+        ExitApplicationImmediately = 128,
+        HandleProcessCorruptedStateExceptions = 256,
+        DisplayDeveloperUI = 512,
 
 
-        Default = Snapshot | FetchServerDateTime |
-            AlertUnHandledError | SendCacheToServer |
-            ReSizeSnapshots | FilterExceptions,
-        All = 0xFFFF // Combined value of all
+        Default = All & ~ExitApplicationImmediately & ~HandleProcessCorruptedStateExceptions
     }
 }

@@ -22,6 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>1607, 1591</NoWarn>
     <DocumentationFile>..\..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.XML</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>1607, 1591</NoWarn>
     <DocumentationFile>..\..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.XML</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>

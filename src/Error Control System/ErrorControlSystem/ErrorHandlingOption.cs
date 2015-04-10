@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Windows.Forms;
 using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.Properties;
+using ErrorControlSystem.Shared;
 
 namespace ErrorControlSystem
 {
@@ -12,10 +16,13 @@ namespace ErrorControlSystem
 
         private static bool _displayDeveloperUI;
 
+        private static bool _fetchServerDateTime;
+
+        private static bool _resizeSnapshots;
+
         #endregion
 
         #region Properties
-
 
         /// <summary>
         /// Gets or sets a value indicating whether the unhandled exception handlers in <see cref="ErrorControlSystem.ExceptionHandler"/> 
@@ -97,7 +104,7 @@ namespace ErrorControlSystem
 
 
         /// <summary>
-        /// Gets or sets a value indicating whether Report handled exceptions or not?
+        /// Gets or sets a value indicating whether report handled exceptions or not?
         /// If you want also to report handled exceptions, so set it to <C>true</C>; otherwise, <c>false</c>.
         /// Default value is true.
         /// </summary>
@@ -116,13 +123,17 @@ namespace ErrorControlSystem
         /// <summary>
         /// Gets or sets a value indicating whether to enable developer user interface facilities which enable easier diagnosis of
         /// code maps and other internal errors.
-        /// Condition for display developer UI is that application running in Debug Mode and from IDE.
+        /// Condition for display developer UI is that application running from IDE and DisplayUnhandledExceptions value was true.
         /// Default value is true.
         /// </summary>
         public static bool DisplayDeveloperUI
         {
-            get { return !ReleaseMode && IsRunningFromIDE && _displayDeveloperUI; }
-            set { _displayDeveloperUI = value; }
+            get { return DisplayUnhandledExceptions && IsRunningFromIDE && _displayDeveloperUI; }
+            set
+            {
+                if (value) DisplayUnhandledExceptions = true;
+                _displayDeveloperUI = value;
+            }
         }
 
 
@@ -131,11 +142,79 @@ namespace ErrorControlSystem
         /// For example when network is crashed or database is dropped then should be not send data.
         /// Network sending is enabled by default.
         /// </summary>
-        internal static bool? EnableNetworkSending { get; set; }
+        public static bool EnableNetworkSending { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether network sending is enabled and can to fetch date and time form server.
+        /// Default value is true.
+        /// </summary>
+        public static bool FetchServerDateTime
+        {
+            get { return _fetchServerDateTime && EnableNetworkSending; }
+            set { _fetchServerDateTime = value; }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether can to capture screen.
+        /// Default value is true.
+        /// </summary>
+        public static bool Snapshot { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether resize snapshots.
+        /// Default value is true but snapshot property also must be true.
+        /// </summary>
+        public static bool ResizeSnapshots
+        {
+            get { return _resizeSnapshots && Snapshot; }
+            set
+            {
+                if (value) Snapshot = true;
+                _resizeSnapshots = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether display unhandled exceptions.
+        /// </summary>
+        public static bool DisplayUnhandledExceptions { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets a value indicating whether filter exceptions enabled or not ?
+        /// Default value is true.
+        /// </summary>
+        public static bool FilterExceptions { get; set; }
+
+        /// <summary>
+        /// Gets the cache code scope.
+        /// </summary>
+        internal static CodeScope CacheCodeScope { get; private set; }
+
 
         #endregion
 
         #region Methods
+
+        public static void SetSetting(ErrorHandlingOptions opt)
+        {
+            NoneOptions();
+
+            foreach (var item in Enum.GetNames(typeof(ErrorHandlingOptions)).Except(new[] { "All", "None", "Default" }))
+            {
+                if (opt.HasFlag((ErrorHandlingOptions)Enum.Parse(typeof(ErrorHandlingOptions), item)))
+                {
+                    var property = typeof(ErrorHandlingOption).GetProperty(item);
+
+                    if (property != null && property.CanRead && property.CanWrite)
+                        property.SetValue(typeof(ErrorHandlingOption), true);
+                }
+            }
+        }
 
         /// <summary>
         /// Replicate the behavior of normal Properties.Settings class via getting default values for null settings.
@@ -156,18 +235,57 @@ namespace ErrorControlSystem
         /// <summary>
         /// Loads the app config settings to set default all properties.
         /// </summary>
-        private static void LoadSettings()
+        public static void LoadDefaultSettings()
+        {
+            SetFullOption(false);
+        }
+
+
+        /// <summary>
+        /// Check Alls the Options to true value.
+        /// </summary>
+        public static void AllOptions()
+        {
+            SetFullOption(true);
+        }
+
+
+        private static void SetFullOption(bool fullOption)
         {
             CacheLimitSize = Settings.Default.CacheLimitSize;
-            DisplayDeveloperUI = Settings.Default.DisplayDeveloperUI;
-            EnableNetworkSending = Settings.Default.EnableNetworkSending;
-            ReportHandledExceptions = Settings.Default.ReportHandledExceptions;
+            DisplayDeveloperUI = fullOption || Settings.Default.DisplayDeveloperUI;
+            EnableNetworkSending = fullOption || Settings.Default.EnableNetworkSending;
+            ReportHandledExceptions = fullOption || Settings.Default.ReportHandledExceptions;
             ErrorLogPath = Settings.Default.ErrorLogPath;
-            ExitApplicationImmediately = Settings.Default.ExitApplicationImmediately;
+            ExitApplicationImmediately = fullOption || Settings.Default.ExitApplicationImmediately;
             CustomStoragePath = Settings.Default.CustomStoragePath;
             MaxQueuedCacheErrors = Settings.Default.MaxQueuedCacheErrors;
-            HandleProcessCorruptedStateExceptions = Settings.Default.HandleProcessCorruptedStateExceptions;
+            HandleProcessCorruptedStateExceptions = fullOption || Settings.Default.HandleProcessCorruptedStateExceptions;
             StoragePath = Settings.Default.StoragePath;
+            FetchServerDateTime = fullOption || Settings.Default.FetchServerDateTime;
+            Snapshot = fullOption || Settings.Default.Snapshot;
+            ResizeSnapshots = fullOption || Settings.Default.ResizeSnapshots;
+            DisplayUnhandledExceptions = fullOption || Settings.Default.DisplayUnhandledExceptions;
+            FilterExceptions = fullOption || Settings.Default.FilterExceptions;
+        }
+
+        private static void NoneOptions()
+        {
+            CacheLimitSize = Settings.Default.CacheLimitSize;
+            DisplayDeveloperUI = false;
+            EnableNetworkSending = false;
+            ReportHandledExceptions = false;
+            ErrorLogPath = Settings.Default.ErrorLogPath;
+            ExitApplicationImmediately = false;
+            CustomStoragePath = Settings.Default.CustomStoragePath;
+            MaxQueuedCacheErrors = Settings.Default.MaxQueuedCacheErrors;
+            HandleProcessCorruptedStateExceptions = false;
+            StoragePath = Settings.Default.StoragePath;
+            FetchServerDateTime = false;
+            Snapshot = false;
+            ResizeSnapshots = false;
+            DisplayUnhandledExceptions = false;
+            FilterExceptions = false;
         }
 
         #endregion
@@ -176,7 +294,9 @@ namespace ErrorControlSystem
 
         static ErrorHandlingOption()
         {
-            LoadSettings();
+            LoadDefaultSettings();
+
+            CacheCodeScope = new CodeScope(Assembly.GetExecutingAssembly().GetName().Name, "CacheErrors", null, null);
         }
 
         #endregion

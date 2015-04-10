@@ -282,17 +282,20 @@ BEGIN
 			DECLARE @UserName NVARCHAR(200) = SYSTEM_USER;
 
 			DECLARE @None INT = 0,
-					@IsHandled INT = 1,
-					@AlertUnHandledError INT = 2,
+					@All INT = 0xFFFF,
+					@DisplayUnhandledExceptions INT = 1,
+					@ReportHandledExceptions INT = 2,
 					@Snapshot INT = 4,
 					@FetchServerDateTime INT = 8,
-					@ReSizeSnapshots INT = 16,
-					@SendCacheToServer INT = 32,
+					@ResizeSnapshots INT = 16,
+					@EnableNetworkSending INT = 32,
 					@FilterExceptions INT = 64,
+					@ExitApplicationImmediately INT = 128,
+					@HandleProcessCorruptedStateExceptions INT = 256,
 					@Default INT,
-					@All INT = 0xFFFF;
+					@DisplayDeveloperUI INT = 512;
 					
-			SET @Default =  (@Snapshot + @FetchServerDateTime + @AlertUnHandledError + @SendCacheToServer + @ReSizeSnapshots + @FilterExceptions);
+			SET @Default =  (@All - @ExitApplicationImmediately - @HandleProcessCorruptedStateExceptions);
 
 			IF(CHARINDEX(''TestWinFormDotNet45'', @AppName) = 1 AND @UserName = ''DBITABRIZ\khosravifar.b'')
 				RETURN (@Default)

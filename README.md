@@ -45,7 +45,7 @@ namespace TestApplication
             // ------------------ Initial Error Control System --------------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
-                   ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
+                   ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ResizeSnapshots);
             //
             // Some of the optional configuration items.
             //
@@ -123,23 +123,28 @@ Change the __Startup object__ to `Sub Main`.
 
 In the initialize code snippet you've seen that, for the `ExceptionHandler.Engine` method should be an option. This option is used to specify the error data, which includes the following values:
 
--  All
--  AlertUnHandledError
--  Default (AlertUnHandledError + FetchServerDateTime + Snapshot + ReSizeSnapshots + SendCacheToServer)
--  FetchServerDateTime
--  IsHandled
--  None
--  ReSizeSnapshots
--  SendCacheToServer
--  Snapshot
+* None
+* All
+* Default = All - (ExitApplicationImmediately, HandleProcessCorruptedStateExceptions)
+
+* DisplayUnhandledExceptions
+* ReportHandledExceptions
+* Snapshot
+* FetchServerDateTime
+* ResizeSnapshots
+* EnableNetworkSending
+* FilterExceptions
+* ExitApplicationImmediately
+* HandleProcessCorruptedStateExceptions
+* DisplayDeveloperUI
 
 For example in above codes, this code means is:
 ```C#
 
 ExceptionHandler.Engine.Start("localhost", "UsersManagements",
-                ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ReSizeSnapshots);
+                ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ResizeSnapshots);
 ```
-Select all options by excepted `ReSizeSnapshots`
+Select all options by excepted `ResizeSnapshots`
 
 By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including __Handled__ or __UnHandled__ exceptions on the your database.
 

@@ -14,9 +14,6 @@
     <Setting Name="ReportHandledExceptions" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="MaxQueuedCacheErrors" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">500</Value>
-    </Setting>
     <Setting Name="HandleProcessCorruptedStateExceptions" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -46,6 +43,9 @@
     </Setting>
     <Setting Name="FilterExceptions" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SentOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

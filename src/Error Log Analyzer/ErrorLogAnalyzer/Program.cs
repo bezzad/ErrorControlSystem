@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using ErrorControlSystem;
 
@@ -12,6 +13,8 @@ namespace ErrorLogAnalyzer
         [STAThread]
         private static void Main()
         {
+            Thread.Sleep(2000); // First Open Example Apps then this app
+
             ExceptionHandler.Engine.Start(".", "UsersManagements",
                 ErrorHandlingOptions.All & ~ErrorHandlingOptions.ResizeSnapshots);
 

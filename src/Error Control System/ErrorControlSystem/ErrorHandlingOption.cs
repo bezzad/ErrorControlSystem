@@ -1,16 +1,16 @@
-﻿using System;
-using System.Configuration;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ErrorControlSystem.CacheErrors;
-using ErrorControlSystem.Properties;
-using ErrorControlSystem.Shared;
+﻿using System.IO;
 
 namespace ErrorControlSystem
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+
+
+    using ErrorControlSystem.CacheErrors;
+    using ErrorControlSystem.Properties;
+    using ErrorControlSystem.Shared;
+
     public static class ErrorHandlingOption
     {
         #region Fields
@@ -21,15 +21,20 @@ namespace ErrorControlSystem
 
         private static bool _resizeSnapshots;
 
+
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets a value indicating whether the unhandled exception handlers in <see cref="ErrorControlSystem.ExceptionHandler"/> 
-        /// class actually handle exceptions.
+        /// Get or Set startup sent state, that for sent cache data to server in application startup or not.
+        /// Default value is false.
         /// </summary>
-        public static bool IsHandled { get; set; }
+        public static bool SentOnStartup
+        {
+            get { return ReadSetting<bool>("SentOnStartup"); }
+            set { WriteSetting("SentOnStartup", value); }
+        }
 
 
         /// <summary>
@@ -53,13 +58,16 @@ namespace ErrorControlSystem
 
 
         /// <summary>
-        /// Gets or sets the number of bug reports that can be queued for cache submission. 
-        /// Each time an exception occurs, the exception handlers is prepared to be send to server. 
-        /// If submission fails (i.e. there is no network connection), the queue grows with each additional
-        /// exception and resulting error reports. This limits the max no of queued reports to limit the disk space usage.
-        /// Default value is 500.
+        /// Gets true when cache size filled, otherwise false.
         /// </summary>
-        public static int MaxQueuedCacheErrors { get; set; }
+        public static bool CacheFilled
+        {
+            get
+            {
+                var rootDir = StoragePathBuilder.GetPath(StoragePath);
+                return new DirectoryInfo(rootDir).GetDirectorySize() >= CacheLimitSize;
+            }
+        }
 
 
         /// <summary>
@@ -67,7 +75,11 @@ namespace ErrorControlSystem
         /// the ECS bug reporters is prepared to be send to the server.
         /// Default value is 4194304 bytes.
         /// </summary>
-        public static long CacheLimitSize { get; set; }
+        public static long CacheLimitSize
+        {
+            get { return ReadSetting<long>("CacheLimitSize"); }
+            set { WriteSetting("CacheLimitSize", value); }
+        }
 
 
         /// <summary>
@@ -218,22 +230,6 @@ namespace ErrorControlSystem
         }
 
         /// <summary>
-        /// Replicate the behavior of normal Properties.Settings class via getting default values for null settings.
-        /// Use this like GetDefaultValue(() =&gt; CacheLimitSize);
-        /// </summary>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
-        private static string GetDefaultValue<T>(Expression<Func<T>> propertyExpression)
-        {
-            var defaultSetting =
-                typeof(Properties.Settings).GetProperty(((MemberExpression)propertyExpression.Body).Member.Name)
-                                           .GetCustomAttributes(typeof(DefaultSettingValueAttribute), false)[0] as DefaultSettingValueAttribute;
-            return defaultSetting != null ? defaultSetting.Value : null;
-        }
-
-
-        /// <summary>
         /// Loads the app config settings to set default all properties.
         /// </summary>
         public static void LoadDefaultSettings()
@@ -260,7 +256,6 @@ namespace ErrorControlSystem
             ErrorLogPath = Settings.Default.ErrorLogPath;
             ExitApplicationImmediately = fullOption || Settings.Default.ExitApplicationImmediately;
             CustomStoragePath = Settings.Default.CustomStoragePath;
-            MaxQueuedCacheErrors = Settings.Default.MaxQueuedCacheErrors;
             HandleProcessCorruptedStateExceptions = fullOption || Settings.Default.HandleProcessCorruptedStateExceptions;
             StoragePath = Settings.Default.StoragePath;
             FetchServerDateTime = fullOption || Settings.Default.FetchServerDateTime;
@@ -279,7 +274,6 @@ namespace ErrorControlSystem
             ErrorLogPath = Settings.Default.ErrorLogPath;
             ExitApplicationImmediately = false;
             CustomStoragePath = Settings.Default.CustomStoragePath;
-            MaxQueuedCacheErrors = Settings.Default.MaxQueuedCacheErrors;
             HandleProcessCorruptedStateExceptions = false;
             StoragePath = Settings.Default.StoragePath;
             FetchServerDateTime = false;
@@ -290,29 +284,26 @@ namespace ErrorControlSystem
         }
 
 
-        public static async Task<bool> WriteSettingAsync(string key, string value, bool attach = false)
+        public static bool WriteSetting(string key, object value)
         {
-            return await Task.Run(() =>
+            try
             {
-                try
-                {
-                    Settings.Default[key] = (attach ? ReadSetting(key) : "") + value;
+                Settings.Default[key] = value;
 
-                    Settings.Default.Save();
+                Settings.Default.Save();
 
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public static string ReadSetting(string key)
+        public static T ReadSetting<T>(string key)
         {
-            try { return (string)Settings.Default[key]; }
-            catch { return ""; }
+            try { return (T)Settings.Default[key]; }
+            catch { return default(T); }
         }
 
         #endregion

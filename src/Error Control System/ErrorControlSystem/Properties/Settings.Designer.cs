@@ -73,18 +73,6 @@ namespace ErrorControlSystem.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public int MaxQueuedCacheErrors {
-            get {
-                return ((int)(this["MaxQueuedCacheErrors"]));
-            }
-            set {
-                this["MaxQueuedCacheErrors"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool HandleProcessCorruptedStateExceptions {
             get {
@@ -200,6 +188,18 @@ namespace ErrorControlSystem.Properties {
             }
             set {
                 this["FilterExceptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SentOnStartup {
+            get {
+                return ((bool)(this["SentOnStartup"]));
+            }
+            set {
+                this["SentOnStartup"] = value;
             }
         }
     }

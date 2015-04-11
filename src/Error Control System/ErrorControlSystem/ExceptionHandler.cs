@@ -20,15 +20,11 @@
 //**********************************************************************************//
 
 
-using System.Data;
-
 namespace ErrorControlSystem
 {
     using System;
     using System.Diagnostics;
     using System.Linq;
-    using System.Reflection;
-    using System.Runtime.ExceptionServices;
     using System.Security;
     using System.Windows.Forms;
 
@@ -83,70 +79,79 @@ namespace ErrorControlSystem
         [SecurityCritical]
         public static Error RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "UnHandled Exception")
         {
-            if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
-                return null;
-            //
-            // Create call stack till this method
-            // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
-            // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
-            // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
-            var callStackFrames = !isHandled && exp.StackTrace != null // 3#
-                ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
-                : new StackTrace(2, true).GetFrames(); // 1# or 2#: Raise from FirstChance
-
-
-            #region ---------------------------- Filter exception ---------------------------------------
-
-            if (ErrorHandlingOption.FilterExceptions)
+            try
             {
-                //
-                // Find exception type:
-                var expType = exp.GetType();
-                //
-                // Is exception within non-snapshot list? (yes => remove snapshot option)
-                if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
-                    ErrorHandlingOption.Snapshot = false;
-                //
-                // Is exception in exempted list?
-                if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
-                    Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
                     return null;
                 //
-                // Must be exception occurred from these code scopes to that raised by handler.
-                if (Filter.JustRaiseErrorCodeScopes.Count > 0 &&
-                    !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
-                    return null;
-            }
+                // Create call stack till this method
+                // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
+                // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
+                // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
+                var callStackFrames = !isHandled && exp.StackTrace != null // 3#
+                    ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
+                    : new StackTrace(2, true).GetFrames(); // 1# or 2#: Raise from FirstChance
 
-            if (ErrorHandlingOption.CacheCodeScope.IsCallFromThisPlace(callStackFrames))
-                return null;
+                bool snapshot = ErrorHandlingOption.Snapshot;
 
-            #endregion ------------------------------------------------------------------------------------
+                #region ---------------------------- Filter exception ---------------------------------------
 
-            //
-            // initial the error object by additional data 
-            var error = new Error(exp, callStackFrames);
-
-            if (!isHandled) // Is Unhandled Exception ?
-            {
-                error.IsHandled = false;
-                //
-                // Handle 'OnShowUnhandledError' events
-                OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
-                //
-                // Alert Unhandled Error 
-                if (ErrorHandlingOption.DisplayUnhandledExceptions)
+                if (ErrorHandlingOption.FilterExceptions)
                 {
-                    MessageBox.Show(exp.Message,
-                        errorTitle,
-                        MessageBoxButtons.OK, MessageBoxIcon.Error,
-                        MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    //
+                    // Find exception type:
+                    var expType = exp.GetType();
+                    //
+                    // Is exception within non-snapshot list? (yes => remove snapshot option)
+                    if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
+                        snapshot = false;
+                    //
+                    // Is exception in exempted list?
+                    if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
+                        Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                        return null;
+                    //
+                    // Must be exception occurred from these code scopes to that raised by handler.
+                    if (Filter.JustRaiseErrorCodeScopes.Count > 0 &&
+                        !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                        return null;
                 }
+
+                if (ErrorHandlingOption.CacheCodeScope.IsCallFromThisPlace(callStackFrames))
+                    return null;
+
+                #endregion ------------------------------------------------------------------------------------
+
+                //
+                // initial the error object by additional data 
+                var error = new Error(exp, callStackFrames, snapshot);
+
+                if (!isHandled) // Is Unhandled Exception ?
+                {
+                    error.IsHandled = false;
+                    //
+                    // Handle 'OnShowUnhandledError' events
+                    OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
+                    //
+                    // Alert Unhandled Error 
+                    if (ErrorHandlingOption.DisplayUnhandledExceptions)
+                    {
+                        MessageBox.Show(exp.Message,
+                            errorTitle,
+                            MessageBoxButtons.OK, MessageBoxIcon.Error,
+                            MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                    }
+                }
+
+                CacheController.CacheTheError(error);
+
+                return error;
             }
-
-            CacheController.CacheTheError(error);
-
-            return error;
+            finally
+            {
+                if (!isHandled && ErrorHandlingOption.ExitApplicationImmediately)
+                    Environment.Exit(0);
+            }
         }
 
         #endregion

@@ -30,8 +30,8 @@ namespace ErrorControlSystem.Shared
         /// </summary>
         /// <param name="exp">>The occurrence raw error.</param>
         /// <param name="frames">The array of <see cref="System.Diagnostics.StackFrame"/> to changes by exception stackTrace</param>
-        /// <param name="option">What preprocess must be doing on that exception's ?</param>
-        public Error(Exception exp, StackFrame[] frames = null)
+        /// <param name="snapshot">Capture screen or not?</param>
+        public Error(Exception exp, StackFrame[] frames = null, bool snapshot = true)
         {
             #region HResult [Exception Type Code]
 
@@ -59,7 +59,7 @@ namespace ErrorControlSystem.Shared
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!SqlCompactEditionManager.Contains(Id) && ErrorHandlingOption.Snapshot)
+            if (!SqlCompactEditionManager.Contains(Id) && snapshot)
             {
                 Snapshot = ScreenCapture.Capture();
 

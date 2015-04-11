@@ -75,22 +75,25 @@ namespace ErrorControlSystem
 
             #region Start Methods
 
-            public static async void Start(ErrorHandlingOptions option)
+            public static void Start(ErrorHandlingOptions option)
             {
                 ErrorHandlingOption.SetSetting(option & ~ErrorHandlingOptions.EnableNetworkSending);
-
-                await ServerTransmitter.InitialTransmitterAsync();
             }
 
             public static void Start()
             {
-                Start(ErrorHandlingOptions.Default);
+                ErrorHandlingOption.EnableNetworkSending = false;
             }
 
-            public static async void Start(Connection conn, ErrorHandlingOptions option)
+            public static void Start(Connection conn, ErrorHandlingOptions option)
             {
                 ErrorHandlingOption.SetSetting(option);
 
+                Start(conn);
+            }
+
+            public static async void Start(Connection conn)
+            {
                 ConnectionManager.Add(conn, "ErrorControlSystemConnection");
                 ConnectionManager.SetToDefaultConnection("ErrorControlSystemConnection");
 
@@ -102,12 +105,6 @@ namespace ErrorControlSystem
 
                 await CacheController.CheckStateAsync();
             }
-
-            public static void Start(Connection conn)
-            {
-                Start(conn, ErrorHandlingOptions.Default);
-            }
-
 
             public static void Start(string server, string database, string username, string pass, ErrorHandlingOptions option)
             {
@@ -294,9 +291,9 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="UnhandledExceptionEventArgs"/> instance containing the event data.</param>
             private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
-                (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception");
+                ErrorHandlingOption.ExitApplicationImmediately = true;
 
-                Environment.Exit(0);
+                (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception");
             }
 
             /// <summary>

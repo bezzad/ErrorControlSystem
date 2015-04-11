@@ -165,7 +165,7 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
                 {
                     try
                     {
-                        throw new FormatException("Speed Test Exception");
+                        throw new InvalidCastException("Speed Test Exception");
                     }
                     catch
                     {

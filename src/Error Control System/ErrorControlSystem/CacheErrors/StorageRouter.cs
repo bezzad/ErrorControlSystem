@@ -4,8 +4,6 @@ namespace ErrorControlSystem.CacheErrors
 {
     using System.IO;
 
-    using ErrorControlSystem.Shared;
-
     /// <summary>
     /// Routing Where the data must be saved
     /// </summary>
@@ -19,7 +17,7 @@ namespace ErrorControlSystem.CacheErrors
             LoadLogPath();
 
             // Save Paths
-            RegisterErrorPathsAsync();
+            ErrorHandlingOption.WriteSetting("ErrorLogPath", ErrorHandlingOption.ErrorLogPath);
         }
 
         #endregion
@@ -58,12 +56,6 @@ namespace ErrorControlSystem.CacheErrors
             dir.Attributes = FileAttributes.Directory;
 
             ErrorHandlingOption.ErrorLogPath = Path.Combine(storageDirPath, "Errors.log");
-        }
-
-        private static async void RegisterErrorPathsAsync()
-        {
-            // Add Error data path to [ErrorLogPath] of setting file:
-            await ErrorHandlingOption.WriteSettingAsync("ErrorLogPath", ErrorHandlingOption.ErrorLogPath);
         }
 
         #endregion

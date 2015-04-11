@@ -1,9 +1,7 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorControlSystem.DbConnectionManager;
-using ErrorControlSystem.Properties;
 using ErrorControlSystem.ServerController;
 using ErrorControlSystem.Shared;
 
@@ -58,22 +56,18 @@ namespace ErrorControlSystem.CacheErrors
             try
             {
                 AreErrorsInSendState = true;
-
-                // C:\Users\[User Name.Domain]\AppData\Local\MyApp\
-                // Example ==> C:\Users\khosravifar.b.DBI\AppData\Local\AppName vAppVersion
-                var rootDir = StoragePathBuilder.GetPath(ErrorHandlingOption.StoragePath);
-
-                var maxSize = Settings.Default.CacheLimitSize;
-
-
-                // if errors caching data was larger than limited size then send it to server 
-                // and if successful sent then clear them...
+                
                 if (ConnectionManager.GetDefaultConnection().IsReady && ErrorHandlingOption.EnableNetworkSending)
-                    if (new DirectoryInfo(rootDir).GetDirectorySize() >= maxSize
-                        || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ExpireHours)
+                {
+                    // if errors caching data was larger than limited size then send it to server 
+                    // and if successful sent then clear them...
+                    if (ErrorHandlingOption.CacheFilled
+                        || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ExpireHours
+                        || ErrorHandlingOption.SentOnStartup)
                     {
                         await UploadCacheAsync();
                     }
+                }
             }
             finally
             {

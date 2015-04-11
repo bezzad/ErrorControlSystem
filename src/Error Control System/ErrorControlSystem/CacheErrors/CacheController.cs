@@ -9,13 +9,15 @@ namespace ErrorControlSystem.CacheErrors
 {
     internal static class CacheController
     {
-        public static int ExpireHours = 100; // after 100H of first logged error time, all errors sent from cache to server
+        #region Properties
 
         public static volatile bool AreErrorsInSendState = false;
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
 
         private static ActionBlock<Error> _errorSaverActionBlock;
+
+        #endregion
 
         #region Methods
 
@@ -56,14 +58,15 @@ namespace ErrorControlSystem.CacheErrors
             try
             {
                 AreErrorsInSendState = true;
-                
+
                 if (ConnectionManager.GetDefaultConnection().IsReady && ErrorHandlingOption.EnableNetworkSending)
                 {
                     // if errors caching data was larger than limited size then send it to server 
                     // and if successful sent then clear them...
                     if (ErrorHandlingOption.CacheFilled
-                        || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ExpireHours
-                        || ErrorHandlingOption.SentOnStartup)
+                        || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ErrorHandlingOption.ExpireHours
+                        || ErrorHandlingOption.SentOnStartup
+                        || ErrorHandlingOption.MaxQueuedError <= await SqlCompactEditionManager.CountAsync())
                     {
                         await UploadCacheAsync();
                     }

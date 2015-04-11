@@ -38,6 +38,17 @@ namespace ErrorControlSystem
 
 
         /// <summary>
+        /// Gets or sets the expire hours for sent errors from cache to server.
+        /// ExpireHours is how many hours may be past after first logged error.
+        /// </summary>
+        public static int ExpireHours
+        {
+            get { return ReadSetting<int>("ExpireHours"); }
+            set { WriteSetting("ExpireHours", value); }
+        }
+
+
+        /// <summary>
         /// Gets a value indicating whether the current process is running by IDE (Visual Studio) or Execute file ?
         /// </summary>
         public static bool IsRunningFromIDE { get { return System.Diagnostics.Debugger.IsAttached; } }
@@ -81,6 +92,19 @@ namespace ErrorControlSystem
             set { WriteSetting("CacheLimitSize", value); }
         }
 
+
+        /// <summary>
+        /// Gets or sets the number of error reports that can be queued for submission. 
+        /// Each time an exception occurs, the exception handler is prepared to
+        /// be send data. If submission fails (i.e. there is no Internet connection), the queue grows with each additional
+        /// exception and resulting bug reports. This limits the max no of queued reports to limit the disk space usage.
+        /// Default value is 500.
+        /// </summary>
+        public static int MaxQueuedError
+        {
+            get { return ReadSetting<int>("MaxQueuedError"); }
+            set { WriteSetting("MaxQueuedError", value); }
+        }
 
         /// <summary>
         /// Gets a value indicating whether in the release mode for the Error Control System library. 

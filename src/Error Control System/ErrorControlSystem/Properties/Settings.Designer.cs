@@ -202,5 +202,29 @@ namespace ErrorControlSystem.Properties {
                 this["SentOnStartup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int MaxQueuedError {
+            get {
+                return ((int)(this["MaxQueuedError"]));
+            }
+            set {
+                this["MaxQueuedError"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int ExpireHours {
+            get {
+                return ((int)(this["ExpireHours"]));
+            }
+            set {
+                this["ExpireHours"] = value;
+            }
+        }
     }
 }

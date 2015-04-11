@@ -94,7 +94,6 @@
     <Compile Include="Resources\EmbeddedAssembly.cs" />
     <Compile Include="ServerController\ServerTransmitter.cs" />
     <Compile Include="Shared\CurrentProcesses.cs" />
-    <Compile Include="Shared\DiskHelper.cs" />
     <Compile Include="Shared\Error.cs" />
     <Compile Include="Shared\IError.cs" />
     <Compile Include="Shared\NetworkHelper.cs" />

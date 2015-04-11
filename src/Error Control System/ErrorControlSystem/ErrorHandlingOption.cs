@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.Properties;
@@ -286,6 +287,32 @@ namespace ErrorControlSystem
             ResizeSnapshots = false;
             DisplayUnhandledExceptions = false;
             FilterExceptions = false;
+        }
+
+
+        public static async Task<bool> WriteSettingAsync(string key, string value, bool attach = false)
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    Settings.Default[key] = (attach ? ReadSetting(key) : "") + value;
+
+                    Settings.Default.Save();
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+        }
+
+        public static string ReadSetting(string key)
+        {
+            try { return (string)Settings.Default[key]; }
+            catch { return ""; }
         }
 
         #endregion

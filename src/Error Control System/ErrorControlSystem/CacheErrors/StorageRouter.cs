@@ -1,4 +1,6 @@
-﻿namespace ErrorControlSystem.CacheErrors
+﻿using ErrorControlSystem.Properties;
+
+namespace ErrorControlSystem.CacheErrors
 {
     using System.IO;
 
@@ -38,7 +40,7 @@
 
         private static async void LoadLogPath()
         {
-            ErrorHandlingOption.ErrorLogPath = DiskHelper.ReadSetting("ErrorLogPath");
+            ErrorHandlingOption.ErrorLogPath = Settings.Default.ErrorLogPath;
 
             CheckLogPath();
 
@@ -61,7 +63,7 @@
         private static async void RegisterErrorPathsAsync()
         {
             // Add Error data path to [ErrorLogPath] of setting file:
-            await DiskHelper.WriteSettingAsync("ErrorLogPath", ErrorHandlingOption.ErrorLogPath);
+            await ErrorHandlingOption.WriteSettingAsync("ErrorLogPath", ErrorHandlingOption.ErrorLogPath);
         }
 
         #endregion

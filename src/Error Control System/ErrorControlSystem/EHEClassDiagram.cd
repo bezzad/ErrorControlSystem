@@ -7,7 +7,7 @@
   <Class Name="ErrorControlSystem.ServerController.ServerTransmitter" Collapsed="true">
     <Position X="2.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAgCAIAAAEAAAAAAAAAAAAAAgEAAAgAAAIAAAA=</HashCode>
+      <HashCode>AAAIAAAgCAIAAAEAAAAAAAAAAAAAAgAAAAgAAAIAAAA=</HashCode>
       <FileName>ServerController\ServerTransmitter.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -65,13 +65,6 @@
     </TypeIdentifier>
     <Lollipop Orientation="Bottom" Position="0.2" />
   </Class>
-  <Class Name="ErrorControlSystem.Shared.DiskHelper" Collapsed="true">
-    <Position X="4.5" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAACACAAAAAAAAAAAAAAAAAAgAAAAAgAAAAAAAA=</HashCode>
-      <FileName>Shared\DiskHelper.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="ErrorControlSystem.Shared.Error" Collapsed="true">
     <Position X="1" Y="3" Width="1.5" />
     <TypeIdentifier>
@@ -125,7 +118,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.ExceptionHandler" Collapsed="true">
-    <Position X="7" Y="7.25" Width="1.5" />
+    <Position X="4.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgQAAAAAAAAAAAAIAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Engine.cs</FileName>
@@ -148,7 +141,7 @@
   <Class Name="ErrorControlSystem.CacheErrors.StorageRouter" Collapsed="true">
     <Position X="8" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACgAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAEAAAAAACgAAAAAAAAAA=</HashCode>
       <FileName>CacheErrors\StorageRouter.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -161,7 +154,7 @@
   <Class Name="ErrorControlSystem.Properties.Settings" Collapsed="true">
     <Position X="1" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAIAAAAAABAAAAAAgAAAAAAAA=</HashCode>
+      <HashCode>AABAAAwCAAIwAAKAAAAAIAAAAAABgAIAACgAEAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.Shared.CodeScope" Collapsed="true">
@@ -179,6 +172,20 @@
       <FileName>UnhandledErrorEventArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ErrorControlSystem.CacheErrors.StoragePathBuilder" Collapsed="true">
+    <Position X="9" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CacheErrors\StoragePathBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.ErrorHandlingOption" Collapsed="true">
+    <Position X="7" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABCAA4CASIyQAKgBAAAIAEAABAAgAIAAKoEGAAAAAA=</HashCode>
+      <FileName>ErrorHandlingOption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="ErrorControlSystem.Shared.IError" Collapsed="true">
     <Position X="5.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
@@ -189,8 +196,15 @@
   <Enum Name="ErrorControlSystem.ErrorHandlingOptions" Collapsed="true">
     <Position X="10.25" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIgQEAAAAAAIAAAAAAAgAAAgKAAAAEAAAA=</HashCode>
+      <HashCode>AABAAAwCAAIgAACAAAAAIAAAAAAAgAIAAKAAAAEAAAA=</HashCode>
       <FileName>ErrorHandlingOptions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ErrorControlSystem.CacheErrors.StoragePath" Collapsed="true">
+    <Position X="10.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAAAEAAAAAAAABAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>CacheErrors\StoragePath.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Delegate Name="ErrorControlSystem.UnhandledErrorEventHandler" Collapsed="true">

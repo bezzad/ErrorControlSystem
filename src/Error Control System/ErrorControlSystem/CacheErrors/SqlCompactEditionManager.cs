@@ -18,8 +18,20 @@ namespace ErrorControlSystem.CacheErrors
 
         public static string ConnectionString { get; private set; }
 
+        public static Dictionary<int, bool> ErrorIds { get; set; }
+
         #endregion
 
+        #region Constructors
+
+        static SqlCompactEditionManager()
+        {
+            ErrorIds = new Dictionary<int, bool>();
+        }
+
+        #endregion
+
+        #region Methods
 
         public static void SetConnectionString(string filePath)
         {
@@ -197,6 +209,8 @@ namespace ErrorControlSystem.CacheErrors
                 {
                     await sqlConn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+
+                    ErrorIds.Add(error.Id, error.IsHandled);
                 }
                 finally
                 {
@@ -207,6 +221,9 @@ namespace ErrorControlSystem.CacheErrors
 
         public static async Task UpdateAsync(Error error)
         {
+            // If error is not exist in list or error state is now at unhandled exception state then exit
+            if (!ErrorIds.ContainsKey(error.Id) || !ErrorIds[error.Id]) return;
+
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
@@ -227,6 +244,8 @@ namespace ErrorControlSystem.CacheErrors
                 {
                     await sqlConn.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
+
+                    ErrorIds[error.Id] = error.IsHandled;
                 }
                 finally
                 {
@@ -237,7 +256,7 @@ namespace ErrorControlSystem.CacheErrors
 
         public static async Task<bool> InsertOrUpdateAsync(Error error)
         {
-            if (Contains(error.Id))
+            if (ErrorIds.ContainsKey(error.Id))
             {
                 await UpdateAsync(error);
                 return false; // In update state not necessary to check cache size
@@ -259,26 +278,6 @@ namespace ErrorControlSystem.CacheErrors
                     await sqlConn.OpenAsync();
 
                     return await cmd.ExecuteScalarAsync() as ProxyError;
-                }
-                finally
-                {
-                    sqlConn.Close();
-                }
-            }
-        }
-
-        public static bool Contains(int id)
-        {
-            using (var sqlConn = new SqlCeConnection(ConnectionString))
-            using (var cmd = sqlConn.CreateCommand())
-            {
-                try
-                {
-                    cmd.CommandText = string.Format("Select Count(ErrorId) From ErrorLog Where ErrorId = {0}", id);
-
-                    sqlConn.Open();
-
-                    return cmd.ExecuteScalar() as int? > 0;
                 }
                 finally
                 {
@@ -363,6 +362,33 @@ namespace ErrorControlSystem.CacheErrors
             }
         }
 
+        public static Dictionary<int, bool> GetErrorsId()
+        {
+            using (var sqlConn = new SqlCeConnection(ConnectionString))
+            using (var cmd = sqlConn.CreateCommand())
+            {
+                try
+                {
+                    cmd.CommandText = string.Format(@"SELECT [ErrorId]                                                            
+                                                            ,[IsHandled]                                                            
+                                                        FROM ErrorLog");
+
+                    sqlConn.Open();
+
+                    var adapter = new SqlCeDataAdapter(cmd);
+                    var dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    return dt.Rows.Cast<DataRow>()
+                        .ToDictionary(row => (int)row["ErrorId"], row => (bool)row["IsHandled"]);
+                }
+                finally
+                {
+                    sqlConn.Close();
+                }
+            }
+        }
+
         public static Image GetSnapshot(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
@@ -387,6 +413,9 @@ namespace ErrorControlSystem.CacheErrors
 
         public static async Task DeleteAsync(int id)
         {
+            // If error is not exist in list then exit
+            if (!ErrorIds.ContainsKey(id)) return;
+
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
             {
@@ -397,6 +426,8 @@ namespace ErrorControlSystem.CacheErrors
                     await sqlConn.OpenAsync();
 
                     await cmd.ExecuteNonQueryAsync();
+
+                    ErrorIds.Remove(id);
                 }
                 finally
                 {
@@ -449,5 +480,12 @@ namespace ErrorControlSystem.CacheErrors
         {
             return item.Length > Max ? item.Substring(0, Max) : item;
         }
+
+        public static void LoadCacheIds()
+        {
+            SqlCompactEditionManager.ErrorIds = SqlCompactEditionManager.GetErrorsId();
+        }
+
+        #endregion
     }
 }

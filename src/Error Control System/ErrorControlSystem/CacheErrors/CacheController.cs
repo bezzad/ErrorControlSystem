@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorControlSystem.DbConnectionManager;
@@ -10,7 +11,7 @@ namespace ErrorControlSystem.CacheErrors
     internal static class CacheController
     {
         #region Properties
-
+        
         public static volatile bool AreErrorsInSendState = false;
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;

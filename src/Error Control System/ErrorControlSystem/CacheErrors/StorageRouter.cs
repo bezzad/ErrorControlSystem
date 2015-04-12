@@ -29,6 +29,7 @@ namespace ErrorControlSystem.CacheErrors
             if (File.Exists(ErrorHandlingOption.ErrorLogPath))
             {
                 SqlCompactEditionManager.CheckSdf(ErrorHandlingOption.ErrorLogPath);
+                SqlCompactEditionManager.LoadCacheIds();
             }
             else
             {

@@ -16,7 +16,8 @@ Added
 * Just Raise Error Log in Special Code Scopes
 * Replace Exception.StackTrace data by Call Method StackTrace for store completely data
 * Convert Exception.StackTrace to customized format for use that in Analyzer easily
-* Change and speedup SDF chache file update model
+* Add Many Options to System
+* Change and speedup ~4.3 SDF cache file update model
 * Check cache drives space to ignore or throw exception for filling the cache drive capacity
 * Add an EventHandler to ErrorControlSystem for Alert any UnHandled Exception by ExceptionHandler.OnShowUnhandledError
 * LineColumn text divided to Line and Column integer number in databases
@@ -31,10 +32,10 @@ Added
 * Bug fixes
 * Improved stability
 * Personalized Exception Handler
-* Filter Exception Raiser and Snapshot Cupturing
+* Filter Exception Raiser and Snapshot Capturing
 * Set Error Handler Options from Database
 * Send Cache Data to Server at Periodic Times
-* Caputre Multi-Screen Snapshots
+* Capture Multi-Screen Snapshots
 * Auto Create and Update Tables and StoredProcedures on Database
 * Release ErrorControlSystem WPF version
 

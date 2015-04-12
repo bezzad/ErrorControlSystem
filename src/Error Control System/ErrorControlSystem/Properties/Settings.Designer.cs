@@ -226,5 +226,17 @@ namespace ErrorControlSystem.Properties {
                 this["ExpireHours"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AtSentState {
+            get {
+                return ((bool)(this["AtSentState"]));
+            }
+            set {
+                this["AtSentState"] = value;
+            }
+        }
     }
 }

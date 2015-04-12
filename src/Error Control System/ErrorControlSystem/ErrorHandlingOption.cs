@@ -29,6 +29,19 @@ namespace ErrorControlSystem
         /// <summary>
         /// Get or Set startup sent state, that for sent cache data to server in application startup or not.
         /// Default value is false.
+        /// Used for know application closing and disconnection between sent state.
+        /// Or new exception raising will be caused to sent data to server
+        /// </summary>
+        public static bool AtSentState
+        {
+            get { return ReadSetting<bool>("AtSentState"); }
+            set { WriteSetting("AtSentState", value); }
+        }
+
+
+        /// <summary>
+        /// Get or Set startup sent state, that for sent cache data to server in application startup or not.
+        /// Default value is false.
         /// </summary>
         public static bool SentOnStartup
         {

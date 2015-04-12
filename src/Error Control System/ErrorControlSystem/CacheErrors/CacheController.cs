@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using ErrorControlSystem.DbConnectionManager;
@@ -11,8 +12,6 @@ namespace ErrorControlSystem.CacheErrors
     internal static class CacheController
     {
         #region Properties
-        
-        public static volatile bool AreErrorsInSendState = false;
 
         public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
 
@@ -54,34 +53,40 @@ namespace ErrorControlSystem.CacheErrors
         /// </summary>
         public static async Task CheckStateAsync()
         {
-            if (AreErrorsInSendState) return;
-
-            try
+            if (ConnectionManager.GetDefaultConnection().IsReady && ErrorHandlingOption.EnableNetworkSending)
             {
-                AreErrorsInSendState = true;
-
-                if (ConnectionManager.GetDefaultConnection().IsReady && ErrorHandlingOption.EnableNetworkSending)
+                // if errors caching data was larger than limited size then send it to server 
+                // and if successful sent then clear them...
+                if (ErrorHandlingOption.CacheFilled
+                    || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ErrorHandlingOption.ExpireHours
+                    || ErrorHandlingOption.SentOnStartup
+                    || ErrorHandlingOption.MaxQueuedError <= await SqlCompactEditionManager.CountAsync()
+                    || ErrorHandlingOption.AtSentState)
                 {
-                    // if errors caching data was larger than limited size then send it to server 
-                    // and if successful sent then clear them...
-                    if (ErrorHandlingOption.CacheFilled
-                        || await SqlCompactEditionManager.GetTheFirstErrorHoursAsync() >= ErrorHandlingOption.ExpireHours
-                        || ErrorHandlingOption.SentOnStartup
-                        || ErrorHandlingOption.MaxQueuedError <= await SqlCompactEditionManager.CountAsync())
-                    {
-                        await UploadCacheAsync();
-                    }
+                    await UploadCacheAsync();
                 }
-            }
-            finally
-            {
-                AreErrorsInSendState = false;
             }
         }
 
         public static async Task UploadCacheAsync()
         {
-            foreach (var error in SqlCompactEditionManager.GetErrors())
+            if (SqlCompactEditionManager.ErrorIds.Count == 0)
+            {
+                ErrorHandlingOption.AtSentState = false;
+                return;
+            }
+
+            IEnumerable<ProxyError> errors = SqlCompactEditionManager.GetErrors();
+
+            if (errors == null || !errors.Any())
+            {
+                ErrorHandlingOption.AtSentState = false;
+                return;
+            }
+
+            ErrorHandlingOption.AtSentState = true;
+
+            foreach (var error in errors)
             {
                 await ServerTransmitter.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
 
@@ -99,7 +104,7 @@ namespace ErrorControlSystem.CacheErrors
                 _errorSaverActionBlock = new ActionBlock<Error>(async e =>
                 {
                     if (await SqlCompactEditionManager.InsertOrUpdateAsync(e)) // insert or update database and return cache check state
-                        if (_errorSaverActionBlock.InputCount == 0 && ErrorHandlingOption.EnableNetworkSending)
+                        if (_errorSaverActionBlock.InputCount == 0 && !ErrorHandlingOption.AtSentState)
                             await CheckStateAsync();
                 },
                     new ExecutionDataflowBlockOptions

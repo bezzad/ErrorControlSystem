@@ -60,16 +60,30 @@ namespace ErrorControlSystem.ServerController
                         {
                             await InsertErrorAsync(e);
                         }
-                        catch
+                        catch (AggregateException exp)
                         {
+                            // If an unhandled exception occurs during dataflow processing, all 
+                            // exceptions are propagated through an AggregateException object.
                             ErrorHandlingOption.EnableNetworkSending = false;
-                        }
-                        finally
-                        {
-                            CacheController.AreErrorsInSendState = false;
+
+                            exp.Handle(ae =>
+                            {
+                                ErrorHandlingOption.AtSentState = false;
+                                return true;
+                            });
                         }
                     }
-                    else ErrorListenerTransformBlock.Complete();
+                    // Mark the head of the pipeline as complete. The continuation tasks  
+                    // propagate completion through the pipeline as each part of the  
+                    // pipeline finishes.
+                    else
+                    {
+                        ErrorListenerTransformBlock.Complete();
+                        ErrorHandlingOption.AtSentState = false;
+                    }
+
+                    if (ErrorListenerTransformBlock.InputCount == 0)
+                        ErrorHandlingOption.AtSentState = false;
                     //
                     // Post to Acknowledge Action Block:
                     return new Tuple<ProxyError, bool>(e, ErrorHandlingOption.EnableNetworkSending);

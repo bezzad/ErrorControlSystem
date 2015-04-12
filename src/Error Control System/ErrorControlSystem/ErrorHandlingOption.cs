@@ -119,6 +119,7 @@ namespace ErrorControlSystem
             set { WriteSetting("MaxQueuedError", value); }
         }
 
+
         /// <summary>
         /// Gets a value indicating whether in the release mode for the Error Control System library. 
         /// In release mode the internal developer UI is not displayed.

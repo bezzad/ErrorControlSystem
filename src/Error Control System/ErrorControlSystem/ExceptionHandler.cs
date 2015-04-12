@@ -20,6 +20,8 @@
 //**********************************************************************************//
 
 
+using System.Threading.Tasks;
+
 namespace ErrorControlSystem
 {
     using System;
@@ -81,8 +83,23 @@ namespace ErrorControlSystem
         {
             try
             {
+                //
+                // If number of errors exist in cache more than MaxQueuedError then skip new errors
+                if (SqlCompactEditionManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
+                {
+                    if (!ErrorHandlingOption.AtSentState && ErrorHandlingOption.EnableNetworkSending)
+                        Task.Run(async () => await CacheController.CheckStateAsync());
+
+                    return null;
+                }
+
                 if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
                     return null;
+
+                //
+                // In Corrupted State one method more than normal modes.
+                var skipCount = ErrorHandlingOption.HandleProcessCorruptedStateExceptions ? 3 : 2;
+
                 //
                 // Create call stack till this method
                 // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
@@ -90,7 +107,7 @@ namespace ErrorControlSystem
                 // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
                 var callStackFrames = !isHandled && exp.StackTrace != null // 3#
                     ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
-                    : new StackTrace(2, true).GetFrames(); // 1# or 2#: Raise from FirstChance
+                    : new StackTrace(skipCount, true).GetFrames(); // 1# or 2#: Raise from FirstChance
 
                 bool snapshot = ErrorHandlingOption.Snapshot;
 

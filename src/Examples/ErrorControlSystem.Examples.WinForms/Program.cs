@@ -18,6 +18,7 @@ namespace ErrorControlSystem.Examples.WinForms
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ResizeSnapshots);
+
             //
             // Some of the optional configuration items.
             //
@@ -47,7 +48,7 @@ namespace ErrorControlSystem.Examples.WinForms
             //
             // ---------------------------------------------------------------------------------
             //
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormTest());

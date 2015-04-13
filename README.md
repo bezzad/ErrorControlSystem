@@ -25,7 +25,7 @@ To interact with this project, at first find main class of your project to
 add this module. Then, at the beginning of the instructions before any other 
 user codes, enter the following command to invoke and run the module.
 
-This is initialize codes of the module by `C# language`:
+This is initialize codes of the module in `C# language` windows applications:
  
 ```C#
 
@@ -90,38 +90,52 @@ namespace TestApplication
 }
 ```
 
-This is initialize codes of the module by `VB.NET language`:
- 
+In VB.NET applications, open the solution window and select `My Project` 
+then click on __Show All Files__ and go on this path:
+
+* My Project
+    * Application.myapp
+	    * Application.Designer.vb  --> (open this file)
+
+Add Startup events at this file, same below codes:
+
 ```vb
 
-Imports ErrorControlSystem
-
-Module MainModule
-    Sub Main()
-
-        ' ------------------ Initial Error Control System ------------------
-		
-		ExceptionHandler.Engine.Start("localhost", "UsersManagements")
-
-        ' ------------------------------------------------------------------
+Partial Friend Class MyApplication
         
-        Application.Run(New Form1())
-    End Sub
-End Module
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
+        Public Sub New()
+            MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)
+            Me.IsSingleInstance = True
+            Me.EnableVisualStyles = True
+            Me.SaveMySettingsOnExit = True
+            Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
+        End Sub
 
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()> _
+        Protected Overrides Sub OnCreateMainForm()
+            Me.MainForm = Global.ErrorControlSystem.Examples.VisualBasicWinForms.Form1
+        End Sub
+
+
+        Private Sub MyApplication_Startup(sender As Object, e As ApplicationServices.StartupEventArgs) Handles Me.Startup
+            ' ------------------ Initial Error Control System --------------------------------
+            ExceptionHandler.Engine.Start("localhost", "UsersManagements")
+            ' ---------------------------------------------------------------------------------
+        End Sub
+    End Class
 ```
 
-For create a Sub Main method of MainModule.vb in VB winform apps, go to the Project Designer (go to Project Properties or double-click the My Project node in Solution Explorer)
-
-![VB Solution Project.PNG](https://github.com/Behzadkhosravifar/ErrorControlSystem/blob/master/Images/VB%20Solution%20Project.png)
-
-After shown below form make uncheck the `Enable Application Framework` option on the Application tab:
-![VB Application Properties.PNG](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/VB%20Application%20Properties.png)
-
-Change the __Startup object__ to `Sub Main`.
+Or create a Sub Main method like MainModule.vb, for this change must be to go on the Project Designer (go to Project 
+Properties or double-click the My Project node in Solution Explorer) and then after shown properties form, uncheck 
+the `Enable Application Framework` option on the Application tab, and at last change the __Startup object__ to `Sub Main`.
 
 
-In the initialize code snippet you've seen that, for the `ExceptionHandler.Engine` method should be an option. This option is used to specify the error data, which includes the following values:
+--------------------------------
+### ErrorControlSystem Settings ###
+
+In the initialize code snippet you've seen that, for the `ExceptionHandler.Engine` method should be an option. 
+This option is used to specify the error data, which includes the following values:
 
 * None
 * All
@@ -182,7 +196,7 @@ If there isn't already an issue for it, please create a new one.
 
 
 --------------------------
-### Creating SQL Server Database ###
+### Creating SQL Server Database Manually ###
 
 The `ErrorControlSystem` project used from __UsersManagements __ database. So that is necessary for run this application.
 For Creating __UsersManagements__ database on your server or pc do below steps:

@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0F0269F4-7411-43E3-9686-012A53F41DA2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>ErrorControlSystem.Examples.VisualBasicWinForms.My.MyApplication</StartupObject>
     <RootNamespace>ErrorControlSystem.Examples.VisualBasicWinForms</RootNamespace>
     <AssemblyName>ErrorControlSystem.Examples.VisualBasicWinForms</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>

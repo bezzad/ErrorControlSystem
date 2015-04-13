@@ -20,6 +20,7 @@
 //**********************************************************************************//
 
 
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace ErrorControlSystem
@@ -46,7 +47,8 @@ namespace ErrorControlSystem
         /// <summary>
         /// Represents the method that will handle the event raised by an exception that is not handled by the application domain.
         /// </summary>
-        public static UnhandledErrorEventHandler OnShowUnhandledError = delegate { };
+        [ComVisible(true)]
+        public static EventHandler<UnhandledErrorEventArgs> OnShowUnhandledError = delegate(object sender, UnhandledErrorEventArgs args) { };
 
         #endregion
 
@@ -149,6 +151,7 @@ namespace ErrorControlSystem
                     //
                     // Handle 'OnShowUnhandledError' events
                     OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
+
                     //
                     // Alert Unhandled Error 
                     if (ErrorHandlingOption.DisplayUnhandledExceptions)

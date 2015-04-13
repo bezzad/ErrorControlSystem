@@ -143,7 +143,7 @@ namespace ErrorControlSystem
             /// Used for handling WPF exceptions bound to the UI thread.
             /// Handles the <see cref="System.Windows.Threading.DispatcherUnhandledExceptionEventHandler"/> events.
             /// </summary>
-            public static DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException
+            private static DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException
             {
                 get
                 {
@@ -162,7 +162,7 @@ namespace ErrorControlSystem
             /// Used for handling WinForms exceptions bound to the UI thread.
             /// Handles the <see cref="System.Threading.ThreadExceptionEventHandler"/> events in <see cref="System.Windows.Forms.Application"/> namespace.
             /// </summary>
-            public static ThreadExceptionEventHandler ThreadException
+            private static ThreadExceptionEventHandler ThreadException
             {
                 get
                 {
@@ -181,7 +181,7 @@ namespace ErrorControlSystem
             /// Used for handling general exceptions bound to the main thread.
             /// Handles the <see cref="AppDomain.UnhandledException"/> events in <see cref="System"/> namespace.
             /// </summary>
-            public static UnhandledExceptionEventHandler UnhandledException
+            private static UnhandledExceptionEventHandler UnhandledException
             {
                 get
                 {
@@ -200,7 +200,7 @@ namespace ErrorControlSystem
             /// Used for handling System.Threading.Tasks bound to a background worker thread.
             /// Handles the <see cref="UnobservedTaskException"/> event in <see cref="System.Threading.Tasks"/> namespace.
             /// </summary>
-            public static EventHandler<UnobservedTaskExceptionEventArgs> UnobservedTaskException
+            private static EventHandler<UnobservedTaskExceptionEventArgs> UnobservedTaskException
             {
                 get
                 {
@@ -222,7 +222,7 @@ namespace ErrorControlSystem
             /// This is GREAT for logging every wart and boil, but can often result in too much spam, 
             /// if your application has a lot of expected/handled exceptions.
             /// </summary>
-            public static EventHandler<FirstChanceExceptionEventArgs> FirstChanceException
+            private static EventHandler<FirstChanceExceptionEventArgs> FirstChanceException
             {
                 get
                 {

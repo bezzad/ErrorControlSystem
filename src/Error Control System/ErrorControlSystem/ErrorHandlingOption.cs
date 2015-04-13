@@ -253,18 +253,21 @@ namespace ErrorControlSystem
 
         public static void SetSetting(ErrorHandlingOptions opt)
         {
-            NoneOptions();
+            CacheLimitSize = Settings.Default.CacheLimitSize;
+            ErrorLogPath = Settings.Default.ErrorLogPath;
+            CustomStoragePath = Settings.Default.CustomStoragePath;
+            StoragePath = Settings.Default.StoragePath;
 
-            foreach (var item in Enum.GetNames(typeof(ErrorHandlingOptions)).Except(new[] { "All", "None", "Default" }))
-            {
-                if (opt.HasFlag((ErrorHandlingOptions)Enum.Parse(typeof(ErrorHandlingOptions), item)))
-                {
-                    var property = typeof(ErrorHandlingOption).GetProperty(item);
-
-                    if (property != null && property.CanRead && property.CanWrite)
-                        property.SetValue(typeof(ErrorHandlingOption), true);
-                }
-            }
+            DisplayDeveloperUI = opt.HasFlag(ErrorHandlingOptions.DisplayDeveloperUI);
+            EnableNetworkSending = opt.HasFlag(ErrorHandlingOptions.EnableNetworkSending);
+            ReportHandledExceptions = opt.HasFlag(ErrorHandlingOptions.ReportHandledExceptions);
+            ExitApplicationImmediately = opt.HasFlag(ErrorHandlingOptions.ExitApplicationImmediately);
+            HandleProcessCorruptedStateExceptions = opt.HasFlag(ErrorHandlingOptions.HandleProcessCorruptedStateExceptions);
+            FetchServerDateTime = opt.HasFlag(ErrorHandlingOptions.FetchServerDateTime);
+            Snapshot = opt.HasFlag(ErrorHandlingOptions.Snapshot);
+            ResizeSnapshots = opt.HasFlag(ErrorHandlingOptions.ResizeSnapshots);
+            DisplayUnhandledExceptions = opt.HasFlag(ErrorHandlingOptions.DisplayUnhandledExceptions);
+            FilterExceptions = opt.HasFlag(ErrorHandlingOptions.FilterExceptions);
         }
 
         /// <summary>
@@ -272,53 +275,23 @@ namespace ErrorControlSystem
         /// </summary>
         public static void LoadDefaultSettings()
         {
-            SetFullOption(false);
+            SetSetting(ErrorHandlingOptions.Default);
         }
-
 
         /// <summary>
         /// Check Alls the Options to true value.
         /// </summary>
-        public static void AllOptions()
+        public static void FullOptions()
         {
-            SetFullOption(true);
+            SetSetting(ErrorHandlingOptions.All);
         }
 
-
-        private static void SetFullOption(bool fullOption)
-        {
-            CacheLimitSize = Settings.Default.CacheLimitSize;
-            DisplayDeveloperUI = fullOption || Settings.Default.DisplayDeveloperUI;
-            EnableNetworkSending = fullOption || Settings.Default.EnableNetworkSending;
-            ReportHandledExceptions = fullOption || Settings.Default.ReportHandledExceptions;
-            ErrorLogPath = Settings.Default.ErrorLogPath;
-            ExitApplicationImmediately = fullOption || Settings.Default.ExitApplicationImmediately;
-            CustomStoragePath = Settings.Default.CustomStoragePath;
-            HandleProcessCorruptedStateExceptions = fullOption || Settings.Default.HandleProcessCorruptedStateExceptions;
-            StoragePath = Settings.Default.StoragePath;
-            FetchServerDateTime = fullOption || Settings.Default.FetchServerDateTime;
-            Snapshot = fullOption || Settings.Default.Snapshot;
-            ResizeSnapshots = fullOption || Settings.Default.ResizeSnapshots;
-            DisplayUnhandledExceptions = fullOption || Settings.Default.DisplayUnhandledExceptions;
-            FilterExceptions = fullOption || Settings.Default.FilterExceptions;
-        }
-
+        /// <summary>
+        /// UnCheck Alls the Options.
+        /// </summary>
         private static void NoneOptions()
         {
-            CacheLimitSize = Settings.Default.CacheLimitSize;
-            DisplayDeveloperUI = false;
-            EnableNetworkSending = false;
-            ReportHandledExceptions = false;
-            ErrorLogPath = Settings.Default.ErrorLogPath;
-            ExitApplicationImmediately = false;
-            CustomStoragePath = Settings.Default.CustomStoragePath;
-            HandleProcessCorruptedStateExceptions = false;
-            StoragePath = Settings.Default.StoragePath;
-            FetchServerDateTime = false;
-            Snapshot = false;
-            ResizeSnapshots = false;
-            DisplayUnhandledExceptions = false;
-            FilterExceptions = false;
+            SetSetting(ErrorHandlingOptions.None);
         }
 
 

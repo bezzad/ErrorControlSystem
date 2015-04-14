@@ -1,4 +1,4 @@
-version: 4.1.{build}
+version: 4.0.{build}
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
@@ -13,6 +13,12 @@ build:
   publish_nuget_symbols: true
   include_nuget_references: true
   verbosity: minimal
+deploy:
+- provider: NuGet
+  server: https://www.nuget.org/packages/ErrorControlSystem
+  api_key:
+    secure: a+b8ai82MTrn5T/JZw4UguSnnkbrldskScbOZN7saqOSUVahZ8r9eBwzU2x9Jbut
+  symbol_server: 
 notifications:
 - provider: Email
   to:

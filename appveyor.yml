@@ -1,0 +1,24 @@
+version: 4.1.{build}
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+nuget:
+  account_feed: true
+  project_feed: true
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
+  verbosity: minimal
+notifications:
+- provider: Email
+  to:
+  - Behzadkh@hotmail.com
+  subject: AppVeyor - Build Success
+  message: Error Control System Build Successful.
+  on_build_success: true
+  on_build_failure: false
+  on_build_status_changed: false

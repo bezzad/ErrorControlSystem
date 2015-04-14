@@ -8,11 +8,11 @@
 [![Source Browser](https://img.shields.io/badge/Browse-Source-green.svg)](http://sourcebrowser.io/Browse/Behzadkhosravifar/ErrorControlSystem)
 
 
-[![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png)](https://github.com/Behzadkhosravifar/ErrorControlSystem)
+[![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png)](https://www.nuget.org/packages/ErrorControlSystem)
 
 
 ---------------------
-### What Is This? ###
+### What Is This?
 
 This is a C#.Net project's for manage __Exceptions__ of your .Net applications by handling and 
 logging that. This is a .dll modules to provide error handling worker on your app background's.
@@ -21,12 +21,13 @@ modification friendly, in order to help developers quickly learn their inner
 workings.
 
 NOTE: 
->     This program is only for exception handling of Windows-based applications (WinForms, WPF, Console)
->     that are written by .NET languages such as C#, VB.NET, Visual F#  and  Visual C++
+>     This program is only for exception handling of 
+>     Windows-based applications (WinForms, WPF, Console)
+>     that are written by .NET languages such as C#, VB.NET, Visual F#
 
 
 --------------------------------
-### How To Use The Examples ###
+### How To Use The Examples
 
 To interact with this project, at first find main class of your project to 
 add this module. Then, at the beginning of the instructions before any other 
@@ -49,7 +50,7 @@ namespace TestApplication
         private static void Main()
         {
 			//
-            // ------------------ Initial Error Control System --------------------------------
+            // ------------------ Initial Error Control System ----------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                    ErrorHandlingOptions.Default &
@@ -65,9 +66,10 @@ namespace TestApplication
             ExceptionHandler.Filter.NonSnapshotExceptionTypes.Add(typeof(FormatException));
 
             // Add extra data for labeling exceptions
-            ExceptionHandler.Filter.AttachExtraData.Add("WinForms v3", "beta version");
+            ExceptionHandler.Filter.AttachExtraData.Add("WinForms", "beta version");
 
-            // Filter a method of a specific class in my assembly from raise unhanded exceptions log
+            // Filter a method of a specific class in my assembly 
+			// from raise unhanded exceptions log
             ExceptionHandler.Filter.ExemptedCodeScopes.Add(
                 new CodeScope("Assembly", "Namespace", "Class", "Method"));
 
@@ -78,7 +80,7 @@ namespace TestApplication
             // Show unhandled exception message customized mode. 
             ExceptionHandler.OnShowUnhandledError += AlertUnhandledErrors;
             //
-            // ---------------------------------------------------------------------------------
+            // ----------------------------------------------------------------------------
             //
 
 			Application.EnableVisualStyles();
@@ -141,7 +143,7 @@ the `Enable Application Framework` option on the Application tab, and at last ch
 
 
 --------------------------------
-### ErrorControlSystem Settings ###
+### Settings
 
 In the initialize code snippet you've seen that, for the `ExceptionHandler.Engine` method should be an option. 
 This option is used to specify the error data, which includes the following values:
@@ -162,8 +164,8 @@ This option is used to specify the error data, which includes the following valu
 * DisplayDeveloperUI
 
 For example in above codes, this code means is:
-```C#
 
+```C#
 ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                 ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ResizeSnapshots);
 ```
@@ -177,7 +179,7 @@ Note:
 
 
 --------------------------
-### How To Install The Modules ###
+### How To Install The Modules
 
 1. Install examples for developers (unpacking it to your disk, and go to
 \ErrorControlSystem\out\ErrorControlSystem\... directory if you're installing by hand, for example).
@@ -205,7 +207,7 @@ If there isn't already an issue for it, please create a new one.
 
 
 --------------------------
-### Creating SQL Server Database Manually ###
+### Creating SQL Server Database Manually
 
 The `ErrorControlSystem` project used from __UsersManagements __ database. So that is necessary for run this application.
 For Creating __UsersManagements__ database on your server or pc do below steps:
@@ -221,10 +223,10 @@ Only be carefully, in order to launch the program, enter the database name. For 
 
 ```C#
 
-ExceptionHandler.Engine.Start(new Connection("Server Name", "Database Name", "UserName", "Password", ...));
+ExceptionHandler.Engine.Start(new Connection("Server", "Database", "User", "Pass"));
 
 // or simpler mode:
-ExceptionHandler.Engine.Start("Server Name", "Database Name", "UserName", "Password");
+ExceptionHandler.Engine.Start("Server", "Database", "User", "Pass");
 
 ```
 
@@ -273,20 +275,20 @@ There are __SQL Scripts__ to create tables and queries.
 
 
 --------------------------
-### Get it on NuGet ###  [![Nuget count](http://img.shields.io/nuget/v/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
+### Get it on NuGet  [![Nuget count](http://img.shields.io/nuget/v/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
 
 You may use ErrorControlSystem as a library that you install with [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) into your project or as a Visual Studio extension. 
 The way you want to use it depends on the scenario you are working on. You most likely want the [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) package.
 
-To install from Nuget:
+To install Error Control System from [Nuget](https://www.nuget.org/packages/ErrorControlSystem/), run the following command in the [Package Manager Console](http://docs.nuget.org/consume/package-manager-console)
 
 ```powershell
-Install-Package ErrorControlSystem
+PM> Install-Package ErrorControlSystem
 ```
 
 
 --------------------------
-### Contributing ###
+### Contributing
 
 Questions, comments, bug reports, and pull requests are all welcome.
 Bug reports that include steps-to-reproduce (including code) are
@@ -309,16 +311,14 @@ description to find out who it is (if it is not there it has to be on the commen
 
 
 --------------------------
-### Contact ###   
+### Contact
 
 Please see our [contact page](http://ErrorControlSystem.github.io/contact.html).
 
-Email: [Behzad.Khosravifar@gmail.com](mailto:Behzad.Khosravifar@Gmail.com)
+Email: [Behzad.Khosravifar@gmail.com](mailto: Behzad.Khosravifar@Gmail.com)
 
 --------------------------
-### LICENSE INFORMATION ###
-
-[![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
+### LICENSE INFORMATION  [![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
 
 This software is open source, licensed under the GNU General Public License License, Version 3.0.
 See [GPL-3.0](http://opensource.org/licenses/GPL-3.0.html) for details.
@@ -326,7 +326,7 @@ This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to
                   
-Copyright (C) 2014-2015 [Behzad Khosravifar](mailto:Behzad.Khosravifar@Gmail.com)
+Copyright (C) 2014-2015 [Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,
 either version 1.0.1 of the License, or (at your option) any later version.

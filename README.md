@@ -280,7 +280,8 @@ There are __SQL Scripts__ to create tables and queries.
 You may use ErrorControlSystem as a library that you install with [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) into your project or as a Visual Studio extension. 
 The way you want to use it depends on the scenario you are working on. You most likely want the [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) package.
 
-To install Error Control System from [Nuget](https://www.nuget.org/packages/ErrorControlSystem/), run the following command in the [Package Manager Console](http://docs.nuget.org/consume/package-manager-console)
+To install Error Control System from [Nuget](https://www.nuget.org/packages/ErrorControlSystem/), 
+run the following command in the [Package Manager Console](http://docs.nuget.org/consume/package-manager-console)
 
 ```powershell
 PM> Install-Package ErrorControlSystem
@@ -304,7 +305,7 @@ description to find out who it is (if it is not there it has to be on the commen
 
 
 --------------------------
-### Issues and task board ###  [![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
+### Issues and task board  [![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
 
 * The task board is at [Huboard](http://huboard.com/BehzadKhosravifar/ErrorControlSystem/).
 * You can also check the [Github backlog](https://github.com/BehzadKhosravifar/ErrorControlSystem/issues) directly.
@@ -315,10 +316,10 @@ description to find out who it is (if it is not there it has to be on the commen
 
 Please see our [contact page](http://ErrorControlSystem.github.io/contact.html).
 
-Email: [Behzad.Khosravifar@gmail.com](mailto: Behzad.Khosravifar@Gmail.com)
+Email: [Behzad.Khosravifar@gmail.com](mailto:Behzad.Khosravifar@Gmail.com)
 
 --------------------------
-### LICENSE INFORMATION  [![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
+### LICENSE INFORMATION      [![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
 
 This software is open source, licensed under the GNU General Public License License, Version 3.0.
 See [GPL-3.0](http://opensource.org/licenses/GPL-3.0.html) for details.
@@ -326,7 +327,7 @@ This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to
                   
-Copyright (C) 2014-2015 [Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
+Copyright (C) 2014-2015 [Behzad Khosravifar](mailto:Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,
 either version 1.0.1 of the License, or (at your option) any later version.

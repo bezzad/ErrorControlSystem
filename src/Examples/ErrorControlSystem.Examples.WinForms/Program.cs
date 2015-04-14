@@ -20,7 +20,6 @@ namespace ErrorControlSystem.Examples.WinForms
                    ErrorHandlingOptions.Default &
                    ~ErrorHandlingOptions.ResizeSnapshots &
                    ~ErrorHandlingOptions.DisplayUnhandledExceptions);
-
             //
             // Some of the optional configuration items.
             //

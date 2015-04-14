@@ -1,8 +1,16 @@
 # [Error Control System](https://github.com/Behzadkhosravifar/ErrorControlSystem) #
 ---------------------
 [![Build status](https://ci.appveyor.com/api/projects/status/9qdlpbpf3gyfuvdu?svg=true)](https://ci.appveyor.com/project/Behzadkhosravifar/errorcontrolsystem)
+[![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
+[![Coverage Status](https://coveralls.io/repos/Behzadkhosravifar/ErrorControlSystem/badge.svg)](https://coveralls.io/r/Behzadkhosravifar/ErrorControlSystem)
+[![Source Browser](https://img.shields.io/badge/Browse-Source-green.svg)](http://sourcebrowser.io/Browse/Behzadkhosravifar/ErrorControlSystem)
+
+
 
 [![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png)](https://github.com/Behzadkhosravifar/ErrorControlSystem)
+
+
+
 
 ---------------------
 ### What Is This? ###
@@ -45,7 +53,9 @@ namespace TestApplication
             // ------------------ Initial Error Control System --------------------------------
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
-                   ErrorHandlingOptions.Default & ~ErrorHandlingOptions.ResizeSnapshots);
+                   ErrorHandlingOptions.Default &
+                   ~ErrorHandlingOptions.ResizeSnapshots &
+                   ~ErrorHandlingOptions.DisplayUnhandledExceptions);
             //
             // Some of the optional configuration items.
             //
@@ -223,40 +233,40 @@ Now, we need to create two table by names __ErrorLog__ and __Snapshots__ to save
 
 __ErrorLog Table:__
 
-| Column Name      | Data Type             | 
-|:----------------------- |:------------------------ |
-| ErrorId                  |   `bigint`          |
-| DateTime				 |   `datetime`           |
-| Host                     |  `varchar(200)`      |
-| [User]                   | `varchar(200)`      |
-| IsHandled				  |  `bit`               |
-| Type                    |  `varchar(200)`      |
-| AppName			   |  `varchar(200)`      |
-| Data                    |  `xml`            |
-| CurrentCulture	  |  `nvarchar(200)`    |
-| CLRVersion		  |  `varchar(100)`        |
-| Message             |  `nvarchar(MAX)`  |
-| Source                |  `nvarchar(MAX)`   |
-| StackTrace          |  `nvarchar(MAX)`  |
-| ModuleName		  |  `varchar(200)`      |
-| MemberType		   |  `varchar(200)`       |
-| Method                |  `nvarchar(500)`   |
-| Processes            |  `varchar(MAX)`   |
-| ErrorDateTime		    |  `datetime`           |
-| OS                       |  `varchar(1000)`   |
-| IPv4Address		    |  `varchar(50)`       |
-| MACAddress		  |  `varchar(50)`       |
-| HResult               |  `int`              |
-| Line					 |  `int`       |
-| Column				 |  `int`       |
-| DuplicateNo		   |  `int`            |
+| Column Name      | Data Type           | 
+|:---------------- |:------------------- |
+| ErrorId          |  `bigint`           |
+| DateTime		   |  `datetime`         |
+| Host             |  `varchar(200)`     |
+| User             |  `varchar(200)`     |
+| IsHandled		   |  `bit`              |
+| Type             |  `varchar(200)`     |
+| AppName		   |  `varchar(200)`     |
+| Data             |  `xml`              |
+| CurrentCulture   |  `nvarchar(200)`    |
+| CLRVersion	   |  `varchar(100)`     |
+| Message          |  `nvarchar(MAX)`    |
+| Source           |  `nvarchar(MAX)`    |
+| StackTrace       |  `nvarchar(MAX)`    |
+| ModuleName	   |  `varchar(200)`     |
+| MemberType	   |  `varchar(200)`     |
+| Method           |  `nvarchar(500)`    |
+| Processes        |  `varchar(MAX)`     |
+| ErrorDateTime	   |  `datetime`         |
+| OS               |  `varchar(1000)`    |
+| IPv4Address	   |  `varchar(50)`      |
+| MACAddress	   |  `varchar(50)`      |
+| HResult          |  `int`              |
+| Line			   |  `int`              |
+| Column		   |  `int`              |
+| DuplicateNo	   |  `int`              |
 
 __Snapshots Table:__
 
 | Column Name      | Data Type             |
-|:----------------------- |:------------------------ |
-| ErrorLogId            |   `int`                     |
-| ScreenCapture     |   `image`               |
+|:---------------- |:--------------------- |
+| ErrorLogId       |   `int`               |
+| ScreenCapture    |   `image`             |
 
 For easy way please go ahead and try [Wiki](https://github.com/Behzadkhosravifar/ErrorControlSystem/wiki) to use SQL Queries.
 There are __SQL Scripts__ to create tables and queries.

@@ -108,7 +108,7 @@ then click on __Show All Files__ and go on this path:
 
 Add Startup events at this file, same below codes:
 
-```vb
+```VB
 
 Partial Friend Class MyApplication
         
@@ -271,16 +271,62 @@ For easy way please go ahead and try [Wiki](https://github.com/Behzadkhosravifar
 There are __SQL Scripts__ to create tables and queries.
 
 
+
+--------------------------
+### Get it on NuGet ###  [![Nuget count](http://img.shields.io/nuget/v/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
+
+You may use ErrorControlSystem as a library that you install with [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) into your project or as a Visual Studio extension. 
+The way you want to use it depends on the scenario you are working on. You most likely want the [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) package.
+
+To install from Nuget:
+
+```powershell
+Install-Package ErrorControlSystem
+```
+
+
+--------------------------
+### Contributing ###
+
+Questions, comments, bug reports, and pull requests are all welcome.
+Bug reports that include steps-to-reproduce (including code) are
+preferred. Even better, make them in the form of pull requests.
+Before you start to work on an existing issue, check if it is not assigned
+to anyone yet, and if it is, talk to that person.
+Also check the project [board](http://huboard.com/BehzadKhosravifar/ErrorControlSystem/board)
+and verify it is not being worked on (it will be tagged with the `Working` tag).
+If it is not being worked on, before you start check if the item is `Ready`.
+If the issue has the `Working` tag (working swimlane on Huboard) and has no Assignee
+then it is not being worked on by somebody on the core team. Check the issue's
+description to find out who it is (if it is not there it has to be on the comments).
+
+
+--------------------------
+### Issues and task board ###  [![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
+
+* The task board is at [Huboard](http://huboard.com/BehzadKhosravifar/ErrorControlSystem/).
+* You can also check the [Github backlog](https://github.com/BehzadKhosravifar/ErrorControlSystem/issues) directly.
+
+
+--------------------------
+### Contact ###   
+
+Please see our [contact page](http://ErrorControlSystem.github.io/contact.html).
+
+Email: [Behzad.Khosravifar@gmail.com](mailto:Behzad.Khosravifar@Gmail.com)
+
 --------------------------
 ### LICENSE INFORMATION ###
 
-Error Control System 3.0.0.6
+[![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
 
+This software is open source, licensed under the GNU General Public License License, Version 3.0.
+See [GPL-3.0](http://opensource.org/licenses/GPL-3.0.html) for details.
 This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method
 we wouldn't otherwise have access to
                   
-Copyright (C) 2015 [Behzad Khosravifar](mailto: Behzad.Khosravifar@Gmail.com)
+Copyright (C) 2014-2015 [Behzad Khosravifar](mailto:Behzad.Khosravifar@Gmail.com)
 
 This program published by the Free Software Foundation,
 either version 1.0.1 of the License, or (at your option) any later version.

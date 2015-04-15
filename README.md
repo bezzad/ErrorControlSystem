@@ -4,9 +4,9 @@
 [![Nuget count](http://img.shields.io/nuget/v/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
 [![Nuget downloads](http://img.shields.io/nuget/dt/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
 [![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
-[![Coverage Status](https://coveralls.io/repos/Behzadkhosravifar/ErrorControlSystem/badge.svg)](https://coveralls.io/r/Behzadkhosravifar/ErrorControlSystem)
 [![Source Browser](https://img.shields.io/badge/Browse-Source-green.svg)](http://sourcebrowser.io/Browse/Behzadkhosravifar/ErrorControlSystem)
 
+Check the official [project site](http://behzadkhosravifar.github.io/ErrorControlSystem/). There you will find information on how to contribute, our task board, definition of done, definition of ready, etc.
 
 [![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png)](https://www.nuget.org/packages/ErrorControlSystem)
 

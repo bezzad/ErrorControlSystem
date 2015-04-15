@@ -66,9 +66,9 @@ namespace ErrorControlSystem
 
         internal static void LoadAssemblies()
         {
-            EmbeddedAssembly.Load("System.Data.SqlServerCe.dll");
-            EmbeddedAssembly.Load("System.Threading.Tasks.Dataflow.dll");
-            AppDomain.CurrentDomain.AssemblyResolve += (s, e) => EmbeddedAssembly.Get(e.Name);
+            //EmbeddedAssembly.Load("System.Data.SqlServerCe.dll");
+            //EmbeddedAssembly.Load("System.Threading.Tasks.Dataflow.dll");
+            //AppDomain.CurrentDomain.AssemblyResolve += (s, e) => EmbeddedAssembly.Get(e.Name);
 
             AssembelyLoaded = true;
         }

@@ -153,9 +153,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Error Control System\PortableErrorControlSystem\PortableErrorControlSystem.csproj">
-      <Project>{e407e947-0d57-4b5b-9508-b9f59d680d91}</Project>
-      <Name>PortableErrorControlSystem</Name>
+    <ProjectReference Include="..\..\Error Control System\ErrorControlSystem\ErrorControlSystem.csproj">
+      <Project>{515c50e8-a9a0-4ac0-8591-7369c1a31dc8}</Project>
+      <Name>ErrorControlSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

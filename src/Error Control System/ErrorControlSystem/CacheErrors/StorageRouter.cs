@@ -51,7 +51,7 @@ namespace ErrorControlSystem.CacheErrors
             if (!string.IsNullOrEmpty(ErrorHandlingOption.ErrorLogPath) && File.Exists(ErrorHandlingOption.ErrorLogPath)) return; // That path's is correct.
 
             // Storage Path\[AppName] v[AppMajorVersion]\
-            var storageDirPath = StoragePathBuilder.GetPath(ErrorHandlingOption.StoragePath);
+            var storageDirPath = StoragePathHelper.GetPath(ErrorHandlingOption.StoragePath);
 
             var dir = Directory.CreateDirectory(storageDirPath);
             dir.Attributes = FileAttributes.Directory;

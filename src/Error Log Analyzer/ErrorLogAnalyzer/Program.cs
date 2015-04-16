@@ -15,8 +15,7 @@ namespace ErrorLogAnalyzer
         {
             Thread.Sleep(2000); // First Open Example Apps then this app
 
-            ExceptionHandler.Engine.Start(".", "UsersManagements",
-                ErrorHandlingOptions.All & ~ErrorHandlingOptions.ResizeSnapshots);
+            ExceptionHandler.Engine.Start(".", "UsersManagements", "sa", "123");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

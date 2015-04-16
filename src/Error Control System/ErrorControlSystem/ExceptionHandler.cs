@@ -55,7 +55,7 @@ namespace ErrorControlSystem
         #region Constructors
         static ExceptionHandler()
         {
-            LoadAssemblies();
+            //LoadAssemblies();
 
             StorageRouter.ReadyCache();
         }

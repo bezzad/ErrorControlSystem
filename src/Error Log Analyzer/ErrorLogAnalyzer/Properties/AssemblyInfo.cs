@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ErrorLogAnalyzer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Created by Mr. Behzad Khosravifar")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ErrorLogAnalyzer")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2014-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 #pragma warning disable 1607
-[assembly: AssemblyVersion("3.0.*")]
-[assembly: AssemblyFileVersion("3.0.*")]
+[assembly: AssemblyVersion("4.1.2.*")]
+[assembly: AssemblyFileVersion("4.1.2.*")]

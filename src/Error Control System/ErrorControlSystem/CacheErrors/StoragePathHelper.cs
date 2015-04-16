@@ -10,7 +10,7 @@ namespace ErrorControlSystem.CacheErrors
     using ErrorControlSystem.DbConnectionManager;
 
 
-    public static class StoragePathBuilder
+    public static class StoragePathHelper
     {
         /// <summary>
         /// Gets the <see cref="System.String"/> path of the given <see cref="ErrorControlSystem.CacheErrors.StoragePath"/> path.

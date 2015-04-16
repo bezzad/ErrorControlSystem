@@ -47,7 +47,7 @@ namespace ErrorControlSystem
 
             static Engine()
             {
-                if (!AssembelyLoaded) LoadAssemblies();
+                //if (!AssembelyLoaded) LoadAssemblies();
 
                 Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.High;
 
@@ -99,11 +99,15 @@ namespace ErrorControlSystem
 
                 await ServerTransmitter.InitialTransmitterAsync();
 
-                var publicSetting = await ServerTransmitter.GetErrorHandlingOptionsAsync();
-                if (publicSetting != 0)
-                    ErrorHandlingOption.SetSetting(publicSetting);
+                if (ErrorHandlingOption.EnableNetworkSending && ConnectionManager.GetDefaultConnection().IsReady)
+                {
+                    var publicSetting = await ServerTransmitter.GetErrorHandlingOptionsAsync();
 
-                await CacheController.CheckStateAsync();
+                    if (publicSetting != 0)
+                        ErrorHandlingOption.SetSetting(publicSetting);
+                    
+                    await CacheController.CheckStateAsync();
+                }
             }
 
             public static void Start(string server, string database, string username, string pass, ErrorHandlingOptions option)

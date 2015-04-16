@@ -88,7 +88,7 @@ namespace ErrorControlSystem
         {
             get
             {
-                var rootDir = StoragePathBuilder.GetPath(StoragePath);
+                var rootDir = StoragePathHelper.GetPath(StoragePath);
                 return new DirectoryInfo(rootDir).GetDirectorySize() >= CacheLimitSize;
             }
         }

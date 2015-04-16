@@ -138,8 +138,15 @@ namespace ErrorLogAnalyzer
         {
             try
             {
-                var num = ConnectionManager.GetDefaultConnection()
-                    .ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
+                var conn = ConnectionManager.GetDefaultConnection();
+
+                if (!conn.IsReady)
+                {
+                    lblRecordsNum.Text = "Database Connection Corrupted";
+                    return;
+                }
+
+                var num = conn.ExecuteScalar<int>("SELECT SUM (DuplicateNo + 1)  FROM ErrorLog", CommandType.Text);
 
                 lblRecordsNum.Text = num.ToString(CultureInfo.InvariantCulture);
                 SetDatabaseConnectionState(null);

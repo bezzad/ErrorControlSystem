@@ -42,15 +42,26 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Windows.Forms.DVTextBox, Version=1.0.0.25350, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseConfigurationForm.Designer.cs">
+      <DependentUpon>DatabaseConfigurationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataGridViewHelper.cs" />
     <Compile Include="ErrorDataGridView.cs">
@@ -71,6 +82,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DatabaseConfigurationForm.resx">
+      <DependentUpon>DatabaseConfigurationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LogReader.resx">
       <DependentUpon>LogReader.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -106,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Enable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MicrosoftSQLServerLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

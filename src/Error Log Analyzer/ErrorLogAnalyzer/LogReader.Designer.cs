@@ -44,32 +44,29 @@ namespace ErrorLogAnalyzer
             this.label1 = new System.Windows.Forms.Label();
             this.lblRecordsNum = new System.Windows.Forms.Label();
             this.prgCacheSize = new Windows.Forms.ProgressBar();
-            this.cmbServerName = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbDatabaseName = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.picServerState = new System.Windows.Forms.PictureBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSetConnection = new System.Windows.Forms.Button();
             this.txtCacheFilePath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblCacheRecords = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.txtConnStr = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DynamicDgv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refreshAlert)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picServerState)).BeginInit();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
             this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnQuit.Location = new System.Drawing.Point(12, 12);
+            this.btnQuit.Location = new System.Drawing.Point(13, 13);
+            this.btnQuit.Margin = new System.Windows.Forms.Padding(4);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(112, 76);
+            this.btnQuit.Size = new System.Drawing.Size(149, 94);
             this.btnQuit.TabIndex = 1;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = true;
@@ -92,12 +89,13 @@ namespace ErrorLogAnalyzer
             this.DynamicDgv.ColumnHeadersHeight = 45;
             this.DynamicDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DynamicDgv.Location = new System.Drawing.Point(0, 0);
+            this.DynamicDgv.Margin = new System.Windows.Forms.Padding(4);
             this.DynamicDgv.Name = "DynamicDgv";
             this.DynamicDgv.ReadOnly = true;
             this.DynamicDgv.RowHeadersVisible = false;
             this.DynamicDgv.RowTemplate.Height = 40;
             this.DynamicDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DynamicDgv.Size = new System.Drawing.Size(624, 530);
+            this.DynamicDgv.Size = new System.Drawing.Size(832, 582);
             this.DynamicDgv.TabIndex = 4;
             this.DynamicDgv.SelectionChanged += new System.EventHandler(this.dgv_ErrorsViewer_SelectionChanged);
             // 
@@ -105,9 +103,10 @@ namespace ErrorLogAnalyzer
             // 
             this.btnRefreshGridView.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefreshGridView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnRefreshGridView.Location = new System.Drawing.Point(130, 12);
+            this.btnRefreshGridView.Location = new System.Drawing.Point(170, 13);
+            this.btnRefreshGridView.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefreshGridView.Name = "btnRefreshGridView";
-            this.btnRefreshGridView.Size = new System.Drawing.Size(112, 76);
+            this.btnRefreshGridView.Size = new System.Drawing.Size(149, 94);
             this.btnRefreshGridView.TabIndex = 9;
             this.btnRefreshGridView.Text = "&Refresh";
             this.btnRefreshGridView.UseVisualStyleBackColor = true;
@@ -118,7 +117,8 @@ namespace ErrorLogAnalyzer
             this.splitContainerMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainerMain.Location = new System.Drawing.Point(12, 139);
+            this.splitContainerMain.Location = new System.Drawing.Point(16, 241);
+            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -128,8 +128,9 @@ namespace ErrorLogAnalyzer
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.pictureBox_viewer);
-            this.splitContainerMain.Size = new System.Drawing.Size(1016, 530);
-            this.splitContainerMain.SplitterDistance = 624;
+            this.splitContainerMain.Size = new System.Drawing.Size(1355, 582);
+            this.splitContainerMain.SplitterDistance = 832;
+            this.splitContainerMain.SplitterWidth = 5;
             this.splitContainerMain.TabIndex = 10;
             // 
             // pictureBox_viewer
@@ -143,9 +144,9 @@ namespace ErrorLogAnalyzer
             this.pictureBox_viewer.GridScale = Windows.Forms.ImageBoxGridScale.Tiny;
             this.pictureBox_viewer.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
             this.pictureBox_viewer.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox_viewer.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox_viewer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox_viewer.Name = "pictureBox_viewer";
-            this.pictureBox_viewer.Size = new System.Drawing.Size(388, 530);
+            this.pictureBox_viewer.Size = new System.Drawing.Size(518, 582);
             this.pictureBox_viewer.TabIndex = 0;
             this.pictureBox_viewer.MouseEnter += new System.EventHandler(this.pictureBox_viewer_MouseEnter);
             // 
@@ -157,9 +158,10 @@ namespace ErrorLogAnalyzer
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.label1.Location = new System.Drawing.Point(565, 43);
+            this.label1.Location = new System.Drawing.Point(752, 117);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 17);
+            this.label1.Size = new System.Drawing.Size(221, 20);
             this.label1.TabIndex = 12;
             this.label1.Text = "Number of Database Errors:";
             // 
@@ -168,9 +170,10 @@ namespace ErrorLogAnalyzer
             this.lblRecordsNum.AutoSize = true;
             this.lblRecordsNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.lblRecordsNum.ForeColor = System.Drawing.Color.Chocolate;
-            this.lblRecordsNum.Location = new System.Drawing.Point(755, 43);
+            this.lblRecordsNum.Location = new System.Drawing.Point(1006, 117);
+            this.lblRecordsNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRecordsNum.Name = "lblRecordsNum";
-            this.lblRecordsNum.Size = new System.Drawing.Size(16, 17);
+            this.lblRecordsNum.Size = new System.Drawing.Size(18, 20);
             this.lblRecordsNum.TabIndex = 12;
             this.lblRecordsNum.Text = "0";
             // 
@@ -180,82 +183,48 @@ namespace ErrorLogAnalyzer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.prgCacheSize.CustomText = null;
             this.prgCacheSize.DisplayStyle = Windows.Forms.ProgressBarDisplayText.Percentage;
-            this.prgCacheSize.Location = new System.Drawing.Point(12, 99);
+            this.prgCacheSize.Location = new System.Drawing.Point(15, 191);
+            this.prgCacheSize.Margin = new System.Windows.Forms.Padding(4);
             this.prgCacheSize.Name = "prgCacheSize";
-            this.prgCacheSize.Size = new System.Drawing.Size(1016, 34);
+            this.prgCacheSize.Size = new System.Drawing.Size(1355, 42);
             this.prgCacheSize.TabIndex = 11;
             this.prgCacheSize.TextColor = System.Drawing.Color.Tan;
             this.prgCacheSize.TextFont = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
-            // cmbServerName
+            // btnSetConnection
             // 
-            this.cmbServerName.FormattingEnabled = true;
-            this.cmbServerName.Location = new System.Drawing.Point(388, 15);
-            this.cmbServerName.Name = "cmbServerName";
-            this.cmbServerName.Size = new System.Drawing.Size(222, 21);
-            this.cmbServerName.TabIndex = 13;
-            this.cmbServerName.DropDown += new System.EventHandler(this.cmbServerName_DropDown);
-            this.cmbServerName.TextChanged += new System.EventHandler(this.cmbServerName_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(271, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 17);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Server\\Instance:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cmbDatabaseName
-            // 
-            this.cmbDatabaseName.FormattingEnabled = true;
-            this.cmbDatabaseName.Location = new System.Drawing.Point(746, 15);
-            this.cmbDatabaseName.Name = "cmbDatabaseName";
-            this.cmbDatabaseName.Size = new System.Drawing.Size(205, 21);
-            this.cmbDatabaseName.TabIndex = 13;
-            this.cmbDatabaseName.TextChanged += new System.EventHandler(this.cmbDatabaseName_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.label3.Location = new System.Drawing.Point(666, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Database:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // picServerState
-            // 
-            this.picServerState.Image = global::ErrorLogAnalyzer.Properties.Resources.Disable;
-            this.picServerState.Location = new System.Drawing.Point(988, 11);
-            this.picServerState.Name = "picServerState";
-            this.picServerState.Size = new System.Drawing.Size(40, 37);
-            this.picServerState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picServerState.TabIndex = 15;
-            this.picServerState.TabStop = false;
+            this.btnSetConnection.BackgroundImage = global::ErrorLogAnalyzer.Properties.Resources.Disable;
+            this.btnSetConnection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSetConnection.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSetConnection.Location = new System.Drawing.Point(1281, 12);
+            this.btnSetConnection.Name = "btnSetConnection";
+            this.btnSetConnection.Size = new System.Drawing.Size(90, 90);
+            this.btnSetConnection.TabIndex = 21;
+            this.toolTip.SetToolTip(this.btnSetConnection, "Click to set connection string configuration");
+            this.btnSetConnection.UseVisualStyleBackColor = true;
+            this.btnSetConnection.Click += new System.EventHandler(this.btnSetConnection_Click);
             // 
             // txtCacheFilePath
             // 
             this.txtCacheFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCacheFilePath.Location = new System.Drawing.Point(388, 70);
-            this.txtCacheFilePath.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCacheFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtCacheFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.txtCacheFilePath.Location = new System.Drawing.Point(516, 148);
+            this.txtCacheFilePath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCacheFilePath.Name = "txtCacheFilePath";
             this.txtCacheFilePath.ReadOnly = true;
-            this.txtCacheFilePath.Size = new System.Drawing.Size(642, 20);
+            this.txtCacheFilePath.Size = new System.Drawing.Size(855, 28);
             this.txtCacheFilePath.TabIndex = 16;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(271, 72);
+            this.label4.Location = new System.Drawing.Point(360, 153);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 17);
+            this.label4.Size = new System.Drawing.Size(133, 20);
             this.label4.TabIndex = 17;
             this.label4.Text = "Cache File Path:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -264,9 +233,10 @@ namespace ErrorLogAnalyzer
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(271, 43);
+            this.label5.Location = new System.Drawing.Point(360, 117);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 17);
+            this.label5.Size = new System.Drawing.Size(197, 20);
             this.label5.TabIndex = 18;
             this.label5.Text = "Number of Cache Errors:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -276,9 +246,10 @@ namespace ErrorLogAnalyzer
             this.lblCacheRecords.AutoSize = true;
             this.lblCacheRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.lblCacheRecords.ForeColor = System.Drawing.Color.Chocolate;
-            this.lblCacheRecords.Location = new System.Drawing.Point(442, 43);
+            this.lblCacheRecords.Location = new System.Drawing.Point(588, 117);
+            this.lblCacheRecords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCacheRecords.Name = "lblCacheRecords";
-            this.lblCacheRecords.Size = new System.Drawing.Size(16, 17);
+            this.lblCacheRecords.Size = new System.Drawing.Size(18, 20);
             this.lblCacheRecords.TabIndex = 19;
             this.lblCacheRecords.Text = "0";
             // 
@@ -287,28 +258,38 @@ namespace ErrorLogAnalyzer
             this.timer.Interval = 2000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // txtConnStr
+            // 
+            this.txtConnStr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtConnStr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtConnStr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.txtConnStr.Location = new System.Drawing.Point(364, 12);
+            this.txtConnStr.Multiline = true;
+            this.txtConnStr.Name = "txtConnStr";
+            this.txtConnStr.ReadOnly = true;
+            this.txtConnStr.Size = new System.Drawing.Size(900, 90);
+            this.txtConnStr.TabIndex = 20;
+            // 
             // LogReader
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 681);
+            this.ClientSize = new System.Drawing.Size(1387, 838);
+            this.Controls.Add(this.btnSetConnection);
+            this.Controls.Add(this.txtConnStr);
             this.Controls.Add(this.lblCacheRecords);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtCacheFilePath);
-            this.Controls.Add(this.picServerState);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbDatabaseName);
-            this.Controls.Add(this.cmbServerName);
             this.Controls.Add(this.lblRecordsNum);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.prgCacheSize);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.btnRefreshGridView);
             this.Controls.Add(this.btnQuit);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(878, 43);
+            this.Margin = new System.Windows.Forms.Padding(5);
+            this.MinimumSize = new System.Drawing.Size(1165, 44);
             this.Name = "LogReader";
             this.Text = "Error Log Analyzer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogReader_FormClosing);
@@ -318,7 +299,6 @@ namespace ErrorLogAnalyzer
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.refreshAlert)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picServerState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,17 +315,14 @@ namespace ErrorLogAnalyzer
         private Windows.Forms.ProgressBar prgCacheSize;
         private Label lblRecordsNum;
         private Label label1;
-        private ComboBox cmbServerName;
-        private Label label2;
-        private ComboBox cmbDatabaseName;
-        private Label label3;
-        private PictureBox picServerState;
         private ToolTip toolTip;
         private Label label4;
         private TextBox txtCacheFilePath;
         private Label lblCacheRecords;
         private Label label5;
         private Timer timer;
+        private Button btnSetConnection;
+        private TextBox txtConnStr;
     }
 }
 

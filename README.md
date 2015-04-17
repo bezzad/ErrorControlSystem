@@ -52,7 +52,7 @@ namespace TestApplication
 			//
             // ------------------ Initial Error Control System ----------------------------
             //
-            ExceptionHandler.Engine.Start("localhost", "UsersManagements",
+            ExceptionHandler.Engine.Start("Server", "Database", "Username", "Password"
                 ErrorHandlingOptions.Default &
                    ~ErrorHandlingOptions.ResizeSnapshots &
                    ~ErrorHandlingOptions.DisplayUnhandledExceptions);

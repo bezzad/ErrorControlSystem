@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace ErrorControlSystem.DbConnectionManager
@@ -107,7 +108,7 @@ namespace ErrorControlSystem.DbConnectionManager
                 if (String.IsNullOrEmpty(value))
                     throw new NullReferenceException("You can't pass null reference object for ConnectionString property!");
 
-                var conn = Parse(value);
+                var conn = ParseConnectionString(value);
 
                 Clone(conn, this);
             }
@@ -331,7 +332,7 @@ namespace ErrorControlSystem.DbConnectionManager
             return DateTime.Now.GetHashCode();
         }
 
-        public static Connection Parse(string connectionString)
+        public static Connection ParseConnectionString(string connectionString)
         {
             if (connectionString.StartsWith("#")) // if connection string starts with '#' then it's Encrypted !
                 connectionString = connectionString.Substring(1).Decrypt();
@@ -366,6 +367,12 @@ namespace ErrorControlSystem.DbConnectionManager
             return add == null ? ParseXElemntAdd(xmlConnection) : ParseXElemntAdd(add);
         }
 
+        public static Connection Parse(string connection)
+        {
+            var xml = XElement.Parse(connection);
+            return Parse(xml);
+        }
+
         private static Connection ParseXElemntAdd(XElement add)
         {
             var name = add.Attribute("name").Value;
@@ -380,7 +387,7 @@ namespace ErrorControlSystem.DbConnectionManager
 
             var encrypted = connectionString.StartsWith("#");
 
-            var conn = Parse(connectionString);
+            var conn = ParseConnectionString(connectionString);
 
             conn.Name = encrypted ? name.Decrypt() : name;
 
@@ -398,7 +405,7 @@ namespace ErrorControlSystem.DbConnectionManager
 
         public static implicit operator Connection(string connectionString)
         {
-            return Parse(connectionString);
+            return ParseConnectionString(connectionString);
         }
 
         public static implicit operator Connection(XElement xmlConnection)

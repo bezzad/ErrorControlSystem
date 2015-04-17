@@ -273,6 +273,26 @@ namespace ErrorControlSystem.Tests.DbConnectionManager
             Assert.AreEqual(conn3.ConnectionString, conn3_2.ConnectionString);
         }
 
+        [TestMethod, TestCategory("Connection.cs")]
+        public void TestParser()
+        {
+            //
+            // --------------- Constructor 2 Arguments ------------------------------------------
+            //
+            var connFull = new Connection(".", "UsersManagements", "sa", "123", 3, "Test Connection", "um");
+            var conn = new Connection(connFull.ConnectionString);
+
+            Assert.AreEqual(conn.ToXml(false).ToString(SaveOptions.None), conn.ToString());
+            Assert.AreEqual(conn.ToXml(true).ToString(SaveOptions.None), conn.ToString(true));
+            Assert.AreEqual(
+                Connection.Parse(conn.ToString(true)).ConnectionString,
+                conn.ConnectionString);
+
+            var conn2 = new Connection(conn.ConnectionString);
+
+            Assert.AreEqual(conn.ConnectionString, conn2.ConnectionString);
+        }
+
 
         [TestMethod, TestCategory("Connection.cs")]
         public void ConnectionExplicitConverting()

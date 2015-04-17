@@ -4,58 +4,47 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D83C547-23E7-4CDB-9D08-5590283FDEC7}</ProjectGuid>
+    <ProjectGuid>{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ErrorControlSystem</RootNamespace>
-    <AssemblyName>ErrorControlSystemAdapter</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Windows.Forms</RootNamespace>
+    <AssemblyName>Windows.Forms.DVTextBox</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorControlSystem\Adapter\</OutputPath>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\out\ErrorLogAnalyzer\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\out\ErrorControlSystem\Adapter\ErrorControlSystemAdapter.XML</DocumentationFile>
-    <NoWarn>1607, 1591</NoWarn>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\out\ErrorControlSystem\Adapter\</OutputPath>
+    <OutputPath>..\..\..\out\ErrorLogAnalyzer\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\out\ErrorControlSystem\Adapter\ErrorControlSystemAdapter.XML</DocumentationFile>
-    <NoWarn>1607, 1591</NoWarn>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ErrorControlSystem\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
+    <Compile Include="DVTextBox.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ErrorHandlerAdapter.cs" />
-    <Compile Include="IErrorHandlerAdapter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ErrorControlSystem\ErrorControlSystem.csproj">
-      <Project>{515c50e8-a9a0-4ac0-8591-7369c1a31dc8}</Project>
-      <Name>ErrorControlSystem</Name>
-    </ProjectReference>
+    <Compile Include="MathParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

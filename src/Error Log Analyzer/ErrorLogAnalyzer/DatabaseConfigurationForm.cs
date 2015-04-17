@@ -52,14 +52,17 @@ namespace ErrorLogAnalyzer
             return currentConnection.ConnectionString;
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             ConnectionManager.Add(currentConnection, currentConnection.Name);
             ConnectionManager.SetToDefaultConnection(currentConnection.Name);
 
-            await WriteTextToDiskAsync(ConfigPath, currentConnection.ToString(true));
+            Task.Run(async () =>
+            {
+                await WriteTextToDiskAsync(ConfigPath, currentConnection.ToString(true));
 
-            Task.Run(async () => await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync());
+                await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync();
+            });
 
             this.DialogResult = DialogResult.OK;
             this.Close();

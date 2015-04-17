@@ -47,10 +47,6 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Windows.Forms.DVTextBox, Version=1.0.0.25350, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +94,10 @@
     <ProjectReference Include="..\..\Error Control System\ErrorControlSystem\ErrorControlSystem.csproj">
       <Project>{515c50e8-a9a0-4ac0-8591-7369c1a31dc8}</Project>
       <Name>ErrorControlSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Windows.Forms.DVTextBox\Windows.Forms.DVTextBox.csproj">
+      <Project>{cd5da55b-c69b-45c7-aefe-c9f4990cd873}</Project>
+      <Name>Windows.Forms.DVTextBox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Windows.Forms.ImageBox\Windows.Forms.ImageBox.csproj">
       <Project>{4159c8d3-c18d-4bed-8be6-9bad1b0ca4f6}</Project>

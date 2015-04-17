@@ -38,19 +38,22 @@ namespace ErrorLogAnalyzer
 
         #region Methods
 
-        public async void LoadConfigFile()
+        public void LoadConfigFile()
         {
-            if (File.Exists(DatabaseConfigurationForm.ConfigPath))
+            Task.Run(async () =>
             {
-                var config = await DatabaseConfigurationForm.ReadTextAsync(DatabaseConfigurationForm.ConfigPath);
-                var conn = Connection.Parse(config);
-                txtConnStr.Text = conn.ConnectionString;
+                if (File.Exists(DatabaseConfigurationForm.ConfigPath))
+                {
+                    var config = await DatabaseConfigurationForm.ReadTextAsync(DatabaseConfigurationForm.ConfigPath);
+                    var conn = Connection.Parse(config);
+                    txtConnStr.Text = conn.ConnectionString;
 
-                ConnectionManager.Add(conn, conn.Name);
-                ConnectionManager.SetToDefaultConnection(conn.Name);
+                    ConnectionManager.Add(conn, conn.Name);
+                    ConnectionManager.SetToDefaultConnection(conn.Name);
 
-                Task.Run(async () => await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync());
-            }
+                    await ConnectionManager.GetDefaultConnection().CheckDbConnectionAsync();
+                }
+            });
         }
 
         public override void OnFormLoad()

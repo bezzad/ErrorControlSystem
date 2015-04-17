@@ -92,10 +92,15 @@ user codes, enter the following command to invoke and run the module.</p>
             <span class="pl-c">//</span>
             <span class="pl-c">// ------------------ Initial Error Control System ----------------------------</span>
             <span class="pl-c">//</span>
-            ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>localhost<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>UsersManagements<span class="pl-pds">"</span></span>,
-                   ErrorHandlingOptions.Default &amp;
+            ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Username<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Password<span class="pl-pds">"</span></span>
+                ErrorHandlingOptions.Default &amp;
                    ~ErrorHandlingOptions.ResizeSnapshots &amp;
                    ~ErrorHandlingOptions.DisplayUnhandledExceptions);
+
+            <span class="pl-c">// Or Set Option this way:</span>
+            ErrorHandlingOption.ResizeSnapshots = <span class="pl-c1">false</span>;
+            ErrorHandlingOption.DisplayUnhandledExceptions = <span class="pl-c1">false</span>;
+
             <span class="pl-c">//</span>
             <span class="pl-c">// Some of the optional configuration items.</span>
             <span class="pl-c">//</span>
@@ -432,7 +437,7 @@ There are <strong>SQL Scripts</strong> to create tables and queries.</p>
 <hr>
 
 <h3>
-<a id="get-it-on-nuget--" class="anchor" href="#get-it-on-nuget--" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it on NuGet  <a href="https://www.nuget.org/packages/errorcontrolsystem/"><img src="http://img.shields.io/nuget/v/errorcontrolsystem.svg" alt="Nuget count"></a>
+<a id="get-it-on-nuget-------" class="anchor" href="#get-it-on-nuget-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it on NuGet       <a href="https://www.nuget.org/packages/errorcontrolsystem/"><img src="http://img.shields.io/nuget/v/errorcontrolsystem.svg" alt="Nuget count"></a>
 </h3>
 
 <p>You may use ErrorControlSystem as a library that you install with <a href="https://www.nuget.org/packages/ErrorControlSystem/">Nuget</a> into your project or as a Visual Studio extension. 
@@ -463,7 +468,7 @@ description to find out who it is (if it is not there it has to be on the commen
 <hr>
 
 <h3>
-<a id="issues-and-task-board--" class="anchor" href="#issues-and-task-board--" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues and task board  <a href="https://huboard.com/behzadkhosravifar/ErrorControlSystem"><img src="http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg" alt="Issues open"></a>
+<a id="issues-and-task-board-------" class="anchor" href="#issues-and-task-board-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues and task board       <a href="https://huboard.com/behzadkhosravifar/ErrorControlSystem"><img src="http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg" alt="Issues open"></a>
 </h3>
 
 <ul>
@@ -476,7 +481,7 @@ description to find out who it is (if it is not there it has to be on the commen
 <h3>
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
 
-<p>Please see our <a href="http://ErrorControlSystem.github.io/contact.html">contact page</a>.</p>
+<p>Please see our <a href="https://www.nuget.org/packages/ErrorControlSystem/ContactOwners">contact page</a>.</p>
 
 <p>Email: <a href="mailto:Behzad.Khosravifar@Gmail.com">Behzad.Khosravifar@gmail.com</a></p>
 

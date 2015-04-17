@@ -50,7 +50,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>..\..\..\Images\Error Control System.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>1AF74D620CBF51A3CAAAE3112AD47C579BB9F182</ManifestCertificateThumbprint>

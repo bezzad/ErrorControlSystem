@@ -275,7 +275,7 @@ There are __SQL Scripts__ to create tables and queries.
 
 
 --------------------------
-### Get it on NuGet  [![Nuget count](http://img.shields.io/nuget/v/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
+### Get it on NuGet       [![Nuget count](http://img.shields.io/nuget/v/errorcontrolsystem.svg)](https://www.nuget.org/packages/errorcontrolsystem/)
 
 You may use ErrorControlSystem as a library that you install with [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) into your project or as a Visual Studio extension. 
 The way you want to use it depends on the scenario you are working on. You most likely want the [Nuget](https://www.nuget.org/packages/ErrorControlSystem/) package.
@@ -305,7 +305,7 @@ description to find out who it is (if it is not there it has to be on the commen
 
 
 --------------------------
-### Issues and task board  [![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
+### Issues and task board       [![Issues open](http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg)](https://huboard.com/behzadkhosravifar/ErrorControlSystem)
 
 * The task board is at [Huboard](http://huboard.com/BehzadKhosravifar/ErrorControlSystem/).
 * You can also check the [Github backlog](https://github.com/BehzadKhosravifar/ErrorControlSystem/issues) directly.
@@ -314,7 +314,7 @@ description to find out who it is (if it is not there it has to be on the commen
 --------------------------
 ### Contact
 
-Please see our [contact page](http://ErrorControlSystem.github.io/contact.html).
+Please see our [contact page](https://www.nuget.org/packages/ErrorControlSystem/ContactOwners).
 
 Email: [Behzad.Khosravifar@gmail.com](mailto:Behzad.Khosravifar@Gmail.com)
 

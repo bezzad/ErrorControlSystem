@@ -2,7 +2,7 @@
 
 # Version history
 
-## [v4.1.2]()
+## [v4.1.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.2.zip)
 
 Added
 
@@ -21,6 +21,7 @@ Added
 * Add an EventHandler to ErrorControlSystem for Alert any UnHandled Exception by ExceptionHandler.OnShowUnhandledError
 * LineColumn text divided to Line and Column integer number in databases
 * ErrorControlSystem WPF version combined by WinForms version
+* Add Dependency Assemblies to Solve ClickOnce Problem
 
 
 

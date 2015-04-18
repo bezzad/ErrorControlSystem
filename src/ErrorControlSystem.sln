@@ -19,12 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.WpfAnimatedWaitSpla
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{373F8F75-851C-4B94-9DB4-3E13C359411D}"
 	ProjectSection(SolutionItems) = preProject
-		..\buildx64.bat = ..\buildx64.bat
-		..\buildx86.bat = ..\buildx86.bat
+		..\Build ErrorControlSystem.bat = ..\Build ErrorControlSystem.bat
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\LICENSE.md = ..\LICENSE.md
 		..\README.md = ..\README.md
-		..\ResetToOrigin.bat = ..\ResetToOrigin.bat
 		..\Signing.snk = ..\Signing.snk
 		..\UpdateFromOrigin.bat = ..\UpdateFromOrigin.bat
 	EndProjectSection
@@ -53,12 +51,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8BC57402-82C3-459A-97A5-1B5EDA90750C}"
 	ProjectSection(SolutionItems) = preProject
+		.nuget\ErrorControlSystem.nuspec = .nuget\ErrorControlSystem.nuspec
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\nupack.bat = .nuget\nupack.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.DVTextBox", "Error Log Analyzer\Windows.Forms.DVTextBox\Windows.Forms.DVTextBox.csproj", "{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{069BB589-EE17-4059-BC50-264B26D88A92}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Readme\Readme.html = Documentation\Readme\Readme.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stylesheets", "stylesheets", "{93D32EC6-1272-41A0-B6E6-F5DC21332947}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Readme\stylesheets\print.css = Documentation\Readme\stylesheets\print.css
+		Documentation\Readme\stylesheets\pygment_trac.css = Documentation\Readme\stylesheets\pygment_trac.css
+		Documentation\Readme\stylesheets\stylesheet.css = Documentation\Readme\stylesheets\stylesheet.css
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +141,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{98E878F8-06C7-442B-A647-627F03BC6BF2} = {21D0B50A-5F2C-4664-BDBA-A54DB9887B37}
+		{069BB589-EE17-4059-BC50-264B26D88A92} = {21D0B50A-5F2C-4664-BDBA-A54DB9887B37}
 		{5C31AB6D-3745-4501-A293-5E29EBDBD833} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
 		{4159C8D3-C18D-4BED-8BE6-9BAD1B0CA4F6} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
 		{EBD48B8C-EFD1-42CB-A980-BAEAEF8A60E1} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
@@ -142,5 +155,6 @@ Global
 		{6A4C3C01-E02A-4047-AD0C-F775F6E78A83} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}
 		{0F0269F4-7411-43E3-9686-012A53F41DA2} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}
+		{93D32EC6-1272-41A0-B6E6-F5DC21332947} = {069BB589-EE17-4059-BC50-264B26D88A92}
 	EndGlobalSection
 EndGlobal

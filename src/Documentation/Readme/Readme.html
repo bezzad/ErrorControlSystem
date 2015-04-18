@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="https://fonts.googleapis.com/css?family=Chivo:900" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>ErrorControlSystem by Behzadkhosravifar</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>ErrorControlSystem</h1>
+          <h2>ErrorControlSystem is a .NET library created to automate handling .NET Windows-Base application exceptions and raise that to a sql server. This exception handler have some features as screen capturing, fetch server date time in exception occurrence time and etc.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/Behzadkhosravifar/ErrorControlSystem/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/Behzadkhosravifar/ErrorControlSystem/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/Behzadkhosravifar/ErrorControlSystem" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="error-control-system" class="anchor" href="#error-control-system" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/Behzadkhosravifar/ErrorControlSystem">Error Control System</a>
+</h1>
+
+<hr>
+
+<p><a href="https://ci.appveyor.com/project/Behzadkhosravifar/errorcontrolsystem"><img src="https://ci.appveyor.com/api/projects/status/lnjusej10c0451xw?svg=true" alt="Build status"></a>
+<a href="https://www.nuget.org/packages/errorcontrolsystem/"><img src="http://img.shields.io/nuget/v/errorcontrolsystem.svg" alt="Nuget count"></a>
+<a href="https://www.nuget.org/packages/errorcontrolsystem/"><img src="http://img.shields.io/nuget/dt/errorcontrolsystem.svg" alt="Nuget downloads"></a>
+<a href="https://huboard.com/behzadkhosravifar/ErrorControlSystem"><img src="http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg" alt="Issues open"></a>
+<a href="http://sourcebrowser.io/Browse/Behzadkhosravifar/ErrorControlSystem"><img src="https://img.shields.io/badge/Browse-Source-green.svg" alt="Source Browser"></a></p>
+
+<p><a href="https://www.nuget.org/packages/ErrorControlSystem"><img src="https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png" alt="Error Control System.png"></a></p>
+
+<hr>
+
+<h3>
+<a id="what-is-this" class="anchor" href="#what-is-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>What Is This?</h3>
+
+<p>This is a C#.Net project's for manage <strong>Exceptions</strong> of your .Net applications by handling and 
+logging that. This is a .dll modules to provide error handling worker on your app background's.
+The modules strive to be simple, well documented and
+modification friendly, in order to help developers quickly learn their inner
+workings.</p>
+
+<p>NOTE: </p>
+
+<blockquote>
+<pre><code>This program is only for exception handling of 
+Windows-based applications (WinForms, WPF, Console)
+that are written by .NET languages such as C#, VB.NET, Visual F#
+</code></pre>
+</blockquote>
+
+<hr>
+
+<h3>
+<a id="how-to-use-the-examples" class="anchor" href="#how-to-use-the-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use The Examples</h3>
+
+<p>To interact with this project, at first find main class of your project to 
+add this module. Then, at the beginning of the instructions before any other 
+user codes, enter the following command to invoke and run the module.</p>
+
+<p>This is initialize codes of the module in <code>C# language</code> windows applications:</p>
+
+<div class="highlight highlight-C#"><pre><span class="pl-k">using</span> System;
+<span class="pl-k">using</span> System.Windows.Forms;
+<span class="pl-k">using</span> ErrorControlSystem;
+<span class="pl-k">using</span> ErrorControlSystem.Shared;
+
+<span class="pl-k">namespace</span> <span class="pl-en">TestApplication</span>
+{
+    <span class="pl-k">static</span> <span class="pl-k">class</span> <span class="pl-en">Program</span>
+    {
+        [STAThread]
+        <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">Main</span>()
+        {
+            <span class="pl-c">//</span>
+            <span class="pl-c">// ------------------ Initial Error Control System ----------------------------</span>
+            <span class="pl-c">//</span>
+            ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Username<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Password<span class="pl-pds">"</span></span>
+                ErrorHandlingOptions.Default &amp;
+                   ~ErrorHandlingOptions.ResizeSnapshots &amp;
+                   ~ErrorHandlingOptions.DisplayUnhandledExceptions);
+
+            <span class="pl-c">// Or Set Option this way:</span>
+            ErrorHandlingOption.ResizeSnapshots = <span class="pl-c1">false</span>;
+            ErrorHandlingOption.DisplayUnhandledExceptions = <span class="pl-c1">false</span>;
+
+            <span class="pl-c">//</span>
+            <span class="pl-c">// Some of the optional configuration items.</span>
+            <span class="pl-c">//</span>
+            <span class="pl-c">// Except 'NotImplementedException' from raise log</span>
+            ExceptionHandler.Filter.ExemptedExceptionTypes.Add(<span class="pl-k">typeof</span>(NotImplementedException));
+
+            <span class="pl-c">// Filter 'Exception' type from Snapshot capturing </span>
+            ExceptionHandler.Filter.NonSnapshotExceptionTypes.Add(<span class="pl-k">typeof</span>(FormatException));
+
+            <span class="pl-c">// Add extra data for labeling exceptions</span>
+            ExceptionHandler.Filter.AttachExtraData.Add(<span class="pl-s"><span class="pl-pds">"</span>WinForms<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>beta version<span class="pl-pds">"</span></span>);
+
+            <span class="pl-c">// Filter a method of a specific class in my assembly </span>
+            <span class="pl-c">// from raise unhanded exceptions log</span>
+            ExceptionHandler.Filter.ExemptedCodeScopes.Add(
+                <span class="pl-k">new</span> CodeScope(<span class="pl-s"><span class="pl-pds">"</span>Assembly<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Namespace<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Class<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Method<span class="pl-pds">"</span></span>));
+
+            <span class="pl-c">// Do not raise any exception in other code places.</span>
+            ExceptionHandler.Filter.JustRaiseErrorCodeScopes.Add(
+                <span class="pl-k">new</span> CodeScope(<span class="pl-s"><span class="pl-pds">"</span>Assembly<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Namespace<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Class<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Method<span class="pl-pds">"</span></span>));
+            <span class="pl-c">//</span>
+            <span class="pl-c">// Show unhandled exception message customized mode. </span>
+            ExceptionHandler.OnShowUnhandledError += AlertUnhandledErrors;
+            <span class="pl-c">//</span>
+            <span class="pl-c">// ----------------------------------------------------------------------------</span>
+            <span class="pl-c">//</span>
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(<span class="pl-c1">false</span>);
+            Application.Run(<span class="pl-k">new</span> FormTest());
+        }
+
+        <span class="pl-c">/// &lt;<span class="pl-ent">summary</span>&gt;</span>
+        <span class="pl-c">/// Show unhandled exception message customized mode.</span>
+        <span class="pl-c">/// &lt;/<span class="pl-ent">summary</span>&gt;</span>
+        <span class="pl-c">/// &lt;<span class="pl-ent">param</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>sender<span class="pl-pds">"</span></span>&gt;Raw exception object&lt;/<span class="pl-ent">param</span>&gt;</span>
+        <span class="pl-c">/// &lt;<span class="pl-ent">param</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>e<span class="pl-pds">"</span></span>&gt;Compiled error object&lt;/<span class="pl-ent">param</span>&gt;</span>
+        <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">AlertUnhandledErrors</span>(<span class="pl-k">object</span> <span class="pl-smi">sender</span>, <span class="pl-k">UnhandledErrorEventArgs</span> <span class="pl-smi">e</span>)
+        {
+            MessageBox.Show(e.ErrorObject.Message);
+        }
+    }
+}</pre></div>
+
+<p>In VB.NET applications, open the solution window and select <code>My Project</code> 
+then click on <strong>Show All Files</strong> and go on this path:</p>
+
+<ul>
+<li>My Project
+
+<ul>
+<li>Application.myapp
+
+<ul>
+<li>Application.Designer.vb  --&gt; (open this file)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>Add Startup events at this file, same below codes:</p>
+
+<div class="highlight highlight-VB"><pre><span class="pl-k">Partial</span> <span class="pl-k">Friend</span> <span class="pl-k">Class</span> <span class="pl-en">MyApplication</span>
+
+        <span class="pl-k">&lt;</span><span class="pl-c1">Global</span><span class="pl-k">.</span>System<span class="pl-k">.</span>Diagnostics<span class="pl-k">.</span>DebuggerStepThroughAttribute()<span class="pl-k">&gt;</span>  <span class="pl-k">_</span>
+        <span class="pl-k">Public</span> <span class="pl-c1">Sub</span> <span class="pl-en">New</span>()
+            <span class="pl-k">MyBase.</span><span class="pl-c1">New</span>(<span class="pl-c1">Global</span><span class="pl-k">.</span>Microsoft<span class="pl-k">.</span>VisualBasic<span class="pl-k">.</span>ApplicationServices<span class="pl-k">.</span>AuthenticationMode<span class="pl-k">.</span>Windows)
+            <span class="pl-k">Me.</span>IsSingleInstance <span class="pl-k">=</span> <span class="pl-c1">True</span>
+            <span class="pl-k">Me.</span>EnableVisualStyles <span class="pl-k">=</span> <span class="pl-c1">True</span>
+            <span class="pl-k">Me.</span>SaveMySettingsOnExit <span class="pl-k">=</span> <span class="pl-c1">True</span>
+            <span class="pl-k">Me.</span>ShutDownStyle <span class="pl-k">=</span> <span class="pl-c1">Global</span><span class="pl-k">.</span>Microsoft<span class="pl-k">.</span>VisualBasic<span class="pl-k">.</span>ApplicationServices<span class="pl-k">.</span>ShutdownMode<span class="pl-k">.</span>AfterMainFormCloses
+<span class="pl-k">        End Sub</span>
+
+        <span class="pl-k">&lt;</span><span class="pl-c1">Global</span><span class="pl-k">.</span>System<span class="pl-k">.</span>Diagnostics<span class="pl-k">.</span>DebuggerStepThroughAttribute()<span class="pl-k">&gt;</span> <span class="pl-k">_</span>
+        <span class="pl-k">Protected</span> <span class="pl-k">Overrides</span> <span class="pl-c1">Sub</span> <span class="pl-en">OnCreateMainForm</span>()
+            <span class="pl-k">Me.</span>MainForm <span class="pl-k">=</span> <span class="pl-c1">Global</span><span class="pl-k">.</span>ErrorControlSystem<span class="pl-k">.</span>Examples<span class="pl-k">.</span>VisualBasicWinForms<span class="pl-k">.</span>Form1
+<span class="pl-k">        End Sub</span>
+
+
+        <span class="pl-k">Private</span> <span class="pl-c1">Sub</span> <span class="pl-en">MyApplication_Startup</span>(sender <span class="pl-k">As </span><span class="pl-c1">Object</span>, e <span class="pl-k">As </span>ApplicationServices<span class="pl-k">.</span>StartupEventArgs) <span class="pl-k">Handles </span><span class="pl-k">Me.</span>Startup
+            <span class="pl-c">' ------------------ Initial Error Control System --------------------------------</span>
+            ExceptionHandler<span class="pl-k">.</span>Engine<span class="pl-k">.</span>Start(<span class="pl-s">"localhost"</span>, <span class="pl-s">"UsersManagements"</span>)
+            <span class="pl-c">' ---------------------------------------------------------------------------------</span>
+<span class="pl-k">        End Sub</span>
+<span class="pl-k">    End Class</span></pre></div>
+
+<p>Or create a Sub Main method like MainModule.vb, for this change must be to go on the Project Designer (go to Project 
+Properties or double-click the My Project node in Solution Explorer) and then after shown properties form, uncheck 
+the <code>Enable Application Framework</code> option on the Application tab, and at last change the <strong>Startup object</strong> to <code>Sub Main</code>.</p>
+
+<hr>
+
+<h3>
+<a id="settings" class="anchor" href="#settings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Settings</h3>
+
+<p>In the initialize code snippet you've seen that, for the <code>ExceptionHandler.Engine</code> method should be an option. 
+This option is used to specify the error data, which includes the following values:</p>
+
+<ul>
+<li>None</li>
+<li>All</li>
+<li><p>Default = All - (ExitApplicationImmediately, HandleProcessCorruptedStateExceptions)</p></li>
+<li><p>DisplayUnhandledExceptions</p></li>
+<li>ReportHandledExceptions</li>
+<li>Snapshot</li>
+<li>FetchServerDateTime</li>
+<li>ResizeSnapshots</li>
+<li>EnableNetworkSending</li>
+<li>FilterExceptions</li>
+<li>ExitApplicationImmediately</li>
+<li>HandleProcessCorruptedStateExceptions</li>
+<li>DisplayDeveloperUI</li>
+</ul>
+
+<p>For example in above codes, this code means is:</p>
+
+<div class="highlight highlight-C#"><pre>ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>localhost<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>UsersManagements<span class="pl-pds">"</span></span>,
+                ErrorHandlingOptions.Default &amp; ~ErrorHandlingOptions.ResizeSnapshots);</pre></div>
+
+<p>Select all options by excepted <code>ResizeSnapshots</code></p>
+
+<p>By adding the our module starter code to the beginning of your program code, you can raise all exceptions history, including <strong>Handled</strong> or <strong>UnHandled</strong> exceptions on the your database.</p>
+
+<p>Note:</p>
+
+<blockquote>
+<pre><code>In the new version 2.1.1.0 and later, the option set in from database at runtime, 
+and not necessary to set that from initial  Start  method
+</code></pre>
+</blockquote>
+
+<hr>
+
+<h3>
+<a id="how-to-install-the-modules" class="anchor" href="#how-to-install-the-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Install The Modules</h3>
+
+<ol>
+<li>
+<p>Install examples for developers (unpacking it to your disk, and go to
+\ErrorControlSystem\out\ErrorControlSystem... directory if you're installing by hand, for example).</p>
+
+<p>Note:</p>
+
+<blockquote>
+<pre><code> If there is not any file in the out folders, 
+ run the buildx86.bat (or buildx64 on 64bit Operation System) file 
+ to compile project and create executable files.
+ Or 
+ please open project .sln file on Visual Studio 2013 
+ and debug/release that to compile native files.
+</code></pre>
+</blockquote>
+</li>
+<li><p>In your project reference add this module dll file:<br>
+References &gt; Add Reference... &gt; Browse to above path &gt; Select ErrorControlSystem.dll</p></li>
+<li><p>Rebuild access permissions if you are prompted to.</p></li>
+</ol>
+
+<p>Now you can read the code and its comments and see the result, experiment with
+it, and hopefully quickly grasp how things work.</p>
+
+<p>If you find a problem, incorrect comment, obsolete or improper code or such,
+please search for an issue about it at <a href="https://github.com/Behzadkhosravifar/ErrorControlSystem/issues">ECS Issue</a>
+If there isn't already an issue for it, please create a new one.</p>
+
+<hr>
+
+<h3>
+<a id="creating-sql-server-database-manually" class="anchor" href="#creating-sql-server-database-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating SQL Server Database Manually</h3>
+
+<p>The <code>ErrorControlSystem</code> project used from <strong>UsersManagements __ database. So that is necessary for run this application.
+For Creating __UsersManagements</strong> database on your server or pc do below steps:</p>
+
+<p>Note:</p>
+
+<blockquote>
+<pre><code>In the new version database and tables automatically created by ErrorControlSystem
+</code></pre>
+</blockquote>
+
+<p>First open <code>SQL Server Management Studio</code> then connect to your Server instance.
+Next step's, Create New Database by name <strong>UsersManagements</strong> or any name of your choice.</p>
+
+<p>Only be carefully, in order to launch the program, enter the database name. For example: </p>
+
+<div class="highlight highlight-C#"><pre>ExceptionHandler.Engine.Start(<span class="pl-k">new</span> Connection(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>User<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Pass<span class="pl-pds">"</span></span>));
+
+<span class="pl-c">// or simpler mode:</span>
+ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>User<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Pass<span class="pl-pds">"</span></span>);
+</pre></div>
+
+<p>Now, we need to create two table by names <strong>ErrorLog</strong> and <strong>Snapshots</strong> to save exceptions by screen captures.</p>
+
+<p><strong>ErrorLog Table:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Column Name</th>
+<th align="left">Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ErrorId</td>
+<td align="left"><code>bigint</code></td>
+</tr>
+<tr>
+<td align="left">DateTime</td>
+<td align="left"><code>datetime</code></td>
+</tr>
+<tr>
+<td align="left">Host</td>
+<td align="left"><code>varchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">User</td>
+<td align="left"><code>varchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">IsHandled</td>
+<td align="left"><code>bit</code></td>
+</tr>
+<tr>
+<td align="left">Type</td>
+<td align="left"><code>varchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">AppName</td>
+<td align="left"><code>varchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">Data</td>
+<td align="left"><code>xml</code></td>
+</tr>
+<tr>
+<td align="left">CurrentCulture</td>
+<td align="left"><code>nvarchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">CLRVersion</td>
+<td align="left"><code>varchar(100)</code></td>
+</tr>
+<tr>
+<td align="left">Message</td>
+<td align="left"><code>nvarchar(MAX)</code></td>
+</tr>
+<tr>
+<td align="left">Source</td>
+<td align="left"><code>nvarchar(MAX)</code></td>
+</tr>
+<tr>
+<td align="left">StackTrace</td>
+<td align="left"><code>nvarchar(MAX)</code></td>
+</tr>
+<tr>
+<td align="left">ModuleName</td>
+<td align="left"><code>varchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">MemberType</td>
+<td align="left"><code>varchar(200)</code></td>
+</tr>
+<tr>
+<td align="left">Method</td>
+<td align="left"><code>nvarchar(500)</code></td>
+</tr>
+<tr>
+<td align="left">Processes</td>
+<td align="left"><code>varchar(MAX)</code></td>
+</tr>
+<tr>
+<td align="left">ErrorDateTime</td>
+<td align="left"><code>datetime</code></td>
+</tr>
+<tr>
+<td align="left">OS</td>
+<td align="left"><code>varchar(1000)</code></td>
+</tr>
+<tr>
+<td align="left">IPv4Address</td>
+<td align="left"><code>varchar(50)</code></td>
+</tr>
+<tr>
+<td align="left">MACAddress</td>
+<td align="left"><code>varchar(50)</code></td>
+</tr>
+<tr>
+<td align="left">HResult</td>
+<td align="left"><code>int</code></td>
+</tr>
+<tr>
+<td align="left">Line</td>
+<td align="left"><code>int</code></td>
+</tr>
+<tr>
+<td align="left">Column</td>
+<td align="left"><code>int</code></td>
+</tr>
+<tr>
+<td align="left">DuplicateNo</td>
+<td align="left"><code>int</code></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Snapshots Table:</strong></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Column Name</th>
+<th align="left">Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ErrorLogId</td>
+<td align="left"><code>int</code></td>
+</tr>
+<tr>
+<td align="left">ScreenCapture</td>
+<td align="left"><code>image</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>For easy way please go ahead and try <a href="https://github.com/Behzadkhosravifar/ErrorControlSystem/wiki">Wiki</a> to use SQL Queries.
+There are <strong>SQL Scripts</strong> to create tables and queries.</p>
+
+<hr>
+
+<h3>
+<a id="get-it-on-nuget-------" class="anchor" href="#get-it-on-nuget-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get it on NuGet       <a href="https://www.nuget.org/packages/errorcontrolsystem/"><img src="http://img.shields.io/nuget/v/errorcontrolsystem.svg" alt="Nuget count"></a>
+</h3>
+
+<p>You may use ErrorControlSystem as a library that you install with <a href="https://www.nuget.org/packages/ErrorControlSystem/">Nuget</a> into your project or as a Visual Studio extension. 
+The way you want to use it depends on the scenario you are working on. You most likely want the <a href="https://www.nuget.org/packages/ErrorControlSystem/">Nuget</a> package.</p>
+
+<p>To install Error Control System from <a href="https://www.nuget.org/packages/ErrorControlSystem/">Nuget</a>, 
+run the following command in the <a href="http://docs.nuget.org/consume/package-manager-console">Package Manager Console</a></p>
+
+<div class="highlight highlight-powershell"><pre>PM<span class="pl-k">&gt;</span> <span class="pl-c1">Install-Package</span> ErrorControlSystem</pre></div>
+
+<hr>
+
+<h3>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h3>
+
+<p>Questions, comments, bug reports, and pull requests are all welcome.
+Bug reports that include steps-to-reproduce (including code) are
+preferred. Even better, make them in the form of pull requests.
+Before you start to work on an existing issue, check if it is not assigned
+to anyone yet, and if it is, talk to that person.
+Also check the project <a href="http://huboard.com/BehzadKhosravifar/ErrorControlSystem/board">board</a>
+and verify it is not being worked on (it will be tagged with the <code>Working</code> tag).
+If it is not being worked on, before you start check if the item is <code>Ready</code>.
+If the issue has the <code>Working</code> tag (working swimlane on Huboard) and has no Assignee
+then it is not being worked on by somebody on the core team. Check the issue's
+description to find out who it is (if it is not there it has to be on the comments).</p>
+
+<hr>
+
+<h3>
+<a id="issues-and-task-board-------" class="anchor" href="#issues-and-task-board-------" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues and task board       <a href="https://huboard.com/behzadkhosravifar/ErrorControlSystem"><img src="http://img.shields.io/github/issues-raw/behzadkhosravifar/ErrorControlSystem.svg" alt="Issues open"></a>
+</h3>
+
+<ul>
+<li>The task board is at <a href="http://huboard.com/BehzadKhosravifar/ErrorControlSystem/">Huboard</a>.</li>
+<li>You can also check the <a href="https://github.com/BehzadKhosravifar/ErrorControlSystem/issues">Github backlog</a> directly.</li>
+</ul>
+
+<hr>
+
+<h3>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
+
+<p>Please see our <a href="https://www.nuget.org/packages/ErrorControlSystem/ContactOwners">contact page</a>.</p>
+
+<p>Email: <a href="mailto:Behzad.Khosravifar@Gmail.com">Behzad.Khosravifar@gmail.com</a></p>
+
+<hr>
+
+<h3>
+<a id="license-information------" class="anchor" href="#license-information------" aria-hidden="true"><span class="octicon octicon-link"></span></a>LICENSE INFORMATION      <a href="http://opensource.org/licenses/GPL-3.0.html"><img src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png" alt="OSI-Approved-License-100x137.png"></a>
+</h3>
+
+<p>This software is open source, licensed under the GNU General Public License License, Version 3.0.
+See <a href="http://opensource.org/licenses/GPL-3.0.html">GPL-3.0</a> for details.
+This Class Library creates a way of handling structured exception handling,
+inheriting from the Exception class gives us access to many method
+we wouldn't otherwise have access to</p>
+
+<p>Copyright (C) 2014-2015 <a href="mailto:Behzad.Khosravifar@Gmail.com">Behzad Khosravifar</a></p>
+
+<p>This program published by the Free Software Foundation,
+either version 1.0.1 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+        </section>
+
+        <footer>
+          ErrorControlSystem is maintained by <a href="https://github.com/Behzadkhosravifar">Behzadkhosravifar</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  
+</body></html>

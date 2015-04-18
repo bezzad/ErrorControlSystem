@@ -90,6 +90,12 @@ namespace ErrorLogAnalyzer
 
                 SetDatabaseConnectionState(dbs != null);
 
+                if (dbs == null)
+                {
+                    MessageBox.Show("Not found any database for this server!");
+                    return;
+                }
+
                 // Add database names to combo box items
                 cmbDatabaseName.Items.AddRange(items: dbs);
             }

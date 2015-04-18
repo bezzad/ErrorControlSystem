@@ -58,21 +58,23 @@
             // 
             // grbConnectToServer
             // 
-            this.grbConnectToServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbConnectToServer.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grbConnectToServer.Controls.Add(this.splitContainer1);
             this.grbConnectToServer.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbConnectToServer.ForeColor = System.Drawing.Color.Gray;
-            this.grbConnectToServer.Location = new System.Drawing.Point(12, 12);
+            this.grbConnectToServer.Location = new System.Drawing.Point(15, 10);
+            this.grbConnectToServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grbConnectToServer.Name = "grbConnectToServer";
-            this.grbConnectToServer.Size = new System.Drawing.Size(670, 273);
+            this.grbConnectToServer.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grbConnectToServer.Size = new System.Drawing.Size(501, 222);
             this.grbConnectToServer.TabIndex = 0;
             this.grbConnectToServer.TabStop = false;
             this.grbConnectToServer.Text = "Connect to Server";
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(3, 30);
+            this.splitContainer1.Location = new System.Drawing.Point(2, 24);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -91,8 +93,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.cmbServerName);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(664, 240);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.Size = new System.Drawing.Size(498, 195);
+            this.splitContainer1.SplitterDistance = 135;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 1;
             // 
             // pictureBox1
@@ -100,8 +103,9 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::ErrorLogAnalyzer.Properties.Resources.MicrosoftSQLServerLogo;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 240);
+            this.pictureBox1.Size = new System.Drawing.Size(135, 195);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -109,9 +113,10 @@
             // picDbState
             // 
             this.picDbState.Image = global::ErrorLogAnalyzer.Properties.Resources.Disable;
-            this.picDbState.Location = new System.Drawing.Point(412, 142);
+            this.picDbState.Location = new System.Drawing.Point(309, 115);
+            this.picDbState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.picDbState.Name = "picDbState";
-            this.picDbState.Size = new System.Drawing.Size(50, 50);
+            this.picDbState.Size = new System.Drawing.Size(38, 41);
             this.picDbState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picDbState.TabIndex = 5;
             this.picDbState.TabStop = false;
@@ -126,9 +131,10 @@
             this.txtConnName.EnterToTab = false;
             this.txtConnName.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtConnName.ForeColor = System.Drawing.Color.Gray;
-            this.txtConnName.Location = new System.Drawing.Point(20, 198);
+            this.txtConnName.Location = new System.Drawing.Point(15, 161);
+            this.txtConnName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtConnName.Name = "txtConnName";
-            this.txtConnName.Size = new System.Drawing.Size(442, 29);
+            this.txtConnName.Size = new System.Drawing.Size(332, 24);
             this.txtConnName.TabIndex = 4;
             this.txtConnName.Text = "Connection Name";
             this.txtConnName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -145,9 +151,10 @@
             this.txtPassword.EnterToTab = false;
             this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtPassword.ForeColor = System.Drawing.Color.Gray;
-            this.txtPassword.Location = new System.Drawing.Point(20, 98);
+            this.txtPassword.Location = new System.Drawing.Point(15, 80);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(279, 29);
+            this.txtPassword.Size = new System.Drawing.Size(210, 24);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.Text = "Password";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -165,9 +172,10 @@
             this.txtPort.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtPort.ForeColor = System.Drawing.Color.Gray;
             this.txtPort.IsNumerical = true;
-            this.txtPort.Location = new System.Drawing.Point(305, 63);
+            this.txtPort.Location = new System.Drawing.Point(229, 51);
+            this.txtPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(157, 29);
+            this.txtPort.Size = new System.Drawing.Size(119, 24);
             this.txtPort.TabIndex = 4;
             this.txtPort.Text = "Port = 1433";
             this.txtPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -185,9 +193,10 @@
             this.txtTimeout.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtTimeout.ForeColor = System.Drawing.Color.Gray;
             this.txtTimeout.IsNumerical = true;
-            this.txtTimeout.Location = new System.Drawing.Point(305, 98);
+            this.txtTimeout.Location = new System.Drawing.Point(229, 80);
+            this.txtTimeout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTimeout.Name = "txtTimeout";
-            this.txtTimeout.Size = new System.Drawing.Size(157, 29);
+            this.txtTimeout.Size = new System.Drawing.Size(119, 24);
             this.txtTimeout.TabIndex = 4;
             this.txtTimeout.Text = "Timeout = 30";
             this.txtTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -204,9 +213,10 @@
             this.txtUsername.EnterToTab = false;
             this.txtUsername.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtUsername.ForeColor = System.Drawing.Color.Gray;
-            this.txtUsername.Location = new System.Drawing.Point(20, 63);
+            this.txtUsername.Location = new System.Drawing.Point(15, 51);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(279, 29);
+            this.txtUsername.Size = new System.Drawing.Size(210, 24);
             this.txtUsername.TabIndex = 3;
             this.txtUsername.Text = "Username";
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -220,9 +230,10 @@
             this.cmbDatabaseName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cmbDatabaseName.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.cmbDatabaseName.FormattingEnabled = true;
-            this.cmbDatabaseName.Location = new System.Drawing.Point(161, 154);
+            this.cmbDatabaseName.Location = new System.Drawing.Point(121, 125);
+            this.cmbDatabaseName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbDatabaseName.Name = "cmbDatabaseName";
-            this.cmbDatabaseName.Size = new System.Drawing.Size(245, 28);
+            this.cmbDatabaseName.Size = new System.Drawing.Size(185, 25);
             this.cmbDatabaseName.TabIndex = 2;
             // 
             // cmbServerName
@@ -232,9 +243,10 @@
             this.cmbServerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.cmbServerName.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.cmbServerName.FormattingEnabled = true;
-            this.cmbServerName.Location = new System.Drawing.Point(132, 20);
+            this.cmbServerName.Location = new System.Drawing.Point(99, 16);
+            this.cmbServerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbServerName.Name = "cmbServerName";
-            this.cmbServerName.Size = new System.Drawing.Size(330, 28);
+            this.cmbServerName.Size = new System.Drawing.Size(248, 25);
             this.cmbServerName.TabIndex = 2;
             this.cmbServerName.DropDown += new System.EventHandler(this.cmbServerName_DropDown);
             this.cmbServerName.TextChanged += new System.EventHandler(this.cmbServerName_TextChanged);
@@ -244,9 +256,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(16, 157);
+            this.label2.Location = new System.Drawing.Point(12, 128);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 21);
+            this.label2.Size = new System.Drawing.Size(112, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Database Name:";
             // 
@@ -255,22 +268,24 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(16, 23);
+            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 21);
+            this.label1.Size = new System.Drawing.Size(93, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Server Name:";
             // 
             // grbConnStr
             // 
-            this.grbConnStr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbConnStr.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.grbConnStr.Controls.Add(this.txtConnectionString);
             this.grbConnStr.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbConnStr.ForeColor = System.Drawing.Color.Gray;
-            this.grbConnStr.Location = new System.Drawing.Point(12, 291);
+            this.grbConnStr.Location = new System.Drawing.Point(15, 236);
+            this.grbConnStr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.grbConnStr.Name = "grbConnStr";
-            this.grbConnStr.Size = new System.Drawing.Size(670, 119);
+            this.grbConnStr.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grbConnStr.Size = new System.Drawing.Size(501, 97);
             this.grbConnStr.TabIndex = 0;
             this.grbConnStr.TabStop = false;
             this.grbConnStr.Text = "Connection String";
@@ -285,10 +300,11 @@
             this.txtConnectionString.EnterToTab = false;
             this.txtConnectionString.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtConnectionString.ForeColor = System.Drawing.Color.Gray;
-            this.txtConnectionString.Location = new System.Drawing.Point(23, 33);
+            this.txtConnectionString.Location = new System.Drawing.Point(17, 27);
+            this.txtConnectionString.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtConnectionString.Multiline = true;
             this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(626, 69);
+            this.txtConnectionString.Size = new System.Drawing.Size(469, 57);
             this.txtConnectionString.TabIndex = 5;
             this.txtConnectionString.Text = "\r\nConnection String";
             this.txtConnectionString.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -299,9 +315,10 @@
             // 
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnSave.Location = new System.Drawing.Point(167, 432);
+            this.btnSave.Location = new System.Drawing.Point(155, 351);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(200, 43);
+            this.btnSave.Size = new System.Drawing.Size(150, 35);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save Connection";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -312,9 +329,10 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnCancel.Location = new System.Drawing.Point(15, 432);
+            this.btnCancel.Location = new System.Drawing.Point(17, 351);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(146, 43);
+            this.btnCancel.Size = new System.Drawing.Size(110, 35);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -323,17 +341,20 @@
             // DatabaseConfigurationForm
             // 
             this.AcceptButton = this.btnSave;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(686, 492);
+            this.ClientSize = new System.Drawing.Size(530, 401);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grbConnStr);
             this.Controls.Add(this.grbConnectToServer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(546, 440);
+            this.MinimizeBox = false;
             this.Name = "DatabaseConfigurationForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

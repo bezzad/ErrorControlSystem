@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using ErrorControlSystem.Shared;
 
@@ -13,8 +14,11 @@ namespace ErrorLogAnalyzer
 
         public void CreateColumns()
         {
-            if (System.Diagnostics.Debugger.IsAttached && !this.DesignMode)
-                DataGridViewHelper<IError, ProxyError>.CreateColumns(this);
+            if (System.ComponentModel.LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
+                this.DesignMode ||
+                System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv") return;
+
+            DataGridViewHelper<IError, ProxyError>.CreateColumns(this);
         }
 
         public void AddRow(ProxyError row)

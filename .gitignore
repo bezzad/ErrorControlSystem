@@ -15,9 +15,11 @@ build/
 [Bb]in/
 [Oo]bj/
 [Oo]ut/
+[Nn]uGetPackages/
 
-# Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
-# !packages/*/build/
+
+# Disable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
+[Pp]ackages/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

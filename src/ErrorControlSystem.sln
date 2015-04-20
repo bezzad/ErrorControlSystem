@@ -76,7 +76,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{8BF9E817-369A-430A-8507-40DA063C7C46}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Readme\images\body-bg.png = Documentation\Readme\images\body-bg.png
-		..\Images\Error Control System.png = ..\Images\Error Control System.png
+		Documentation\Readme\images\Error Control System.png = Documentation\Readme\images\Error Control System.png
 		Documentation\Readme\images\highlight-bg.jpg = Documentation\Readme\images\highlight-bg.jpg
 		Documentation\Readme\images\hr.png = Documentation\Readme\images\hr.png
 		Documentation\Readme\images\octocat-icon.png = Documentation\Readme\images\octocat-icon.png

@@ -8,7 +8,7 @@
 
 Check the official [project site](http://behzadkhosravifar.github.io/ErrorControlSystem/). There you will find information on how to contribute, our task board, definition of done, definition of ready, etc.
 
-[![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png)](https://www.nuget.org/packages/ErrorControlSystem)
+[![Error Control System.png](https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/src/Documentation/Readme/images/Error%20Control%20System.png)](https://www.nuget.org/packages/ErrorControlSystem)
 
 
 ---------------------

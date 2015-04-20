@@ -4,9 +4,9 @@
     <id>ErrorControlSystem</id>
     <title>Error Control System</title>
     <iconUrl>
-      https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/Images/Error%20Control%20System.png
+      https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/src/Documentation/Readme/images/Error%20Control%20System.png
     </iconUrl>
-    <version>4.1.3</version>
+    <version>4.1.4</version>
     <description>
       ErrorControlSystem is a .NET library created to automate handling .NET Windows-Base application exceptions and raise that to a sql server. This exception handler have some features as screen capturing, fetch server date time in exception occurrence time and etc.
     </description>
@@ -51,19 +51,16 @@
     <file src="..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.xml" target="lib\net45" />
     <file src="..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.pdb" target="lib\net45" />
 
-    <file src="..\..\out\ErrorLogAnalyzer\ErrorControlSystem.dll" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\out\ErrorLogAnalyzer\ErrorLogAnalyzer.exe" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ImageBox.dll" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ProcessBar.dll" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\out\ErrorLogAnalyzer\Windows.WpfAnimatedWaitSplash.dll" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\src\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll" target="NativeBinaries\ErrorLogAnalyzer" />
-    <file src="..\..\src\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll" target="NativeBinaries\ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\ErrorControlSystem.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\ErrorLogAnalyzer.exe" target="ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ImageBox.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ProcessBar.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\Windows.WpfAnimatedWaitSplash.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\src\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\src\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll" target="ErrorLogAnalyzer" />
 
-    <file src="..\..\src\Documentation\Readme\Readme.html" target="Readme" />
-    <file src="..\..\src\Documentation\Readme\stylesheets\print.css" target="Readme\stylesheets" />
-    <file src="..\..\src\Documentation\Readme\stylesheets\pygment_trac.css" target="Readme\stylesheets" />
-    <file src="..\..\src\Documentation\Readme\stylesheets\stylesheet.css" target="Readme\stylesheets" />
-    <file src="..\..\src\Documentation\Readme\images\*.*" target="Readme\images" />
+    <file src="..\..\LICENSE.md" target="" />
+    <file src="..\..\Readme.md" target="" />
   </files>
 </package>

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html><head>
-    <meta charset="utf-8">
+<html>
+  <head>
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href="https://fonts.googleapis.com/css?family=Chivo:900" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
@@ -75,7 +76,8 @@ user codes, enter the following command to invoke and run the module.</p>
 
 <p>This is initialize codes of the module in <code>C# language</code> windows applications:</p>
 
-<div class="highlight highlight-C#"><pre><span class="pl-k">using</span> System;
+<div class="highlight highlight-C#"><pre>
+<span class="pl-k">using</span> System;
 <span class="pl-k">using</span> System.Windows.Forms;
 <span class="pl-k">using</span> ErrorControlSystem;
 <span class="pl-k">using</span> ErrorControlSystem.Shared;
@@ -162,7 +164,8 @@ then click on <strong>Show All Files</strong> and go on this path:</p>
 
 <p>Add Startup events at this file, same below codes:</p>
 
-<div class="highlight highlight-VB"><pre><span class="pl-k">Partial</span> <span class="pl-k">Friend</span> <span class="pl-k">Class</span> <span class="pl-en">MyApplication</span>
+<div class="highlight highlight-VB"><pre>
+<span class="pl-k">Partial</span> <span class="pl-k">Friend</span> <span class="pl-k">Class</span> <span class="pl-en">MyApplication</span>
 
         <span class="pl-k">&lt;</span><span class="pl-c1">Global</span><span class="pl-k">.</span>System<span class="pl-k">.</span>Diagnostics<span class="pl-k">.</span>DebuggerStepThroughAttribute()<span class="pl-k">&gt;</span>  <span class="pl-k">_</span>
         <span class="pl-k">Public</span> <span class="pl-c1">Sub</span> <span class="pl-en">New</span>()
@@ -285,7 +288,8 @@ Next step's, Create New Database by name <strong>UsersManagements</strong> or an
 
 <p>Only be carefully, in order to launch the program, enter the database name. For example: </p>
 
-<div class="highlight highlight-C#"><pre>ExceptionHandler.Engine.Start(<span class="pl-k">new</span> Connection(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>User<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Pass<span class="pl-pds">"</span></span>));
+<div class="highlight highlight-C#"><pre>
+ExceptionHandler.Engine.Start(<span class="pl-k">new</span> Connection(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>User<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Pass<span class="pl-pds">"</span></span>));
 
 <span class="pl-c">// or simpler mode:</span>
 ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>Server<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Database<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>User<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Pass<span class="pl-pds">"</span></span>);
@@ -511,5 +515,5 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
         
       </div>
     </div>
-  
-</body></html>
+  </body>
+</html>

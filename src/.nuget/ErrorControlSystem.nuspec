@@ -64,5 +64,6 @@
     <file src="..\..\src\Documentation\Readme\stylesheets\print.css" target="Readme\stylesheets" />
     <file src="..\..\src\Documentation\Readme\stylesheets\pygment_trac.css" target="Readme\stylesheets" />
     <file src="..\..\src\Documentation\Readme\stylesheets\stylesheet.css" target="Readme\stylesheets" />
+    <file src="..\..\src\Documentation\Readme\images\*.*" target="Readme\images" />
   </files>
 </package>

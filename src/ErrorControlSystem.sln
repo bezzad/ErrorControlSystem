@@ -62,6 +62,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.DVTextBox", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{069BB589-EE17-4059-BC50-264B26D88A92}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\Readme\params.json = Documentation\Readme\params.json
 		Documentation\Readme\Readme.html = Documentation\Readme\Readme.html
 	EndProjectSection
 EndProject
@@ -70,6 +71,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stylesheets", "stylesheets"
 		Documentation\Readme\stylesheets\print.css = Documentation\Readme\stylesheets\print.css
 		Documentation\Readme\stylesheets\pygment_trac.css = Documentation\Readme\stylesheets\pygment_trac.css
 		Documentation\Readme\stylesheets\stylesheet.css = Documentation\Readme\stylesheets\stylesheet.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{8BF9E817-369A-430A-8507-40DA063C7C46}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Readme\images\body-bg.png = Documentation\Readme\images\body-bg.png
+		..\Images\Error Control System.png = ..\Images\Error Control System.png
+		Documentation\Readme\images\highlight-bg.jpg = Documentation\Readme\images\highlight-bg.jpg
+		Documentation\Readme\images\hr.png = Documentation\Readme\images\hr.png
+		Documentation\Readme\images\octocat-icon.png = Documentation\Readme\images\octocat-icon.png
+		Documentation\Readme\images\tar-gz-icon.png = Documentation\Readme\images\tar-gz-icon.png
+		Documentation\Readme\images\zip-icon.png = Documentation\Readme\images\zip-icon.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "javascripts", "javascripts", "{3007C52F-2F18-4721-8A74-F23214694FDB}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Readme\javascripts\main.js = Documentation\Readme\javascripts\main.js
 	EndProjectSection
 EndProject
 Global
@@ -156,5 +173,7 @@ Global
 		{0F0269F4-7411-43E3-9686-012A53F41DA2} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}
 		{1B36CEC8-3613-4EEC-AE41-32492EA3564C} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}
 		{93D32EC6-1272-41A0-B6E6-F5DC21332947} = {069BB589-EE17-4059-BC50-264B26D88A92}
+		{8BF9E817-369A-430A-8507-40DA063C7C46} = {069BB589-EE17-4059-BC50-264B26D88A92}
+		{3007C52F-2F18-4721-8A74-F23214694FDB} = {069BB589-EE17-4059-BC50-264B26D88A92}
 	EndGlobalSection
 EndGlobal

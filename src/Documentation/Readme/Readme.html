@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset='utf-8'>
@@ -203,9 +203,7 @@ This option is used to specify the error data, which includes the following valu
 
 <ul>
 <li>None</li>
-<li>All</li>
-<li><p>Default = All - (ExitApplicationImmediately, HandleProcessCorruptedStateExceptions)</p></li>
-<li><p>DisplayUnhandledExceptions</p></li>
+<li>DisplayUnhandledExceptions</li>
 <li>ReportHandledExceptions</li>
 <li>Snapshot</li>
 <li>FetchServerDateTime</li>
@@ -215,6 +213,8 @@ This option is used to specify the error data, which includes the following valu
 <li>ExitApplicationImmediately</li>
 <li>HandleProcessCorruptedStateExceptions</li>
 <li>DisplayDeveloperUI</li>
+<li>All</li>
+<li>Default = All - (ExitApplicationImmediately, HandleProcessCorruptedStateExceptions)</li>
 </ul>
 
 <p>For example in above codes, this code means is:</p>
@@ -304,108 +304,160 @@ ExceptionHandler.Engine.Start(<span class="pl-s"><span class="pl-pds">"</span>Se
 <tr>
 <th align="left">Column Name</th>
 <th align="left">Data Type</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left">ErrorId</td>
 <td align="left"><code>bigint</code></td>
+<td align="left">The unique identity number for exceptions by that location.</td>
+<td align="left">51</td>
 </tr>
 <tr>
-<td align="left">DateTime</td>
+<td align="left">ServerDateTime</td>
 <td align="left"><code>datetime</code></td>
+<td align="left">Server system's date and time when the error occurred.</td>
+<td align="left">2015-04-11 17:23:08.170</td>
 </tr>
 <tr>
 <td align="left">Host</td>
 <td align="left"><code>varchar(200)</code></td>
+<td align="left">The client PC name.</td>
+<td align="left">KHOSRAVIFAR-B</td>
 </tr>
 <tr>
 <td align="left">User</td>
 <td align="left"><code>varchar(200)</code></td>
+<td align="left">User Domain Name \ User name in operation system</td>
+<td align="left">DBI\khosravifar.b</td>
 </tr>
 <tr>
 <td align="left">IsHandled</td>
 <td align="left"><code>bit</code></td>
+<td align="left">Determine this error whether handled or not ?</td>
+<td align="left">True</td>
 </tr>
 <tr>
 <td align="left">Type</td>
 <td align="left"><code>varchar(200)</code></td>
+<td align="left">Type of specify exceptions.</td>
+<td align="left">NullReferenceException</td>
 </tr>
 <tr>
 <td align="left">AppName</td>
 <td align="left"><code>varchar(200)</code></td>
+<td align="left">The application name, who that run this module on self.</td>
+<td align="left">Examples.WinForms v1.0.0</td>
 </tr>
 <tr>
 <td align="left">Data</td>
 <td align="left"><code>xml</code></td>
+<td align="left">Provide additional user-defined information.</td>
+<td align="left">RequestCanceled</td>
 </tr>
 <tr>
 <td align="left">CurrentCulture</td>
 <td align="left"><code>nvarchar(200)</code></td>
+<td align="left">Current keyboard language, may change over the app lifetime.</td>
+<td align="left">English (United States) (en-US)</td>
 </tr>
 <tr>
 <td align="left">CLRVersion</td>
 <td align="left"><code>varchar(100)</code></td>
+<td align="left">Version of Common Language Runtime.</td>
+<td align="left">4.0.30319.34014</td>
 </tr>
 <tr>
 <td align="left">Message</td>
 <td align="left"><code>nvarchar(MAX)</code></td>
+<td align="left">Message of Exceptions.</td>
+<td align="left">Object reference not set to an instance of an object.</td>
 </tr>
 <tr>
 <td align="left">Source</td>
 <td align="left"><code>nvarchar(MAX)</code></td>
+<td align="left">Name of the application or the object that causes throw error.</td>
+<td align="left">mscorlib</td>
 </tr>
 <tr>
 <td align="left">StackTrace</td>
 <td align="left"><code>nvarchar(MAX)</code></td>
+<td align="left">Representation of the immediate frames on the call stack.</td>
+<td align="left">N{namespace}.C{class}.M{method(parameters)} -&gt; ...</td>
 </tr>
 <tr>
 <td align="left">ModuleName</td>
 <td align="left"><code>varchar(200)</code></td>
+<td align="left">Name of the module that causes to throw exception.</td>
+<td align="left">Examples.WinForms.exe</td>
 </tr>
 <tr>
 <td align="left">MemberType</td>
 <td align="left"><code>varchar(200)</code></td>
+<td align="left">Type of the member, include: Method, constructor, and so on.</td>
+<td align="left">Method</td>
 </tr>
 <tr>
 <td align="left">Method</td>
 <td align="left"><code>nvarchar(500)</code></td>
+<td align="left">Name of the method that throws the exception.</td>
+<td align="left">Examples.WinForms.namespace.class.Void method(params)</td>
 </tr>
 <tr>
 <td align="left">Processes</td>
 <td align="left"><code>varchar(MAX)</code></td>
+<td align="left">List of all running process when exception occurred.</td>
+<td align="left">vmware-hostd, Idle, ...</td>
 </tr>
 <tr>
 <td align="left">ErrorDateTime</td>
 <td align="left"><code>datetime</code></td>
+<td align="left">Client system's date and time when the error occurred.</td>
+<td align="left">2015-04-11 17:23:07.800</td>
 </tr>
 <tr>
 <td align="left">OS</td>
 <td align="left"><code>varchar(1000)</code></td>
+<td align="left">Information of the client operation system in <code>JSON</code> formats</td>
+<td align="left">Windows 8.1 64Bit v6.3.9600.0 - 64Bit Processor Architect - 32Bit Application</td>
 </tr>
 <tr>
 <td align="left">IPv4Address</td>
 <td align="left"><code>varchar(50)</code></td>
+<td align="left">Network Internal IP Address</td>
+<td align="left">192.168.30.40</td>
 </tr>
 <tr>
 <td align="left">MACAddress</td>
 <td align="left"><code>varchar(50)</code></td>
+<td align="left">Network Physical Address (MAC)</td>
+<td align="left">74D435F250A0</td>
 </tr>
 <tr>
 <td align="left">HResult</td>
 <td align="left"><code>int</code></td>
+<td align="left">Error Code - Use GetType().Name for define exception model.</td>
+<td align="left">-2147467261</td>
 </tr>
 <tr>
 <td align="left">Line</td>
 <td align="left"><code>int</code></td>
+<td align="left">Line of exception occurrence code in file.</td>
+<td align="left">125</td>
 </tr>
 <tr>
 <td align="left">Column</td>
 <td align="left"><code>int</code></td>
+<td align="left">Column of exception occurrence code in file.</td>
+<td align="left">17</td>
 </tr>
 <tr>
 <td align="left">DuplicateNo</td>
 <td align="left"><code>int</code></td>
+<td align="left">Number of duplication for one exception's.</td>
+<td align="left">5</td>
 </tr>
 </tbody>
 </table>

@@ -79,12 +79,10 @@ namespace ErrorControlSystem
         /// <param name="exp">The Error object.</param>
         /// <param name="isHandled">Is handled exception or unhandled ?</param>
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
-        /// <returns></returns>
+        /// <returns><see cref="ProcessFlow"/></returns>
         [SecurityCritical]
-        public static Error RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "UnHandled Exception")
+        public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "UnHandled Exception")
         {
-            try
-            {
                 //
                 // If number of errors exist in cache more than MaxQueuedError then skip new errors
                 if (SqlCompactEditionManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
@@ -92,11 +90,11 @@ namespace ErrorControlSystem
                     if (!ErrorHandlingOption.AtSentState && ErrorHandlingOption.EnableNetworkSending)
                         Task.Run(async () => await CacheController.CheckStateAsync());
 
-                    return null;
+                    return getProcessFlow(isHandled);
                 }
 
                 if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
-                    return null;
+                    return ProcessFlow.Continue;
 
                 //
                 // In Corrupted State one method more than normal modes.
@@ -128,16 +126,16 @@ namespace ErrorControlSystem
                     // Is exception in exempted list?
                     if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
                         Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
-                        return null;
+                        return getProcessFlow(isHandled);
                     //
                     // Must be exception occurred from these code scopes to that raised by handler.
                     if (Filter.JustRaiseErrorCodeScopes.Count > 0 &&
                         !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
-                        return null;
+                        return getProcessFlow(isHandled);
                 }
 
                 if (ErrorHandlingOption.CacheCodeScope.IsCallFromThisPlace(callStackFrames))
-                    return null;
+                    return getProcessFlow(isHandled);
 
                 #endregion ------------------------------------------------------------------------------------
 
@@ -165,13 +163,16 @@ namespace ErrorControlSystem
 
                 CacheController.CacheTheError(error);
 
-                return error;
-            }
-            finally
-            {
-                if (!isHandled && ErrorHandlingOption.ExitApplicationImmediately)
-                    Environment.Exit(0);
-            }
+                return getProcessFlow(isHandled);
+            
+        }
+
+
+        private static ProcessFlow getProcessFlow(bool isHandled)
+        {
+            return (!isHandled && ErrorHandlingOption.ExitApplicationImmediately)
+                    ? ProcessFlow.Exit
+                    : ProcessFlow.Continue;
         }
 
         #endregion

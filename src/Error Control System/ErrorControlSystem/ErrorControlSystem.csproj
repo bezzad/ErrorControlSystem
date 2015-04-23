@@ -97,6 +97,7 @@
     <Compile Include="Shared\NetworkHelper.cs" />
     <Compile Include="Shared\OperationSystem.cs" />
     <Compile Include="Shared\OperationSystemInfo.cs" />
+    <Compile Include="Shared\ProcessFlow.cs" />
     <Compile Include="Shared\ProxyError.cs" />
     <Compile Include="Shared\ScreenCapture.cs" />
     <Compile Include="CacheErrors\StoragePath.cs" />

@@ -20,6 +20,8 @@
 //**********************************************************************************//
 
 
+using ErrorControlSystem.Shared;
+
 namespace ErrorControlSystem
 {
     using System;
@@ -105,7 +107,7 @@ namespace ErrorControlSystem
 
                     if (publicSetting != 0)
                         ErrorHandlingOption.SetSetting(publicSetting);
-                    
+
                     await CacheController.CheckStateAsync();
                 }
             }
@@ -269,7 +271,10 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="UnobservedTaskExceptionEventArgs"/> instance containing the event data.</param>
             private static void UnobservedTaskExceptionHandler(object sender, UnobservedTaskExceptionEventArgs e)
             {
-                e.Exception.RaiseLog(false, "Unobserved Task Exception");
+                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unobserved Task Exception"))
+                {
+                    Environment.Exit(0);
+                }
             }
 
             /// <summary>
@@ -281,7 +286,10 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="ThreadExceptionEventArgs"/> instance containing the event data.</param>
             private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
             {
-                e.Exception.RaiseLog(false, "Unhandled Thread Exception");
+                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unhandled Thread Exception"))
+                {
+                    Environment.Exit(0);
+                }
             }
 
             /// <summary>
@@ -297,7 +305,10 @@ namespace ErrorControlSystem
             {
                 ErrorHandlingOption.ExitApplicationImmediately = true;
 
-                (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception");
+                if (ProcessFlow.Exit == (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception"))
+                {
+                    Environment.Exit(0);
+                }
             }
 
             /// <summary>
@@ -311,7 +322,10 @@ namespace ErrorControlSystem
                 // Prevent default unhandled exception processing
                 e.Handled = true;
 
-                e.Exception.RaiseLog(false, "Unhandled Thread Exception");
+                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unhandled Thread Exception"))
+                {
+                    Environment.Exit(0);
+                }
             }
 
             #endregion

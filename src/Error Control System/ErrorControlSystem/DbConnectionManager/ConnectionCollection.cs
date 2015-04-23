@@ -54,6 +54,8 @@ namespace ErrorControlSystem.DbConnectionManager
         /// <returns>If the connection name is exist then return Connection, either not exist return null</returns>
         public Connection Find(string connectionName)
         {
+            if (string.IsNullOrEmpty(connectionName)) return null;
+
             return Items.ContainsKey(connectionName.ToUpper()) ? Items[connectionName.ToUpper()] : null;
         }
 

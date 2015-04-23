@@ -53,7 +53,7 @@ namespace ErrorControlSystem.CacheErrors
         /// </summary>
         public static async Task CheckStateAsync()
         {
-            if (ConnectionManager.GetDefaultConnection().IsReady && ErrorHandlingOption.EnableNetworkSending)
+            if (ErrorHandlingOption.EnableNetworkSending && ConnectionManager.GetDefaultConnection().IsReady)
             {
                 // if errors caching data was larger than limited size then send it to server 
                 // and if successful sent then clear them...

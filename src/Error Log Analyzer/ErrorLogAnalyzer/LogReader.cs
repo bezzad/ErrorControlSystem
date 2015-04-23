@@ -108,7 +108,7 @@ namespace ErrorLogAnalyzer
             {
                 var conn = ConnectionManager.GetDefaultConnection();
 
-                if (!conn.IsReady)
+                if (ConnectionManager.GetDefaultConnection() == null || !conn.IsReady)
                 {
                     lblRecordsNum.Text = "Database Connection Corrupted";
                     return;

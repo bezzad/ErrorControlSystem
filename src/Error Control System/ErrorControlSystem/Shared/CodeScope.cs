@@ -301,34 +301,47 @@ namespace ErrorControlSystem.Shared
         ///       string.
         ///    </para>
         /// </devdoc>
-        /// <param name="justLineColumn">Return just Line and Column value ?</param>
-        public string ToString(bool justLineColumn)
+        /// <param name="format">Return value by specified <see cref="CodeScopeStringFormat"/> format</param>
+        public string ToString(CodeScopeStringFormat format = CodeScopeStringFormat.Full)
         {
-            return justLineColumn
-                ? "{Line:" + Line.ToString(CultureInfo.CurrentCulture) + ",Column:" +
-                        Column.ToString(CultureInfo.CurrentCulture) + "}"
-                : ToString();
-        }
+            string value = "";
 
-        /// <devdoc>
-        ///    <para>
-        ///       Converts this <see cref='CodeScope'/>
-        ///       to a human readable
-        ///       string.
-        ///    </para>
-        /// </devdoc>
-        public override string ToString()
-        {
-            return string.Format("{2}{3}{4}{5}{0}Line:{6},Column:{7}{1}",
-                "{",
-                "}",
-                string.IsNullOrEmpty(Namespace) ? "" : "N{" + Namespace + "}.",
-                string.IsNullOrEmpty(Class) ? "" : "C{" + Class + "}.",
-                string.IsNullOrEmpty(Method) ? "" : "M{" + Method + "} ",
-                string.IsNullOrEmpty(FilePath) ? "" : "@{" + FilePath + "}:",
-                Line,
-                Column
-                );
+            switch (format)
+            {
+                case CodeScopeStringFormat.Full:
+                    {
+                        value = string.Format("{2}{3}{4}{5}{0}Line:{6},Column:{7}{1}",
+                                                "{", "}",
+                                                string.IsNullOrEmpty(Namespace) ? "" : "N{" + Namespace + "}.",
+                                                string.IsNullOrEmpty(Class) ? "" : "C{" + Class + "}.",
+                                                string.IsNullOrEmpty(Method) ? "" : "M{" + Method + "} ",
+                                                string.IsNullOrEmpty(FilePath) ? "" : "@{" + FilePath + "}:",
+                                                Line,
+                                                Column
+                                                );
+                    }
+                    break;
+
+                case CodeScopeStringFormat.Normal:
+                    {
+                        value = string.Format("{0}{1}{2}",
+                            string.IsNullOrEmpty(Namespace) ? "" : Namespace + ".",
+                            string.IsNullOrEmpty(Class) ? "" : Class + ".",
+                            string.IsNullOrEmpty(Method) ? "" : Method);
+                    }
+                    break;
+
+                case CodeScopeStringFormat.JustLineColumn:
+                    {
+                        value = string.Format(@"{0}Line:{2},Column:{3}{1}",
+                            "{", "}",
+                            Line.ToString(CultureInfo.CurrentCulture),
+                                Column.ToString(CultureInfo.CurrentCulture));
+                    }
+                    break;
+            }
+
+            return value;
         }
 
         #endregion
@@ -594,5 +607,13 @@ namespace ErrorControlSystem.Shared
 
         #endregion
 
+    }
+
+
+    public enum CodeScopeStringFormat
+    {
+        Full,
+        Normal,
+        JustLineColumn
     }
 }

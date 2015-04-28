@@ -102,7 +102,7 @@ namespace ErrorControlSystem.Shared
 
             #region Message
 
-            Message = exp.Message;
+            Message = exp.InnerException != null ? exp.InnerException.Message : exp.Message;
 
             #endregion
 

@@ -83,88 +83,88 @@ namespace ErrorControlSystem
         [SecurityCritical]
         public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "UnHandled Exception")
         {
-                //
-                // If number of errors exist in cache more than MaxQueuedError then skip new errors
-                if (SqlCompactEditionManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
-                {
-                    if (!ErrorHandlingOption.AtSentState && ErrorHandlingOption.EnableNetworkSending)
-                        Task.Run(async () => await CacheController.CheckStateAsync());
-
-                    return getProcessFlow(isHandled);
-                }
-
-                if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
-                    return ProcessFlow.Continue;
-
-                //
-                // In Corrupted State one method more than normal modes.
-                var skipCount = ErrorHandlingOption.HandleProcessCorruptedStateExceptions ? 3 : 2;
-
-                //
-                // Create call stack till this method
-                // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
-                // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
-                // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
-                var callStackFrames = !isHandled && exp.StackTrace != null // 3#
-                    ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
-                    : new StackTrace(skipCount, true).GetFrames(); // 1# or 2#: Raise from FirstChance
-
-                bool snapshot = ErrorHandlingOption.Snapshot;
-
-                #region ---------------------------- Filter exception ---------------------------------------
-
-                if (ErrorHandlingOption.FilterExceptions)
-                {
-                    //
-                    // Find exception type:
-                    var expType = exp.GetType();
-                    //
-                    // Is exception within non-snapshot list? (yes => remove snapshot option)
-                    if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
-                        snapshot = false;
-                    //
-                    // Is exception in exempted list?
-                    if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
-                        Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
-                        return getProcessFlow(isHandled);
-                    //
-                    // Must be exception occurred from these code scopes to that raised by handler.
-                    if (Filter.JustRaiseErrorCodeScopes.Count > 0 &&
-                        !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
-                        return getProcessFlow(isHandled);
-                }
-
-                if (ErrorHandlingOption.CacheCodeScope.IsCallFromThisPlace(callStackFrames))
-                    return getProcessFlow(isHandled);
-
-                #endregion ------------------------------------------------------------------------------------
-
-                //
-                // initial the error object by additional data 
-                var error = new Error(exp, callStackFrames, snapshot);
-
-                if (!isHandled) // Is Unhandled Exception ?
-                {
-                    error.IsHandled = false;
-                    //
-                    // Handle 'OnShowUnhandledError' events
-                    OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
-
-                    //
-                    // Alert Unhandled Error 
-                    if (ErrorHandlingOption.DisplayUnhandledExceptions)
-                    {
-                        MessageBox.Show(exp.Message,
-                            errorTitle,
-                            MessageBoxButtons.OK, MessageBoxIcon.Error,
-                            MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                    }
-                }
-
-                CacheController.CacheTheError(error);
+            //
+            // If number of errors exist in cache more than MaxQueuedError then skip new errors
+            if (SqlCompactEditionManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
+            {
+                if (!ErrorHandlingOption.AtSentState && ErrorHandlingOption.EnableNetworkSending)
+                    Task.Run(async () => await CacheController.CheckStateAsync());
 
                 return getProcessFlow(isHandled);
-            
+            }
+
+            if (isHandled && !ErrorHandlingOption.ReportHandledExceptions)
+                return ProcessFlow.Continue;
+
+            //
+            // In Corrupted State one method more than normal modes.
+            var skipCount = ErrorHandlingOption.HandleProcessCorruptedStateExceptions ? 3 : 2;
+
+            //
+            // Create call stack till this method
+            // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
+            // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
+            // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
+            var callStackFrames = !isHandled && exp.StackTrace != null // 3#
+                ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
+                : new StackTrace(skipCount, true).GetFrames(); // 1# or 2#: Raise from FirstChance
+
+            bool snapshot = ErrorHandlingOption.Snapshot;
+
+            #region ---------------------------- Filter exception ---------------------------------------
+
+            if (ErrorHandlingOption.FilterExceptions)
+            {
+                //
+                // Find exception type:
+                var expType = exp.GetType();
+                //
+                // Is exception within non-snapshot list? (yes => remove snapshot option)
+                if (Filter.NonSnapshotExceptionTypes.Any(x => x == expType))
+                    snapshot = false;
+                //
+                // Is exception in exempted list?
+                if (Filter.ExemptedExceptionTypes.Any(x => x == expType) ||
+                    Filter.ExemptedCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                    return getProcessFlow(isHandled);
+                //
+                // Must be exception occurred from these code scopes to that raised by handler.
+                if (Filter.JustRaiseErrorCodeScopes.Count > 0 &&
+                    !Filter.JustRaiseErrorCodeScopes.Any(x => x.IsCallFromThisPlace(callStackFrames)))
+                    return getProcessFlow(isHandled);
+            }
+
+            if (ErrorHandlingOption.CacheCodeScope.IsCallFromThisPlace(callStackFrames))
+                return getProcessFlow(isHandled);
+
+            #endregion ------------------------------------------------------------------------------------
+
+            //
+            // initial the error object by additional data 
+            var error = new Error(exp, callStackFrames, snapshot);
+
+            if (!isHandled) // Is Unhandled Exception ?
+            {
+                error.IsHandled = false;
+                //
+                // Handle 'OnShowUnhandledError' events
+                OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
+
+                //
+                // Alert Unhandled Error 
+                if (ErrorHandlingOption.DisplayUnhandledExceptions)
+                {
+                    MessageBox.Show(error.Message,
+                        errorTitle,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
+                }
+            }
+
+            CacheController.CacheTheError(error);
+
+            return getProcessFlow(isHandled);
+
         }
 
 

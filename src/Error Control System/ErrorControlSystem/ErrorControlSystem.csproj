@@ -117,6 +117,9 @@
     <EmbeddedResource Include="ServerController\DatabaseCreatorQuery.sql" />
     <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shared\UI\Developer\ExceptionDiagramView\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

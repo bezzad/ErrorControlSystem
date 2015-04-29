@@ -381,8 +381,14 @@ namespace ErrorControlSystem.Shared
         /// </devdoc>
         public static bool operator ==(CodeScope left, CodeScope right)
         {
-            return left.Line == right.Line && left.Column == right.Column &&
-                   left.Namespace == right.Namespace && left.Class == right.Class && left.Method == right.Method;
+            if (ReferenceEquals(right, null) || ReferenceEquals(left, null))
+                return ReferenceEquals(right, left);
+            
+            return 
+                left.Line == right.Line && left.Column == right.Column &&
+                left.Namespace == right.Namespace && 
+                left.Class == right.Class && 
+                left.Method == right.Method;
         }
 
         /// <devdoc>

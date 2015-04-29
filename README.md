@@ -247,7 +247,7 @@ __ErrorLog Table:__
 | IsHandled		   |  `bit`              | Determine this error whether handled or not ?				 | True																							|
 | Type             |  `varchar(200)`     | Type of specify exceptions.									 | NullReferenceException																		|
 | AppName		   |  `varchar(200)`     | The application name, who that run this module on self.	 	 | Examples.WinForms v1.0.0																		|
-| Data             |  `xml`              | Provide additional user-defined information.					 | ```xml <ExtraProperties><Status>RequestCanceled</Status><Response /></ExtraProperties> ```   |
+| Data             |  `xml`              | Provide additional user-defined information.					 | `<ExtraProperties><Status>RequestCanceled</Status><Response /></ExtraProperties>`           |
 | CurrentCulture   |  `nvarchar(200)`    | Current keyboard language, may change over the app lifetime.  | English (United States) (en-US)																|
 | CLRVersion	   |  `varchar(100)`     | Version of Common Language Runtime.							 | 4.0.30319.34014																				|
 | Message          |  `nvarchar(MAX)`    | Message of Exceptions.										 | Object reference not set to an instance of an object.										|

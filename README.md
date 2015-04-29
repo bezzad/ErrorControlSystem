@@ -238,33 +238,33 @@ Now, we need to create two table by names __ErrorLog__ and __Snapshots__ to save
 
 __ErrorLog Table:__
 
-| Column Name      | Data Type           |  Example																		    | Description													 |
-|:---------------- |:--------------------|:--------------------------------------------------------------------------------:|:--------------------------------------------------------------:|
-| ErrorId          |  `bigint`           | 51																		        | The unique identity number for exceptions by that location.	 |
-| ServerDateTime   |  `datetime`         | 2015-04-11 17:23:08.170															| Server system's date and time when the error occurred.		 |
-| Host             |  `varchar(200)`     | KHOSRAVIFAR-B																	| The client PC name.											 |
-| User             |  `varchar(200)`     | DBI\khosravifar.b																| User Domain Name \ User name in operation system				 |
-| IsHandled		   |  `bit`              | True																				| Determine this error whether handled or not ?					 |
-| Type             |  `varchar(200)`     | NullReferenceException										     				| Type of specify exceptions.									 |
-| AppName		   |  `varchar(200)`     | Examples.WinForms v1.0.0	 														| The application name, who that run this module on self.		 |
-| Data             |  `xml`              | <ExtraProperties><Status>RequestCanceled</Status><Response /></ExtraProperties>  | Provide additional user-defined information.					 |
-| CurrentCulture   |  `nvarchar(200)`    | English (United States) (en-US)													| Current keyboard language, may change over the app lifetime.	 |
-| CLRVersion	   |  `varchar(100)`     | 4.0.30319.34014 																	| Version of Common Language Runtime.							 |
-| Message          |  `nvarchar(MAX)`    | Object reference not set to an instance of an object.						    | Message of Exceptions. 										 |
-| Source           |  `nvarchar(MAX)`    | mscorlib																			| Name of the application or the object that causes throw error. |
-| StackTrace       |  `nvarchar(MAX)`    | N{namespace}.C{class}.M{method(parameters)} -> ...								| Representation of the immediate frames on the call stack.	 	 |
-| ModuleName	   |  `varchar(200)`     | Examples.WinForms.exe															| Name of the module that causes to throw exception.			 |
-| MemberType	   |  `varchar(200)`     | Method																			| Type of the member, include: Method, constructor, and so on.	 | 																			
-| Method           |  `nvarchar(500)`    | Examples.WinForms.namespace.class.Void method(params)							| Name of the method that throws the exception.					 | 							
-| Processes        |  `varchar(MAX)`     | vmware-hostd, Idle, ...															| List of all running process when exception occurred.			 | 													
-| ErrorDateTime	   |  `datetime`         | 2015-04-11 17:23:07.800															| Client system's date and time when the error occurred.		 | 												
-| OS               |  `varchar(1000)`    | Windows 8.1 64Bit v6.3.9600.0 - 64Bit Processor Architect - 32Bit Application	| Information of the client operation system in `JSON` formats	 | 	
-| IPv4Address	   |  `varchar(50)`      | 192.168.30.40																	| Network Internal IP Address									 | 																	
-| MACAddress	   |  `varchar(50)`      | 74D435F250A0																		| Network Physical Address (MAC)								 | 																		
-| HResult          |  `int`              | -2147467261																		| Error Code - Use GetType().Name for define exception model.    | 																		
-| Line			   |  `int`              | 125																				| Line of exception occurrence code in file.					 |																	
-| Column		   |  `int`              | 17																				| Column of exception occurrence code in file.					 | 																				
-| DuplicateNo	   |  `int`              | 5																				| Number of duplication for one exception's.					 | 																			
+| Column Name      | Data Type           | Description                                                   | Example																						|
+|:---------------- |:------------------- |:--------------------------------------------------------------|:---------------------------------------------------------------------------------------------|
+| ErrorId          |  `bigint`           | The unique identity number for exceptions by that location.	 | 51																							|
+| ServerDateTime   |  `datetime`         | Server system's date and time when the error occurred.		 | 2015-04-11 17:23:08.170																		|
+| Host             |  `varchar(200)`     | The client PC name.											 | KHOSRAVIFAR-B																				|
+| User             |  `varchar(200)`     | User Domain Name \ User name in operation system				 | DBI\khosravifar.b																			|
+| IsHandled		   |  `bit`              | Determine this error whether handled or not ?				 | True																							|
+| Type             |  `varchar(200)`     | Type of specify exceptions.									 | NullReferenceException																		|
+| AppName		   |  `varchar(200)`     | The application name, who that run this module on self.	 	 | Examples.WinForms v1.0.0																		|
+| Data             |  `xml`              | Provide additional user-defined information.					 | ```xml <ExtraProperties><Status>RequestCanceled</Status><Response /></ExtraProperties> ```   |
+| CurrentCulture   |  `nvarchar(200)`    | Current keyboard language, may change over the app lifetime.  | English (United States) (en-US)																|
+| CLRVersion	   |  `varchar(100)`     | Version of Common Language Runtime.							 | 4.0.30319.34014																				|
+| Message          |  `nvarchar(MAX)`    | Message of Exceptions.										 | Object reference not set to an instance of an object.										|
+| Source           |  `nvarchar(MAX)`    | Name of the application or the object that causes throw error.| mscorlib																						|
+| StackTrace       |  `nvarchar(MAX)`    | Representation of the immediate frames on the call stack.	 | N{namespace}.C{class}.M{method(parameters)} -> ...											|
+| ModuleName	   |  `varchar(200)`     | Name of the module that causes to throw exception.			 | Examples.WinForms.exe																		|
+| MemberType	   |  `varchar(200)`     | Type of the member, include: Method, constructor, and so on.	 | Method																						|
+| Method           |  `nvarchar(500)`    | Name of the method that throws the exception.				 | Examples.WinForms.namespace.class.Void method(params)										|
+| Processes        |  `varchar(MAX)`     | List of all running process when exception occurred.			 | vmware-hostd, Idle, ...																		|
+| ErrorDateTime	   |  `datetime`         | Client system's date and time when the error occurred.		 | 2015-04-11 17:23:07.800																		|
+| OS               |  `varchar(1000)`    | Information of the client operation system in `JSON` formats	 | Windows 8.1 64Bit v6.3.9600.0 - 64Bit Processor Architect - 32Bit Application				|
+| IPv4Address	   |  `varchar(50)`      | Network Internal IP Address									 | 192.168.30.40																				|
+| MACAddress	   |  `varchar(50)`      | Network Physical Address (MAC)								 | 74D435F250A0																					|
+| HResult          |  `int`              | Error Code - Use GetType().Name for define exception model.   | -2147467261																					|
+| Line			   |  `int`              | Line of exception occurrence code in file.					 | 125																							|
+| Column		   |  `int`              | Column of exception occurrence code in file.					 | 17																							|
+| DuplicateNo	   |  `int`              | Number of duplication for one exception's.					 | 5																							|																			
 
 __Snapshots Table:__
 

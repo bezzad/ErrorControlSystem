@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace ErrorControlSystem.Shared.UI.ExceptionMapper
 {
@@ -97,6 +99,13 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
             // Create a FlowDocument
             var mcFlowDoc = new FlowDocument();
 
+            if (lines == null || !lines.Any())
+            {
+                mcFlowDoc.Blocks.Add(new Paragraph(new Bold(new Run("File Not Found !!!"))) { FontSize = 50, TextAlignment = TextAlignment.Center, Background = ExceptionLineBackground });
+                TxtCodes.Document = mcFlowDoc;
+
+                return;
+            }
 
             // Add paragraphs to the FlowDocument.
             mcFlowDoc.Blocks.Add(new Paragraph(new Run(string.Join(Environment.NewLine, lines.Take(e.CodeAddress.Line - 1)))));

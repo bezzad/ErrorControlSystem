@@ -29,12 +29,15 @@
     </tags>
     <developmentDependency>true</developmentDependency>
     <frameworkAssemblies>
+      <frameworkAssembly assemblyName="PresentationCore" />
+      <frameworkAssembly assemblyName="PresentationFramework" />
       <frameworkAssembly assemblyName="System" />
       <frameworkAssembly assemblyName="System.Core" />
       <frameworkAssembly assemblyName="System.Data" />
       <frameworkAssembly assemblyName="System.Data.DataSetExtensions" />
       <frameworkAssembly assemblyName="System.Drawing" />
       <frameworkAssembly assemblyName="System.Windows.Forms" />
+      <frameworkAssembly assemblyName="System.Xaml" />
       <frameworkAssembly assemblyName="System.Xml" />
       <frameworkAssembly assemblyName="System.Xml.Linq" />
       <frameworkAssembly assemblyName="WindowsBase" />

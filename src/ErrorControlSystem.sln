@@ -89,6 +89,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "javascripts", "javascripts"
 		Documentation\Readme\javascripts\main.js = Documentation\Readme\javascripts\main.js
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorControlSystem.Shared.UI.ExceptionMapper.Tests", "Tests\ErrorControlSystem.Shared.UI.ExceptionMapper.Tests\ErrorControlSystem.Shared.UI.ExceptionMapper.Tests.csproj", "{D355DAB7-B6A0-4926-9794-6D2AFEA94692}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +154,10 @@ Global
 		{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D355DAB7-B6A0-4926-9794-6D2AFEA94692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D355DAB7-B6A0-4926-9794-6D2AFEA94692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D355DAB7-B6A0-4926-9794-6D2AFEA94692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D355DAB7-B6A0-4926-9794-6D2AFEA94692}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +171,7 @@ Global
 		{D129789C-3096-4D0B-8DD7-FE24A4DF4B21} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
 		{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873} = {70D8EB31-5124-453C-BA64-FD39FF3CF960}
 		{4D71047D-96D1-4E73-90BB-F320A4C1E9CB} = {DED4B0E7-23E1-448E-93FF-8162300675E6}
+		{D355DAB7-B6A0-4926-9794-6D2AFEA94692} = {DED4B0E7-23E1-448E-93FF-8162300675E6}
 		{515C50E8-A9A0-4AC0-8591-7369C1A31DC8} = {8CF64119-A504-468E-91AC-AA6C4A0862BA}
 		{1D83C547-23E7-4CDB-9D08-5590283FDEC7} = {8CF64119-A504-468E-91AC-AA6C4A0862BA}
 		{D5777125-5D95-4A23-AFCB-84475B0E341E} = {00FEFE47-EC5F-44DA-A4BC-4849B33E05C0}

@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <ExpressionBlendVersion>12.0.41002.1</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +50,8 @@
     <AssemblyOriginatorKeyFile>..\..\..\Signing.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -62,6 +65,7 @@
       <HintPath>..\..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -101,6 +105,26 @@
     <Compile Include="Shared\ProxyError.cs" />
     <Compile Include="Shared\ScreenCapture.cs" />
     <Compile Include="CacheErrors\StoragePath.cs" />
+    <Compile Include="Shared\CodeMapEventArgs.cs" />
+    <Compile Include="Shared\UI\Developer\ExceptionViewer.xaml.cs">
+      <DependentUpon>ExceptionViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\UI\ExceptionMapper\HeaderBlock.xaml.cs" >
+      <DependentUpon>HeaderBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\UI\ExceptionMapper\MessageBlock.xaml.cs">
+      <DependentUpon>MessageBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\UI\ExceptionMapper\StackFrameBlock.xaml.cs">
+      <DependentUpon>StackFrameBlock.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\UI\ExceptionMapper\StackTraceBlock.cs" />
+    <Compile Include="Shared\UI\ExceptionMapper\TreeMap.xaml.cs">
+      <DependentUpon>TreeMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\UI\ExceptionMapper\TreeMapItem.cs" />
+    <Compile Include="Shared\UI\ExceptionMapper\TreeMapItemMode.cs" />
     <Compile Include="UnhandledErrorEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,7 +142,74 @@
     <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Shared\UI\Developer\ExceptionDiagramView\" />
+    <Folder Include="Shared\UI\WinForms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Shared\UI\Developer\ExceptionViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shared\UI\ExceptionMapper\HeaderBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shared\UI\ExceptionMapper\MessageBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shared\UI\ExceptionMapper\StackFrameBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shared\UI\ExceptionMapper\TreeMap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <BlendEmbeddedFont Include="Fonts\consola.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\consolab.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\consolai.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
+    <BlendEmbeddedFont Include="Fonts\consolaz.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+      <Uppercase>True</Uppercase>
+      <Lowercase>True</Lowercase>
+      <Numbers>True</Numbers>
+      <Punctuation>True</Punctuation>
+    </BlendEmbeddedFont>
+  </ItemGroup>
+  <ItemGroup>
+    <BlendEmbeddedFont Include="Fonts\simpfxo.ttf">
+      <IsSystemFont>True</IsSystemFont>
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -129,6 +220,7 @@
     xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

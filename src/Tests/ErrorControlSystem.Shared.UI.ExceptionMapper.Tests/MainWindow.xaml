@@ -1,0 +1,12 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:exceptionMapper="clr-namespace:ErrorControlSystem.Shared.UI.ExceptionMapper;assembly=ErrorControlSystem" x:Class="ErrorControlSystem.Shared.UI.ExceptionMapper.Tests.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="BtnThrowException" Click="BtnThrowException_OnClick" Content="Throw an Exception" Cursor="Hand" HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" VerticalAlignment="Top" Width="166"/>
+
+        <exceptionMapper:TreeMep Name="ExceptionViewer" Margin="10,49,10,10" CodeFontSize="13" ExceptionCodeFontSize="18" ExceptionLineBackground="Coral"/>
+
+    </Grid>
+</Window>

@@ -179,10 +179,9 @@ namespace ErrorControlSystem
         /// </summary>
         public static bool DisplayDeveloperUI
         {
-            get { return DisplayUnhandledExceptions && IsRunningFromIDE && _displayDeveloperUI; }
+            get { return _displayDeveloperUI && IsRunningFromIDE; }
             set
             {
-                if (value) DisplayUnhandledExceptions = true;
                 _displayDeveloperUI = value;
             }
         }

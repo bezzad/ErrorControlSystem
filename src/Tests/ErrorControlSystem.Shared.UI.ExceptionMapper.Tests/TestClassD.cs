@@ -9,7 +9,7 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper.Tests
         {
             try
             {
-                var value = Task.Run<string>(() => TestClassE.E1()).GetAwaiter().GetResult();
+                var value = Task.Run(() => TestClassE.E1()).GetAwaiter().GetResult();
             }
             catch (Exception exp)
             {

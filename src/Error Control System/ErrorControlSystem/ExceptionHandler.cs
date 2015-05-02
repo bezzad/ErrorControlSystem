@@ -20,13 +20,12 @@
 //**********************************************************************************//
 
 
-using ErrorControlSystem.Shared.UI.Developer;
+using System.Threading;
 
 namespace ErrorControlSystem
 {
     using System;
     using System.Diagnostics;
-    using System.Linq;
     using System.Security;
     using System.Windows.Forms;
     using System.Runtime.InteropServices;
@@ -34,6 +33,7 @@ namespace ErrorControlSystem
 
     using ErrorControlSystem.CacheErrors;
     using ErrorControlSystem.Shared;
+    using ErrorControlSystem.Shared.UI.Developer;
 
     /// <summary>
     /// Additional Data attached to exception object.
@@ -81,7 +81,8 @@ namespace ErrorControlSystem
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns><see cref="ProcessFlow"/></returns>
         [SecurityCritical]
-        public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "UnHandled Exception")
+        [STAThread]
+        public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "Unhandled Exception")
         {
             //
             // In Corrupted State one method more than normal modes.
@@ -99,7 +100,7 @@ namespace ErrorControlSystem
             return isHandled ? HandledExceptionLogger(exp, callStackFrames) : UnhandledExceptionLogger(exp, callStackFrames, errorTitle);
         }
 
-
+        [STAThread]
         private static ProcessFlow UnhandledExceptionLogger(Exception exp, StackFrame[] callStackFrames, String errorTitle)
         {
             //
@@ -133,9 +134,20 @@ namespace ErrorControlSystem
             {
                 if (ErrorHandlingOption.DisplayDeveloperUI)
                 {
-                    var msg = new ExceptionViewer(exp);
-                    var dialogResult = msg.ShowDialog();
-                    return (dialogResult != null && (bool)dialogResult) ? ProcessFlow.Continue : ProcessFlow.Exit;
+                    var msgResult = ProcessFlow.Continue;
+
+                    var staThread = new Thread(() =>
+                    {
+                        var msg = new ExceptionViewer {Title = errorTitle};
+
+                        msgResult = msg.ShowDialog(exp);
+                    });
+                    staThread.SetApartmentState(ApartmentState.STA);
+
+                    staThread.Start();
+                    staThread.Join();
+
+                    return msgResult;
                 }
                 else
                 {
@@ -147,7 +159,6 @@ namespace ErrorControlSystem
             }
 
             return ErrorHandlingOption.ExitApplicationImmediately;
-
         }
 
         private static ProcessFlow HandledExceptionLogger(Exception exp, StackFrame[] callStackFrames)
@@ -179,11 +190,7 @@ namespace ErrorControlSystem
 
             return ProcessFlow.Continue;
         }
-
-
-
-
-
+        
         #endregion
     }
 }

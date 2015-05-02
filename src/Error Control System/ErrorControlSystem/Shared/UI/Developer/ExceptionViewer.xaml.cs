@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 
 namespace ErrorControlSystem.Shared.UI.Developer
@@ -8,11 +9,9 @@ namespace ErrorControlSystem.Shared.UI.Developer
     /// </summary>
     public partial class ExceptionViewer : Window
     {
-        public ExceptionViewer(Exception exp)
+        public ExceptionViewer()
         {
             InitializeComponent();
-
-            ExpMapper.Add(exp);
         }
 
         private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -25,6 +24,15 @@ namespace ErrorControlSystem.Shared.UI.Developer
         {
             this.DialogResult = true;
             Close();
+        }
+
+        
+        public ProcessFlow ShowDialog(Exception exp)
+        {
+            ExpMapper.Add(exp);
+
+            var dialogResult = this.ShowDialog();
+            return (dialogResult != null && (bool)dialogResult) ? ProcessFlow.Continue : ProcessFlow.Exit;
         }
     }
 }

@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlServerCe;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ErrorControlSystem.Shared;
-
-namespace ErrorControlSystem.CacheErrors
+﻿namespace ErrorControlSystem.CacheErrors
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.SqlServerCe;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using ErrorControlSystem.Shared;
+
+
+
     public static class SqlCompactEditionManager
     {
         #region Properties

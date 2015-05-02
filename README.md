@@ -50,16 +50,15 @@ namespace TestApplication
         private static void Main()
         {
 			//
-            // ------------------ Initial Error Control System ----------------------------
+            // ------------------ Initial Error Control System --------------------------------
             //
-            ExceptionHandler.Engine.Start("Server", "Database", "Username", "Password"
+            ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                 ErrorHandlingOptions.Default &
-                   ~ErrorHandlingOptions.ResizeSnapshots &
-                   ~ErrorHandlingOptions.DisplayUnhandledExceptions);
+                   ~ErrorHandlingOptions.ResizeSnapshots);
             
             // Or Set Option this way:
             ErrorHandlingOption.ResizeSnapshots = false;
-            ErrorHandlingOption.DisplayUnhandledExceptions = false;
+            ErrorHandlingOption.ReportHandledExceptions = false;
 
             //
             // Some of the optional configuration items.

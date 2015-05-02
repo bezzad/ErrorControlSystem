@@ -10,6 +10,7 @@ Added
 * Add Server Instance Username and Password Text boxes to Analyzer #40
 * Solve Analyzer Throw an Exception to Can Not Found Database #38 issue
 * Developer UI designed by WPF user controls to show full info message
+* Analyze StackTrace for convert to CodeMap #33
 
 
 

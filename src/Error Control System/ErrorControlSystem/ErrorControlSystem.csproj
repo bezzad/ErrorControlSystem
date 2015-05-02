@@ -80,6 +80,11 @@
     <Compile Include="CacheErrors\CacheController.cs" />
     <Compile Include="CacheErrors\SqlCompactEditionManager.cs" />
     <Compile Include="CacheErrors\StorageRouter.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Shared\CodeScope.cs" />
     <Compile Include="DbConnectionManager\Connection.cs" />
     <Compile Include="DbConnectionManager\ConnectionCollection.cs" />
@@ -109,9 +114,6 @@
     <Compile Include="Shared\UI\Developer\ExceptionViewer.xaml.cs">
       <DependentUpon>ExceptionViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Shared\UI\ExceptionMapper\HeaderBlock.xaml.cs" >
-      <DependentUpon>HeaderBlock.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Shared\UI\ExceptionMapper\MessageBlock.xaml.cs">
       <DependentUpon>MessageBlock.xaml</DependentUpon>
     </Compile>
@@ -138,6 +140,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ServerController\DatabaseCreatorQuery.sql" />
     <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
   </ItemGroup>
@@ -148,10 +154,6 @@
     <Page Include="Shared\UI\Developer\ExceptionViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Shared\UI\ExceptionMapper\HeaderBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Shared\UI\ExceptionMapper\MessageBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +212,9 @@
       <All>True</All>
       <AutoFill>True</AutoFill>
     </BlendEmbeddedFont>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\error_control_system.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

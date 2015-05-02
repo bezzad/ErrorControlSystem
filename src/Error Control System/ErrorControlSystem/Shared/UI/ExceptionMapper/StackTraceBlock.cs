@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ErrorControlSystem.Shared.UI.ExceptionMapper
 {
@@ -10,24 +12,21 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
 
         public StackTraceBlock(System.Exception exp)
         {
-            this.Header = new HeaderBlock() { Text = "StackTrace" };
+            this.Header = new MessageBlock() { Text = "StackTrace", OpacityMask = Brushes.Aquamarine };
 
             ExceptionStackFrames = new List<StackFrameBlock>();
 
             var stackTrace = new StackTrace(exp, true);
             var stackFrames = stackTrace.GetFrames();
 
-            if (stackFrames != null)
-                foreach (var frame in stackFrames)
-                {
-                    var expStackFrame = new StackFrameBlock() { FrameCodeScope = new CodeScope(frame) };
+            if (stackFrames == null) return;
 
-                    expStackFrame.Clicked += (s, e) => ExceptionStackFrameSelectedChanged(s, e);
-                    ExceptionStackFrames.Add(expStackFrame);
-                    Items.Add(expStackFrame);
-                }
-
-            IsExpanded = true;
+            foreach (var expStackFrame in stackFrames.Select(frame => new StackFrameBlock() { FrameCodeScope = new CodeScope(frame) }))
+            {
+                expStackFrame.Clicked += (s, e) => ExceptionStackFrameSelectedChanged(s, e);
+                ExceptionStackFrames.Add(expStackFrame);
+                Items.Add(expStackFrame);
+            }
         }
 
         public CodeMapEventHandler ExceptionStackFrameSelectedChanged = delegate(object sender, CodeMapEventArgs args) { };

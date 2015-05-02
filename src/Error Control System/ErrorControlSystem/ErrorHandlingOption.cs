@@ -71,7 +71,7 @@ namespace ErrorControlSystem
         /// Gets or sets a value indicating whether the application will exit after handling and logging an unhandled exception.
         /// Default value is true. 
         /// </summary>
-        public static bool ExitApplicationImmediately { get; set; }
+        public static ProcessFlow ExitApplicationImmediately { get; set; }
 
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace ErrorControlSystem
             DisplayDeveloperUI = opt.HasFlag(ErrorHandlingOptions.DisplayDeveloperUI);
             EnableNetworkSending = opt.HasFlag(ErrorHandlingOptions.EnableNetworkSending);
             ReportHandledExceptions = opt.HasFlag(ErrorHandlingOptions.ReportHandledExceptions);
-            ExitApplicationImmediately = opt.HasFlag(ErrorHandlingOptions.ExitApplicationImmediately);
+            ExitApplicationImmediately = opt.HasFlag(ErrorHandlingOptions.ExitApplicationImmediately) ? ProcessFlow.Exit : ProcessFlow.Continue;
             HandleProcessCorruptedStateExceptions = opt.HasFlag(ErrorHandlingOptions.HandleProcessCorruptedStateExceptions);
             FetchServerDateTime = opt.HasFlag(ErrorHandlingOptions.FetchServerDateTime);
             Snapshot = opt.HasFlag(ErrorHandlingOptions.Snapshot);

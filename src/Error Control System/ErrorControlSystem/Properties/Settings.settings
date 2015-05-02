@@ -17,8 +17,8 @@
     <Setting Name="HandleProcessCorruptedStateExceptions" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="ExitApplicationImmediately" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="ExitApplicationImmediately" Type="ErrorControlSystem.Shared.ProcessFlow" Scope="User">
+      <Value Profile="(Default)">Continue</Value>
     </Setting>
     <Setting Name="DisplayDeveloperUI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

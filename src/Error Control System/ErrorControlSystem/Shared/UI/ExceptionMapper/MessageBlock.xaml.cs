@@ -26,13 +26,7 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
         public String Text
         {
             get { return lblText.Text; }
-            set
-            {
-                lblText.Text = value;
-                //
-                // 40 Characters = 430px width + (10px corner)
-                //Width = (value.Length * 450 / 40) + 10;
-            }
+            set { lblText.Text = value; }
         }
 
         #endregion

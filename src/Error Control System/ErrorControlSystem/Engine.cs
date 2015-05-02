@@ -303,7 +303,7 @@ namespace ErrorControlSystem
             /// <param name="e">The <see cref="UnhandledExceptionEventArgs"/> instance containing the event data.</param>
             private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
-                ErrorHandlingOption.ExitApplicationImmediately = true;
+                ErrorHandlingOption.ExitApplicationImmediately = ProcessFlow.Exit;
 
                 if (ProcessFlow.Exit == (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception"))
                 {

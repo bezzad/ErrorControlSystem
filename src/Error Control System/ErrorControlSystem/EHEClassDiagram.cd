@@ -14,7 +14,7 @@
   <Class Name="ErrorControlSystem.DbConnectionManager.Connection" Collapsed="true">
     <Position X="5.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAiAAAAAAAgGAYEQAQAAAwAAACACAAGCCEAohIVABA=</HashCode>
+      <HashCode>ACAiAAAAAAAgGAYEQAQAAAwAAACQCAAGCCEAohIVABA=</HashCode>
       <FileName>DbConnectionManager\Connection.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Bottom" Position="0.127" />
@@ -58,7 +58,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.Shared.CurrentProcesses" Collapsed="true">
-    <Position X="3.75" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AOIgAEAAAAAAABAUCAAABAQCAAAAAAEAKAgAAIBUIBA=</HashCode>
       <FileName>Shared\CurrentProcesses.cs</FileName>
@@ -84,7 +84,7 @@
   <Class Name="ErrorControlSystem.Shared.NetworkHelper" Collapsed="true">
     <Position X="4" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAgAAAgAAAAAAAAEAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAACAAAAEAAAAAAAgAAAgAAAAAAAAEAAA=</HashCode>
       <FileName>Shared\NetworkHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -96,13 +96,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="ErrorControlSystem.Shared.OperationSystemInfo" Collapsed="true">
-    <Position X="2.75" Y="2.25" Width="1.5" />
+    <Position X="3.75" Y="3.5" Width="1.75" />
     <InheritanceLine Type="System.Object" FixedToPoint="true">
       <Path>
         <Point X="5.5" Y="1.062" />
         <Point X="5.5" Y="1.875" />
-        <Point X="3.562" Y="1.875" />
-        <Point X="3.562" Y="2.25" />
+        <Point X="4.5" Y="1.875" />
+        <Point X="4.5" Y="3.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -188,6 +188,62 @@
       <FileName>ErrorHandlingOption.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ErrorControlSystem.Shared.CodeMapEventArgs" Collapsed="true">
+    <Position X="9" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAABAAAAgAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\CodeMapEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.Developer.ExceptionViewer" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\UI\Developer\ExceptionViewer.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.ExceptionMapper.HeaderBlock" Collapsed="true">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\HeaderBlock.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.ExceptionMapper.MessageBlock" Collapsed="true">
+    <Position X="2.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\MessageBlock.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.ExceptionMapper.StackFrameBlock" Collapsed="true">
+    <Position X="3" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAACAAIABA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\StackFrameBlock.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.ExceptionMapper.StackTraceBlock" Collapsed="true">
+    <Position X="2.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\StackTraceBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.ExceptionMapper.TreeMep" Collapsed="true">
+    <Position X="2.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAACAAAABAEAAAAAAAAAAAAAAyIABAA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\TreeMap.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorControlSystem.Shared.UI.ExceptionMapper.TreeMapItem" Collapsed="true">
+    <Position X="2.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAIAAMBAAAAAAAA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\TreeMapItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="ErrorControlSystem.Shared.IError" Collapsed="true">
     <Position X="3" Y="6.25" Width="1.5" />
     <TypeIdentifier>
@@ -209,5 +265,33 @@
       <FileName>CacheErrors\StoragePath.cs</FileName>
     </TypeIdentifier>
   </Enum>
+  <Enum Name="ErrorControlSystem.Shared.CodeScopeStringFormat" Collapsed="true">
+    <Position X="11" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAgAAQAAAAAA=</HashCode>
+      <FileName>Shared\CodeScope.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ErrorControlSystem.Shared.ProcessFlow" Collapsed="true">
+    <Position X="10.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Shared\ProcessFlow.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ErrorControlSystem.Shared.UI.ExceptionMapper.TreeMapItemMode" Collapsed="true">
+    <Position X="4.5" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAA=</HashCode>
+      <FileName>Shared\UI\ExceptionMapper\TreeMapItemMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="ErrorControlSystem.Shared.CodeMapEventHandler" Collapsed="true">
+    <Position X="6.75" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\CodeMapEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

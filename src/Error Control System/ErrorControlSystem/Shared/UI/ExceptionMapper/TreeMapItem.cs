@@ -7,15 +7,11 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
     {
         #region Properties
 
-        public Exception Exception { get; set; }
-
-
         public MessageBlock MessageBlock { get; protected set; }
 
         public StackTraceBlock StackTrace { get; protected set; }
 
         public TreeMapItem InnerException { get; protected set; }
-
 
         #endregion
 
@@ -23,13 +19,17 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
 
         public TreeMapItem(Exception exp, TreeMapItemMode mode = TreeMapItemMode.Exception)
         {
-            IsExpanded = true;
-            Exception = exp;
-
-            Header = new HeaderBlock() { Text = mode.ToString() };
             //
-            // Create MessageBlock
-            MessageBlock = new MessageBlock() { Text = string.Format("{0}: {1}", Exception.GetType(), Exception.Message) };
+            // Create MessageBlock for Header
+            var expType = exp.GetType().ToString();
+            Header = new MessageBlock()
+            {
+                Text = string.Format("{0} {1}: {2}",
+                    mode == TreeMapItemMode.InnerException ? "Inner" : "",
+                    expType.Substring(expType.LastIndexOf('.') + 1),
+                    exp.Message)
+            };
+
             Items.Add(MessageBlock);
 
             //

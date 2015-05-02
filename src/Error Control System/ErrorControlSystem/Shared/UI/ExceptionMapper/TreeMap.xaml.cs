@@ -56,6 +56,10 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
         }
 
 
+        [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
+        [Bindable(true), Category("Common"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool TextWrapping { get; set; }
+
         #endregion
 
 
@@ -80,7 +84,12 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
         public int Add(TreeMapItem item)
         {
             item.OnShowCodeMapEventHandler += OnShowFrameCodeMap;
-            return ExceptionTree.Items.Add(item);
+            var index = ExceptionTree.Items.Add(item);
+
+            item.IsExpanded = true;
+            if (item.StackTrace != null) item.StackTrace.IsExpanded = true;
+
+            return index;
         }
 
 
@@ -103,9 +112,14 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
             {
                 mcFlowDoc.Blocks.Add(new Paragraph(new Bold(new Run("File Not Found !!!"))) { FontSize = 50, TextAlignment = TextAlignment.Center, Background = ExceptionLineBackground });
                 TxtCodes.Document = mcFlowDoc;
+                LblAddress.Text = "File Not Found !!!";
 
                 return;
             }
+
+            LblAddress.Text = "File Path:  " + e.CodeAddress.FilePath;
+            LblAddress.ToolTip = LblAddress.Text;
+
 
             // Add paragraphs to the FlowDocument.
             mcFlowDoc.Blocks.Add(new Paragraph(new Run(string.Join(Environment.NewLine, lines.Take(e.CodeAddress.Line - 1)))));
@@ -116,6 +130,8 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
 
             var offset = TxtCodes.FontSize * e.CodeAddress.Line;
             TxtCodes.ScrollToVerticalOffset(offset);
+
+            if (!TextWrapping) TxtCodes.Document.PageWidth = lines.Max(x => x.Length) * TxtCodes.FontSize;
         }
 
         #endregion

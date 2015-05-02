@@ -18,12 +18,11 @@ namespace ErrorControlSystem.Examples.WinForms
             //
             ExceptionHandler.Engine.Start("localhost", "UsersManagements",
                 ErrorHandlingOptions.Default &
-                   ~ErrorHandlingOptions.ResizeSnapshots &
-                   ~ErrorHandlingOptions.DisplayUnhandledExceptions);
+                   ~ErrorHandlingOptions.ResizeSnapshots);
             
             // Or Set Option this way:
             ErrorHandlingOption.ResizeSnapshots = false;
-            ErrorHandlingOption.DisplayUnhandledExceptions = false;
+            ErrorHandlingOption.ReportHandledExceptions = false;
 
             //
             // Some of the optional configuration items.

@@ -85,10 +85,10 @@ namespace ErrorControlSystem.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ExitApplicationImmediately {
+        [global::System.Configuration.DefaultSettingValueAttribute("Continue")]
+        public global::ErrorControlSystem.Shared.ProcessFlow ExitApplicationImmediately {
             get {
-                return ((bool)(this["ExitApplicationImmediately"]));
+                return ((global::ErrorControlSystem.Shared.ProcessFlow)(this["ExitApplicationImmediately"]));
             }
             set {
                 this["ExitApplicationImmediately"] = value;

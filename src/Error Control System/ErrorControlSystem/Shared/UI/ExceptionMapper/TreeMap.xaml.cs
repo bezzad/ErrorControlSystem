@@ -1,14 +1,14 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Shapes;
-
-namespace ErrorControlSystem.Shared.UI.ExceptionMapper
+﻿namespace ErrorControlSystem.Shared.UI.ExceptionMapper
 {
+    using System;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Documents;
+    using System.Windows.Media;
+
+
     /// <summary>
     /// Interaction logic for ExceptionView.xaml
     /// </summary>
@@ -125,14 +125,18 @@ namespace ErrorControlSystem.Shared.UI.ExceptionMapper
             mcFlowDoc.Blocks.Add(new Paragraph(new Run(string.Join(Environment.NewLine, lines.Take(e.CodeAddress.Line - 1)))));
             mcFlowDoc.Blocks.Add(new Paragraph(new Bold(new Run(lines[e.CodeAddress.Line - 1]))) { FontSize = ExceptionCodeFontSize, Background = ExceptionLineBackground });
             mcFlowDoc.Blocks.Add(new Paragraph(new Run(string.Join(Environment.NewLine, lines.Skip(e.CodeAddress.Line)))));
-
             TxtCodes.Document = mcFlowDoc;
 
-            var offset = TxtCodes.FontSize * e.CodeAddress.Line;
+            if (!TextWrapping) TxtCodes.Document.PageWidth = lines.Max(x => x.Length) * TxtCodes.FontSize;
+
+
+            var offset = (e.CodeAddress.Line * (TxtCodes.FontSize + 1.96)) - TxtCodes.ActualHeight / 2;
+
+
             TxtCodes.ScrollToVerticalOffset(offset);
 
-            if (!TextWrapping) TxtCodes.Document.PageWidth = lines.Max(x => x.Length) * TxtCodes.FontSize;
         }
+
 
         #endregion
     }

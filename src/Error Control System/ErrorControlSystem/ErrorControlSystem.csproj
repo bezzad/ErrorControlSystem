@@ -73,7 +73,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheErrors\StoragePathHelper.cs" />
     <Compile Include="ErrorHandlingOption.cs" />
     <Compile Include="ErrorHandlingOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,7 +108,7 @@
     <Compile Include="Shared\ProcessFlow.cs" />
     <Compile Include="Shared\ProxyError.cs" />
     <Compile Include="Shared\ScreenCapture.cs" />
-    <Compile Include="CacheErrors\StoragePath.cs" />
+    <Compile Include="CacheErrors\StoragePaths.cs" />
     <Compile Include="Shared\CodeMapEventArgs.cs" />
     <Compile Include="Shared\UI\Developer\ExceptionViewer.xaml.cs">
       <DependentUpon>ExceptionViewer.xaml</DependentUpon>

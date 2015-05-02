@@ -3,28 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:exceptionMapper="clr-namespace:ErrorControlSystem.Shared.UI.ExceptionMapper" x:Class="ErrorControlSystem.Shared.UI.Developer.ExceptionViewer" 
-             mc:Ignorable="d" Width="684.8" Height="460.8" WindowStartupLocation="CenterOwner" Icon="../../../Resources/error_control_system.ico">
-	<Grid>
-            
-		<exceptionMapper:TreeMep x:Name="ExpMapper" Margin="0,0,0,57"/>
-        
-		<Button x:Name="BtnContinue" Content="Continue" Margin="0,0,10,10" FontFamily="/ErrorControlSystem;component/Fonts/#Simplified Arabic Fixed" FontSize="18.667" Cursor="Hand" IsDefault="True" ToolTip="Click to continue application process..." Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="130" Click="btnContinue_Click">
-			<Button.Background>
-				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-					<GradientStop Color="#FFAEFF00" Offset="0"/>
-					<GradientStop Color="White" Offset="1"/>
-				</LinearGradientBrush>
-			</Button.Background>
-		</Button>
-		<Button x:Name="BtnExit" Content="Exit" Margin="0,0,160,10" FontFamily="/ErrorControlSystem;component/Fonts/#Simplified Arabic Fixed" FontSize="18.667" Cursor="Hand" ToolTip="Click to continue application process..." Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="130" IsCancel="True" FontWeight="Bold" Click="btnExit_Click">
-			<Button.Background>
-				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-					<GradientStop Color="#FFFF4848" Offset="0"/>
-					<GradientStop Color="White" Offset="1"/>
-				</LinearGradientBrush>
-			</Button.Background>
-		</Button>
-            
-	</Grid>
+             xmlns:ExceptionMapper="clr-namespace:ErrorControlSystem.Shared.UI.ExceptionMapper" x:Class="ErrorControlSystem.Shared.UI.Developer.ExceptionViewer" 
+             mc:Ignorable="d" Width="680" Height="500" WindowStartupLocation="CenterOwner" Icon="../../../Resources/error_control_system.ico">
+    <Grid>
+        <ExceptionMapper:TreeMep x:Name="ExpMapper" Margin="0,0,0,46"/>
+        <Button x:Name="BtnContinue" Content="Continue" Margin="0,0,8,8" FontFamily="/ErrorControlSystem;component/Fonts/#Simplified Arabic Fixed" FontSize="18.667" Cursor="Hand" IsDefault="True" ToolTip="Click to continue application process..." Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="118" Click="btnContinue_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFAEFF00" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="BtnExit" Content="Exit" Margin="0,0,140,8" FontFamily="/ErrorControlSystem;component/Fonts/#Simplified Arabic Fixed" FontSize="18.667" Cursor="Hand" ToolTip="Click to continue application process..." Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="118" IsCancel="True" Click="btnExit_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFFF4848" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
 </Window>

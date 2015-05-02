@@ -13,41 +13,45 @@
 
 
 
-    public static class SqlCompactEditionManager
+    public class SqlCompactEditionManager
     {
         #region Properties
 
         private const int Max = 3999;
 
-        public static string ConnectionString { get; private set; }
+        public string ConnectionString { get; private set; }
 
-        public static Dictionary<int, bool> ErrorIds { get; set; }
+        public Dictionary<int, bool> ErrorIds { get; set; }
+
+        public String FilePath { get; protected set; }
 
         #endregion
 
         #region Constructors
 
-        static SqlCompactEditionManager()
+        public SqlCompactEditionManager(string filePath)
         {
             ErrorIds = new Dictionary<int, bool>();
+
+            this.FilePath = filePath;
+
+            SetConnectionString(filePath);
         }
 
         #endregion
 
         #region Methods
 
-        public static void SetConnectionString(string filePath)
+        private void SetConnectionString(string filePath)
         {
             ConnectionString = string.Format("DataSource=\"{0}\"; Persist Security Info = false;", filePath);
         }
 
-        public static async Task CreateSdfAsync(string filePath)
+        public async Task CreateSdfAsync()
         {
-            SetConnectionString(filePath);
-
-            if (File.Exists(filePath))
+            if (File.Exists(FilePath))
             {
-                CheckSdf(filePath);
+                CheckSdf(FilePath);
                 return;
             }
 
@@ -100,7 +104,7 @@
             }
         }
 
-        public static void CheckSdf(string filePath)
+        public void CheckSdf(string filePath)
         {
             try
             {
@@ -113,11 +117,11 @@
             {
                 // fix the SDF file
                 File.Delete(filePath);
-                CreateSdfAsync(filePath).GetAwaiter().GetResult();
+                CreateSdfAsync().GetAwaiter().GetResult();
             }
         }
 
-        public static async Task InsertAsync(Error error)
+        public async Task InsertAsync(Error error)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -191,11 +195,11 @@
                 cmd.Parameters.AddWithValue("@CLRVersion", error.ClrVersion);
                 cmd.Parameters.AddWithValue("@Message", error.Message);
                 cmd.Parameters.AddWithValue("@Source", error.Source ?? "Source Not Found");
-                cmd.Parameters.AddWithValue("@StackTrace", error.StackTrace.Substring());
+                cmd.Parameters.AddWithValue("@StackTrace", SubLimitString(error.StackTrace));
                 cmd.Parameters.AddWithValue("@ModuleName", error.ModuleName);
                 cmd.Parameters.AddWithValue("@MemberType", error.MemberType);
                 cmd.Parameters.AddWithValue("@Method", error.Method);
-                cmd.Parameters.AddWithValue("@Processes", error.Processes.Substring());
+                cmd.Parameters.AddWithValue("@Processes", SubLimitString(error.Processes));
                 cmd.Parameters.AddWithValue("@ErrorDateTime", error.ErrorDateTime);
                 cmd.Parameters.AddWithValue("@OS", error.OS);
                 cmd.Parameters.AddWithValue("@IPv4Address", error.IPv4Address);
@@ -204,7 +208,7 @@
                 cmd.Parameters.AddWithValue("@Line", error.LineColumn.Line);
                 cmd.Parameters.AddWithValue("@Column", error.LineColumn.Column);
                 cmd.Parameters.AddWithValue("@Duplicate", error.Duplicate);
-                cmd.Parameters.AddWithValue("@Data", error.Data.Substring());
+                cmd.Parameters.AddWithValue("@Data", SubLimitString(error.Data));
                 if (error.Snapshot == null) cmd.Parameters.AddWithValue("@Snapshot", DBNull.Value);
                 else cmd.Parameters.AddWithValue("@Snapshot", error.Snapshot.ToBytes());
 
@@ -222,7 +226,7 @@
             }
         }
 
-        public static async Task UpdateAsync(Error error)
+        public async Task UpdateAsync(Error error)
         {
             // If error is not exist in list or error state is now at unhandled exception state then exit
             if (!ErrorIds.ContainsKey(error.Id) || !ErrorIds[error.Id]) return;
@@ -240,7 +244,7 @@
                 if (!error.IsHandled) // Just in Unhandled Exceptions
                 {
                     cmd.Parameters.AddWithValue("@isHandled", error.IsHandled);
-                    cmd.Parameters.AddWithValue("@stackTrace", error.StackTrace.Substring());
+                    cmd.Parameters.AddWithValue("@stackTrace", SubLimitString(error.StackTrace));
                 }
 
                 try
@@ -257,7 +261,7 @@
             }
         }
 
-        public static async Task<bool> InsertOrUpdateAsync(Error error)
+        public async Task<bool> InsertOrUpdateAsync(Error error)
         {
             if (ErrorIds.ContainsKey(error.Id))
             {
@@ -269,7 +273,7 @@
             return true; // New error added to database, so need to check cache size
         }
 
-        public static async Task<ProxyError> GetErrorAsync(int id)
+        public async Task<ProxyError> GetErrorAsync(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -289,7 +293,7 @@
             }
         }
 
-        public static IEnumerable<ProxyError> GetErrors()
+        public IEnumerable<ProxyError> GetErrors()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -365,7 +369,7 @@
             }
         }
 
-        public static Dictionary<int, bool> GetErrorsId()
+        public Dictionary<int, bool> GetErrorsId()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -392,7 +396,7 @@
             }
         }
 
-        public static Image GetSnapshot(int id)
+        public Image GetSnapshot(int id)
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -414,7 +418,7 @@
             }
         }
 
-        public static async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             // If error is not exist in list then exit
             if (!ErrorIds.ContainsKey(id)) return;
@@ -439,7 +443,7 @@
             }
         }
 
-        public static async Task<int> CountAsync()
+        public async Task<int> CountAsync()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -459,7 +463,7 @@
             }
         }
 
-        public static async Task<int> GetTheFirstErrorHoursAsync()
+        public async Task<int> GetTheFirstErrorHoursAsync()
         {
             using (var sqlConn = new SqlCeConnection(ConnectionString))
             using (var cmd = sqlConn.CreateCommand())
@@ -479,14 +483,14 @@
             }
         }
 
-        private static string Substring(this string item)
+        private static string SubLimitString(string item)
         {
             return item.Length > Max ? item.Substring(0, Max) : item;
         }
 
-        public static void LoadCacheIds()
+        public void LoadCacheIds()
         {
-            SqlCompactEditionManager.ErrorIds = SqlCompactEditionManager.GetErrorsId();
+            ErrorIds = GetErrorsId();
         }
 
         #endregion

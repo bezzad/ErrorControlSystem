@@ -49,7 +49,7 @@ namespace ErrorControlSystem.Examples.WinForms
             //    new CodeScope("Assembly", "Namespace", "Class", "Method"));
             //
             // Show unhandled exception message customized mode. 
-            ExceptionHandler.OnShowUnhandledError += AlertUnhandledErrors;
+            //ExceptionHandler.OnShowUnhandledError += AlertUnhandledErrors;
             //
             // ---------------------------------------------------------------------------------
             //

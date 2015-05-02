@@ -57,7 +57,7 @@ namespace ErrorControlSystem
         {
             //LoadAssemblies();
 
-            StorageRouter.ReadyCache();
+            CacheController.SdfManager.LoadCacheIds();
         }
 
         #endregion
@@ -105,7 +105,7 @@ namespace ErrorControlSystem
         {
             //
             // If number of errors exist in cache more than MaxQueuedError then skip new errors
-            if (SqlCompactEditionManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
+            if (CacheController.SdfManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
             {
                 if (!ErrorHandlingOption.AtSentState && ErrorHandlingOption.EnableNetworkSending)
                     Task.Run(async () => await CacheController.CheckStateAsync());
@@ -138,7 +138,7 @@ namespace ErrorControlSystem
 
                     var staThread = new Thread(() =>
                     {
-                        var msg = new ExceptionViewer {Title = errorTitle};
+                        var msg = new ExceptionViewer { Title = errorTitle };
 
                         msgResult = msg.ShowDialog(exp);
                     });
@@ -165,7 +165,7 @@ namespace ErrorControlSystem
         {
             //
             // If number of errors exist in cache more than MaxQueuedError then skip new errors
-            if (SqlCompactEditionManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
+            if (CacheController.SdfManager.ErrorIds.Count > ErrorHandlingOption.MaxQueuedError)
             {
                 if (!ErrorHandlingOption.AtSentState && ErrorHandlingOption.EnableNetworkSending)
                     Task.Run(async () => await CacheController.CheckStateAsync());
@@ -190,7 +190,7 @@ namespace ErrorControlSystem
 
             return ProcessFlow.Continue;
         }
-        
+
         #endregion
     }
 }

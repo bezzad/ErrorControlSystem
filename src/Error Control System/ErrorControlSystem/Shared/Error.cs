@@ -59,7 +59,7 @@ namespace ErrorControlSystem.Shared
             #region Screen Capture
 
             // First initialize Snapshot of Error, because that's speed is important!
-            if (!SqlCompactEditionManager.ErrorIds.ContainsKey(Id) && snapshot)
+            if (!CacheController.SdfManager.ErrorIds.ContainsKey(Id) && snapshot)
             {
                 Snapshot = ScreenCapture.Capture();
 

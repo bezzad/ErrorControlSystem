@@ -3,7 +3,6 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:System="clr-namespace:System;assembly=mscorlib"
 	mc:Ignorable="d"
 	x:Class="ErrorControlSystem.Shared.UI.ExceptionMapper.StackFrameBlock"
 	x:Name="UserControl" Width="{Binding ActualWidth, ElementName=lblText}" Height="40">

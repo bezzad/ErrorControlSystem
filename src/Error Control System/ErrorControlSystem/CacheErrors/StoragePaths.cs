@@ -1,6 +1,6 @@
 ﻿namespace ErrorControlSystem.CacheErrors
 {
-    public enum StoragePath
+    public enum StoragePaths
     {
         /// <summary>
         /// %Temp% directory is the default storage. Usually set to 'C:\Documents and Settings\Username\AppData\Local\AppName AppVersion'.

@@ -50,9 +50,9 @@ namespace ErrorControlSystem.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("LocalApplicationData")]
-        public global::ErrorControlSystem.CacheErrors.StoragePath StoragePath {
+        public global::ErrorControlSystem.CacheErrors.StoragePaths StoragePath {
             get {
-                return ((global::ErrorControlSystem.CacheErrors.StoragePath)(this["StoragePath"]));
+                return ((global::ErrorControlSystem.CacheErrors.StoragePaths)(this["StoragePath"]));
             }
             set {
                 this["StoragePath"] = value;

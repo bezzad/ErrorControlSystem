@@ -88,7 +88,7 @@ namespace ErrorControlSystem
         {
             get
             {
-                var rootDir = StoragePathHelper.GetPath(StoragePath);
+                var rootDir = StoragePath.GetPath();
                 return new DirectoryInfo(rootDir).GetDirectorySize() >= CacheLimitSize;
             }
         }
@@ -142,9 +142,9 @@ namespace ErrorControlSystem
         /// After an exception occurs, the exception handlers are created and queued for submission.
         /// Until then, the reports will be stored in this location. 
         /// Default value is the LocalApplicationData directory.
-        /// This setting can either be assigned a full path string or a value from <see cref="ErrorControlSystem.CacheErrors.StoragePath"/> enumeration.
+        /// This setting can either be assigned a full path string or a value from <see cref="ErrorControlSystem.CacheErrors.StoragePaths"/> enumeration.
         /// </summary>
-        public static StoragePath StoragePath { get; set; }
+        public static StoragePaths StoragePath { get; set; }
 
 
         /// <summary>
@@ -168,7 +168,11 @@ namespace ErrorControlSystem
         /// <value>
         /// The error log path.
         /// </value>
-        public static String ErrorLogPath { get; set; }
+        public static String ErrorLogPath
+        {
+            get { return ReadSetting<String>("ErrorLogPath"); }
+            set { WriteSetting("ErrorLogPath", value); }
+        }
 
 
         /// <summary>

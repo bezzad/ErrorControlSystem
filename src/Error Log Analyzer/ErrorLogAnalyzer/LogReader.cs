@@ -20,6 +20,8 @@ namespace ErrorLogAnalyzer
     public partial class LogReader : BaseForm
     {
         private List<ProxyError> _errors = new List<ProxyError>();
+        private SqlCompactEditionManager sdfManager;
+
 
         #region Constructors
 
@@ -177,9 +179,9 @@ namespace ErrorLogAnalyzer
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            SqlCompactEditionManager.SetConnectionString(txtCacheFilePath.Text);
+            sdfManager = new SqlCompactEditionManager(txtCacheFilePath.Text);
 
-            var newErrors = SqlCompactEditionManager.GetErrors().ToList();
+            var newErrors = sdfManager.GetErrors().ToList();
 
             //
             // Update old errors

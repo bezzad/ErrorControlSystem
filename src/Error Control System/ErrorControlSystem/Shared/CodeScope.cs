@@ -216,10 +216,9 @@ namespace ErrorControlSystem.Shared
         /// <returns><see cref="Boolean"/></returns>
         public bool IsCallFromThisPlace(IEnumerable<StackFrame> frames)
         {
-            if (frames == null) return false;
             //
             // Is remainder at least one frame? 
-            if (!frames.Any()) return false;
+            if (frames == null || !frames.Any()) return false;
             //
             // Filter frames by assembly name:
             if (!string.IsNullOrEmpty(this.Assembly))

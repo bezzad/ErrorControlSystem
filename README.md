@@ -237,7 +237,7 @@ Now, we need to create two table by names __ErrorLog__ and __Snapshots__ to save
 
 __ErrorLog Table:__
 
-| Column Name      | Data Type           | Description                                                   | Example																			||
+| Column Name      | Data Type           | Description                                                   | Example																			|
 |:---------------- |:------------------- |:--------------------------------------------------------------|:---------------------------------------------------------------------------------|
 | ErrorId          |  `bigint`           | The unique identity number for exceptions by that location.	 | 51																				|
 | ServerDateTime   |  `datetime`         | Server system's date and time when the error occurred.		 | 2015-04-11 17:23:08.170															|

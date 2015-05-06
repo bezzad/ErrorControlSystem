@@ -112,7 +112,7 @@
             {
                 mcFlowDoc.Blocks.Add(new Paragraph(new Bold(new Run("File Not Found !!!"))) { FontSize = 50, TextAlignment = TextAlignment.Center, Background = ExceptionLineBackground });
                 TxtCodes.Document = mcFlowDoc;
-                LblAddress.Text = "File Not Found !!!";
+                LblAddress.Text = string.IsNullOrEmpty(e.CodeAddress.FilePath) ? "File Not Found !!!" : e.CodeAddress.FilePath;
 
                 return;
             }

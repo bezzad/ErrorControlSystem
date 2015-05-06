@@ -103,7 +103,7 @@ namespace ErrorControlSystem
 
                 if (ErrorHandlingOption.EnableNetworkSending && ConnectionManager.GetDefaultConnection().IsReady)
                 {
-                    var publicSetting = await ServerTransmitter.GetErrorHandlingOptionsAsync();
+                    var publicSetting = await ServerTransmitter.SqlServerController.GetErrorHandlingOptionsAsync();
 
                     if (publicSetting != 0)
                         ErrorHandlingOption.SetSetting(publicSetting);
@@ -257,6 +257,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="e">The <see cref="FirstChanceExceptionEventArgs"/> instance containing the event data.</param>
+            [DebuggerStepThrough]
             private static void FirstChanceExceptionHandler(object sender, FirstChanceExceptionEventArgs e)
             {
                 e.Exception.RaiseLog();
@@ -269,6 +270,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="e">The <see cref="UnobservedTaskExceptionEventArgs"/> instance containing the event data.</param>
+            [DebuggerStepThrough]
             private static void UnobservedTaskExceptionHandler(object sender, UnobservedTaskExceptionEventArgs e)
             {
                 if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unobserved Task Exception"))
@@ -284,6 +286,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="e">The <see cref="ThreadExceptionEventArgs"/> instance containing the event data.</param>
+            [DebuggerStepThrough]
             private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
             {
                 if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unhandled Thread Exception"))
@@ -301,6 +304,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="e">The <see cref="UnhandledExceptionEventArgs"/> instance containing the event data.</param>
+            [DebuggerStepThrough]
             private static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
                 ErrorHandlingOption.ExitApplicationImmediately = ProcessFlow.Exit;
@@ -317,6 +321,7 @@ namespace ErrorControlSystem
             /// </summary>
             /// <param name="sender">The sender.</param>
             /// <param name="e">The <see cref="DispatcherUnhandledExceptionEventArgs"/> instance containing the event data.</param>
+            [DebuggerStepThrough]
             private static void DispatcherUnhandledExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs e)
             {
                 // Prevent default unhandled exception processing
@@ -334,30 +339,35 @@ namespace ErrorControlSystem
             #region Corrupted Exception Handlers
 
             [HandleProcessCorruptedStateExceptions]
+            [DebuggerStepThrough]
             private static void CorruptDispatcherUnhandledExceptionHandler(object sender, DispatcherUnhandledExceptionEventArgs e)
             {
                 DispatcherUnhandledExceptionHandler(sender, e);
             }
 
             [HandleProcessCorruptedStateExceptions]
+            [DebuggerStepThrough]
             private static void CorruptThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
             {
                 ThreadExceptionHandler(sender, e);
             }
 
             [HandleProcessCorruptedStateExceptions]
+            [DebuggerStepThrough]
             private static void CorruptUnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
             {
                 UnhandledExceptionHandler(sender, e);
             }
 
             [HandleProcessCorruptedStateExceptions]
+            [DebuggerStepThrough]
             private static void CorruptUnobservedTaskExceptionHandler(object sender, UnobservedTaskExceptionEventArgs e)
             {
                 UnobservedTaskExceptionHandler(sender, e);
             }
 
             [HandleProcessCorruptedStateExceptions]
+            [DebuggerStepThrough]
             private static void CorruptFirstChanceExceptionHandler(object sender, FirstChanceExceptionEventArgs e)
             {
                 FirstChanceExceptionHandler(sender, e);

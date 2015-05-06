@@ -483,6 +483,8 @@ namespace ErrorControlSystem.Shared
         /// <returns><see cref="String"/></returns>
         public static string StackFramesToString(StackFrame[] frames)
         {
+            if (frames == null) return string.Empty;
+
             bool displayFilenames = true;   // we'll try, but demand may fail
             String word_At = "->";
             String inFileLineColNum = "@{0}{2}{1}:{0}Line:{3},Column:{4}{1}";

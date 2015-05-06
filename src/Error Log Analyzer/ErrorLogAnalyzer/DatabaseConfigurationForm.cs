@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.ServerController;
 using ErrorControlSystem.Shared;
 
 namespace ErrorLogAnalyzer
@@ -86,7 +87,7 @@ namespace ErrorLogAnalyzer
                 cmbDatabaseName.Items.Clear();
 
                 // Set Database names of selected server
-                var dbs = await NetworkHelper.GetSqlDatabasesAsync(currentConnection);
+                var dbs = await ServerTransmitter.SqlServerController.GetSqlDatabasesAsync(currentConnection);
 
                 SetDatabaseConnectionState(dbs != null);
 
@@ -118,7 +119,7 @@ namespace ErrorLogAnalyzer
                 cmbServerName.Items.Add("localhost");
 
                 // Find any servers in network
-                string[] servers = await NetworkHelper.GetServersAsync();
+                string[] servers = await ServerTransmitter.SqlServerController.GetSqlServersInstanceAsync();
 
                 // Fill server names combo
                 cmbServerName.Items.AddRange(servers);

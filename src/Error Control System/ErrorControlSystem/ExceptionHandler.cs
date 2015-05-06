@@ -81,7 +81,6 @@ namespace ErrorControlSystem
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns><see cref="ProcessFlow"/></returns>
         [SecurityCritical]
-        [STAThread]
         public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "Unhandled Exception")
         {
             //
@@ -92,12 +91,30 @@ namespace ErrorControlSystem
             // 1# Handled Exception ---> Create from this stack trace (by skip(2): RaiseLog and FirstChance Method)
             // 2# Unhandled Exception & Null Exception.StackTrace ---> Create from this stack trace (by skip(2): RaiseLog and UnhandledException Method)
             // 3# Unhandled Exception & Not Null Exception ---> Create from exp stack trace
-            var callStackFrames = !isHandled && exp.StackTrace != null // 3#
-                ? new StackTrace(exp, true).GetFrames() // 3#: Raise from UnhandledException
-                : new StackTrace(skipCount, true).GetFrames(); // 1# or 2#: Raise from FirstChance
+            if (isHandled) // 1# Handled Exception 
+            {
+                var callBackStackFrames = new StackTrace(skipCount, true).GetFrames(); // Raise from FirstChance
+                return HandledExceptionLogger(exp, callBackStackFrames);
+            }
+            else // 2#, 3# Unhandled Exception
+            {
+                StackFrame[] callBackStackFrames;
 
+                if (exp.InnerException != null && exp.InnerException.StackTrace != null) // 3# Select InnerExp StackTrace
+                {
+                    callBackStackFrames = new StackTrace(exp.InnerException, true).GetFrames();
+                }
+                else if (exp.StackTrace != null) // 3# Select Exception StackTrace
+                {
+                    callBackStackFrames = new StackTrace(exp, true).GetFrames();
+                }
+                else // 2# Create new StackTrace
+                {
+                    callBackStackFrames = new StackTrace(skipCount, true).GetFrames();
+                }
 
-            return isHandled ? HandledExceptionLogger(exp, callStackFrames) : UnhandledExceptionLogger(exp, callStackFrames, errorTitle);
+                return UnhandledExceptionLogger(exp, callBackStackFrames, errorTitle);
+            }
         }
 
         [STAThread]
@@ -140,7 +157,7 @@ namespace ErrorControlSystem
                     {
                         var msg = new ExceptionViewer { Title = errorTitle };
 
-                        msgResult = msg.ShowDialog(exp);
+                        msg.Dispatcher.Invoke(() => msgResult = msg.ShowDialog(exp));
                     });
                     staThread.SetApartmentState(ApartmentState.STA);
 
@@ -149,13 +166,12 @@ namespace ErrorControlSystem
 
                     return msgResult;
                 }
-                else
-                {
-                    MessageBox.Show(error.Message,
-                        errorTitle,
-                        MessageBoxButtons.OK, MessageBoxIcon.Error,
-                        MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
-                }
+                //
+                // ELSE:
+                MessageBox.Show(error.Message,
+                    errorTitle,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.ServiceNotification);
             }
 
             return ErrorHandlingOption.ExitApplicationImmediately;

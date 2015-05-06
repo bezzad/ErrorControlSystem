@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 
 namespace ErrorControlSystem
 {
@@ -11,6 +12,7 @@ namespace ErrorControlSystem
     using ErrorControlSystem.Properties;
     using ErrorControlSystem.Shared;
 
+    [DebuggerStepThrough]
     public static class ErrorHandlingOption
     {
         #region Fields

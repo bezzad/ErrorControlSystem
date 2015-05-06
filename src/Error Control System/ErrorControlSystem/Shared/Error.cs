@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using ErrorControlSystem.CacheErrors;
 using ErrorControlSystem.DbConnectionManager;
+using ErrorControlSystem.ServerController;
 
 namespace ErrorControlSystem.Shared
 {
@@ -31,6 +32,7 @@ namespace ErrorControlSystem.Shared
         /// <param name="exp">>The occurrence raw error.</param>
         /// <param name="frames">The array of <see cref="System.Diagnostics.StackFrame"/> to changes by exception stackTrace</param>
         /// <param name="snapshot">Capture screen or not?</param>
+        [DebuggerStepThrough]
         public Error(Exception exp, StackFrame[] frames = null, bool snapshot = true)
         {
             #region HResult [Exception Type Code]
@@ -87,7 +89,7 @@ namespace ErrorControlSystem.Shared
             #region Server Date Time
 
             ServerDateTime = ErrorHandlingOption.FetchServerDateTime
-                ? NetworkHelper.GetServerDateTime()
+                ? ServerTransmitter.SqlServerController.GetServerDateTime()
                 : DateTime.Now;
 
             #endregion

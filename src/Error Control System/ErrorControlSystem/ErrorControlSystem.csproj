@@ -84,6 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ServerController\SqlServerController.cs" />
     <Compile Include="Shared\CodeScope.cs" />
     <Compile Include="DbConnectionManager\Connection.cs" />
     <Compile Include="DbConnectionManager\ConnectionCollection.cs" />

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -176,7 +178,60 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
                 MessageBox.Show("Number of exceptions that handling in one minute is: " + counter);
             });
         }
+
+        private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cmbLanguage.SelectedValue.ToString());
+        }
+
+        private void FormTest_Load(object sender, EventArgs e)
+        {
+            var tblData = new DataTable();
+            tblData.Columns.Add("Culture", typeof(String));
+            tblData.Columns.Add("EnglishName", typeof(String));
+
+            tblData.Rows.Add("ar", "Arabic");
+            tblData.Rows.Add("az", "Azerbaijan");
+            tblData.Rows.Add("zh-CN", "Chinese");
+            tblData.Rows.Add("en", "English");
+            tblData.Rows.Add("fr-FR", "French");
+            tblData.Rows.Add("de", "German");
+            tblData.Rows.Add("he", "Hebrew");
+            tblData.Rows.Add("fa-IR", "Persian");
+            tblData.Rows.Add("ru-RU", "Russian");
+            tblData.Rows.Add("tr-TR", "Turkish");
+
+            cmbLanguage.DataSource = tblData;
+            cmbLanguage.DisplayMember = "EnglishName";
+            cmbLanguage.ValueMember = "Culture";
+
+            cmbLanguage.SelectedValue = "en";
+
+            this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
+        }
     }
+
+    public class TestTable
+    {
+        public string EnglishName
+        {
+            get;
+            set;
+        }
+
+        public string Culture
+        {
+            get;
+            set;
+        }
+
+        public TestTable(string name, string culture)
+        {
+            EnglishName = name;
+            Culture = culture;
+        }
+    }
+
 
 
     class XExp : Exception

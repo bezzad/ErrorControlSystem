@@ -39,14 +39,14 @@
             this.btnExemptedMethodException = new System.Windows.Forms.Button();
             this.btnViolation = new System.Windows.Forms.Button();
             this.btnTestExceptionHandlerSpeed = new System.Windows.Forms.Button();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnQuit
             // 
-            this.btnQuit.Location = new System.Drawing.Point(68, 639);
-            this.btnQuit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuit.Location = new System.Drawing.Point(51, 519);
             this.btnQuit.Name = "btnQuit";
-            this.btnQuit.Size = new System.Drawing.Size(317, 47);
+            this.btnQuit.Size = new System.Drawing.Size(238, 38);
             this.btnQuit.TabIndex = 1;
             this.btnQuit.Text = "Quit";
             this.btnQuit.UseVisualStyleBackColor = true;
@@ -55,10 +55,9 @@
             // btnTestHandledFirstExp
             // 
             this.btnTestHandledFirstExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestHandledFirstExp.Location = new System.Drawing.Point(68, 15);
-            this.btnTestHandledFirstExp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTestHandledFirstExp.Location = new System.Drawing.Point(51, 12);
             this.btnTestHandledFirstExp.Name = "btnTestHandledFirstExp";
-            this.btnTestHandledFirstExp.Size = new System.Drawing.Size(317, 52);
+            this.btnTestHandledFirstExp.Size = new System.Drawing.Size(238, 42);
             this.btnTestHandledFirstExp.TabIndex = 6;
             this.btnTestHandledFirstExp.Text = "ThrowTry/Catch Exception";
             this.btnTestHandledFirstExp.UseVisualStyleBackColor = true;
@@ -67,10 +66,9 @@
             // btnTestUnHandledUIExp
             // 
             this.btnTestUnHandledUIExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestUnHandledUIExp.Location = new System.Drawing.Point(68, 74);
-            this.btnTestUnHandledUIExp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTestUnHandledUIExp.Location = new System.Drawing.Point(51, 60);
             this.btnTestUnHandledUIExp.Name = "btnTestUnHandledUIExp";
-            this.btnTestUnHandledUIExp.Size = new System.Drawing.Size(317, 52);
+            this.btnTestUnHandledUIExp.Size = new System.Drawing.Size(238, 42);
             this.btnTestUnHandledUIExp.TabIndex = 6;
             this.btnTestUnHandledUIExp.Text = "Throw UnHandled UI Exception";
             this.btnTestUnHandledUIExp.UseVisualStyleBackColor = true;
@@ -79,10 +77,9 @@
             // btnTestUnHandledThreadExp
             // 
             this.btnTestUnHandledThreadExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestUnHandledThreadExp.Location = new System.Drawing.Point(68, 133);
-            this.btnTestUnHandledThreadExp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTestUnHandledThreadExp.Location = new System.Drawing.Point(51, 108);
             this.btnTestUnHandledThreadExp.Name = "btnTestUnHandledThreadExp";
-            this.btnTestUnHandledThreadExp.Size = new System.Drawing.Size(317, 52);
+            this.btnTestUnHandledThreadExp.Size = new System.Drawing.Size(238, 42);
             this.btnTestUnHandledThreadExp.TabIndex = 7;
             this.btnTestUnHandledThreadExp.Text = "Throw UnHandled Thread Exception";
             this.btnTestUnHandledThreadExp.UseVisualStyleBackColor = true;
@@ -91,10 +88,9 @@
             // btnTestUnhandledTaskExp
             // 
             this.btnTestUnhandledTaskExp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestUnhandledTaskExp.Location = new System.Drawing.Point(68, 192);
-            this.btnTestUnhandledTaskExp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTestUnhandledTaskExp.Location = new System.Drawing.Point(51, 156);
             this.btnTestUnhandledTaskExp.Name = "btnTestUnhandledTaskExp";
-            this.btnTestUnhandledTaskExp.Size = new System.Drawing.Size(317, 52);
+            this.btnTestUnhandledTaskExp.Size = new System.Drawing.Size(238, 42);
             this.btnTestUnhandledTaskExp.TabIndex = 8;
             this.btnTestUnhandledTaskExp.Text = "Throw UnHandled Task Exception";
             this.btnTestUnhandledTaskExp.UseVisualStyleBackColor = true;
@@ -103,10 +99,9 @@
             // btnThrowExceptExceptions
             // 
             this.btnThrowExceptExceptions.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnThrowExceptExceptions.Location = new System.Drawing.Point(68, 251);
-            this.btnThrowExceptExceptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThrowExceptExceptions.Location = new System.Drawing.Point(51, 204);
             this.btnThrowExceptExceptions.Name = "btnThrowExceptExceptions";
-            this.btnThrowExceptExceptions.Size = new System.Drawing.Size(317, 52);
+            this.btnThrowExceptExceptions.Size = new System.Drawing.Size(238, 42);
             this.btnThrowExceptExceptions.TabIndex = 9;
             this.btnThrowExceptExceptions.Text = "Throw Except Exception";
             this.btnThrowExceptExceptions.UseVisualStyleBackColor = true;
@@ -115,10 +110,9 @@
             // btnDataException
             // 
             this.btnDataException.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDataException.Location = new System.Drawing.Point(68, 310);
-            this.btnDataException.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDataException.Location = new System.Drawing.Point(51, 252);
             this.btnDataException.Name = "btnDataException";
-            this.btnDataException.Size = new System.Drawing.Size(317, 52);
+            this.btnDataException.Size = new System.Drawing.Size(238, 42);
             this.btnDataException.TabIndex = 10;
             this.btnDataException.Text = "Throw Data Exception";
             this.btnDataException.UseVisualStyleBackColor = true;
@@ -127,10 +121,9 @@
             // btnThrowMultiExps
             // 
             this.btnThrowMultiExps.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnThrowMultiExps.Location = new System.Drawing.Point(68, 369);
-            this.btnThrowMultiExps.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThrowMultiExps.Location = new System.Drawing.Point(51, 300);
             this.btnThrowMultiExps.Name = "btnThrowMultiExps";
-            this.btnThrowMultiExps.Size = new System.Drawing.Size(317, 52);
+            this.btnThrowMultiExps.Size = new System.Drawing.Size(238, 42);
             this.btnThrowMultiExps.TabIndex = 11;
             this.btnThrowMultiExps.Text = "Throw Multiple Exceptions";
             this.btnThrowMultiExps.UseVisualStyleBackColor = true;
@@ -139,10 +132,9 @@
             // btnExemptedMethodException
             // 
             this.btnExemptedMethodException.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExemptedMethodException.Location = new System.Drawing.Point(68, 428);
-            this.btnExemptedMethodException.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExemptedMethodException.Location = new System.Drawing.Point(51, 348);
             this.btnExemptedMethodException.Name = "btnExemptedMethodException";
-            this.btnExemptedMethodException.Size = new System.Drawing.Size(317, 52);
+            this.btnExemptedMethodException.Size = new System.Drawing.Size(238, 42);
             this.btnExemptedMethodException.TabIndex = 11;
             this.btnExemptedMethodException.Text = "Exempted Method Exception";
             this.btnExemptedMethodException.UseVisualStyleBackColor = true;
@@ -151,10 +143,9 @@
             // btnViolation
             // 
             this.btnViolation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnViolation.Location = new System.Drawing.Point(68, 487);
-            this.btnViolation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnViolation.Location = new System.Drawing.Point(51, 396);
             this.btnViolation.Name = "btnViolation";
-            this.btnViolation.Size = new System.Drawing.Size(317, 52);
+            this.btnViolation.Size = new System.Drawing.Size(238, 42);
             this.btnViolation.TabIndex = 11;
             this.btnViolation.Text = "Violation Access Exception";
             this.btnViolation.UseVisualStyleBackColor = true;
@@ -163,20 +154,29 @@
             // btnTestExceptionHandlerSpeed
             // 
             this.btnTestExceptionHandlerSpeed.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTestExceptionHandlerSpeed.Location = new System.Drawing.Point(68, 547);
-            this.btnTestExceptionHandlerSpeed.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTestExceptionHandlerSpeed.Location = new System.Drawing.Point(51, 444);
             this.btnTestExceptionHandlerSpeed.Name = "btnTestExceptionHandlerSpeed";
-            this.btnTestExceptionHandlerSpeed.Size = new System.Drawing.Size(317, 52);
+            this.btnTestExceptionHandlerSpeed.Size = new System.Drawing.Size(238, 42);
             this.btnTestExceptionHandlerSpeed.TabIndex = 11;
             this.btnTestExceptionHandlerSpeed.Text = "Test Exception Handler Speed";
             this.btnTestExceptionHandlerSpeed.UseVisualStyleBackColor = true;
             this.btnTestExceptionHandlerSpeed.Click += new System.EventHandler(this.btnTestExceptionHandlerSpeed_Click);
             // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(51, 584);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(238, 21);
+            this.cmbLanguage.Sorted = true;
+            this.cmbLanguage.TabIndex = 12;
+            // 
             // FormTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 709);
+            this.ClientSize = new System.Drawing.Size(335, 647);
+            this.Controls.Add(this.cmbLanguage);
             this.Controls.Add(this.btnTestExceptionHandlerSpeed);
             this.Controls.Add(this.btnViolation);
             this.Controls.Add(this.btnExemptedMethodException);
@@ -188,9 +188,9 @@
             this.Controls.Add(this.btnTestUnHandledUIExp);
             this.Controls.Add(this.btnTestHandledFirstExp);
             this.Controls.Add(this.btnQuit);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormTest";
             this.Text = "Test by Throw Exceptions";
+            this.Load += new System.EventHandler(this.FormTest_Load);
             this.ResumeLayout(false);
 
         }
@@ -208,6 +208,7 @@
         private System.Windows.Forms.Button btnExemptedMethodException;
         private System.Windows.Forms.Button btnViolation;
         private System.Windows.Forms.Button btnTestExceptionHandlerSpeed;
+        private System.Windows.Forms.ComboBox cmbLanguage;
     }
 }
 

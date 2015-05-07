@@ -87,7 +87,7 @@ namespace ErrorLogAnalyzer
                 cmbDatabaseName.Items.Clear();
 
                 // Set Database names of selected server
-                var dbs = await ServerTransmitter.SqlServerController.GetSqlDatabasesAsync(currentConnection);
+                var dbs = await ServerTransmitter.SqlServerManager.GetSqlDatabasesAsync(currentConnection);
 
                 SetDatabaseConnectionState(dbs != null);
 
@@ -119,7 +119,7 @@ namespace ErrorLogAnalyzer
                 cmbServerName.Items.Add("localhost");
 
                 // Find any servers in network
-                string[] servers = await ServerTransmitter.SqlServerController.GetSqlServersInstanceAsync();
+                string[] servers = await ServerTransmitter.SqlServerManager.GetSqlServersInstanceAsync();
 
                 // Fill server names combo
                 cmbServerName.Items.AddRange(servers);

@@ -51,11 +51,11 @@
 
             if (await cm.IsServerOnlineAsync()) // Is server on ?
             {
-                await SqlServerController.CreateDatabaseAsync(); // Check or Create Raw Database
+                await SqlServerManager.CreateDatabaseAsync(); // Check or Create Raw Database
 
                 if (await cm.CheckDbConnectionAsync()) // Is database exist on server ?
                 {
-                    await SqlServerController.CreateTablesAndStoredProceduresAsync(); // Check or create Tables and StoredProcedures
+                    await SqlServerManager.CreateTablesAndStoredProceduresAsync(); // Check or create Tables and StoredProcedures
                 }
                 else // database is not exist !!!
                 {
@@ -77,7 +77,7 @@
             {
                 try
                 {
-                    await SqlServerController.InsertErrorAsync(error);
+                    await SqlServerManager.InsertErrorAsync(error);
                 }
                 catch (AggregateException exp)
                 {

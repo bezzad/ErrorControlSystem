@@ -14,7 +14,7 @@
 
     public static partial class ServerTransmitter
     {
-        public class SqlServerController
+        public class SqlServerManager
         {
             public static async Task CreateDatabaseAsync()
             {

@@ -81,7 +81,7 @@ namespace ErrorControlSystem
         /// <param name="errorTitle">Determine the mode of occurrence of an error in the program.</param>
         /// <returns><see cref="ProcessFlow"/></returns>
         [SecurityCritical]
-        public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "Unhandled Exception")
+        public static ProcessFlow RaiseLog(this Exception exp, bool isHandled = true, String errorTitle = "")
         {
             //
             // In Corrupted State one method more than normal modes.

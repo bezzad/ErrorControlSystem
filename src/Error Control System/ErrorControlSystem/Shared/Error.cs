@@ -89,7 +89,7 @@ namespace ErrorControlSystem.Shared
             #region Server Date Time
 
             ServerDateTime = ErrorHandlingOption.FetchServerDateTime
-                ? ServerTransmitter.SqlServerController.GetServerDateTime()
+                ? ServerTransmitter.SqlServerManager.GetServerDateTime()
                 : DateTime.Now;
 
             #endregion

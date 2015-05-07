@@ -103,7 +103,7 @@ namespace ErrorControlSystem
 
                 if (ErrorHandlingOption.EnableNetworkSending && ConnectionManager.GetDefaultConnection().IsReady)
                 {
-                    var publicSetting = await ServerTransmitter.SqlServerController.GetErrorHandlingOptionsAsync();
+                    var publicSetting = await ServerTransmitter.SqlServerManager.GetErrorHandlingOptionsAsync();
 
                     if (publicSetting != 0)
                         ErrorHandlingOption.SetSetting(publicSetting);
@@ -260,7 +260,7 @@ namespace ErrorControlSystem
             [DebuggerStepThrough]
             private static void FirstChanceExceptionHandler(object sender, FirstChanceExceptionEventArgs e)
             {
-                e.Exception.RaiseLog();
+                e.Exception.RaiseLog(true, Properties.Localization.FirstChanceException);
             }
 
             /// <summary>
@@ -273,7 +273,7 @@ namespace ErrorControlSystem
             [DebuggerStepThrough]
             private static void UnobservedTaskExceptionHandler(object sender, UnobservedTaskExceptionEventArgs e)
             {
-                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unobserved Task Exception"))
+                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, Properties.Localization.UnobservedTaskException))
                 {
                     Environment.Exit(0);
                 }
@@ -289,7 +289,7 @@ namespace ErrorControlSystem
             [DebuggerStepThrough]
             private static void ThreadExceptionHandler(object sender, ThreadExceptionEventArgs e)
             {
-                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unhandled Thread Exception"))
+                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, Properties.Localization.UnhandledThreadException))
                 {
                     Environment.Exit(0);
                 }
@@ -309,7 +309,7 @@ namespace ErrorControlSystem
             {
                 ErrorHandlingOption.ExitApplicationImmediately = ProcessFlow.Exit;
 
-                if (ProcessFlow.Exit == (e.ExceptionObject as Exception).RaiseLog(false, "Unhandled UI Exception"))
+                if (ProcessFlow.Exit == (e.ExceptionObject as Exception).RaiseLog(false, Properties.Localization.UnhandledException))
                 {
                     Environment.Exit(0);
                 }
@@ -327,7 +327,7 @@ namespace ErrorControlSystem
                 // Prevent default unhandled exception processing
                 e.Handled = true;
 
-                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, "Unhandled Thread Exception"))
+                if (ProcessFlow.Exit == e.Exception.RaiseLog(false, Properties.Localization.DispatcherUnhandledException))
                 {
                     Environment.Exit(0);
                 }

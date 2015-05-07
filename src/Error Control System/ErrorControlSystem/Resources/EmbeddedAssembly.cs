@@ -12,8 +12,6 @@ namespace ErrorControlSystem.Resources
     /// </summary>
     public static class EmbeddedAssembly
     {
-        // Version 1.3
-
         static Dictionary<string, Assembly> dic = null;
 
         /// <summary>

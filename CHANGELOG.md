@@ -2,7 +2,18 @@
 
 # Version history
 
-## [v4.1.4](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.4.zip)
+## [v4.1.5](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.5.zip)
+
+Added
+
+* Some Bug fixes
+* Developer UI designed by WPF user controls to show full info message
+* Analyze StackTrace for convert to CodeMap #33
+* Support Multiple Languages (English, Persian, German, Chinese, Hebrew, French, Azerbaijan, Turkish, Russian, Arabic) #52
+
+
+
+## [v4.1.3](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.3.zip)
 
 Added
 

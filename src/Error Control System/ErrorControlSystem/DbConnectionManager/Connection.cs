@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace ErrorControlSystem.DbConnectionManager
@@ -352,7 +352,7 @@ namespace ErrorControlSystem.DbConnectionManager
                 PersistSecurityInfo = scsb.PersistSecurityInfo,
                 AppName = scsb.ApplicationName,
                 IntegratedSecurity = scsb.IntegratedSecurity ?
-                    connectionString.Substring(connectionString.IndexOf("Integrated Security=") +
+                    connectionString.Substring(connectionString.IndexOf("Integrated Security=", System.StringComparison.Ordinal) +
                     "Integrated Security=".Length, 4) :
                     "false"
             };
@@ -395,7 +395,7 @@ namespace ErrorControlSystem.DbConnectionManager
 
             conn.Id = Int32.Parse(
                 String.IsNullOrEmpty(publicKeyToken)
-                    ? GetUniqueId().ToString()
+                    ? GetUniqueId().ToString(CultureInfo.InvariantCulture)
                     : publicKeyToken);
 
             conn.Description = (description == "Empty") ? "" : description;
@@ -458,9 +458,9 @@ namespace ErrorControlSystem.DbConnectionManager
         {
             // exceptions
             if (source == null)
-                throw new ArgumentNullException("Source");
+                throw new ArgumentNullException("source");
             if (destination == null)
-                throw new ArgumentNullException("Destination");
+                throw new ArgumentNullException("destination");
 
             // copy each value over
             foreach (var pi in source.GetType().GetProperties()

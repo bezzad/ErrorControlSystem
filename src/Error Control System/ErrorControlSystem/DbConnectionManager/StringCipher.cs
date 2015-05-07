@@ -28,7 +28,7 @@ namespace ErrorControlSystem.DbConnectionManager
 #pragma warning disable 618
                 var keyBytes = password.GetBytes(KeySize / 8);
 #pragma warning restore 618
-                using (var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC })
+                using (var symmetricKey = new RijndaelManaged { Mode = CipherMode.CBC })
                 using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, InitVectorBytes))
                 using (var memoryStream = new MemoryStream())
                 using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
@@ -49,7 +49,7 @@ namespace ErrorControlSystem.DbConnectionManager
 #pragma warning disable 618
                 var keyBytes = password.GetBytes(KeySize / 8);
 #pragma warning restore 618
-                using (var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC })
+                using (var symmetricKey = new RijndaelManaged { Mode = CipherMode.CBC })
                 using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, InitVectorBytes))
                 using (var memoryStream = new MemoryStream(cipherTextBytes))
                 using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))

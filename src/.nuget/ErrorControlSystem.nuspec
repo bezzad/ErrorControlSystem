@@ -54,7 +54,17 @@
     <file src="..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.dll" target="lib\net45" />
     <file src="..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.xml" target="lib\net45" />
     <file src="..\..\out\ErrorControlSystem\WinApp\ErrorControlSystem.pdb" target="lib\net45" />
-
+    
+    <file src="..\..\out\ErrorControlSystem\WinApp\ar\ErrorControlSystem.resources.dll" target="lib\net45\ar" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\az\ErrorControlSystem.resources.dll" target="lib\net45\az" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\de\ErrorControlSystem.resources.dll" target="lib\net45\de" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\fa-IR\ErrorControlSystem.resources.dll" target="lib\net45\fa-IR" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\he\ErrorControlSystem.resources.dll" target="lib\net45\he" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\fr-FR\ErrorControlSystem.resources.dll" target="lib\net45\fr-FR" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\ru-RU\ErrorControlSystem.resources.dll" target="lib\net45\ru-RU" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\tr-TR\ErrorControlSystem.resources.dll" target="lib\net45\tr-TR" />
+    <file src="..\..\out\ErrorControlSystem\WinApp\zh-CN\ErrorControlSystem.resources.dll" target="lib\net45\zh-CN" />
+    
     <file src="..\..\out\ErrorLogAnalyzer\ErrorControlSystem.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\ErrorLogAnalyzer.exe" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll" target="ErrorLogAnalyzer" />

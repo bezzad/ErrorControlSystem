@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Windows.Forms.DVTextBox")]
+[assembly: AssemblyTitle("Windows.Forms.HintTextBox")]
 [assembly: AssemblyDescription("Created by Mr. Behzad Khosravifar")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Windows.Forms.DVTextBox")]
+[assembly: AssemblyProduct("Windows.Forms.HintTextBox")]
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Behzad Khosravifar")]
 [assembly: AssemblyTrademark("B.B")]
 [assembly: AssemblyCulture("")]

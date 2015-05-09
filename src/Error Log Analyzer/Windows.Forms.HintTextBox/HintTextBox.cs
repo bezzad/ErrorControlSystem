@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Windows.Forms
 {
-    [ProvideProperty("DVTextBox", typeof(Control))]
+    [ProvideProperty("HintTextBox", typeof(Control))]
     public sealed class HintTextBox : TextBox
     {
         #region Members
@@ -66,7 +66,7 @@ namespace Windows.Forms
                 _isNumerical = value;
                 if (!value)
                 {
-                    this.ThousandsSplitter = false;
+                    this.ThousandsSeparator = false;
                     this.AcceptMathChars = false;
                 }
             }
@@ -75,9 +75,9 @@ namespace Windows.Forms
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Description("Show Thousands Splitter in TextBox? if value is true then split any 3 numerical digits by char ',' .\n\rNote: IsNumerical must be 'true' for runned this behavior."), Category("Behavior")]
-        [DisplayName("Thousands Splitter"), DefaultValue(false)]
-        public bool ThousandsSplitter
+        [Description("Show Thousands Separator in TextBox? if value is true then split any 3 numerical digits by char ',' .\n\rNote: IsNumerical must be 'true' for runes this behavior."), Category("Behavior")]
+        [DisplayName("Thousands Separator"), DefaultValue(false)]
+        public bool ThousandsSeparator
         {
             get { return _thousandsSplitter; }
             set
@@ -113,7 +113,7 @@ namespace Windows.Forms
                 if (value)
                 {
                     IsNumerical = true;
-                    ThousandsSplitter = false;
+                    ThousandsSeparator = false;
                 }
             }
         }
@@ -202,7 +202,7 @@ namespace Windows.Forms
                 Text = this.DefaultValue;
             }
 
-            if (ThousandsSplitter && !AcceptMathChars)
+            if (ThousandsSeparator && !AcceptMathChars)
             {
                 var indexSelectionBuffer = this.SelectionStart;
                 if (!string.IsNullOrEmpty(Text) && e.KeyData != Keys.Left && e.KeyData != Keys.Right)
@@ -254,7 +254,7 @@ namespace Windows.Forms
                     e.Handled = false;
                     return;
                 }
-                else if (AcceptMathChars && !ThousandsSplitter)
+                else if (AcceptMathChars && !ThousandsSeparator)
                 {
                     if (e.KeyChar == '+' || e.KeyChar == '-' ||
                         e.KeyChar == '*' || e.KeyChar == '/' ||

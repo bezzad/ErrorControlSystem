@@ -110,7 +110,7 @@
       <Project>{515c50e8-a9a0-4ac0-8591-7369c1a31dc8}</Project>
       <Name>ErrorControlSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Windows.Forms.DVTextBox\Windows.Forms.HintTextBox.csproj">
+    <ProjectReference Include="..\Windows.Forms.HintTextBox\Windows.Forms.HintTextBox.csproj">
       <Project>{cd5da55b-c69b-45c7-aefe-c9f4990cd873}</Project>
       <Name>Windows.Forms.HintTextBox</Name>
     </ProjectReference>

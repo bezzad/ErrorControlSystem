@@ -7,7 +7,7 @@ using Windows.WpfAnimatedWaitSplash.Properties;
 [assembly: AssemblyTitle("WpfAnimatedGif")]
 [assembly: AssemblyDescription("A library to display animated GIF images in WPF")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Thomas Levesque")]
+[assembly: AssemblyCompany("Behzad Khosravifar")]
 [assembly: AssemblyProduct("WpfAnimatedGif")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

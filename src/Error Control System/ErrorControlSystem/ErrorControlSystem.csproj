@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="ErrorHandlingOption.cs" />
     <Compile Include="ErrorHandlingOptions.cs" />
+    <Compile Include="Properties\GlobalAssemblyInfo.cs" />
     <Compile Include="Properties\Localization.de.Designer.cs">
       <DependentUpon>Localization.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>

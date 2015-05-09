@@ -14,39 +14,38 @@ namespace Windows.Forms
         #region Members
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Description("Default text, when text box is empty this value be superseded."), Category("Appearance")]
+        [Description("Hint text, when text box is empty this value be superseded."), Category("Appearance")]
         [Localizable(true)]
         [Editor(typeof(MultilineStringEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public string DefaultValue
+        public string HintValue
         {
             set
             {
-                this._defaultValue = value;
-
+                this._hintValue = value;
                 Text = value;
-                ForeColor = DefaultValueColor;
+                ForeColor = HintColor;
             }
-            get { return _defaultValue; }
+            get { return _hintValue; }
         }
-        private string _defaultValue;
+        private string _hintValue;
 
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [Description("Default value text's fore color."), Category("Appearance")]
-        public Color DefaultValueColor
+        [Description("Hint value text's fore color."), Category("Appearance")]
+        public Color HintColor
         {
             set
             {
-                if (this.ForeColor == this._defaultValueColor || Text == string.Empty || Text == this.DefaultValue)
+                if (this.ForeColor == this._hintColor || Text == string.Empty || Text == this.HintValue)
                 {
                     this.ForeColor = value;
                 }
-                _defaultValueColor = value;
+                _hintColor = value;
             }
-            get { return this._defaultValueColor; }
+            get { return this._hintColor; }
         }
-        private Color _defaultValueColor;
+        private Color _hintColor;
 
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
@@ -64,6 +63,7 @@ namespace Windows.Forms
             set
             {
                 _isNumerical = value;
+
                 if (!value)
                 {
                     this.ThousandsSeparator = false;
@@ -79,10 +79,10 @@ namespace Windows.Forms
         [DisplayName("Thousands Separator"), DefaultValue(false)]
         public bool ThousandsSeparator
         {
-            get { return _thousandsSplitter; }
+            get { return _thousandsSeparator; }
             set
             {
-                _thousandsSplitter = value;
+                _thousandsSeparator = value;
                 if (value)
                 {
                     IsNumerical = true;
@@ -90,7 +90,7 @@ namespace Windows.Forms
                 }
             }
         }
-        private bool _thousandsSplitter;
+        private bool _thousandsSeparator;
 
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -132,11 +132,11 @@ namespace Windows.Forms
         {
             get
             {
-                return (_defaultValue != null && Text == DefaultValue) ? string.Empty : Text;
+                return (_hintValue != null && Text == HintValue) ? string.Empty : Text;
             }
             set
             {
-                if (value != string.Empty && value != DefaultValue)
+                if (value != string.Empty && value != HintValue)
                     ForeColor = TextForeColor;
 
                 Text = value;
@@ -151,10 +151,10 @@ namespace Windows.Forms
             InitializeComponent();
 
             TextForeColor = Color.Black;
-            this.DefaultValueColor = Color.Gray;
-            this.DefaultValue = "Default Value";
+            this.HintColor = Color.Gray;
+            this.HintValue = "Hint Value";
 
-            this.HandleCreated += (s, e) => { if (string.IsNullOrEmpty(Value)) Text = DefaultValue; };
+            this.HandleCreated += (s, e) => { if (string.IsNullOrEmpty(Value)) Text = HintValue; };
         }
 
         public HintTextBox(IContainer container)
@@ -169,9 +169,9 @@ namespace Windows.Forms
         {
             base.OnMouseDown(e);
             //
-            if (Text == this.DefaultValue)
+            if (Text == this.HintValue)
             {
-                // Clean default text
+                // Clean hint text
                 Text = string.Empty;
                 this.ForeColor = TextForeColor;
             }
@@ -184,9 +184,9 @@ namespace Windows.Forms
             //
             if (Text == string.Empty)
             {
-                // Set to default text
-                this.ForeColor = this.DefaultValueColor;
-                Text = this.DefaultValue;
+                // Set to hint text
+                this.ForeColor = this.HintColor;
+                Text = this.HintValue;
             }
         }
 
@@ -197,9 +197,9 @@ namespace Windows.Forms
             //
             if (Text == string.Empty)
             {
-                // Set to default text
-                this.ForeColor = this.DefaultValueColor;
-                Text = this.DefaultValue;
+                // Set to hint text
+                this.ForeColor = this.HintColor;
+                Text = this.HintValue;
             }
 
             if (ThousandsSeparator && !AcceptMathChars)
@@ -230,9 +230,9 @@ namespace Windows.Forms
             base.OnKeyDown(e);
             //
             if (e.KeyCode == Keys.Enter && EnterToTab) SendKeys.Send("{TAB}");
-            else if (Text == this.DefaultValue)
+            else if (Text == this.HintValue)
             {
-                // Clean default text
+                // Clean hint text
                 Text = string.Empty;
                 this.ForeColor = TextForeColor;
             }

@@ -324,7 +324,7 @@ Email: [Behzad.Khosravifar@gmail.com](mailto:Behzad.Khosravifar@Gmail.com)
 --------------------------
 ### LICENSE INFORMATION      [![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
 
-This software is open source, licensed under the GNU General Public License License, Version 3.0.
+This software is open source, licensed under the GNU General Public License, Version 3.0.
 See [GPL-3.0](http://opensource.org/licenses/GPL-3.0.html) for details.
 This Class Library creates a way of handling structured exception handling,
 inheriting from the Exception class gives us access to many method

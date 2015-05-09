@@ -123,8 +123,8 @@
             // txtConnName
             // 
             this.txtConnName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtConnName.DefaultValue = "Connection Name";
-            this.txtConnName.DefaultValueColor = System.Drawing.Color.Gray;
+            this.txtConnName.HintValue = "Connection Name";
+            this.txtConnName.HintColor = System.Drawing.Color.Gray;
             this.txtConnName.EnterToTab = false;
             this.txtConnName.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtConnName.ForeColor = System.Drawing.Color.Gray;
@@ -141,8 +141,8 @@
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtPassword.DefaultValue = "Password";
-            this.txtPassword.DefaultValueColor = System.Drawing.Color.Gray;
+            this.txtPassword.HintValue = "Password";
+            this.txtPassword.HintColor = System.Drawing.Color.Gray;
             this.txtPassword.EnterToTab = false;
             this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtPassword.ForeColor = System.Drawing.Color.Gray;
@@ -159,8 +159,8 @@
             // txtPort
             // 
             this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtPort.DefaultValue = "Port = 1433";
-            this.txtPort.DefaultValueColor = System.Drawing.Color.Gray;
+            this.txtPort.HintValue = "Port = 1433";
+            this.txtPort.HintColor = System.Drawing.Color.Gray;
             this.txtPort.EnterToTab = false;
             this.txtPort.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtPort.ForeColor = System.Drawing.Color.Gray;
@@ -178,8 +178,8 @@
             // txtTimeout
             // 
             this.txtTimeout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtTimeout.DefaultValue = "Timeout = 30";
-            this.txtTimeout.DefaultValueColor = System.Drawing.Color.Gray;
+            this.txtTimeout.HintValue = "Timeout = 30";
+            this.txtTimeout.HintColor = System.Drawing.Color.Gray;
             this.txtTimeout.EnterToTab = false;
             this.txtTimeout.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtTimeout.ForeColor = System.Drawing.Color.Gray;
@@ -197,8 +197,8 @@
             // txtUsername
             // 
             this.txtUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtUsername.DefaultValue = "Username";
-            this.txtUsername.DefaultValueColor = System.Drawing.Color.Gray;
+            this.txtUsername.HintValue = "Username";
+            this.txtUsername.HintColor = System.Drawing.Color.Gray;
             this.txtUsername.EnterToTab = false;
             this.txtUsername.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtUsername.ForeColor = System.Drawing.Color.Gray;
@@ -277,8 +277,8 @@
             // txtConnectionString
             // 
             this.txtConnectionString.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtConnectionString.DefaultValue = "\r\nConnection String";
-            this.txtConnectionString.DefaultValueColor = System.Drawing.Color.Gray;
+            this.txtConnectionString.HintValue = "\r\nConnection String";
+            this.txtConnectionString.HintColor = System.Drawing.Color.Gray;
             this.txtConnectionString.EnterToTab = false;
             this.txtConnectionString.Font = new System.Drawing.Font("Times New Roman", 11F);
             this.txtConnectionString.ForeColor = System.Drawing.Color.Gray;

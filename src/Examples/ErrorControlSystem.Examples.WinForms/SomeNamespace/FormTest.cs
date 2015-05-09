@@ -204,9 +204,10 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
             cmbLanguage.DisplayMember = "EnglishName";
             cmbLanguage.ValueMember = "Culture";
 
-            cmbLanguage.SelectedValue = "en";
 
             this.cmbLanguage.SelectedIndexChanged += new System.EventHandler(this.cmbLanguage_SelectedIndexChanged);
+
+            cmbLanguage.SelectedValue = CultureInfo.CurrentCulture.Name;
         }
     }
 

@@ -110,9 +110,9 @@
       <Project>{515c50e8-a9a0-4ac0-8591-7369c1a31dc8}</Project>
       <Name>ErrorControlSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Windows.Forms.DVTextBox\Windows.Forms.DVTextBox.csproj">
+    <ProjectReference Include="..\Windows.Forms.DVTextBox\Windows.Forms.HintTextBox.csproj">
       <Project>{cd5da55b-c69b-45c7-aefe-c9f4990cd873}</Project>
-      <Name>Windows.Forms.DVTextBox</Name>
+      <Name>Windows.Forms.HintTextBox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Windows.Forms.ImageBox\Windows.Forms.ImageBox.csproj">
       <Project>{4159c8d3-c18d-4bed-8be6-9bad1b0ca4f6}</Project>

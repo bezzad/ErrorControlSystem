@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnContinue" xml:space="preserve">
-    <value>ادامه بده</value>
+    <value>ادامه</value>
   </data>
   <data name="BtnExit" xml:space="preserve">
     <value>خروج</value>

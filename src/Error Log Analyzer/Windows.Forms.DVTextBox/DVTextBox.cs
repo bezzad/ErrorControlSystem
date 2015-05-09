@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace Windows.Forms
 {
     [ProvideProperty("DVTextBox", typeof(Control))]
-    public sealed class DVTextBox : TextBox
+    public sealed class HintTextBox : TextBox
     {
         #region Members
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always)]
@@ -146,7 +146,7 @@ namespace Windows.Forms
         #endregion
 
         #region Constructors
-        public DVTextBox()
+        public HintTextBox()
         {
             InitializeComponent();
 
@@ -157,7 +157,7 @@ namespace Windows.Forms
             this.HandleCreated += (s, e) => { if (string.IsNullOrEmpty(Value)) Text = DefaultValue; };
         }
 
-        public DVTextBox(IContainer container)
+        public HintTextBox(IContainer container)
             : this() { container.Add(this); }
 
         #endregion

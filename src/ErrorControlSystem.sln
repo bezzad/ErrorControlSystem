@@ -58,7 +58,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8BC574
 		.nuget\nupack.bat = .nuget\nupack.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.DVTextBox", "Error Log Analyzer\Windows.Forms.DVTextBox\Windows.Forms.DVTextBox.csproj", "{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows.Forms.HintTextBox", "Error Log Analyzer\Windows.Forms.DVTextBox\Windows.Forms.HintTextBox.csproj", "{CD5DA55B-C69B-45C7-AEFE-C9F4990CD873}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{069BB589-EE17-4059-BC50-264B26D88A92}"
 	ProjectSection(SolutionItems) = preProject

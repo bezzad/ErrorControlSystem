@@ -233,6 +233,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerController\DatabaseCreatorQuery.sql" />
     <EmbeddedResource Include="ServerController\TablesAndSPsCreatorQuery.sql" />
@@ -304,7 +305,7 @@
     </BlendEmbeddedFont>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\error_control_system.ico" />
+    <Resource Include="Resources\ErrorControlSystem.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

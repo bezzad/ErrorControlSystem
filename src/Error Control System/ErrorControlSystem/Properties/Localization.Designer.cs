@@ -61,6 +61,24 @@ namespace ErrorControlSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        internal static string BtnContinue {
+            get {
+                return ResourceManager.GetString("BtnContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        internal static string BtnExit {
+            get {
+                return ResourceManager.GetString("BtnExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dispatcher Unhandled Exception.
         /// </summary>
         internal static string DispatcherUnhandledException {

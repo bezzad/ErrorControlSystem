@@ -20,6 +20,7 @@
 //**********************************************************************************//
 
 
+using System.Globalization;
 
 namespace ErrorControlSystem
 {

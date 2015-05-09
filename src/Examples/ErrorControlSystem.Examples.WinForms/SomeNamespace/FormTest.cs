@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -181,7 +180,7 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
 
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cmbLanguage.SelectedValue.ToString());
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(cmbLanguage.SelectedValue.ToString());
         }
 
         private void FormTest_Load(object sender, EventArgs e)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows;
 
 namespace ErrorControlSystem.Shared.UI.Developer
@@ -12,6 +11,9 @@ namespace ErrorControlSystem.Shared.UI.Developer
         public ExceptionViewer()
         {
             InitializeComponent();
+
+            BtnContinue.Content = Properties.Localization.BtnContinue;
+            BtnExit.Content = Properties.Localization.BtnExit;
         }
 
         private void btnExit_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -26,7 +28,7 @@ namespace ErrorControlSystem.Shared.UI.Developer
             Close();
         }
 
-        
+
         public ProcessFlow ShowDialog(Exception exp)
         {
             ExpMapper.Add(exp);

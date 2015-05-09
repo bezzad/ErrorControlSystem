@@ -117,9 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnContinue" xml:space="preserve">
+    <value>Davam edir</value>
+  </data>
+  <data name="BtnExit" xml:space="preserve">
+    <value>Çıxış</value>
+  </data>
   <data name="DispatcherUnhandledException" xml:space="preserve">
     <value>Dispetçer Qeyri işləndiyini Xəta</value>
-    <comment> </comment>
   </data>
   <data name="ECS" xml:space="preserve">
     <value>Səhvləri Kontrol Sistemi</value>

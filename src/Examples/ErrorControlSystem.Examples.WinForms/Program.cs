@@ -22,7 +22,7 @@ namespace ErrorControlSystem.Examples.WinForms
             
             // Or Set Option this way:
             ErrorHandlingOption.ResizeSnapshots = false;
-            ErrorHandlingOption.ReportHandledExceptions = false;
+            ErrorHandlingOption.ReportHandledExceptions = true;
 
             //
             // Some of the optional configuration items.

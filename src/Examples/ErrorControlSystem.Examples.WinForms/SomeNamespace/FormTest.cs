@@ -180,7 +180,8 @@ namespace ErrorControlSystem.Examples.WinForms.SomeNamespace
 
         private void cmbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(cmbLanguage.SelectedValue.ToString());
+            if (cmbLanguage.SelectedValue != null)
+                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(cmbLanguage.SelectedValue.ToString());
         }
 
         private void FormTest_Load(object sender, EventArgs e)

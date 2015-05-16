@@ -91,37 +91,146 @@ BEGIN
 		
 	EXEC (@SnapshotsTable) 
 END 
+  
  
- 
- 
+
 --------------------------------------------------------------------------------------------------------------------------------------------------- 
--- Create Error Control System Stored Procedure       Script Date: 03/08/2015 12:22:27 
+-- Create StoredProcedure [dbo].[sp_CatchError]       Script Date: 05/16/2015 22:02:01 
+---------------------------------------------------------------------------------------------------------------------------------------------------
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_CatchError]') AND type in (N'P', N'PC')) 
+BEGIN	 
+	DECLARE @sp_CatchError NVARCHAR(MAX) 
+	SET @sp_CatchError = 
+		'CREATE PROCEDURE [dbo].[sp_CatchError] 
+		@RaisError bit
+		AS
+		BEGIN
+			DECLARE 
+				@DatabaseName NVARCHAR(max) = IsNull(Original_DB_NAME(), DB_NAME()),
+				@ERROR_NUMBER INT = ERROR_NUMBER() , -- @@ERROR
+				@ERROR_STATE INT = ERROR_STATE() ,
+				@ERROR_SEVERITY INT = ERROR_SEVERITY(),
+				@ERROR_LINE INT = ERROR_LINE() , 
+				@ERROR_Column INT = 0,
+				@ERROR_PROCEDURE SysName = ERROR_PROCEDURE() ,  
+				@ERROR_MESSAGE NVARCHAR(max) = ERROR_MESSAGE(),			
+				@Server_Instance NVARCHAR(1024) = @@SERVERNAME + '' \ '' + @@ServiceName,
+				@IP_Address SysName = (SELECT client_net_address FROM SYS.DM_EXEC_CONNECTIONS WHERE SESSION_ID = @@SPID),
+				@MAC_Address SysName = (SELECT net_address from sysprocesses where spid = @@SPID),
+				@Culture SysName = @@LANGUAGE,
+				@OS NVARCHAR(max) = @@Version,
+				@ClrVersion SysName = (SELECT CONVERT(sysname, SERVERPROPERTY(''BuildClrVersion''))),
+				@ErrorDate DateTime = GetDate(),
+				@IsHandled bit = 1,
+				@ErrorType SysName = ''SqlException'',
+				@UserName SysName = suser_sname(),
+				@MemberType SysName = ''Stored Procedure'';
+
+			IF @ERROR_NUMBER <> 50000 
+				-- Check the error exist or not? if exist then only update that 
+				IF ( Select COUNT(ErrorId) FROM [ErrorLog]  
+						WHERE HResult = @ERROR_NUMBER AND  
+							Line = @ERROR_LINE AND
+							Method = @ERROR_PROCEDURE AND 
+							[User] = @UserName) > 0 
+					-- Update error object from ErrorLog table 
+					UPDATE dbo.ErrorLog SET DuplicateNo += 1  
+						WHERE 
+							HResult = @ERROR_NUMBER AND  
+							Line = @ERROR_LINE AND
+							Method = @ERROR_PROCEDURE AND 
+							[User] = @UserName;
+				ELSE 
+					BEGIN
+						INSERT  INTO UsersManagements.dbo.ErrorLog 
+								(  
+									[OS],
+									[User],
+									[CLRVersion],
+									[ErrorDateTime],
+									[IsHandled],
+									[Type], 
+									[Line], 
+									[Column],
+									[Message], 
+									[HResult], 
+									[Source],
+									[Method],
+									[ModuleName],
+									[IPv4Address],
+									[MACAddress],
+									[MemberType],
+									[CurrentCulture],
+									[DuplicateNo],
+									[Data] 
+								) 
+						VALUES  (  
+									@OS,
+									@UserName,
+									@ClrVersion,
+									@ErrorDate,
+									@IsHandled,
+									@ErrorType, 
+									@ERROR_LINE, 
+									@ERROR_Column,
+									@ERROR_MESSAGE, 
+									@ERROR_NUMBER, 
+									@DatabaseName,
+									@ERROR_PROCEDURE,
+									@Server_Instance,
+									@IP_Address,
+									@MAC_Address,
+									@MemberType,
+									@Culture,
+									0,
+									( 
+										SELECT 
+											@ERROR_SEVERITY [SEVERITY],
+											@ERROR_STATE [STATE]
+										FOR 
+										XML PATH('''') ,
+											ROOT(''Error'') 
+									) 
+								) 
+					END
+
+				If @RaisError = 1
+					RAISERROR(@ERROR_MESSAGE, 18, 255) 
+		END'
+		
+	Exec (@sp_CatchError) 
+END
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------- 
+-- Create StoredProcedure [dbo].[sp_InsertErrorLog]       Script Date: 05/16/2015 22:02:02
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_InsertErrorLog]') AND type in (N'P', N'PC')) 
 BEGIN	 
 	DECLARE @sp_InsertErrorLog NVARCHAR(MAX) 
 	SET @sp_InsertErrorLog = 
 		'CREATE PROCEDURE [dbo].[sp_InsertErrorLog] 
-		@ServerDateTime DATETIME, 
-		@Host VARCHAR(200), 
-		@User VARCHAR(200), 
+		@ServerDateTime DateTime, 
+		@Host SysName, 
+		@User SysName, 
 		@IsHandled BIT, 
 		@Type VARCHAR(200), 
 		@AppName VARCHAR(200), 
 		@ScreenCapture IMAGE = NULL, 
-		@CurrentCulture NVARCHAR(100) = NULL, 
-		@CLRVersion VARCHAR(100) = NULL, 
+		@CurrentCulture SysName = NULL, 
+		@CLRVersion SysName = NULL, 
 		@Message NVARCHAR(MAX) = NULL, 
 		@Source NVARCHAR(MAX) = NULL, 
 		@StackTrace NVARCHAR(MAX) = NULL, 
 		@ModuleName VARCHAR(200) = NULL, 
-		@MemberType VARCHAR(200) = NULL, 
+		@MemberType SysName = NULL, 
 		@Method VARCHAR(500) = NULL, 
 		@Processes VARCHAR(MAX) = NULL, 
-		@ErrorDateTime DATETIME, 
+		@ErrorDateTime DateTime, 
 		@OS VARCHAR(1000)  = NULL, 
-		@IPv4Address VARCHAR(50) = NULL, 
-		@MACAddress VARCHAR(50) = NULL, 
+		@IPv4Address SysName = NULL, 
+		@MACAddress SysName = NULL, 
 		@HResult INT, 
 		@Line INT, 
 		@Column INT,
@@ -131,15 +240,15 @@ BEGIN
 		DECLARE @ErrorLogID INT = 0 
 		Declare @TempTable table 
 		( 
-			Drive nvarchar(1) 
-			, MBfree bigint 
+			Drive nvarchar(1),
+			MBfree bigint 
 		) 
 		Declare @MyDrive nvarchar(1) 
 		Declare @FreeSpace bigint 
 		BEGIN  
 			BEGIN TRY	 
-				BEGIN TRANSACTION 
-					-- Check the error exist or not? if exist then just update that 
+				BEGIN TRANSACTION
+					-- Check the error exist or not? if exist then only update that 
 					IF ( Select COUNT(ErrorId) FROM [ErrorLog]  
 						 WHERE HResult = @HResult AND  
 							   Line = @Line AND
@@ -155,7 +264,7 @@ BEGIN
 						BEGIN	            
 							-- Insert error object into ErrorLog table 
 							INSERT  INTO [ErrorLog] 
-									   ([ServerDateTime] 
+									   ([ServerDateTime]
 									   ,[Host] 
 									   ,[User] 
 									   ,[IsHandled] 
@@ -212,7 +321,7 @@ BEGIN
 							exec  xp_fixeddrives 
 							Select @MyDrive = SUBSTRING(physical_name,1,1) from sys.database_files 
 							Select @FreeSpace = MBfree from @TempTable where Drive = @MyDrive 
-							If @FreeSpace > 10240 -- If grater than 10GB 
+							If @FreeSpace > 2048 -- If grater than 2GB 
 								-- Save snapshot image		 
 								-- Insert into error image into Snapshot								 
 								if @ScreenCapture is not null 
@@ -227,39 +336,8 @@ BEGIN
 			END TRY 
 			BEGIN CATCH 
 				ROLLBACK TRANSACTION 
-	 
-				DECLARE @ERROR_NUMBER INT , 
-					@ERROR_STATE INT , 
-					@ERROR_LINE INT , 
-					@ERROR_PROCEDURE NVARCHAR(126) , 
-					@ERROR_MESSAGE NVARCHAR(4000) 
-	 
-				SELECT  @ERROR_NUMBER = ERROR_NUMBER() , 
-						@ERROR_PROCEDURE = ERROR_PROCEDURE() , 
-						@ERROR_LINE = ERROR_LINE() , 
-						@ERROR_MESSAGE = ERROR_MESSAGE() , 
-						@ERROR_STATE = ERROR_STATE() 
-	 
-				IF @ERROR_NUMBER <> 50000 
-					INSERT  INTO UsersManagements.dbo.ErrorLog 
-							( [Type], 
-							  [Line], 
-							  [Message], 
-							  [HResult], 
-							  [Data] 
-							) 
-					VALUES  (  ''SqlException'' , 
-							   @ERROR_LINE, 
-							   @ERROR_MESSAGE, 
-							   @ERROR_NUMBER, 
-							   ( SELECT @ERROR_PROCEDURE [Procedure] 
-							  FOR 
-								XML PATH('''') , 
-									ROOT(''Error'') 
-							  ) 
-							) 
-	 
-				RAISERROR(@ERROR_MESSAGE, 18, 255) 
+
+				EXEC dbo.sp_CatchError 0 -- Do not Raiserror again to client
 			END CATCH 
 		END'
 		

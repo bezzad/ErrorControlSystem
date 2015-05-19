@@ -102,7 +102,8 @@ BEGIN
 	DECLARE @sp_CatchError NVARCHAR(MAX) 
 	SET @sp_CatchError = 
 		'CREATE PROCEDURE [dbo].[sp_CatchError] 
-		@RaisError bit
+		@RaisError bit,
+		@ExtraData NVARCHAR(max) = NULL
 		AS
 		BEGIN
 			DECLARE 
@@ -116,7 +117,7 @@ BEGIN
 				@ERROR_MESSAGE NVARCHAR(max) = ERROR_MESSAGE(),			
 				@Server_Instance NVARCHAR(1024) = @@SERVERNAME + '' \ '' + @@ServiceName,
 				@IP_Address SysName = (SELECT client_net_address FROM SYS.DM_EXEC_CONNECTIONS WHERE SESSION_ID = @@SPID),
-				@MAC_Address SysName = (SELECT net_address from sysprocesses where spid = @@SPID),
+				@MAC_Address SysName = (SELECT net_address from sys.sysprocesses where spid = @@SPID),
 				@Culture SysName = @@LANGUAGE,
 				@OS NVARCHAR(max) = @@Version,
 				@ClrVersion SysName = (SELECT CONVERT(sysname, SERVERPROPERTY(''BuildClrVersion''))),
@@ -185,6 +186,7 @@ BEGIN
 									0,
 									( 
 										SELECT 
+											@ExtraData [ExtraData],
 											@ERROR_SEVERITY [SEVERITY],
 											@ERROR_STATE [STATE]
 										FOR 

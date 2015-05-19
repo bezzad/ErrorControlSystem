@@ -103,9 +103,10 @@ BEGIN
 	SET @sp_CatchError = 
 		'CREATE PROCEDURE [dbo].[sp_CatchError] 
 		@RaisError bit,
-		@ExtraData NVARCHAR(max) = NULL
+		@ExtraData NVARCHAR(max) = NULL,
+		@ErrorId BIGINT OUTPUT
 		AS
-		BEGIN
+		BEGIN			
 			DECLARE 
 				@DatabaseName NVARCHAR(max) = IsNull(Original_DB_NAME(), DB_NAME()),
 				@ERROR_NUMBER INT = ERROR_NUMBER() , -- @@ERROR
@@ -113,7 +114,7 @@ BEGIN
 				@ERROR_SEVERITY INT = ERROR_SEVERITY(),
 				@ERROR_LINE INT = ERROR_LINE() , 
 				@ERROR_Column INT = 0,
-				@ERROR_PROCEDURE SysName = ERROR_PROCEDURE() ,  
+				@ERROR_PROCEDURE SysName = ISNULL(ERROR_PROCEDURE() ,  ''New Query''),
 				@ERROR_MESSAGE NVARCHAR(max) = ERROR_MESSAGE(),			
 				@Server_Instance NVARCHAR(1024) = @@SERVERNAME + '' \ '' + @@ServiceName,
 				@IP_Address SysName = (SELECT client_net_address FROM SYS.DM_EXEC_CONNECTIONS WHERE SESSION_ID = @@SPID),
@@ -129,21 +130,22 @@ BEGIN
 
 			IF @ERROR_NUMBER <> 50000 
 				-- Check the error exist or not? if exist then only update that 
-				IF ( Select COUNT(ErrorId) FROM [ErrorLog]  
+				IF ( Select 1 FROM [ErrorLog]  
 						WHERE HResult = @ERROR_NUMBER AND  
 							Line = @ERROR_LINE AND
 							Method = @ERROR_PROCEDURE AND 
 							[User] = @UserName) > 0 
 					-- Update error object from ErrorLog table 
-					UPDATE dbo.ErrorLog SET DuplicateNo += 1  
+					UPDATE dbo.ErrorLog 
+					SET DuplicateNo += 1, @ErrorId = ErrorId	  
 						WHERE 
 							HResult = @ERROR_NUMBER AND  
 							Line = @ERROR_LINE AND
 							Method = @ERROR_PROCEDURE AND 
-							[User] = @UserName;
+							[User] = @UserName;	
 				ELSE 
-					BEGIN
-						INSERT  INTO UsersManagements.dbo.ErrorLog 
+					Begin					
+						INSERT  INTO [ErrorLog]
 								(  
 									[OS],
 									[User],
@@ -193,11 +195,15 @@ BEGIN
 										XML PATH('''') ,
 											ROOT(''Error'') 
 									) 
-								) 
+								)
+						-- Set AutoId of ErrorLog table to @ErrorLogID for use in Snapshots table         
+						SELECT @ErrorId = SCOPE_IDENTITY()	
 					END
 
 				If @RaisError = 1
 					RAISERROR(@ERROR_MESSAGE, 18, 255) 
+			
+			RETURN
 		END'
 		
 	Exec (@sp_CatchError) 

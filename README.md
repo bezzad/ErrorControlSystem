@@ -321,6 +321,8 @@ Please see our [contact page](https://www.nuget.org/packages/ErrorControlSystem/
 
 Email: [Behzad.Khosravifar@gmail.com](mailto:Behzad.Khosravifar@Gmail.com)
 
+[![3355825.png](http://stackoverflow.com/users/flair/3355825.png)](http://stackexchange.com/users/4086707/behzad-khosravifar)
+
 --------------------------
 ### LICENSE INFORMATION      [![OSI-Approved-License-100x137.png](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/GPL-3.0.html)
 

@@ -218,135 +218,154 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp
 BEGIN	 
 	DECLARE @sp_InsertErrorLog NVARCHAR(MAX) 
 	SET @sp_InsertErrorLog = 
-		'CREATE PROCEDURE [dbo].[sp_InsertErrorLog] 
-		@ServerDateTime DateTime, 
-		@Host SysName, 
-		@User SysName, 
-		@IsHandled BIT, 
-		@Type VARCHAR(200), 
-		@AppName VARCHAR(200), 
-		@ScreenCapture IMAGE = NULL, 
-		@CurrentCulture SysName = NULL, 
-		@CLRVersion SysName = NULL, 
-		@Message NVARCHAR(MAX) = NULL, 
-		@Source NVARCHAR(MAX) = NULL, 
-		@StackTrace NVARCHAR(MAX) = NULL, 
-		@ModuleName VARCHAR(200) = NULL, 
-		@MemberType SysName = NULL, 
-		@Method VARCHAR(500) = NULL, 
-		@Processes VARCHAR(MAX) = NULL, 
-		@ErrorDateTime DateTime, 
-		@OS VARCHAR(1000)  = NULL, 
-		@IPv4Address SysName = NULL, 
-		@MACAddress SysName = NULL, 
-		@HResult INT, 
-		@Line INT, 
+		'CREATE PROCEDURE [dbo].[sp_InsertErrorLog]
+		@ServerDateTime DATETIME,
+		@Host SYSNAME,
+		@User SYSNAME,
+		@IsHandled BIT,
+		@Type VARCHAR(200),
+		@AppName VARCHAR(200),
+		@ScreenCapture IMAGE = NULL,
+		@CurrentCulture SYSNAME = NULL,
+		@CLRVersion SYSNAME = NULL,
+		@Message NVARCHAR(MAX) = NULL,
+		@Source NVARCHAR(MAX) = NULL,
+		@StackTrace NVARCHAR(MAX) = NULL,
+		@ModuleName VARCHAR(200) = NULL,
+		@MemberType SYSNAME = NULL,
+		@Method VARCHAR(500) = NULL,
+		@Processes VARCHAR(MAX) = NULL,
+		@ErrorDateTime DATETIME,
+		@OS VARCHAR(1000) = NULL,
+		@IPv4Address SYSNAME = NULL,
+		@MACAddress SYSNAME = NULL,
+		@HResult INT,
+		@Line INT,
 		@Column INT,
-		@Duplicate INT, 
-		@Data XML = NULL 
-		AS 
+		@Duplicate INT,
+		@Data XML = NULL
+	AS
 		DECLARE @ErrorLogID INT = 0 
-		Declare @TempTable table 
-		( 
-			Drive nvarchar(1),
-			MBfree bigint 
-		) 
-		Declare @MyDrive nvarchar(1) 
-		Declare @FreeSpace bigint 
-		BEGIN  
-			BEGIN TRY	 
+		DECLARE @TempTable TABLE 
+				(Drive NVARCHAR(1), MBfree BIGINT)
+	
+		DECLARE @MyDrive NVARCHAR(1) 
+		DECLARE @FreeSpace BIGINT 
+		BEGIN
+			BEGIN TRY
 				BEGIN TRANSACTION
-					-- Check the error exist or not? if exist then only update that 
-					IF ( Select COUNT(ErrorId) FROM [ErrorLog]  
-						 WHERE HResult = @HResult AND  
-							   Line = @Line AND
-							   Method = @Method AND 
-							   [User] = @User) > 0 
-						-- Update error object from ErrorLog table 
-						UPDATE dbo.ErrorLog SET DuplicateNo += 1  
-							WHERE HResult = @HResult AND  
-								  Line = @Line AND
-								  Method = @Method AND 
-								  [User] = @User 
-					ELSE 
-						BEGIN	            
-							-- Insert error object into ErrorLog table 
-							INSERT  INTO [ErrorLog] 
-									   ([ServerDateTime]
-									   ,[Host] 
-									   ,[User] 
-									   ,[IsHandled] 
-									   ,[Type] 
-									   ,[AppName] 
-									   ,[CurrentCulture] 
-									   ,[CLRVersion] 
-									   ,[Message] 
-									   ,[Source] 
-									   ,[StackTrace] 
-									   ,[ModuleName] 
-									   ,[MemberType] 
-									   ,[Method] 
-									   ,[Processes] 
-									   ,[ErrorDateTime] 
-									   ,[OS] 
-									   ,[IPv4Address] 
-									   ,[MACAddress] 
-									   ,[HResult] 
-									   ,[Line] 
-									   ,[Column]
-									   ,[DuplicateNo] 
-									   ,[Data]) 
-							VALUES  (	@ServerDateTime 
-									   ,@Host 
-									   ,@User 
-									   ,@IsHandled 
-									   ,@Type 
-									   ,@AppName 
-									   ,@CurrentCulture 
-									   ,@CLRVersion 
-									   ,@Message 
-									   ,@Source 
-									   ,@StackTrace 
-									   ,@ModuleName 
-									   ,@MemberType 
-									   ,@Method 
-									   ,@Processes 
-									   ,@ErrorDateTime 
-									   ,@OS 
-									   ,@IPv4Address 
-									   ,@MACAddress 
-									   ,@HResult 
-									   ,@Line
-									   ,@Column
-									   ,@Duplicate 
-									   ,@Data 
-									) 
-							-- Set AutoId of ErrorLog table to @ErrorLogID for use in Snapshots table         
-							SELECT @ErrorLogID = SCOPE_IDENTITY()	 
-	 
-							-- Get Free Space Of Database Drive 
-							Insert Into @TempTable 
-							exec  xp_fixeddrives 
-							Select @MyDrive = SUBSTRING(physical_name,1,1) from sys.database_files 
-							Select @FreeSpace = MBfree from @TempTable where Drive = @MyDrive 
-							If @FreeSpace > 2048 -- If grater than 2GB 
-								-- Save snapshot image		 
-								-- Insert into error image into Snapshot								 
-								if @ScreenCapture is not null 
-									INSERT INTO [Snapshots] 
-										   ([ErrorLogID] 
-										   ,[ScreenCapture]) 
-										VALUES 
-										   (@ErrorLogID 
-										   ,@ScreenCapture) 
-						END	 
-				COMMIT TRANSACTION 
+				-- Check the error exist or not? if exist then only update that 
+				IF (
+						SELECT COUNT(ErrorId)
+						FROM   [ErrorLog]
+						WHERE  HResult        = @HResult
+								AND Line       = @Line
+								AND Method     = @Method
+								AND [User]     = @User
+					) > 0
+					-- Update error object from ErrorLog table 
+					UPDATE dbo.ErrorLog
+					SET    DuplicateNo += 1
+					WHERE  HResult = @HResult
+							AND Line = @Line
+							AND Method = @Method
+							AND [User] = @User
+				ELSE
+				BEGIN
+					-- Insert error object into ErrorLog table 
+					INSERT INTO [ErrorLog]
+						(
+						[ServerDateTime],
+						[Host],
+						[User],
+						[IsHandled],
+						[Type],
+						[AppName],
+						[CurrentCulture],
+						[CLRVersion],
+						[Message],
+						[Source],
+						[StackTrace],
+						[ModuleName],
+						[MemberType],
+						[Method],
+						[Processes],
+						[ErrorDateTime],
+						[OS],
+						[IPv4Address],
+						[MACAddress],
+						[HResult],
+						[Line],
+						[Column],
+						[DuplicateNo],
+						[Data]
+						)
+					VALUES
+						(
+						@ServerDateTime,
+						@Host,
+						@User,
+						@IsHandled,
+						@Type,
+						@AppName,
+						@CurrentCulture,
+						@CLRVersion,
+						@Message,
+						@Source,
+						@StackTrace,
+						@ModuleName,
+						@MemberType,
+						@Method,
+						@Processes,
+						@ErrorDateTime,
+						@OS,
+						@IPv4Address,
+						@MACAddress,
+						@HResult,
+						@Line,
+						@Column,
+						@Duplicate,
+						@Data
+						) 
+					-- Set AutoId of ErrorLog table to @ErrorLogID for use in Snapshots table         
+					SELECT @ErrorLogID = SCOPE_IDENTITY() 
+			    
+					-- Get Free Space Of Database Drive 
+					INSERT INTO @TempTable
+					EXEC xp_fixeddrives
+			    
+					SELECT @MyDrive = SUBSTRING(physical_name, 1, 1)
+					FROM   sys.database_files
+			    
+					SELECT @FreeSpace = MBfree
+					FROM   @TempTable
+					WHERE  Drive = @MyDrive
+			    
+					IF @FreeSpace > 2048
+						-- If grater than 2GB
+						-- Save snapshot image
+						-- Insert into error image into Snapshot								 
+						IF @ScreenCapture IS NOT NULL
+							INSERT INTO [Snapshots]
+								(
+								[ErrorLogID],
+								[ScreenCapture]
+								)
+							VALUES
+								(
+								@ErrorLogID,
+								@ScreenCapture
+								)
+				END 
+				COMMIT TRANSACTION
 			END TRY 
-			BEGIN CATCH 
+			BEGIN CATCH
 				ROLLBACK TRANSACTION 
-
-				EXEC dbo.sp_CatchError 0 -- Do not Raiserror again to client
-			END CATCH 
+				EXEC UsersManagements.dbo.sp_CatchError
+					@RaisError = 0, -- Do not Raiserror again to client
+					@ExtraData = null,
+					@ErrorId = null
+			END CATCH
 		END'
 		
 	Exec (@sp_InsertErrorLog) 

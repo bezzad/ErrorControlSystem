@@ -2,6 +2,16 @@
 
 # Version history
 
+
+## [v4.2.1](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.2.1.zip)
+
+Added
+
+* Bug fixes
+* StoredProcedure for catching Sql Errors created (sp_CatchError issue #54)
+
+
+
 ## [v4.1.5](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.5.zip)
 
 Added

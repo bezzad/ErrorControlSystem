@@ -33,9 +33,6 @@ namespace ErrorControlSystem.CacheErrors
             //
             // Create instance of SDF file manager object
             SdfManager = new SqlCompactEditionManager(ErrorHandlingOption.ErrorLogPath);
-            //
-            // 
-            StorageRouter.CheckLogFileHealthy(SdfManager);
 
             #region Acknowledge Action Block
 

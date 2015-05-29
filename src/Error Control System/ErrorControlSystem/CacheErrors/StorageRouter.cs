@@ -92,22 +92,6 @@
             // Storage Path LocalApplicationData\[AppName] v[AppMajorVersion]\
             return Path.Combine(dataDir, appNameVer);
         }
-        
-        internal static async void CheckLogFileHealthy(SqlCompactEditionManager sdfManager)
-        {
-            #region Check Log File Existance
-
-            if (File.Exists(ErrorHandlingOption.ErrorLogPath)) // File exist, so check log file healthy
-            {
-                sdfManager.CheckSdf(ErrorHandlingOption.ErrorLogPath);
-            }
-            else // File not found, so create that ...
-            {
-                await sdfManager.CreateSdfAsync();
-            }
-
-            #endregion
-        }
 
         internal static void CheckLogPathAndName()
         {

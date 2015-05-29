@@ -36,6 +36,15 @@
             this.FilePath = filePath;
 
             SetConnectionString(filePath);
+
+            #region Check Log File Existance
+
+            if (!CheckSdf()) // File not found or corrupted, so create that file again
+            {
+                CreateSdf();
+            }
+
+            #endregion
         }
 
         #endregion
@@ -47,14 +56,8 @@
             ConnectionString = string.Format("DataSource=\"{0}\"; Persist Security Info = false;", filePath);
         }
 
-        public async Task CreateSdfAsync()
+        private void CreateSdf()
         {
-            if (File.Exists(FilePath))
-            {
-                CheckSdf(FilePath);
-                return;
-            }
-
             new SqlCeEngine(ConnectionString).CreateDatabase();
 
             const string createErrorLogTable = @"CREATE TABLE [ErrorLog](
@@ -93,9 +96,9 @@
                 {
                     cmd.CommandText = createErrorLogTable;
 
-                    await sqlCon.OpenAsync();
+                    sqlCon.Open();
 
-                    await cmd.ExecuteNonQueryAsync();
+                    cmd.ExecuteNonQuery();
                 }
                 finally
                 {
@@ -104,20 +107,25 @@
             }
         }
 
-        public void CheckSdf(string filePath)
+        private bool CheckSdf()
         {
             try
             {
+                if (!File.Exists(FilePath)) return false;
+
                 var testConn = new SqlCeConnection(ConnectionString);
                 testConn.Open();
 
                 testConn.Close();
+
+                return true;
             }
             catch (SqlCeException)
             {
                 // fix the SDF file
-                File.Delete(filePath);
-                CreateSdfAsync().GetAwaiter().GetResult();
+                File.Delete(FilePath);
+
+                return false;
             }
         }
 

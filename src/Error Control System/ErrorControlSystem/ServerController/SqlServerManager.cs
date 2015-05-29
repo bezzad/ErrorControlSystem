@@ -7,6 +7,7 @@
     using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Windows;
 
     using ErrorControlSystem.DbConnectionManager;
     using ErrorControlSystem.Resources;
@@ -126,21 +127,23 @@
             public static DateTime GetServerDateTime()
             {
                 var cm = ConnectionManager.GetDefaultConnection();
-                //
-                // execute the command
-                return cm.IsReady
-                ? cm.ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text)
-                : DateTime.Now;
-            }
 
-            public static async Task<DateTime> FetchServerDateTimeAsync()
-            {
-                var cm = ConnectionManager.GetDefaultConnection();
                 //
                 // execute the command
-                return cm.IsReady
-                ? await cm.ExecuteScalarAsync<DateTime>("SELECT GETDATE()", CommandType.Text)
-                : DateTime.Now;
+                try
+                {
+                    var serverDate = cm.IsReady
+                            ? cm.ExecuteScalar<DateTime>("SELECT GETDATE()", CommandType.Text)
+                            : DateTime.Now;
+
+                    return serverDate;
+                }
+                catch
+                {
+                    ErrorHandlingOption.EnableNetworkSending = false;
+
+                    return DateTime.Now;
+                }
             }
 
             public static async Task<ErrorHandlingOptions> GetErrorHandlingOptionsAsync()

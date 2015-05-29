@@ -179,8 +179,6 @@ namespace ErrorLogAnalyzer
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            sdfManager = new SqlCompactEditionManager(txtCacheFilePath.Text);
-
             var newErrors = sdfManager.GetErrors().ToList();
 
             //
@@ -220,6 +218,8 @@ namespace ErrorLogAnalyzer
 
         private void btnRefreshGridView_Click(object sender, EventArgs e)
         {
+            sdfManager = new SqlCompactEditionManager(txtCacheFilePath.Text);
+
             timer.Start();
 
             btnRefreshGridView.Enabled = false;

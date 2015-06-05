@@ -72,21 +72,6 @@ namespace ErrorControlSystem.DbConnectionManager
         [DefaultValue(".Net SqlClient Data Provider")]
         public string AppName { get; set; }
 
-        #endregion
-
-
-        #region Static Properties
-
-        /// <summary>
-        /// Use to add or remove ConnectionItem instances to a Connection.
-        /// </summary>
-        internal volatile static ConnectionCollection Items = new ConnectionCollection();
-
-        #endregion
-
-
-        #region Read-only Properties
-
         public string ConnectionString
         {
             get
@@ -117,6 +102,17 @@ namespace ErrorControlSystem.DbConnectionManager
         #endregion
 
 
+        #region Static Properties
+
+        /// <summary>
+        /// Use to add or remove ConnectionItem instances to a Connection.
+        /// </summary>
+        internal volatile static ConnectionCollection Items = new ConnectionCollection();
+
+
+        #endregion
+
+        
         #region Constructor
 
         /// <summary>

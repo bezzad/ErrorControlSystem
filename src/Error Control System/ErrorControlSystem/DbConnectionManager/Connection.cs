@@ -421,18 +421,21 @@ namespace ErrorControlSystem.DbConnectionManager
 
         public static string GetRunningAppNameVersion()
         {
+            string version = "";
             try
             {
-                var ver = Assembly.GetEntryAssembly().GetName().Version;
-                return string.Format("{0} v{1}.{2}.{3}",
-                    Assembly.GetEntryAssembly().GetName().Name, ver.Major, ver.Minor, ver.Build);
+                Assembly myAsm = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
+                if (myAsm != null)
+                {
+                    var ver = myAsm.GetName().Version;
+                    version = string.Format("{0} v{1}.{2}.{3}",
+                       myAsm.GetName().Name, ver.Major, ver.Minor, ver.Build);
+                }
             }
-            catch
-            {
-                var ver = Assembly.GetExecutingAssembly().GetName().Version;
-                return string.Format("{0} v{1}.{2}.{3}",
-                    Assembly.GetExecutingAssembly().GetName().Name, ver.Major, ver.Minor, ver.Build);
-            }
+            catch (Exception)
+            { }
+
+            return version;
         }
 
         #endregion

@@ -2,7 +2,17 @@
 
 # Version history
 
+---------------------------------------------------------------------------------------
+## [v4.2.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.2.2.zip)
 
+Added
+
+ * Some Bug fixes
+ * Remove SqlServerCe nuget reference dependency
+ * Fix clickOnce additional problem
+
+
+ ---------------------------------------------------------------------------------------
 ## [v4.2.1](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.2.1.zip)
 
 Added
@@ -11,7 +21,7 @@ Added
 * StoredProcedure for catching Sql Errors created (sp_CatchError issue #54)
 
 
-
+---------------------------------------------------------------------------------------
 ## [v4.1.5](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.5.zip)
 
 Added
@@ -22,7 +32,7 @@ Added
 * Support Multiple Languages (English, Persian, German, Chinese, Hebrew, French, Azerbaijan, Turkish, Russian, Arabic) #52
 
 
-
+---------------------------------------------------------------------------------------
 ## [v4.1.3](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.3.zip)
 
 Added
@@ -34,7 +44,7 @@ Added
 * Analyze StackTrace for convert to CodeMap #33
 
 
-
+---------------------------------------------------------------------------------------
 ## [v4.1.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.1.2.zip)
 
 Added
@@ -57,7 +67,7 @@ Added
 * Add Dependency Assemblies to Solve ClickOnce Problem
 
 
-
+---------------------------------------------------------------------------------------
 ## [v3.0.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v3.0.zip)
 
 Added
@@ -73,6 +83,7 @@ Added
 * Release ErrorControlSystem WPF version
 
 
+---------------------------------------------------------------------------------------
 ## [v2.0.0](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v2.0.zip)
 
 Added
@@ -87,7 +98,7 @@ Added
 * Add Analyzer for read cache files
 
 
-
+---------------------------------------------------------------------------------------
 ## [v1.0.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v1.0.zip)
 
 Added

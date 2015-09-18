@@ -59,6 +59,7 @@ namespace TestApplication
             // Or Set Option this way:
             ErrorHandlingOption.ResizeSnapshots = false;
             ErrorHandlingOption.ReportHandledExceptions = false;
+            ErrorHandlingOption.LogOnTheFly = true; // Log errors without caching
 
             //
             // Some of the optional configuration items.
@@ -163,6 +164,7 @@ This option is used to specify the error data, which includes the following valu
 * ExitApplicationImmediately
 * HandleProcessCorruptedStateExceptions
 * DisplayDeveloperUI
+* LogOnTheFly
 * All
 * Default = All - (ExitApplicationImmediately, HandleProcessCorruptedStateExceptions)
 

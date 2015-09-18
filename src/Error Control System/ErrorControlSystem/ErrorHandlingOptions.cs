@@ -26,6 +26,7 @@
         ExitApplicationImmediately = 128,
         HandleProcessCorruptedStateExceptions = 256,
         DisplayDeveloperUI = 512,
+        LogOnTheFly = 1024, // log without caching
 
 
         Default = All & ~ExitApplicationImmediately & ~HandleProcessCorruptedStateExceptions

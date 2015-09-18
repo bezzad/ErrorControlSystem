@@ -218,6 +218,10 @@ namespace ErrorControlSystem
         /// </summary>
         public static bool Snapshot { get; set; }
 
+        /// <summary>
+        /// Log errors without caching on the local system
+        /// </summary>
+        public static bool LogOnTheFly { get; set; } // log without caching
 
         /// <summary>
         /// Gets or sets a value indicating whether resize snapshots.

@@ -6,7 +6,7 @@
     <iconUrl>
       https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/src/Documentation/Readme/images/Error%20Control%20System.png
     </iconUrl>
-    <version>4.1.5</version>
+    <version>4.1.6</version>
     <description>
       ErrorControlSystem is a .NET library created to automate handling .NET Windows-Base application exceptions and raise that to a sql server. This exception handler have some features as screen capturing, fetch server date time in exception occurrence time and etc.
     </description>
@@ -19,10 +19,13 @@
     <projectUrl>http://behzadkhosravifar.github.io/ErrorControlSystem/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+
       * Some Bug fixes
-      * Developer UI designed by WPF user controls to show full info message
-      * Analyze StackTrace for convert to CodeMap #33
-      * Support Multiple Languages (English, Persian, German, Chinese, Hebrew, French, Azerbaijan, Turkish, Russian, Arabic) #52
+      * Remove SqlServerCe nuget reference dependency
+      * Fix clickOnce additional problem
+      
+      More Info: https://github.com/Behzadkhosravifar/ErrorControlSystem/releases
+      
     </releaseNotes>
     <copyright>Copyright (C) 2015 Behzad Khosravifar</copyright>
     <tags>
@@ -42,10 +45,10 @@
       <frameworkAssembly assemblyName="System.Xml" />
       <frameworkAssembly assemblyName="System.Xml.Linq" />
       <frameworkAssembly assemblyName="WindowsBase" />
+      <frameworkAssembly assemblyName="System.Data.SqlServerCe" />
     </frameworkAssemblies>
     <dependencies>
       <group targetFramework="net45">
-        <dependency id="Microsoft.SqlServer.Compact" version="4.0.8876.1" />
         <dependency id="Microsoft.Tpl.Dataflow" version="4.5.24" />
       </group>
     </dependencies>
@@ -72,7 +75,6 @@
     <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ProcessBar.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\Windows.WpfAnimatedWaitSplash.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\src\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll" target="ErrorLogAnalyzer" />
-    <file src="..\..\src\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll" target="ErrorLogAnalyzer" />
 
     <file src="..\..\LICENSE.md" target="" />
     <file src="..\..\Readme.md" target="" />

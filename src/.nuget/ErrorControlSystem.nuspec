@@ -72,7 +72,7 @@
     
     <file src="..\..\out\ErrorLogAnalyzer\ErrorControlSystem.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\ErrorLogAnalyzer.exe" target="ErrorLogAnalyzer" />
-    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.DVTextBox.dll" target="ErrorLogAnalyzer" />
+    <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.HintTextBox.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ImageBox.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\Windows.Forms.ProcessBar.dll" target="ErrorLogAnalyzer" />
     <file src="..\..\out\ErrorLogAnalyzer\Windows.WpfAnimatedWaitSplash.dll" target="ErrorLogAnalyzer" />

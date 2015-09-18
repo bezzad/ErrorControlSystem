@@ -21,6 +21,7 @@
 
 
 using System.Globalization;
+using ErrorControlSystem.ServerController;
 
 namespace ErrorControlSystem
 {
@@ -43,8 +44,6 @@ namespace ErrorControlSystem
     {
         #region Properties
 
-        internal static bool AssembelyLoaded { get; set; }
-
         /// <summary>
         /// Represents the method that will handle the event raised by an exception that is not handled by the application domain.
         /// </summary>
@@ -64,15 +63,6 @@ namespace ErrorControlSystem
         #endregion
 
         #region Methods
-
-        internal static void LoadAssemblies()
-        {
-            //EmbeddedAssembly.Load("System.Data.SqlServerCe.dll");
-            //EmbeddedAssembly.Load("System.Threading.Tasks.Dataflow.dll");
-            //AppDomain.CurrentDomain.AssemblyResolve += (s, e) => EmbeddedAssembly.Get(e.Name);
-
-            AssembelyLoaded = true;
-        }
 
         /// <summary>
         /// Raise log of handled error's.
@@ -142,7 +132,14 @@ namespace ErrorControlSystem
             var error = new Error(exp, callStackFrames, snapshot) { IsHandled = false };
             //
             // Store Error object
-            CacheController.CacheTheError(error);
+            if (ErrorHandlingOption.LogOnTheFly)
+            {
+                Task.Run(async () => await error.SendToServer());
+            }
+            else
+            {
+                CacheController.CacheTheError(error);
+            }
             //
             // Handle 'OnShowUnhandledError' events
             OnShowUnhandledError(exp, new UnhandledErrorEventArgs(error));
@@ -203,7 +200,16 @@ namespace ErrorControlSystem
             // initial the error object by additional data 
             var error = new Error(exp, callStackFrames, snapshot);
 
-            CacheController.CacheTheError(error);
+            //
+            // Store Error object
+            if (ErrorHandlingOption.LogOnTheFly)
+            {
+                Task.Run(async () => await error.SendToServer());
+            }
+            else
+            {
+                CacheController.CacheTheError(error);
+            }
 
             return ProcessFlow.Continue;
         }

@@ -240,7 +240,7 @@ namespace ErrorLogAnalyzer
             {
                 var currentRow = DynamicDgv.GetCurrentRow();
                 if (currentRow != null)
-                    pictureBox_viewer.Image = currentRow.Snapshot.Value ?? Properties.Resources._null;
+                    pictureBox_viewer.Image = currentRow.Snapshot ?? Properties.Resources._null;
             });
         }
 

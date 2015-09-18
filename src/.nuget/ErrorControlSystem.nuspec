@@ -6,7 +6,7 @@
     <iconUrl>
       https://raw.githubusercontent.com/Behzadkhosravifar/ErrorControlSystem/master/src/Documentation/Readme/images/Error%20Control%20System.png
     </iconUrl>
-    <version>4.2.2</version>
+    <version>4.2.3</version>
     <description>
       ErrorControlSystem is a .NET library created to automate handling .NET Windows-Base application exceptions and raise that to a sql server. This exception handler have some features as screen capturing, fetch server date time in exception occurrence time and etc.
     </description>
@@ -21,11 +21,13 @@
     <releaseNotes>
 
       * Some Bug fixes
+      * Add StoredProcedure for catching Sql Errors (sp_CatchError issue #54)
       * Remove SqlServerCe nuget reference dependency
       * Fix clickOnce additional problem
-      
+      * Add LogOnTheFly option to logging errors without caching on local systems
+
       More Info: https://github.com/Behzadkhosravifar/ErrorControlSystem/releases
-      
+
     </releaseNotes>
     <copyright>Copyright (C) 2015 Behzad Khosravifar</copyright>
     <tags>

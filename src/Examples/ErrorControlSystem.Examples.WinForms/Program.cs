@@ -23,6 +23,7 @@ namespace ErrorControlSystem.Examples.WinForms
             // Or Set Option this way:
             ErrorHandlingOption.ResizeSnapshots = false;
             ErrorHandlingOption.ReportHandledExceptions = true;
+            ErrorHandlingOption.LogOnTheFly = true; // don't cache 
 
             //
             // Some of the optional configuration items.

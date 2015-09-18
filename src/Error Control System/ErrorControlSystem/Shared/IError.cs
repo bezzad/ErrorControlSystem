@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace ErrorControlSystem.Shared
 {
@@ -29,5 +30,6 @@ namespace ErrorControlSystem.Shared
         CodeScope LineColumn { get; set; }
         int Duplicate { get; set; }
         String Data { get; set; }
+        System.Drawing.Image Snapshot { get; }
     }
 }

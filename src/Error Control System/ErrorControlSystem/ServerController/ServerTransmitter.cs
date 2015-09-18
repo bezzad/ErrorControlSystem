@@ -15,7 +15,7 @@
     {
         #region Properties
 
-        public static TransformBlock<ProxyError, Tuple<ProxyError, bool>> ErrorListenerTransformBlock;
+        public static TransformBlock<IError, Tuple<IError, bool>> ErrorListenerTransformBlock;
 
         #endregion
 
@@ -29,7 +29,7 @@
         {
             await ServerValidatorAsync();
 
-            ErrorListenerTransformBlock = new TransformBlock<ProxyError, Tuple<ProxyError, bool>>(
+            ErrorListenerTransformBlock = new TransformBlock<IError, Tuple<IError, bool>>(
                 async (e) => await TransmitOneError(e),
                 new ExecutionDataflowBlockOptions()
                 {
@@ -71,7 +71,7 @@
         }
 
         [DebuggerStepThrough]
-        private static async Task<Tuple<ProxyError, bool>> TransmitOneError(ProxyError error)
+        private static async Task<Tuple<IError, bool>> TransmitOneError(IError error)
         {
             if (ErrorHandlingOption.EnableNetworkSending) // Server Connector to online or offline ?
             {
@@ -105,7 +105,15 @@
                 ErrorHandlingOption.AtSentState = false;
             //
             // Post to Acknowledge Action Block:
-            return new Tuple<ProxyError, bool>(error, ErrorHandlingOption.EnableNetworkSending);
+            return new Tuple<IError, bool>(error, ErrorHandlingOption.EnableNetworkSending);
+        }
+
+
+        public static async Task<bool> SendToServer(this IError error)
+        {
+            var result = await TransmitOneError(error);
+
+            return result.Item2;
         }
 
         #endregion

@@ -79,7 +79,7 @@
                 }
             }
 
-            public static async Task InsertErrorAsync(ProxyError error)
+            public static async Task InsertErrorAsync(IError error)
             {
                 // Create a command object identifying the stored procedure
                 using (var cmd = new SqlCommand("sp_InsertErrorLog"))
@@ -89,8 +89,8 @@
                     cmd.CommandType = CommandType.StoredProcedure;
                     //
                     // Add parameters to command, which will be passed to the stored procedure
-                    if (error.Snapshot.Value != null)
-                        cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.Value.ToBytes());
+                    if (error.Snapshot != null)
+                        cmd.Parameters.AddWithValue("@ScreenCapture", error.Snapshot.ToBytes());
 
 
                     cmd.Parameters.AddWithValue("@ServerDateTime", error.ServerDateTime);

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.Serialization;
 using ErrorControlSystem.CacheErrors;
@@ -12,7 +10,7 @@ namespace ErrorControlSystem.Shared
     {
         #region Properties
 
-        public Lazy<System.Drawing.Image> Snapshot { get; set; }
+        public Lazy<System.Drawing.Image> LazySnapshot { get; set; }
 
         #endregion
 
@@ -20,10 +18,10 @@ namespace ErrorControlSystem.Shared
 
         public ProxyError()
         {
-            #region Initialize Lazy<Image> Snapshot
+            #region Initialize Lazy<Image> LazySnapshot
 
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => CacheController.SdfManager.GetSnapshot(Id));
+            LazySnapshot = new Lazy<Image>(() => CacheController.SdfManager.GetSnapshot(Id));
 
             #endregion
         }
@@ -62,7 +60,7 @@ namespace ErrorControlSystem.Shared
             #region Initialize Lazy<Image> Snapshot
 
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => CacheController.SdfManager.GetSnapshot(Id));
+            LazySnapshot = new Lazy<Image>(() => CacheController.SdfManager.GetSnapshot(Id));
 
             #endregion
         }
@@ -95,7 +93,7 @@ namespace ErrorControlSystem.Shared
             Duplicate = (int)info.GetValue("Duplicate", typeof(int));
             Data = (string)info.GetValue("Data", typeof(string));
             // Initialize by invoking a specific constructor on Order when Value property is accessed
-            Snapshot = new Lazy<Image>(() => CacheController.SdfManager.GetSnapshot(Id));
+            LazySnapshot = new Lazy<Image>(() => CacheController.SdfManager.GetSnapshot(Id));
         }
 
         #endregion
@@ -129,7 +127,7 @@ namespace ErrorControlSystem.Shared
                 User = proxyError.User,
                 LineColumn = proxyError.LineColumn,
                 Duplicate = proxyError.Duplicate,
-                Snapshot = proxyError.Snapshot.Value,
+                Snapshot = proxyError.Snapshot,
                 Data = proxyError.Data
             };
         }
@@ -166,6 +164,7 @@ namespace ErrorControlSystem.Shared
         public CodeScope LineColumn { get; set; }
         public int Duplicate { get; set; }
         public string Data { get; set; }
+        public System.Drawing.Image Snapshot { get { return LazySnapshot.Value; } }
         #endregion
 
         #region IDisposable Implement
@@ -189,7 +188,7 @@ namespace ErrorControlSystem.Shared
             OS = null;
             Processes = null;
             ServerDateTime = DateTime.MinValue;
-            Snapshot = null;
+            LazySnapshot = null;
             Source = String.Empty;
             StackTrace = String.Empty;
             User = String.Empty;

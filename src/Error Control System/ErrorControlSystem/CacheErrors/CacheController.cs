@@ -17,7 +17,7 @@ namespace ErrorControlSystem.CacheErrors
 
         public static SqlCompactEditionManager SdfManager { get; private set; }
 
-        public static ActionBlock<Tuple<ProxyError, bool>> AcknowledgeActionBlock;
+        public static ActionBlock<Tuple<IError, bool>> AcknowledgeActionBlock;
 
         private static ActionBlock<Error> _errorSaverActionBlock;
 
@@ -36,7 +36,7 @@ namespace ErrorControlSystem.CacheErrors
 
             #region Acknowledge Action Block
 
-            AcknowledgeActionBlock = new ActionBlock<Tuple<ProxyError, bool>>(
+            AcknowledgeActionBlock = new ActionBlock<Tuple<IError, bool>>(
                 async ack =>
                 {
                     if (ack.Item2) // Error Successful sent to server database
@@ -46,7 +46,8 @@ namespace ErrorControlSystem.CacheErrors
                         await SdfManager.DeleteAsync(ack.Item1.Id);
                         //
                         // De-story error from Memory (RAM):
-                        if (ack.Item1 != null) ack.Item1.Dispose();
+                        var error = ack.Item1 as ProxyError;
+                        if (error != null) error.Dispose();
                     }
                 },
                 new ExecutionDataflowBlockOptions
@@ -98,7 +99,7 @@ namespace ErrorControlSystem.CacheErrors
 
             foreach (var error in errors)
             {
-                await ServerTransmitter.ErrorListenerTransformBlock.SendAsync(new ProxyError(error));
+                await ServerTransmitter.ErrorListenerTransformBlock.SendAsync(error);
 
                 if (!ErrorHandlingOption.EnableNetworkSending) break;
             }
@@ -127,6 +128,9 @@ namespace ErrorControlSystem.CacheErrors
 
             await _errorSaverActionBlock.SendAsync(error);
         }
+
+
+
 
         #endregion
     }

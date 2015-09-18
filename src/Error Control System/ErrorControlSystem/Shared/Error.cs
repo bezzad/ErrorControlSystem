@@ -14,9 +14,7 @@ namespace ErrorControlSystem.Shared
     public class Error : IError, IDisposable, ICloneable
     {
         #region Properties
-
-        public System.Drawing.Image Snapshot { get; set; }
-
+        
         /// <summary>
         /// Dictionary of key/value data that will be stored in exceptions as additional data.
         /// </summary>
@@ -227,6 +225,7 @@ namespace ErrorControlSystem.Shared
         public CodeScope LineColumn { get; set; }
         public int Duplicate { get; set; }
         public string Data { get; set; }
+        public System.Drawing.Image Snapshot { get; set; }
         #endregion
 
         #region IDisposable Implement

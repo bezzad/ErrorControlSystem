@@ -3,6 +3,14 @@
 # Version history
 
 ---------------------------------------------------------------------------------------
+## [v4.2.3](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.2.3.zip)
+
+Added
+
+ * Some Bug fixes
+ * Add LogOnTheFly option to logging errors without caching on local systems
+
+---------------------------------------------------------------------------------------
 ## [v4.2.2](https://github.com/Behzadkhosravifar/ErrorControlSystem/archive/v4.2.2.zip)
 
 Added

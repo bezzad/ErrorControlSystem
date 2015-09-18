@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GlobalAssemblyInfo.cs" company="ErrorControlSystem Project">
 //   Copyright (c) 2014 - 2015 Behzad Khosravifar. Licensed under GNU General Public License, Version 3.0. .
 // </copyright>
@@ -41,12 +41,12 @@ using System.Reflection;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: System.Reflection.AssemblyVersion("4.1.5")]
+[assembly: System.Reflection.AssemblyVersion("4.1.6")]
 
 // This is also assigned to 'AssemblyInformationalVersion' which is the product version
 // Standard Way: [major].[minor].[bugfix].[build]
 // .NET Convention: Third digit is the auto-incremented build version. Fourth digit is revision, which is service pack no
-[assembly: System.Reflection.AssemblyFileVersion("4.1.5")]
+[assembly: System.Reflection.AssemblyFileVersion("4.1.6")]
 /*
  * AssemblyVersion should only be changed for major changes or breaking changes since any change to the
  * AssemblyVersion would force every .NET application referencing the assembly to re-compile against the
